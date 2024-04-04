@@ -1,0 +1,54 @@
+{
+  "extends": [
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "header", "import", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "header/header": [
+      2,
+      "block",
+      [" Copyright (c) 2022 CLOUDPILOTS Software & Consulting GmbH "],
+      2
+    ],
+    "import/no-unresolved": "error",
+    "import/newline-after-import": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "newline-before-return": "error",
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "block", "next": "*" },
+      { "blankLine": "always", "prev": "*", "next": "block" },
+      { "blankLine": "always", "prev": "block-like", "next": "*" },
+      { "blankLine": "always", "prev": "*", "next": "block-like" }
+    ],
+    "@typescript-eslint/ban-types": "warn"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      },
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/components", "src", "."]
+      }
+    }
+  }
+}
