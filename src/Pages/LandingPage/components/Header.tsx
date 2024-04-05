@@ -1,25 +1,62 @@
-import { Box } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 
 const Header = () => {
   return (
     <Box
       sx={{
-        backgroundImage: `url(src/assets/nikolaj-habib-J9T8mIL5f4M-unsplash.jpg)`, 
-        backgroundSize: 'cover',
-        backgroundPosition: 'center', 
-        display: 'flex', 
-        flexDirection: 'column', // You can use 'row' if you prefer a horizontal layout
-        justifyContent: 'center', // Centers the content vertically
-        alignItems: 'center', // Centers the content horizontally
-        textAlign: 'center', // Centers the text inside the Typography component
-        color: 'white', // Text color, change as needed    
-    }}
-      
-      
-        bgcolor={"pink"}
-      width={500}
-      height={500}
-    ></Box>
+        backgroundImage: `url(src/assets/nikolaj-habib-J9T8mIL5f4M-unsplash.jpg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        display: "flex",
+        flexDirection: "column",
+        textAlign: "center",
+        color: "white",
+      }}
+      bgcolor={"pink"}
+      width={"100%"}
+      height={400}
+      position={"relative"}
+      flexWrap={"wrap"}
+    >
+      <Stack
+        direction={"row"}
+        width={"100%"}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+        flexWrap="wrap"
+      >
+        <img
+          src="src/assets/logomoPNG.png"
+          style={{ width: 100, height: 100 }}
+        />
+        <Stack direction={"row"} gap={2} mr={2} alignItems="center" sx={{ minWidth: 0 }}>
+          <Button variant="contained" sx={{ whiteSpace: 'nowrap' }}>Login</Button>
+          <Button variant="outlined" sx={{ whiteSpace: 'nowrap' }} color="inherit">
+            Process without Login
+          </Button>
+        </Stack>
+      </Stack>
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        height={300}
+        flexWrap={"wrap"}
+      >
+        <Typography variant="h3">Welcome to Mo App Platform</Typography>
+        <Typography p={1} variant="body2" width={"70%"} textAlign={"left"}>
+          Mo App Platform serves as your digital junction for engaging and
+          versatile applications tailored to enhance your productivity and
+          leisure. This intuitive platform boasts a suite of apps designed to
+          simplify your life. Enjoy seamless transitions between tools and
+          entertainment at the click of a button, all centralized in one
+          accessible location. Experience the ease of managing your tasks,
+          tracking your favorite movies, and more with Mo App Platform – where
+          convenience meets innovation
+        </Typography>
+      </Box>
+    </Box>
   );
 };
 
