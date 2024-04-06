@@ -1,4 +1,6 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
+import "./Header.css"
+
 
 const Header = () => {
   return (
@@ -23,15 +25,22 @@ const Header = () => {
         width={"100%"}
         alignItems={"center"}
         justifyContent={"space-between"}
-        flexWrap="wrap"
       >
         <img
           src="src/assets/logomoPNG.png"
+          alt="Logo"
+          className="logo-animation"
           style={{ width: 100, height: 100 }}
         />
-        <Stack direction={"row"} gap={2} mr={2} alignItems="center" sx={{ minWidth: 0 }}>
-          <Button variant="contained" sx={{ whiteSpace: 'nowrap' }}>Login</Button>
-          <Button variant="outlined" sx={{ whiteSpace: 'nowrap' }} color="inherit">
+        <Stack direction={"row"} gap={2} mr={2} alignItems="center">
+          <Button variant="contained" sx={{ whiteSpace: "nowrap" }}>
+            Login
+          </Button>
+          <Button
+            variant="outlined"
+            sx={{ whiteSpace: "nowrap" }}
+            color="inherit"
+          >
             Process without Login
           </Button>
         </Stack>
@@ -44,8 +53,14 @@ const Header = () => {
         height={300}
         flexWrap={"wrap"}
       >
-        <Typography variant="h3">Welcome to Mo App Platform</Typography>
-        <Typography p={1} variant="body2" width={"70%"} textAlign={"left"}>
+        <Typography variant="h3" >Welcome to Mo App Platform</Typography>
+        <Typography
+          mt={2}
+          variant="body1"
+          width={"70%"}
+          textAlign={"left"}
+
+        >
           Mo App Platform serves as your digital junction for engaging and
           versatile applications tailored to enhance your productivity and
           leisure. This intuitive platform boasts a suite of apps designed to

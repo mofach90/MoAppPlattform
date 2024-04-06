@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 
 const LandingPage = () => {
   return (
