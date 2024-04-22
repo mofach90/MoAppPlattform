@@ -1,18 +1,23 @@
 import { Grid } from "@mui/material";
 import Body from "./components/Body";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 
 const LandingPage = () => {
   return (
-    <Grid container display={"flex"} flexDirection={"column"} bgcolor={"orange"}>
+    <Grid
+      container
+      minHeight={"100vh"}
+      display={"flex"}
+      flexDirection={"column"}
+    >
       <Grid item>
         <Header />
       </Grid>
       <Grid item>
         <Body />
       </Grid>
-      <Grid item>
+      <Grid item mt={"auto"}>
         <Footer />
       </Grid>
     </Grid>

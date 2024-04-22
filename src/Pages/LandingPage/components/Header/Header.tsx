@@ -14,11 +14,6 @@ const Header = () => {
         textAlign: "center",
         color: "white",
       }}
-      bgcolor={"pink"}
-      width={"100%"}
-      height={400}
-      position={"relative"}
-      flexWrap={"wrap"}
     >
       <Stack
         direction={"row"}
