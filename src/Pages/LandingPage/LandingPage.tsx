@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import Body from "./components/Body";
+import Body from "./components/Body/Body";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 
