@@ -1,6 +1,18 @@
-import { Box, Breadcrumbs, Chip, Divider, Stack } from "@mui/material";
+import { Box, Breadcrumbs, Chip, Divider, Link, Snackbar, Stack } from "@mui/material";
+import SnackbarAlert from "../Header/headerComponents/SnackbarAlert";
+import { useState } from "react";
 
 const Footer = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const handleClose = (
+    _event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
   return (
     <Stack  display={"flex"} direction={"row"} alignItems={"center"}>
       <Stack>
@@ -16,13 +28,24 @@ const Footer = () => {
         separator={"|"}
         sx={{color:"white"}}
         >
-          <Box sx={{color:"white", fontSize:"1rem"}}>About</Box>
-          <Box sx={{color:"white", fontSize:"1rem"}}>Licence</Box>
-          <Box sx={{color:"white", fontSize:"1rem"}}>Privacy</Box>
-          <Box sx={{color:"white", fontSize:"1rem"}}>User Agreement</Box>
+          <Link onClick={()=>setOpen(true)}  sx={{color:"white", fontSize:"1rem"}}>About</Link>
+          <Link onClick={()=>setOpen(true)} sx={{color:"white", fontSize:"1rem"}}>Licence</Link>
+          <Link onClick={()=>setOpen(true)} sx={{color:"white", fontSize:"1rem"}}>Privacy</Link>
+          <Link onClick={()=>setOpen(true)} sx={{color:"white", fontSize:"1rem"}}>User Agreement</Link>
 
         </Breadcrumbs>
         <Chip />
+        <Snackbar
+            message="Coming soon : Under Developement"
+            autoHideDuration={1000}
+            open={open}
+            onClose={handleClose}
+            anchorOrigin={{ vertical:"bottom", horizontal:"left" }}
+          >
+            <SnackbarAlert variant="filled" severity="warning">
+              Coming soon : Under Developement
+            </SnackbarAlert>
+          </Snackbar>
       </Stack>
     </Stack>
   );

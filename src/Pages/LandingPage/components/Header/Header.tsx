@@ -1,8 +1,20 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-import "./Header.css"
-
+import { Box, Button, Snackbar, Stack, Typography } from "@mui/material";
+import { useState } from "react";
+import "./Header.css";
+import SnackbarAlert from "./headerComponents/SnackbarAlert";
 
 const Header = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const handleClose = (
+    _event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <Box
       sx={{
@@ -28,16 +40,32 @@ const Header = () => {
           style={{ width: 100, height: 100 }}
         />
         <Stack direction={"row"} gap={2} mr={2} alignItems="center">
-          <Button variant="contained" sx={{ whiteSpace: "nowrap" }}>
+          <Button
+            variant="contained"
+            sx={{ whiteSpace: "nowrap" }}
+            onClick={() => setOpen(true)}
+          >
             Login
           </Button>
           <Button
             variant="outlined"
             sx={{ whiteSpace: "nowrap" }}
             color="inherit"
+            onClick={() => setOpen(true)}
           >
             Process without Login
           </Button>
+          <Snackbar
+            message="Coming soon : Under Developement"
+            autoHideDuration={3000}
+            open={open}
+            onClose={handleClose}
+            anchorOrigin={{ vertical:"top", horizontal:"center" }}
+          >
+            <SnackbarAlert variant="filled" severity="warning">
+              Coming soon : Under Developement
+            </SnackbarAlert>
+          </Snackbar>
         </Stack>
       </Stack>
       <Box
@@ -48,14 +76,8 @@ const Header = () => {
         height={300}
         flexWrap={"wrap"}
       >
-        <Typography variant="h3" >Welcome to Mo App Platform</Typography>
-        <Typography
-          mt={2}
-          variant="body1"
-          width={"70%"}
-          textAlign={"left"}
-
-        >
+        <Typography variant="h3">Welcome to Mo App Platform</Typography>
+        <Typography mt={2} variant="body1" width={"70%"} textAlign={"left"}>
           Mo App Platform serves as your digital junction for engaging and
           versatile applications tailored to enhance your productivity and
           leisure. This intuitive platform boasts a suite of apps designed to
