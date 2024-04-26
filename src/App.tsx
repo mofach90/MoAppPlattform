@@ -1,5 +1,10 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import LandingPage from "./Pages/LandingPage/LandingPage";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import AboutPage from "./Pages/LandingPage/AboutPage";
+import PrivacyPage from "./Pages/LandingPage/PrivacyPage";
+import LicencePage from "./Pages/LandingPage/LicencePage";
+import UseragreementPage from "./Pages/LandingPage/UseragreementPage";
 
 const theme = createTheme({
   components: {
@@ -28,12 +33,19 @@ const theme = createTheme({
 
 function App() {
   return (
-    <>
+    <Router>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <LandingPage />
+        <Routes>
+          <Route path="/" element={<LandingPage/>} />
+          <Route path="/about" element={<AboutPage/>} />
+          <Route path="/privacy" element={<PrivacyPage/>} />
+          <Route path="/licence" element={<LicencePage/>} />
+          <Route path="/useragreement" element={<UseragreementPage/>} />
+        </Routes>
+        {/* <LandingPage /> */}
       </ThemeProvider>
-    </>
+    </Router>
   );
 }
 

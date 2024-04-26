@@ -1,9 +1,11 @@
-import { Box, Breadcrumbs, Chip, Divider, Link, Snackbar, Stack } from "@mui/material";
-import SnackbarAlert from "../Header/headerComponents/SnackbarAlert";
+import { Breadcrumbs, Chip, Snackbar, Stack } from "@mui/material";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import SnackbarAlert from "../Header/headerComponents/SnackbarAlert";
 
 const Footer = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const navigate = useNavigate()
   const handleClose = (
     _event: React.SyntheticEvent | Event,
     reason?: string
@@ -28,10 +30,10 @@ const Footer = () => {
         separator={"|"}
         sx={{color:"white"}}
         >
-          <Link onClick={()=>setOpen(true)}  sx={{color:"white", fontSize:"1rem"}}>About</Link>
-          <Link onClick={()=>setOpen(true)} sx={{color:"white", fontSize:"1rem"}}>Licence</Link>
-          <Link onClick={()=>setOpen(true)} sx={{color:"white", fontSize:"1rem"}}>Privacy</Link>
-          <Link onClick={()=>setOpen(true)} sx={{color:"white", fontSize:"1rem"}}>User Agreement</Link>
+          <Link to="/about" style={{color:"white", fontSize:"1rem"}}>About</Link>          
+          <Link to="/licence" style={{color:"white", fontSize:"1rem"}}>Licence</Link>
+          <Link to="/privacy" style={{color:"white", fontSize:"1rem"}}>Privacy</Link>
+          <Link to="/useragreement" style={{color:"white", fontSize:"1rem"}}>User Agreement</Link>
 
         </Breadcrumbs>
         <Chip />

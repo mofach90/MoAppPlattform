@@ -57,7 +57,7 @@ const Header = () => {
           </Button>
           <Snackbar
             message="Coming soon : Under Developement"
-            autoHideDuration={3000}
+            autoHideDuration={1000}
             open={open}
             onClose={handleClose}
             anchorOrigin={{ vertical:"top", horizontal:"center" }}
