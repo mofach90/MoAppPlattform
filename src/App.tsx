@@ -1,9 +1,9 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import LandingPage from "./Pages/LandingPage/LandingPage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import AboutPage from "./Pages/LandingPage/AboutPage";
-import PrivacyPage from "./Pages/LandingPage/PrivacyPage";
+import LandingPage from "./Pages/LandingPage/LandingPage";
 import LicencePage from "./Pages/LandingPage/LicencePage";
+import PrivacyPage from "./Pages/LandingPage/PrivacyPage";
 import UseragreementPage from "./Pages/LandingPage/UseragreementPage";
 
 const theme = createTheme({
@@ -37,11 +37,11 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route path="/" element={<LandingPage/>} />
-          <Route path="/about" element={<AboutPage/>} />
-          <Route path="/privacy" element={<PrivacyPage/>} />
-          <Route path="/licence" element={<LicencePage/>} />
-          <Route path="/useragreement" element={<UseragreementPage/>} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/licence" element={<LicencePage />} />
+          <Route path="/useragreement" element={<UseragreementPage />} />
         </Routes>
         {/* <LandingPage /> */}
       </ThemeProvider>
