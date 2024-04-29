@@ -1,19 +1,7 @@
-import { Breadcrumbs, Chip, Snackbar, Stack } from "@mui/material";
-import { useState } from "react";
+import { Breadcrumbs, Link as LinkButton, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
-import SnackbarAlert from "../Header/headerComponents/SnackbarAlert";
 
 const Footer = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  const handleClose = (
-    _event: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(false);
-  };
   return (
     <Stack display={"flex"} direction={"row"} alignItems={"center"}>
       <Stack>
@@ -38,13 +26,14 @@ const Footer = () => {
           <Link to="/licence" style={{ color: "white", fontSize: "1rem" }}>
             Licence
           </Link>
-          <Link
-            to=""
+          <LinkButton
+            component="button"
             onClick={() => window.klaro.show()}
-            style={{ color: "white", fontSize: "1rem" }}
+            sx={{ fontSize: "1rem" }}
+            color={"inherit"}
           >
             Privacy Setting
-          </Link>
+          </LinkButton>
           <Link
             to="/useragreement"
             style={{ color: "white", fontSize: "1rem" }}
@@ -52,18 +41,6 @@ const Footer = () => {
             User Agreement
           </Link>
         </Breadcrumbs>
-        <Chip />
-        <Snackbar
-          message="Coming soon : Under Developement"
-          autoHideDuration={1000}
-          open={open}
-          onClose={handleClose}
-          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        >
-          <SnackbarAlert variant="filled" severity="warning">
-            Coming soon : Under Developement
-          </SnackbarAlert>
-        </Snackbar>
       </Stack>
     </Stack>
   );

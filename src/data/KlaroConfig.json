@@ -4,10 +4,6 @@
       "googleAnalytics": {
         "title": "Google Analytics",
         "description": "The analytics service ran by a most definitely non-evil company."
-      },
-      "purposes": {
-        "analytics": "Analytics",
-        "styling": "Styling"
       }
     }
   },
@@ -15,12 +11,6 @@
     {
       "name": "googleAnalytics",
       "purposes": ["analytics"]
-    },
-    {
-      "name": "bootstrap",
-      "title": "Bootstrap (external resource)",
-      "description": "Example for embedding external stylesheets.",
-      "purposes": ["styling"]
     },
     {
       "name": "twitter",

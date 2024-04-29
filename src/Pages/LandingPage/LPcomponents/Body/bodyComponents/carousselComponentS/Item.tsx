@@ -16,7 +16,14 @@ const Item = (props: any) => {
         height: 300,
       }}
     >
-      <Typography mb={1} sx={{opacity:0.5}} borderRadius={2} width={300} variant="h4" bgcolor={"black"} >
+      <Typography
+        mb={1}
+        sx={{ opacity: 0.5 }}
+        borderRadius={2}
+        width={300}
+        variant="h4"
+        bgcolor={"black"}
+      >
         {props.item.name}
       </Typography>
     </Paper>

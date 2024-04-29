@@ -5,8 +5,8 @@ import FAQ from "./bodyComponents/FAQ";
 const Body = () => {
   return (
     <Box width={"100%"} height={"100%"} padding={4}>
-      <CarouselComponent/>
-      <FAQ/>
+      <CarouselComponent />
+      <FAQ />
     </Box>
   );
 };

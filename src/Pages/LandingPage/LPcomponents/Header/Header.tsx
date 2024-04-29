@@ -60,7 +60,7 @@ const Header = () => {
             autoHideDuration={1000}
             open={open}
             onClose={handleClose}
-            anchorOrigin={{ vertical:"top", horizontal:"center" }}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
           >
             <SnackbarAlert variant="filled" severity="warning">
               Coming soon : Under Developement

@@ -9,14 +9,7 @@ function AboutPage() {
       flexDirection={"row"}
       justifyContent={"center"}
     >
-      <Grid
-        container
-        maxWidth={1200}
-        display={"flex"}
-        flexDirection={"column"}
-
-        // spacing={0.03}
-      >
+      <Grid container maxWidth={1200} display={"flex"} flexDirection={"column"}>
         <Grid item mt={3} ml={2}>
           <BackToHomeButton />
         </Grid>
@@ -29,6 +22,7 @@ function AboutPage() {
               border: "1px solid",
             }}
             src="src/assets/AboutPage2.jpg"
+            alt="AboutPage2.jpg Image"
           />
         </Grid>
         <Grid item padding={4}>

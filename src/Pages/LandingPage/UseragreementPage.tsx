@@ -28,9 +28,9 @@ function UseragreementPage() {
               height: "60vh",
               borderRadius: 10,
               border: "1px solid",
-              opacity: 0.8,
             }}
             src="src/assets/useragreement.jpg"
+            alt="useragreement.jpg Image"
           />
         </Grid>
 
@@ -64,6 +64,7 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               1. Acceptance of Terms
             </Typography>
@@ -79,10 +80,11 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               2. Description of Services
             </Typography>
-            <Typography mt={1} color={"black"} variant="body1">
+            <Typography color={"black"} variant="body1">
               Mo App Platform provides users with access to a rich collection of
               resources, including various communication tools, forums, shopping
               services, search services, personalized content, and branded
@@ -94,6 +96,7 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               3. Privacy and Protection of Personal Information
             </Typography>
@@ -105,10 +108,11 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               4. Member Account, Password, and Security
             </Typography>
-            <Typography mt={1} color={"black"} variant="body1">
+            <Typography color={"black"} variant="body1">
               If any of the Services requires you to open an account, you must
               complete the registration process by providing us with current,
               complete, and accurate information as prompted by the applicable
@@ -128,6 +132,7 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               5. No Unlawful or Prohibited Use
             </Typography>
@@ -144,6 +149,7 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               6. Use of Services
             </Typography>
@@ -161,6 +167,7 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               7. Termination/Access Restriction
             </Typography>
@@ -174,6 +181,7 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               8. General
             </Typography>
@@ -187,6 +195,7 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               9. Copyright and Trademark Notices
             </Typography>
@@ -198,6 +207,7 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               10. Trademarks
             </Typography>
@@ -209,6 +219,7 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               11. Language
             </Typography>
@@ -221,6 +232,7 @@ function UseragreementPage() {
               sx={{ fontWeight: "Bold" }}
               color={"black"}
               variant="h6"
+              mt={1}
             >
               Contact Us
             </Typography>

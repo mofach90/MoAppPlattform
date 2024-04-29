@@ -6,9 +6,9 @@ import {
   Typography,
 } from "@mui/material";
 
-const AccordionComponent = (props:any) => {
+const AccordionComponent = (props: any) => {
   return (
-    <Accordion sx={{opacity:0.9}}>
+    <Accordion sx={{ opacity: 0.9 }}>
       <AccordionSummary
         expandIcon={
           <ExpandMoreIcon
@@ -24,7 +24,9 @@ const AccordionComponent = (props:any) => {
           />
         }
       >
-        <Typography fontWeight={"bold"} color={"darkblue"}>{props.qa.question}</Typography>
+        <Typography fontWeight={"bold"} color={"darkblue"}>
+          {props.qa.question}
+        </Typography>
       </AccordionSummary>
       <AccordionDetails
         sx={{

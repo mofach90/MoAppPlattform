@@ -38,14 +38,12 @@ function App() {
       <Klaro config={data}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/licence" element={<LicencePage />} />
             <Route path="/useragreement" element={<UseragreementPage />} />
           </Routes>
-          {/* <LandingPage /> */}
         </ThemeProvider>
       </Klaro>
     </Router>

@@ -10,7 +10,7 @@ function BackToHomeButton() {
       onClick={() => navigate("/")}
       variant="outlined"
       startIcon={<ArrowBackIosIcon />}
-        sx={{color: "rgb(55, 255, 255)"}}
+      sx={{ color: "rgb(55, 255, 255)" }}
     >
       Back to Home
     </Button>

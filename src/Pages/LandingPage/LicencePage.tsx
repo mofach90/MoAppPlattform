@@ -31,6 +31,7 @@ function LicencePage() {
               opacity: 0.8,
             }}
             src="src/assets/Licencefinal.jpg"
+            alt="Licence Image"
           />
         </Grid>
 

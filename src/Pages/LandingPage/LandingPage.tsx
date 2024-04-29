@@ -10,10 +10,15 @@ const LandingPage = () => {
       display={"flex"}
       flexDirection={"row"}
       justifyContent={"center"}
-      sx={{overflow:"hidden"}}
-
+      sx={{ overflow: "hidden" }}
     >
-      <Grid container minWidth={700} display={"flex"} flexDirection={"column"} maxWidth={1200}>
+      <Grid
+        container
+        minWidth={700}
+        display={"flex"}
+        flexDirection={"column"}
+        maxWidth={1200}
+      >
         <Grid item>
           <Header />
         </Grid>
