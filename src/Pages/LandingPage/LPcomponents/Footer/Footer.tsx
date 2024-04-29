@@ -38,8 +38,12 @@ const Footer = () => {
           <Link to="/licence" style={{ color: "white", fontSize: "1rem" }}>
             Licence
           </Link>
-          <Link to="/privacy" style={{ color: "white", fontSize: "1rem" }}>
-            Privacy
+          <Link
+            to=""
+            onClick={() => window.klaro.show()}
+            style={{ color: "white", fontSize: "1rem" }}
+          >
+            Privacy Setting
           </Link>
           <Link
             to="/useragreement"

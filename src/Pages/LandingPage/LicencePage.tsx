@@ -30,7 +30,7 @@ function LicencePage() {
               border: "1px solid",
               opacity: 0.8,
             }}
-            src="https://qph.cf2.quoracdn.net/main-qimg-f03766faf1b21d65f322b9639e8fe1fd"
+            src="src/assets/Licencefinal.jpg"
           />
         </Grid>
 
