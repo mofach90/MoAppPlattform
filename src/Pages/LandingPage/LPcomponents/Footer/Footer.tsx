@@ -9,11 +9,50 @@ import {
   MenuItem,
   Select,
   Stack,
-  Typography,
 } from "@mui/material";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const menuItemStyles = {
+  color: "black",
+  "&.Mui-selected": {
+    backgroundColor: "red",
+    "&:hover": {
+      backgroundColor: "yellow",
+    },
+  },
+};
+
+const inputItemStyles = {
+  color: "white",
+  "&.Mui-focused": {
+    transform: "translate(-20px, -14px) scale(0.75) rotate(1turn)",
+    color: "inherit",
+  },
+  "&.MuiInputLabel-shrink": {
+    color: "inherit",
+    "&:not(.Mui-focused)": {
+      transform: "translate(-20px, -14px) scale(0.75)",
+    },
+  },
+};
+
+const selectStyles = {
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "none",
+  },
+  "& .MuiSelect-select": {
+    display: "flex",
+    alignItems: "center",
+    color: "white",
+  },
+};
+
 const Footer = () => {
+  const [language, setLanguage] = useState<String>("");
+  const handleChange = (event: any) => {
+    setLanguage(event.target.value);
+  };
   return (
     <Stack display={"flex"} direction={"row"} alignItems={"center"}>
       <Stack>
@@ -64,55 +103,29 @@ const Footer = () => {
           display={"flex"}
           flexDirection={"row"}
           alignItems={"center"}
-          overflow={"hidden"}
         >
-          <LanguageIcon sx={{ ml: 1 }} />
-          <FormControl
-            fullWidth
-            sx={{
-              "&.MuiOutlinedInput-notchedOutline": {
-                border: "none",
-              },
-            }}
-          >
-            <InputLabel
-              id="Language"
-              sx={{ color: "#ffffff", bgcolor: "dark" }}
-            >
+          <LanguageIcon color="inherit" sx={{ ml: 1 }} />
+          <FormControl fullWidth>
+            <InputLabel id="Language" sx={inputItemStyles}>
               Language
             </InputLabel>
             <Select
-              sx={{
-                "& .MuiOutlinedInput-notchedOutline": {
-                  border: "none",
+              value={language}
+              onChange={handleChange}
+              sx={selectStyles}
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    backgroundColor: "rgb(90,255,255)",
+                  },
                 },
-                "& .MuiSelect-select": {
-                  display: "flex",
-                  alignItems: "center",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  color: "white",
+                anchorOrigin: {
+                  vertical: 0,
+                  horizontal: 210,
                 },
               }}
             >
-              <MenuItem
-                sx={{
-                  
-                  color: "black",
-                  "&.MuiMenuItem-root": {
-                    backgroundColor: "green",
-                    width: 120,
-                  },
-                  "&.Mui-selected": {
-                    backgroundColor: "blue",
-                  },
-                  "&.Mui-focusVisible": {
-                    backgroundColor: "black",
-                  },
-                }}
-                value={"deutsch"}
-              >
+              <MenuItem sx={menuItemStyles} value={"deutsch"}>
                 Deutsch
                 <Avatar
                   sx={{
@@ -121,33 +134,18 @@ const Footer = () => {
                     height: 18,
                   }}
                   src="src/assets/Flag_of_Germany.png"
-                />{" "}
+                />
               </MenuItem>
-              <MenuItem
-                sx={{
-                  color: "black",
-                  "&.MuiMenuItem-root": {
-                    backgroundColor: "green",
-                    width: 180,
-                  },
-                  "&.Mui-selected": {
-                    backgroundColor: "blue",
-                  },
-                  "&.Mui-focusVisible": {
-                    backgroundColor: "black",
-                  },
-                }}
-                value={"english"}
-              >
+              <MenuItem sx={menuItemStyles} value={"english"}>
                 English
                 <Avatar
                   sx={{
-                    ml: 2,
+                    ml: 2.8,
                     width: 20,
                     height: 18,
                   }}
                   src="src/assets/Flag_of_the_United_Kingdom.png"
-                />{" "}
+                />
               </MenuItem>
             </Select>
           </FormControl>
@@ -158,20 +156,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-{
-  /* <Box display={"flex"} flexDirection={"column"}>
-<Chip
-  avatar={<Avatar src="src/assets/Flag_of_Germany.png" />}
-  label="Deutsch"
-  sx={{ width: 100, bgcolor: "yellow" }}
-/>
-<Chip
-  avatar={
-    <Avatar src="src/assets/Flag_of_the_United_Kingdom.png" />
-  }
-  label="English"
-  sx={{ width: 100, bgcolor: "green" }}
-/>
-</Box> */
-}
