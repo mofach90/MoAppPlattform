@@ -1,9 +1,9 @@
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Import the dropdown arrow icon
 import LanguageIcon from "@mui/icons-material/Language";
 import {
   Avatar,
   Box,
   Breadcrumbs,
-  Button,
   FormControl,
   InputLabel,
   Link as LinkButton,
@@ -13,12 +13,6 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';  // Import the dropdown arrow icon
-import { Height } from "@mui/icons-material";
-
-const DropdownIcon = () => (
-  <ArrowDropDownIcon  sx={{ color: 'white', mr:1 }} />
-);
 
 const menuItemStyles = {
   color: "black",
@@ -39,30 +33,32 @@ const inputItemStyles = {
   "&.MuiInputLabel-shrink": {
     color: "inherit",
     "&:not(.Mui-focused)": {
-      transform: "translate(-20px, -14px) scale(0.75)",
+      transform: "translate(-20px, -14px) scale(0.75) rotate(1turn)",
+      color: "inherit",
     },
   },
 };
 
-const selectStyles = {
-  "& .MuiOutlinedInput-notchedOutline": {
-    border: "none",
-  },
-  "& .MuiSelect-select": {
-    display: "flex",
-    alignItems: "center",
-    color: "white",
-  },
-  "& .MuiSvgIcon-root": {
-    color: "red",
-    fontSize: "34px",
-  },
-
-
-};
-
 const Footer = () => {
   const [language, setLanguage] = useState<String>("");
+  const selectStyles = {
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "none",
+    },
+    "& .MuiSelect-select": {
+      display: "flex",
+      alignItems: "center",
+      color: "white",
+      "& .MuiSvgIcon-root": {
+        color: "yellow",
+      },
+    },
+    "& .MuiSvgIcon-root": {
+      color: language ? "transparent" : "rgb(90,255,255)",
+      fontSize: "30px",
+    },
+  };
+
   const handleChange = (event: any) => {
     setLanguage(event.target.value);
   };
@@ -82,7 +78,6 @@ const Footer = () => {
         flexDirection={"row"}
         alignItems={"center"}
         justifyContent={"end"}
-        // bgcolor={"white"}
       >
         <Breadcrumbs separator={"|"} sx={{ color: "white" }}>
           <Link to="/about" style={{ color: "white", fontSize: "1rem" }}>
@@ -107,7 +102,7 @@ const Footer = () => {
           </Link>
         </Breadcrumbs>
         <Box
-          width={180}
+          width={165}
           border={"1px solid"}
           height={40}
           mr={2}
@@ -126,7 +121,6 @@ const Footer = () => {
               value={language}
               onChange={handleChange}
               sx={selectStyles}
-              // IconComponent={DropdownIcon}
               MenuProps={{
                 PaperProps: {
                   sx: {
