@@ -3,6 +3,7 @@ import {
   Avatar,
   Box,
   Breadcrumbs,
+  Button,
   FormControl,
   InputLabel,
   Link as LinkButton,
@@ -12,13 +13,19 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';  // Import the dropdown arrow icon
+import { Height } from "@mui/icons-material";
+
+const DropdownIcon = () => (
+  <ArrowDropDownIcon  sx={{ color: 'white', mr:1 }} />
+);
 
 const menuItemStyles = {
   color: "black",
   "&.Mui-selected": {
-    backgroundColor: "red",
+    backgroundColor: "rgb(190,255,255)",
     "&:hover": {
-      backgroundColor: "yellow",
+      backgroundColor: "rgb(190,255,255)",
     },
   },
 };
@@ -46,6 +53,12 @@ const selectStyles = {
     alignItems: "center",
     color: "white",
   },
+  "& .MuiSvgIcon-root": {
+    color: "red",
+    fontSize: "34px",
+  },
+
+
 };
 
 const Footer = () => {
@@ -113,10 +126,13 @@ const Footer = () => {
               value={language}
               onChange={handleChange}
               sx={selectStyles}
+              // IconComponent={DropdownIcon}
               MenuProps={{
                 PaperProps: {
                   sx: {
                     backgroundColor: "rgb(90,255,255)",
+                    width: 80,
+                    borderRadius: 5,
                   },
                 },
                 anchorOrigin: {
