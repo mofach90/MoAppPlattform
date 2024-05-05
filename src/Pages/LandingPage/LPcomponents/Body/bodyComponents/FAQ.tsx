@@ -1,8 +1,11 @@
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
-import data from "../../../../../data/Q&A.json";
+import data from "../../../../../../public/locales/en/translation.json";
 import AccordionComponent from "./faqComponents/AccordionComponent";
-const FAQ = () => {
+const FaQ = () => {
+  const { t } = useTranslation();
+
   return (
     <Box>
       <Typography
@@ -13,13 +16,13 @@ const FAQ = () => {
         variant="h5"
         color={"white"}
       >
-        Frequent Asked Questions
+        {t("Frequent Asked Questions")}
       </Typography>
-      {data.map((qa, i) => (
-        <AccordionComponent key={uuidv4()} index={i} qa={qa} />
+      {data.FaQ.map((_, i) => (
+        <AccordionComponent key={uuidv4()} index={i} />
       ))}
     </Box>
   );
 };
 
-export default FAQ;
+export default FaQ;

@@ -1,0 +1,85 @@
+{
+  "welcome": "Willkommen auf der Mo App Plattform",
+  "description": "Die Mo App Plattform dient als Ihre digitale Schnittstelle für ansprechende und vielseitige Anwendungen, die darauf ausgelegt sind, Ihre Produktivität und Freizeit zu verbessern. Diese intuitive Plattform bietet eine Reihe von Apps, die darauf ausgelegt sind, Ihr Leben zu vereinfachen. Genießen Sie nahtlose Übergänge zwischen Werkzeugen und Unterhaltung auf Knopfdruck, alles zentralisiert an einem zugänglichen Ort. Erleben Sie die Einfachheit, Ihre Aufgaben zu verwalten, Ihre Lieblingsfilme zu verfolgen und mehr mit der Mo App Plattform – wo Bequemlichkeit auf Innovation trifft",
+  "Frequent Asked Questions": "Häufig gestellte Fragen",
+  "FaQ": [
+    {
+      "Q": "Wie kann ich auf die Apps der Mo App Plattform zugreifen?",
+      "A": "Sie können auf alle Apps der Mo App Plattform zugreifen, indem Sie sich einfach auf unserer Website registrieren. Nach der Registrierung können Sie durch die Plattform navigieren und verschiedene Apps nach Bedarf mit nur einem Klick verwenden."
+    },
+    {
+      "Q": "Gibt es eine Abonnementgebühr für die Nutzung der Mo App Plattform?",
+      "A": "Die Mo App Plattform bietet sowohl kostenlose als auch Premium-Anwendungen. Einige Apps können ein Abonnement oder einen Kauf erfordern, was deutlich angezeigt wird. Sie können mit unseren kostenlosen Apps beginnen und bei Bedarf auf Premium-Versionen upgraden."
+    },
+    {
+      "Q": "Kann ich die Mo App Plattform auf mehreren Geräten nutzen?",
+      "A": "Derzeit ist die Mo App Plattform nur über unsere Website zugänglich und unterstützt keine Nutzung auf mehreren Geräten. Wir konzentrieren uns darauf, eine robuste und benutzerfreundliche Erfahrung auf der Webplattform zu bieten."
+    },
+    {
+      "Q": "Welche Arten von Apps sind auf der Mo App Plattform verfügbar?",
+      "A": "In unserer ersten Veröffentlichung bietet die Mo App Plattform eine Auswahl an praktischen und unterhaltsamen Apps, einschließlich einer To-do-Liste, einer Wetter-App und einer Rezept-App. Wir planen, unser Angebot in Zukunft um weitere Apps und Spiele zu erweitern, um Ihre Erfahrungen auf unserer Plattform weiter zu verbessern."
+    }
+  ],
+  "aboutPage": {
+    "missionTitle": "Unsere Mission",
+    "missionDescription": "Unsere Mission ist es, Einzelpersonen und Teams zu befähigen, mehr zu erreichen, indem wir ihnen umfassende Werkzeuge zur Verfügung stellen, die sowohl ihre beruflichen als auch persönlichen Bedürfnisse unterstützen. Indem wir verschiedene Funktionen auf einer zugänglichen Plattform zentralisieren, zielen wir darauf ab, Ihre täglichen Routinen zu optimieren und Ihnen Zeit zu sparen, die Sie für das verbringen können, was Ihnen wirklich wichtig ist.",
+    "visionTitle": "Unsere Vision",
+    "visionDescription": "Wir stellen uns eine Welt vor, in der Technologie jedem hilft, sein Potenzial zu erreichen. Unser Engagement ist es, kontinuierlich zu evolve und uns an die Bedürfnisse unserer Nutzer anzupassen, indem wir Spitzentechnologie und Nutzerfeedback in die Entwicklung unserer Plattform integrieren. Wir streben danach, an der Spitze der digitalen Revolution zu stehen und sicherzustellen, dass unsere Nutzer immer die besten Werkzeuge zur Verfügung haben.",
+    "featuresTitle": "Funktionen und Vorteile",
+    "featuresDescription": "Von Aufgabenmanagement bis Unterhaltung decken unsere Apps ein breites Spektrum an Funktionen ab, die alle in einer einzigen Plattform integriert sind. Wir priorisieren Benutzerfreundlichkeit. Das Design unserer Plattform wird von einem tiefen Verständnis der Bedürfnisse unserer Nutzer geleitet, wodurch Navigation und Bedienung so intuitiv wie möglich gestaltet werden. Wir sind dem Innovations- und Verbesserungsprozess verpflichtet. Die Mo App Plattform wird regelmäßig mit neuen Funktionen und Apps aktualisiert, um mit sich ändernden Technologien Schritt zu halten",
+    "joinUsTitle": "Begleiten Sie uns auf dieser Reise",
+    "joinUsDescription": "Während die Mo App Plattform weiter wächst und sich entwickelt, laden wir Sie ein, uns auf dieser Reise zu begleiten. Ihr Feedback und Ihre Vorschläge sind unschätzbar, da sie uns helfen, die Zukunft unserer Plattform zu gestalten. Gemeinsam wollen wir Produktivität und Freizeit neu definieren und jeden Tag effizienter und angenehmer gestalten."
+  },
+  "licencePage": {
+    "title": "Lizenzvereinbarung für die Mo App Plattform",
+    "grantOfLicense": "1. Lizenzgewährung",
+    "grantOfLicenseDesc": "Diese Vereinbarung gewährt Ihnen eine nicht-exklusive, nicht übertragbare Lizenz zur Nutzung der Mo App Plattform und ihrer Dienste gemäß den spezifischen Bedingungen dieser Vereinbarung und entsprechend den von Ihnen gewählten Serviceplänen und Optionen.",
+    "scopeOfLicense": "2. Umfang der Lizenz",
+    "scopeOfLicenseUse": "a. Nutzung: Ihnen wird das Recht gewährt, die Mo App Plattform für persönliche oder geschäftliche Zwecke zu nutzen, wie durch die bereitgestellte Funktionalität der Plattform vorgesehen.",
+    "scopeOfLicenseRestrictions": "b. Einschränkungen: Sie dürfen die Plattform nicht lizenzieren, verkaufen, vermieten, verleasen, übertragen, zuweisen, verteilen, hosten oder anderweitig kommerziell ausnutzen. Sie dürfen keine Änderungen vornehmen, abgeleitete Werke erstellen, demontieren, zurückentwickeln oder Teile der Plattform reverse-engineeren, noch dürfen Sie versuchen, dies zu tun.",
+    "intellectualPropertyRights": "3. Rechte an geistigem Eigentum",
+    "intellectualPropertyRightsDesc": "Das Unternehmen und seine Lizenzgeber besitzen alle Rechte, Titel und Interessen an der Mo App Plattform, einschließlich aller damit verbundenen geistigen Eigentumsrechte. Die unter dieser Vereinbarung gewährten Lizenzen übertragen keine Rechte an der Mo App Plattform, ausdrücklich oder implizit, außer wie hierin ausdrücklich angegeben.",
+    "content": "4. Inhalt",
+    "contentOwnership": "a. Eigentum: Sie behalten alle Rechte und das Eigentum an Ihrem Inhalt. Wir beanspruchen keine Eigentumsrechte an den Informationen oder Inhalten, die Sie auf die Mo App Plattform hochladen.",
+    "contentPermissions": "b. Berechtigungen: Indem Sie Inhalte auf die Plattform hochladen, erklären Sie, dass Sie alle erforderlichen Lizenzen und Berechtigungen haben, um solche Inhalte zu nutzen und zu teilen.",
+    "termAndTermination": "5. Laufzeit und Beendigung",
+    "termAndTerminationDesc": "Diese Vereinbarung bleibt in Kraft, bis sie von Ihnen oder dem Unternehmen gekündigt wird. Sie können diese Vereinbarung kündigen, indem Sie Ihr Konto löschen und jegliche Nutzung der Plattform einstellen. Das Unternehmen kann diese Vereinbarung jederzeit ohne Ankündigung kündigen, insbesondere wenn Sie die hierin festgelegten Bedingungen nicht einhalten.",
+    "disclaimerOfWarranties": "6. Haftungsausschluss",
+    "disclaimerOfWarrantiesDesc": "Die Mo App Plattform wird 'wie besehen' mit allen Fehlern und ohne jegliche Gewährleistung zur Verfügung gestellt. Das Unternehmen lehnt hiermit alle Garantien, ausdrücklich oder implizit, einschließlich, aber nicht beschränkt auf implizierte Garantien der Marktfähigkeit, Eignung für einen bestimmten Zweck und Nichtverletzung, ab.",
+    "limitationOfLiability": "7. Haftungsbeschränkung",
+    "limitationOfLiabilityDesc": "In keinem Fall haftet das Unternehmen für indirekte, spezielle, zufällige, strafende, exemplarische oder folgende Schäden, einschließlich, aber nicht beschränkt auf Datenverlust, Dienstunterbrechungen, Computerschäden oder Systemausfälle oder die Kosten für Ersatzdienstleistungen, die sich aus dieser Vereinbarung oder der Nutzung oder Unmöglichkeit der Nutzung der Mo App Plattform ergeben, unabhängig von der rechtlichen Theorie, und ob das Unternehmen über die Möglichkeit solcher Schäden informiert wurde oder nicht.",
+    "generalProvisions": "8. Allgemeine Bestimmungen",
+    "generalProvisionsDesc": "Diese Vereinbarung stellt die gesamte Vereinbarung zwischen Ihnen und dem Unternehmen bezüglich Ihrer Nutzung der Mo App Plattform dar und ersetzt alle vorherigen Vereinbarungen zwischen Ihnen und dem Unternehmen bezüglich des hierin behandelten Gegenstands.",
+    "changesToThisAgreement": "9. Änderungen dieser Vereinbarung",
+    "changesToThisAgreementDesc": "Das Unternehmen behält sich das Recht vor, diese Vereinbarung jederzeit zu ändern oder zu ersetzen, und wird dies tun, indem die aktualisierten Bedingungen auf der Website veröffentlicht werden. Ihre fortgesetzte Nutzung der Mo App Plattform nach solchen Änderungen stellt Ihre Zustimmung zu den neuen Bedingungen dar."
+  },
+  "userAgreementPage": {
+    "title": "Nutzungsvereinbarung für die Mo App Plattform",
+    "introduction": "Einführung",
+    "introductionDesc": "Willkommen auf der Mo App Plattform. Durch den Zugriff auf oder die Nutzung unserer Plattform erklären Sie sich mit den Bedingungen dieser Nutzungsvereinbarung einverstanden. Bitte lesen Sie diese Vereinbarung sorgfältig durch, bevor Sie auf unsere Dienste zugreifen oder diese nutzen.",
+    "acceptanceOfTerms": "1. Zustimmung zu den Bedingungen",
+    "acceptanceOfTermsDesc": "Die Dienste, die Ihnen die Mo App Plattform zur Verfügung stellt, unterliegen der folgenden Nutzungsvereinbarung (\"Vereinbarung\"). Wir behalten uns das Recht vor, die Vereinbarung jederzeit ohne Vorankündigung zu aktualisieren. Die jeweils aktuelle Version der Vereinbarung können Sie einsehen, indem Sie auf den Hyperlink \"Nutzungsvereinbarung\" am Ende unserer Webseiten klicken.",
+    "descriptionOfServices": "2. Beschreibung der Dienste",
+    "descriptionOfServicesDesc": "Die Mo App Plattform bietet den Nutzern Zugang zu einer reichen Auswahl an Ressourcen, einschließlich verschiedener Kommunikationsmittel, Foren, Einkaufsdiensten, Suchdiensten, personalisierten Inhalten und markenspezifischer Programmierung durch ihr Netzwerk von Eigenschaften, die über jedes jetzt bekannte oder zukünftig entwickelte Medium oder Gerät zugänglich sein können.",
+    "privacyAndProtection": "3. Datenschutz und Schutz persönlicher Informationen",
+    "privacyAndProtectionDesc": "Siehe die Datenschutzerklärung, die sich auf die Erhebung und Nutzung Ihrer Informationen bezieht.",
+    "accountSecurity": "4. Mitgliedskonto, Passwort und Sicherheit",
+    "accountSecurityDesc": "Wenn die Nutzung eines der Dienste das Öffnen eines Kontos erfordert, müssen Sie den Registrierungsprozess abschließen, indem Sie uns aktuelle, vollständige und korrekte Informationen gemäß dem entsprechenden Registrierungsformular bereitstellen. Sie wählen auch ein Passwort und einen Benutzernamen. Sie sind vollständig verantwortlich für die Wahrung der Vertraulichkeit Ihres Passworts und Ihres Kontos. Des Weiteren sind Sie vollständig verantwortlich für alle Aktivitäten, die unter Ihrem Konto stattfinden. Sie erklären sich damit einverstanden, die Mo App Plattform sofort über jede nicht autorisierte Nutzung Ihres Kontos oder jede andere Sicherheitsverletzung zu informieren. Die Mo App Plattform haftet nicht für Verluste, die Ihnen durch die Nutzung Ihres Passworts oder Ihres Kontos durch eine andere Person entstehen können, sei es mit oder ohne Ihr Wissen. Sie könnten jedoch für Verluste haftbar gemacht werden, die der Mo App Plattform oder einer anderen Partei durch die Nutzung Ihres Kontos oder Passworts durch eine andere Person entstehen.",
+    "unlawfulUse": "5. Keine rechtswidrige oder verbotene Nutzung",
+    "unlawfulUseDesc": "Als Bedingung für Ihre Nutzung der Dienste dürfen Sie die Dienste nicht für Zwecke nutzen, die rechtswidrig oder durch diese Bedingungen, Bedingungen und Hinweise verboten sind. Sie dürfen die Dienste nicht in einer Weise nutzen, die einen Mo App Plattform-Server oder das Netzwerk, das mit einem Mo App Plattform-Server verbunden ist, beschädigen, deaktivieren, überlasten oder beeinträchtigen könnte, oder die Nutzung und den Genuss der Dienste durch eine andere Partei beeinträchtigen könnte.",
+    "useOfServices": "6. Nutzung der Dienste",
+    "useOfServicesDesc": "Die Mo App Plattform kann E-Mail-Dienste, Bulletin-Board-Dienste, Chatbereiche, Newsgroups, Foren, Communities, persönliche Webseiten, Kalender, Fotoalben, Aktenschränke und/oder andere Nachrichten- oder Kommunikationseinrichtungen umfassen, die dazu bestimmt sind, Ihnen die Kommunikation mit anderen zu ermöglichen (zusammengefasst \"Kommunikationsdienste\"). Sie erklären sich damit einverstanden, die Kommunikationsdienste nur zum Posten, Senden und Empfangen von Nachrichten und Materialien zu verwenden, die angemessen sind und, falls zutreffend, im Zusammenhang mit dem jeweiligen Kommunikationsdienst stehen.",
+    "terminationAccessRestriction": "7. Kündigung/Zugriffsbeschränkung",
+    "terminationAccessRestrictionDesc": "Die Mo App Plattform behält sich das Recht vor, nach eigenem Ermessen Ihren Zugang zu den Mo App Plattform-Diensten und den damit verbundenen Diensten oder einem Teil davon jederzeit ohne Vorankündigung zu beenden.",
+    "general": "8. Allgemeines",
+    "generalDesc": "Diese Vereinbarung wird durch die Gesetze des Staates geregelt, in dem die Mo App Plattform ihren Hauptsitz hat. Sie stimmen der ausschließlichen Zuständigkeit und dem Gerichtsstand der Gerichte in diesem Staat für alle Streitigkeiten zu, die sich aus der Nutzung der Mo App Plattform-Dienste oder in Verbindung damit ergeben.",
+    "copyrightAndTrademarkNotices": "9. Urheberrechts- und Markenhinweise",
+    "copyrightAndTrademarkNoticesDesc": "Alle Inhalte der Mo App Plattform sind: Copyright [Einfügejahr] von Mo App Plattform. Alle Rechte vorbehalten.",
+    "trademarks": "10. Markenzeichen",
+    "trademarksDesc": "Die Namen tatsächlicher Unternehmen und Produkte, die hierin erwähnt werden, können die Marken ihrer jeweiligen Eigentümer sein.",
+    "language": "11. Sprache",
+    "languageDesc": "Diese Vereinbarung wurde ursprünglich in Englisch (US) verfasst. Soweit eine übersetzte Version dieser Vereinbarung mit der englischen Version in Konflikt steht, ist die englische Version maßgeblich.",
+    "contactUs": "Kontaktieren Sie uns",
+    "contactUsDesc": "Wenn Sie Fragen oder Bedenken bezüglich dieser Vereinbarung haben, kontaktieren Sie uns bitte unter ayari.mohamed@web.de"
+  }
+}

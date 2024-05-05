@@ -1,0 +1,85 @@
+{
+  "welcome": "Welcome to Mo App Platform",
+  "description": "Mo App Platform serves as your digital junction for engaging and versatile applications tailored to enhance your productivity and leisure. This intuitive platform boasts a suite of apps designed to simplify your life. Enjoy seamless transitions between tools and entertainment at the click of a button, all centralized in one accessible location. Experience the ease of managing your tasks, tracking your favorite movies, and more with Mo App Platform – where convenience meets innovation",
+  "Frequent Asked Questions": "Frequent Asked Questions",
+  "FaQ": [
+    {
+      "Q": "How can I access the apps on Mo App Platform?",
+      "A": "You can access all the apps on Mo App Platform simply by registering for an account on our website. Once registered, you can navigate through the platform and use various apps as per your needs with just a click."
+    },
+    {
+      "Q": "Is there a subscription fee to use Mo App Platform?",
+      "A": "Mo App Platform offers both free and premium applications. Some apps might require a subscription or purchase, which will be clearly indicated. You can start with our free apps and upgrade to premium versions as needed."
+    },
+    {
+      "Q": "Can I use Mo App Platform on multiple devices?",
+      "A": "Currently, Mo App Platform is only accessible via our website and does not support usage across multiple devices. We are focused on providing a robust and user-friendly experience on the web platform."
+    },
+    {
+      "Q": "What kind of apps are available on Mo App Platform?",
+      "A": "For our initial release, Mo App Platform offers a selection of practical and enjoyable apps including a todo list, a weather app, and a recipe app. We plan to expand our offerings in the future to include additional apps and games to further enhance your experience on our platform."
+    }
+  ],
+  "aboutPage": {
+    "missionTitle": "Our Mission",
+    "missionDescription": "Our mission is to empower individuals and teams to achieve more by providing them with comprehensive tools that cater to both their professional and personal needs. By centralizing various functionalities into one accessible platform, we aim to streamline your daily routines and save you time, which you can spend on what truly matters to you.",
+    "visionTitle": "Our Vision",
+    "visionDescription": "We envision a world where technology helps everyone to reach their potential. Our commitment is to continuously evolve and adapt to the needs of our users, integrating cutting-edge technology and user feedback into our platform development. We strive to be at the forefront of the digital revolution, ensuring our users always have the best tools at their disposal.",
+    "featuresTitle": "Features and Benefits",
+    "featuresDescription": "From task management to entertainment, our apps cover a broad spectrum of functionalities, all integrated into a single platform. We prioritize ease of use. Our platform's design is guided by a deep understanding of our users' needs, making navigation and operation as intuitive as possible. We're committed to innovation and improvement. Mo App Platform is regularly updated with new features and apps to keep up with changing technologies and",
+    "joinUsTitle": "Join Us on This Journey",
+    "joinUsDescription": "As Mo App Platform continues to grow and evolve, we invite you to join us on this journey. Your feedback and suggestions are invaluable as they help us shape the future of our platform. Together, let's redefine productivity and leisure, making every day more efficient and enjoyable."
+  },
+  "licencePage": {
+    "title": "License Agreement for Mo App Platform",
+    "grantOfLicense": "1. Grant of License",
+    "grantOfLicenseDesc": "This Agreement grants you a non-exclusive, non-transferable license to access and use the Mo App Platform and its services according to the specific terms set forth in this Agreement and applicable to the service plans and options you have selected.",
+    "scopeOfLicense": "2. Scope of License",
+    "scopeOfLicenseUse": "a. Use: You are granted the right to access and use the Mo App Platform for personal or business purposes as intended through the provided functionality of the platform.",
+    "scopeOfLicenseRestrictions": "b. Restrictions: You may not license, sell, rent, lease, transfer, assign, distribute, host, or otherwise commercially exploit the platform. You may not modify, make derivative works of, disassemble, reverse compile, or reverse engineer any part of the platform, nor attempt to do so.",
+    "intellectualPropertyRights": "3. Intellectual Property Rights",
+    "intellectualPropertyRightsDesc": "The Company and its licensors own all rights, title, and interest in and to the Mo App Platform, including all related intellectual property rights. The licenses granted under this agreement do not convey any rights in the Mo App Platform, express or implied, except as expressly stated in this Agreement.",
+    "content": "4. Content",
+    "contentOwnership": "a. Ownership: You retain all rights and ownership of your content. We do not claim any ownership rights to the information or content you upload to the Mo App Platform.",
+    "contentPermissions": "b. Permissions: By uploading content to the platform, you agree that you have all the necessary licenses and permissions to use and share such content.",
+    "termAndTermination": "5. Term and Termination",
+    "termAndTerminationDesc": "This Agreement will remain in effect until terminated by you or the Company. You may terminate this Agreement by deleting your account and ceasing all use of the platform. The Company may terminate this Agreement at any time without notice, particularly if you fail to comply with any terms outlined herein.",
+    "disclaimerOfWarranties": "6. Disclaimer of Warranties",
+    "disclaimerOfWarrantiesDesc": "The Mo App Platform is provided 'as is,' with all faults and without warranty of any kind. The Company hereby disclaims all warranties, express or implied, including, without limitation, implied warranties of merchantability, fitness for a particular purpose, and non-infringement.",
+    "limitationOfLiability": "7. Limitation of Liability",
+    "limitationOfLiabilityDesc": "In no event will the Company be liable for any indirect, special, incidental, punitive, exemplary, or consequential damages, including, but not limited to, loss of data, service interruptions, computer damage or system failures or the cost of substitute services arising out of or in connection with this Agreement or the use or inability to use the Mo App Platform, whether based on warranty, contract, tort (including negligence), product liability, or any other legal theory, and whether or not the Company has been informed of the possibility of such damage.",
+    "generalProvisions": "8. General Provisions",
+    "generalProvisionsDesc": "This Agreement constitutes the entire agreement between you and the Company regarding your use of the Mo App Platform and supersedes and replaces any prior agreements between you and the Company regarding the subject matter hereof.",
+    "changesToThisAgreement": "9. Changes to this Agreement",
+    "changesToThisAgreementDesc": "The Company reserves the right to modify or replace this Agreement at any time, and will do so by posting the updated terms on the site. Your continued use of the Mo App Platform after any such changes constitutes your acceptance of the new Terms."
+  },
+  "userAgreementPage": {
+    "title": "User Agreement for Mo App Platform",
+    "introduction": "Introduction",
+    "introductionDesc": "Welcome to Mo App Platform. By accessing or using our platform, you agree to be bound by the terms and conditions of this User Agreement. Please read this agreement carefully before accessing or using our services.",
+    "acceptanceOfTerms": "1. Acceptance of Terms",
+    "acceptanceOfTermsDesc": "The services that Mo App Platform provides to you are subject to the following User Agreement (\"Agreement\"). We reserve the right to update the Agreement at any time without notice to you. The most current version of the Agreement can be reviewed by clicking on the \"User Agreement\" hypertext link located at the bottom of our web pages.",
+    "descriptionOfServices": "2. Description of Services",
+    "descriptionOfServicesDesc": "Mo App Platform provides users with access to a rich collection of resources, including various communication tools, forums, shopping services, search services, personalized content, and branded programming through its network of properties which may be accessed through any various medium or device now known or hereafter developed.",
+    "privacyAndProtection": "3. Privacy and Protection of Personal Information",
+    "privacyAndProtectionDesc": "See the Privacy Policy disclosures relating to the collection and use of your information.",
+    "accountSecurity": "4. Member Account, Password, and Security",
+    "accountSecurityDesc": "If any of the Services requires you to open an account, you must complete the registration process by providing us with current, complete, and accurate information as prompted by the applicable registration form. You also will choose a password and a user name. You are entirely responsible for maintaining the confidentiality of your password and account. Furthermore, you are entirely responsible for any and all activities that occur under your account. You agree to notify Mo App Platform immediately of any unauthorized use of your account or any other breach of security. Mo App Platform will not be liable for any loss that you may incur as a result of someone else using your password or account, either with or without your knowledge. However, you could be held liable for losses incurred by Mo App Platform or another party due to someone else using your account or password.",
+    "unlawfulUse": "5. No Unlawful or Prohibited Use",
+    "unlawfulUseDesc": "As a condition of your use of the Services, you will not use the Services for any purpose that is unlawful or prohibited by these terms, conditions, and notices. You may not use the Services in any manner that could damage, disable, overburden, or impair any Mo App Platform server, or the network(s) connected to any Mo App Platform server, or interfere with any other party's use and enjoyment of any Services.",
+    "useOfServices": "6. Use of Services",
+    "useOfServicesDesc": "The Mo App Platform may contain email services, bulletin board services, chat areas, news groups, forums, communities, personal web pages, calendars, photo albums, file cabinets, and/or other message or communication facilities designed to enable you to communicate with others (collectively, \"Communication Services\"). You agree to use the Communication Services only to post, send and receive messages and material that are proper and, when applicable, related to the particular Communication Service.",
+    "terminationAccessRestriction": "7. Termination/Access Restriction",
+    "terminationAccessRestrictionDesc": "Mo App Platform reserves the right, in its sole discretion, to terminate your access to any or all Mo App Platform Services and the related services or any portion thereof at any time, without notice.",
+    "general": "8. General",
+    "generalDesc": "This agreement is governed by the laws of the State where Mo App Platform is headquartered. You hereby consent to the exclusive jurisdiction and venue of courts in that State in all disputes arising out of or relating to the use of Mo App Platform Services.",
+    "copyrightAndTrademarkNotices": "9. Copyright and Trademark Notices",
+    "copyrightAndTrademarkNoticesDesc": "All contents of Mo App Platform are: Copyright [Insert Year] by Mo App Platform. All rights reserved.",
+    "trademarks": "10. Trademarks",
+    "trademarksDesc": "The names of actual companies and products mentioned herein may be the trademarks of their respective owners.",
+    "language": "11. Language",
+    "languageDesc": "This agreement was originally written in English (US). To the extent any translated version of this agreement conflicts with the English version, the English version controls.",
+    "contactUs": "Contact Us",
+    "contactUsDesc": "If you have any questions or concerns about this Agreement, please contact us at ayari.mohamed@web.de"
+  }
+}

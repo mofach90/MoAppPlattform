@@ -5,10 +5,14 @@ import {
   AccordionSummary,
   Typography,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import setTextAlign from "./../../../../../../utilities/settextAlignement";
 
 const AccordionComponent = (props: any) => {
+  const { t } = useTranslation();
+  const textAlign = setTextAlign();
   return (
-    <Accordion sx={{ opacity: 0.9 }}>
+    <Accordion sx={{ opacity: 0.9, textAlign: `${textAlign}` }}>
       <AccordionSummary
         expandIcon={
           <ExpandMoreIcon
@@ -24,8 +28,13 @@ const AccordionComponent = (props: any) => {
           />
         }
       >
-        <Typography fontWeight={"bold"} color={"darkblue"}>
-          {props.qa.question}
+        <Typography
+          width={"100%"}
+          mr={2}
+          fontWeight={"bold"}
+          color={"darkblue"}
+        >
+          {t(`FaQ.${props.index}.Q`)}
         </Typography>
       </AccordionSummary>
       <AccordionDetails
@@ -36,7 +45,7 @@ const AccordionComponent = (props: any) => {
         }}
       >
         <Typography color={"darkblue"} variant="body2">
-          {props.qa.answer}
+          {t(`FaQ.${props.index}.A`)}{" "}
         </Typography>
       </AccordionDetails>
     </Accordion>

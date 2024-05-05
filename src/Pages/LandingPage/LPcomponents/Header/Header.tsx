@@ -1,10 +1,13 @@
 import { Box, Button, Snackbar, Stack, Typography } from "@mui/material";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import setTextAlign from "./../../../../utilities/settextAlignement";
 import "./Header.css";
 import SnackbarAlert from "./headerComponents/SnackbarAlert";
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const { t } = useTranslation();
   const handleClose = (
     _event: React.SyntheticEvent | Event,
     reason?: string
@@ -14,6 +17,8 @@ const Header = () => {
     }
     setOpen(false);
   };
+  const textAlign = setTextAlign();
+  console.log(textAlign);
 
   return (
     <Box
@@ -75,17 +80,11 @@ const Header = () => {
         justifyContent={"center"}
         height={300}
         flexWrap={"wrap"}
+        textAlign={textAlign}
       >
-        <Typography variant="h3">Welcome to Mo App Platform</Typography>
-        <Typography mt={2} variant="body1" width={"70%"} textAlign={"left"}>
-          Mo App Platform serves as your digital junction for engaging and
-          versatile applications tailored to enhance your productivity and
-          leisure. This intuitive platform boasts a suite of apps designed to
-          simplify your life. Enjoy seamless transitions between tools and
-          entertainment at the click of a button, all centralized in one
-          accessible location. Experience the ease of managing your tasks,
-          tracking your favorite movies, and more with Mo App Platform – where
-          convenience meets innovation
+        <Typography variant="h3">{t("welcome")}</Typography>
+        <Typography mt={2} variant="body1" width={"70%"}>
+          {t("description")}
         </Typography>
       </Box>
     </Box>
