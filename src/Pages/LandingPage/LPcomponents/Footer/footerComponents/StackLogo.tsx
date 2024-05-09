@@ -4,7 +4,7 @@ function StackLogo() {
   return (
     <Stack>
       <img
-        src="src/assets/logomoPNG.png"
+        src="assets/logomoPNG.png"
         alt="Logo"
         className="logo-without-animation"
         style={{ width: 100, height: 100 }}

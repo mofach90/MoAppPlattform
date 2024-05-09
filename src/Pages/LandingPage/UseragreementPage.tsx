@@ -35,7 +35,7 @@ function UserAgreementPage() {
               borderRadius: 10,
               border: "1px solid",
             }}
-            src="src/assets/useragreement.jpg"
+            src="/assets/useragreement.jpg"
             alt={t("userAgreementPage.title")}
           />
         </Grid>

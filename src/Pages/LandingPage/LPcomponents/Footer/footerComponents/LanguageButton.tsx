@@ -104,7 +104,7 @@ const LanguageButton = () => {
                 width: 20,
                 height: 18,
               }}
-              src="src/assets/Flag_of_Germany.png"
+              src="/assets/Flag_of_Germany.png"
             />
           </MenuItem>
           <MenuItem sx={menuItemStyles} value={"en"}>
@@ -115,7 +115,7 @@ const LanguageButton = () => {
                 width: 20,
                 height: 18,
               }}
-              src="src/assets/Flag_of_the_United_Kingdom.png"
+              src="/assets/Flag_of_the_United_Kingdom.png"
             />
           </MenuItem>
           <MenuItem sx={menuItemStyles} value={"ar"}>
@@ -126,7 +126,7 @@ const LanguageButton = () => {
                 width: 22,
                 height: 20,
               }}
-              src="src/assets/Flag_of_Saudi_Arabia.svg.png"
+              src="/assets/Flag_of_Saudi_Arabia.svg.png"
             />
           </MenuItem>
         </Select>

@@ -26,7 +26,7 @@ function AboutPage() {
               borderRadius: 10,
               border: "1px solid",
             }}
-            src="src/assets/AboutPage2.jpg"
+            src="assets/AboutPage2.jpg"
             alt="About Mo App Platform"
           />
         </Grid>
