@@ -1,0 +1,27 @@
+{
+  "translations": {
+    "en": {
+      "googleAnalytics": {
+        "title": "Google Analytics",
+        "description": "The analytics service ran by a most definitely non-evil company."
+      }
+    }
+  },
+  "services": [
+    {
+      "name": "googleAnalytics",
+      "purposes": ["analytics"]
+    },
+    {
+      "name": "twitter",
+      "default": false,
+      "contextualConsentOnly": true,
+      "purposes": ["marketing"]
+    },
+    {
+      "name": "youtube",
+      "default": true,
+      "purposes": ["marketing"]
+    }
+  ]
+}

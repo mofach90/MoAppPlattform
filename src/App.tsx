@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import AboutPage from "./Pages/LandingPage/AboutPage";
+import LandingPage from "./Pages/LandingPage/LandingPage";
+import LicencePage from "./Pages/LandingPage/LicencePage";
+import UseragreementPage from "./Pages/LandingPage/UseragreementPage";
+import Klaro from "./components/Klaro";
+import data from "./data/KlaroConfig.json";
+
+const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `    
+      html {
+        height: 100%;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: linear-gradient(to right, rgb(0, 0, 0), #010d45);
+        color: rgb(55, 255, 255);
+      }
+      
+      #root {
+        height: 100%;
+      }
+      
+      `,
+    },
+  },
+});
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Klaro config={data}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/licence" element={<LicencePage />} />
+            <Route path="/useragreement" element={<UseragreementPage />} />
+          </Routes>
+        </ThemeProvider>
+      </Klaro>
+    </Router>
+  );
 }
 
-export default App
+export default App;
