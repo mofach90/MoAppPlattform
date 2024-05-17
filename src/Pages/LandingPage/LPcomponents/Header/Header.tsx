@@ -1,4 +1,13 @@
-import { Box, Button, Snackbar, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  Snackbar,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import setTextAlign from "./../../../../utilities/settextAlignement";
@@ -7,6 +16,7 @@ import SnackbarAlert from "./headerComponents/SnackbarAlert";
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const [openSnackbarAlert, setOpenSnackbarAlert] = useState<boolean>(false);
   const { t } = useTranslation();
   const handleClose = (
     _event: React.SyntheticEvent | Event,
@@ -15,10 +25,25 @@ const Header = () => {
     if (reason === "clickaway") {
       return;
     }
+    setOpenSnackbarAlert(false);
     setOpen(false);
   };
+  const triggerAuthPopup = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/basicauthentication",
+        {
+          method: "GET",
+          credentials: "include", // Include credentials in the request
+        }
+      );
+      console.log({ response });
+    } catch (error) {
+      console.error("Error during authentication", error);
+    }
+  };
+
   const textAlign = setTextAlign();
-  console.log(textAlign);
 
   return (
     <Box
@@ -39,7 +64,7 @@ const Header = () => {
         justifyContent={"space-between"}
       >
         <img
-          src="assets/logomoPNG.png"
+          src="src/locales/assets/logomoPNG.png"
           alt="Logo"
           className="logo-animation"
           style={{ width: 100, height: 100 }}
@@ -48,22 +73,49 @@ const Header = () => {
           <Button
             variant="contained"
             sx={{ whiteSpace: "nowrap" }}
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              setOpen(true);
+            }}
           >
             Login
           </Button>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            PaperProps={{
+              elevation: 24,
+              sx: {
+                width: 400,
+                height: 400,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              },
+            }}
+          >
+            <DialogTitle>Choose your Authentication methode</DialogTitle>
+            <DialogActions>
+              <Button
+                variant="contained"
+                sx={{ whiteSpace: "nowrap" }}
+                onClick={triggerAuthPopup}
+              >
+                Login Using Basic Authentication
+              </Button>
+            </DialogActions>
+          </Dialog>
           <Button
             variant="outlined"
             sx={{ whiteSpace: "nowrap" }}
             color="inherit"
-            onClick={() => setOpen(true)}
+            onClick={() => setOpenSnackbarAlert(true)}
           >
             Process without Login
           </Button>
           <Snackbar
             message="Coming soon : Under Developement"
             autoHideDuration={1000}
-            open={open}
+            open={openSnackbarAlert}
             onClose={handleClose}
             anchorOrigin={{ vertical: "top", horizontal: "center" }}
           >
