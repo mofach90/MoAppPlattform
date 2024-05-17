@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "": "npm install",
     "dev": "vite --port 3500 ",
     "devf" : "npm run build && firebase emulators:start", 
     "build": "tsc && vite build",
