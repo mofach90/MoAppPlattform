@@ -4,15 +4,15 @@ const CarouselComponent = () => {
   const listApps = [
     {
       name: "To-Do App",
-      url: "assets/TodoApp.jpg",
+      url: "src/locales/assets/TodoApp.jpg",
     },
     {
       name: "Weather App",
-      url: "assets/wheatherApp.jpg",
+      url: "src/locales/assets/wheatherApp.jpg",
     },
     {
       name: "Recipe App",
-      url: "assets/recipe.jpg",
+      url: "src/locales/assets/recipe.jpg",
     },
   ];
   return (

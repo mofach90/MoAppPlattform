@@ -64,7 +64,7 @@ const Header = () => {
         justifyContent={"space-between"}
       >
         <img
-          src="assets/logomoPNG.png"
+          src="src/locales/assets/logomoPNG.png"
           alt="Logo"
           className="logo-animation"
           style={{ width: 100, height: 100 }}
@@ -89,7 +89,7 @@ const Header = () => {
                 height: 400,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
               },
             }}
           >

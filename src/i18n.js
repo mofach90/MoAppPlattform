@@ -1,9 +1,9 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
-import arabicData from "../public/locales/ar/translation.json";
-import deutschData from "../public/locales/de/translation.json";
-import englishData from "../public/locales/en/translation.json";
+import arabicData from "./locales/ar/translation.json";
+import deutschData from "./locales/de/translation.json";
+import englishData from "./locales/en/translation.json";
 
 i18n
   .use(LanguageDetector) 
