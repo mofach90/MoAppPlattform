@@ -6,6 +6,7 @@ import LicencePage from "./Pages/LandingPage/LicencePage";
 import UseragreementPage from "./Pages/LandingPage/UseragreementPage";
 import Klaro from "./components/Klaro";
 import data from "./data/KlaroConfig.json";
+import LoginPage from "./Pages/Login"
 
 const theme = createTheme({
   components: {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/licence" element={<LicencePage />} />
             <Route path="/useragreement" element={<UseragreementPage />} />
+            <Route path="/login" element={<LoginPage/>}/>
           </Routes>
         </ThemeProvider>
       </Klaro>

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import setTextAlign from "./../../../../utilities/settextAlignement";
 import "./Header.css";
 import SnackbarAlert from "./headerComponents/SnackbarAlert";
@@ -18,6 +19,7 @@ const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [openSnackbarAlert, setOpenSnackbarAlert] = useState<boolean>(false);
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const handleClose = (
     _event: React.SyntheticEvent | Event,
     reason?: string
@@ -44,6 +46,9 @@ const Header = () => {
   };
 
   const textAlign = setTextAlign();
+  const navigateLoginPage = () => {
+    navigate("/login");
+  };
 
   return (
     <Box
@@ -89,7 +94,7 @@ const Header = () => {
                 height: 400,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
               },
             }}
           >
@@ -100,7 +105,16 @@ const Header = () => {
                 sx={{ whiteSpace: "nowrap" }}
                 onClick={triggerAuthPopup}
               >
-                Login Using Basic Authentication
+                Login Using Basic Based Authentication
+              </Button>
+            </DialogActions>
+            <DialogActions>
+              <Button
+                variant="contained"
+                sx={{ whiteSpace: "nowrap" }}
+                onClick={navigateLoginPage}
+              >
+                Login Using Form Based Authentication
               </Button>
             </DialogActions>
           </Dialog>
