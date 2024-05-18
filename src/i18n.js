@@ -1,13 +1,19 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
-import arabicData from "../public/locales/ar/translation.json";
-import deutschData from "../public/locales/de/translation.json";
-import englishData from "../public/locales/en/translation.json";
 
+const arabicData = await fetch("/locales/ar/translation.json").then((response) =>
+  response.json()
+);
+const deutschData = await fetch("/locales/de/translation.json").then((response) =>
+  response.json()
+);
+const englishData = await fetch("/locales/en/translation.json").then((response) =>
+  response.json()
+);
 i18n
-  .use(LanguageDetector) 
-  .use(initReactI18next) 
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
     fallbackLng: "en",
     default: "en",
