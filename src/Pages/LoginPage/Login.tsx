@@ -83,19 +83,7 @@ function LoginPage() {
                 <Grid item xs={12}>
                   <ButtonWrapper>Submit</ButtonWrapper>
                 </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton>
-                            {false ? <Visibility /> : <VisibilityOff />}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Grid>
+
               </Grid>
             </Form>
           </Formik>
