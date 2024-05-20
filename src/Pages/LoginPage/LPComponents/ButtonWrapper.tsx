@@ -5,7 +5,6 @@ function ButtonWrapper({ children }: { children: any }) {
   const { submitForm } = useFormikContext();
   const handleSubmit = () => {
     submitForm();
-    // console.log(submitForm());
   };
 
   const buttonConfig: ButtonProps = {

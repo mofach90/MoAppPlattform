@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Form, Formik } from "formik";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import ButtonWrapper from "./LPComponents/ButtonWrapper";
 import TextfieldWrapper from "./LPComponents/TextfieldWrapper";
@@ -24,6 +25,11 @@ const FORM_VALIDATION = Yup.object().shape({
 });
 
 function LoginPage() {
+  const [values, setValues] = useState<object>({});
+  const handleonSubmit = (values: object) => {
+    setValues(values);
+  };
+  useEffect(() => console.log({values}), [values]);
   return (
     <Grid
       container
@@ -45,9 +51,7 @@ function LoginPage() {
           <Formik
             validationSchema={FORM_VALIDATION}
             initialValues={{ ...INITIAL_FORM_STATE }}
-            onSubmit={(values) => {
-              console.log({ values });
-            }}
+            onSubmit={handleonSubmit}
           >
             <Form style={{ width: "60%" }}>
               <Grid container spacing={3}>
@@ -62,16 +66,18 @@ function LoginPage() {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <TextfieldWrapper name="userName" label="User Name"
-                  type= "text"
+                  <TextfieldWrapper
+                    name="userName"
+                    label="User Name"
+                    type="text"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextfieldWrapper
                     name="password"
                     label="Password"
-                    type = "password"
-                    size = "small"
+                    type="password"
+                    size="small"
                   />
                 </Grid>
                 <Grid item xs={12}>
