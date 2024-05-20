@@ -62,12 +62,16 @@ function LoginPage() {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <TextfieldWrapper name="userName" label="User Name" />
+                  <TextfieldWrapper name="userName" label="User Name"
+                  type= "text"
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <TextfieldWrapper
                     name="password"
                     label="Password"
+                    type = "password"
+                    size = "small"
                   />
                 </Grid>
                 <Grid item xs={12}>

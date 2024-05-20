@@ -8,45 +8,48 @@ import {
 import { useField } from "formik";
 import { useState } from "react";
 
-type TextfieldWrapperProps = { name: string; otherProps?: TextFieldProps };
+type TextfieldWrapperProps = { name: string } & TextFieldProps;
 
-function TextfieldWrapper({
-  name,
-  ...otherProps
-}: Readonly<TextfieldWrapperProps>) {
-  const [field, meta] = useField(name);
-  const [myVar,setMyVar] = useState(false);
-  const handlePasswordVisibility = () =>{
-    setMyVar(prev => !prev)
-  }
+function TextfieldWrapper(props: Readonly<TextfieldWrapperProps>) {
+  const [field, meta] = useField(props.name);
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+  const handlMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
 
   const configOption: TextFieldProps = {
     ...field,
-    ...otherProps,
+    ...props,
     fullWidth: true,
     variant: "outlined",
-    
   };
 
   if (meta && meta.touched && meta.error) {
     configOption.error = true;
     configOption.helperText = meta.error;
   }
-  return (
-    <TextField
-      {...configOption}
-      type={ myVar ? "text" : "password"}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton onClick={handlePasswordVisibility}>
-              {myVar ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
-          </InputAdornment>
-        ),
-      }}
-    />
-  );
+  if (props.type === "password") {
+    configOption.type = showPassword ? "text" : "password";
+    configOption.InputProps = {
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            onClick={handleClickShowPassword}
+            onMouseDown={handlMouseDownPassword}
+          >
+            {showPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      ),
+    };
+  }
+
+  return <TextField {...configOption} />;
 }
 
 export default TextfieldWrapper;
