@@ -6,7 +6,7 @@ import LicencePage from "./Pages/LandingPage/LicencePage";
 import UseragreementPage from "./Pages/LandingPage/UseragreementPage";
 import Klaro from "./components/Klaro";
 import data from "./data/KlaroConfig.json";
-import LoginPage from "./Pages/Login"
+import LoginPage from "./Pages/LoginPage/Login"
 
 const theme = createTheme({
   components: {
