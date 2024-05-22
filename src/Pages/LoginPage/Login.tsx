@@ -1,14 +1,5 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-  Grid,
-  IconButton,
-  InputAdornment,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
-import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import ButtonWrapper from "./LPComponents/ButtonWrapper";
 import TextfieldWrapper from "./LPComponents/TextfieldWrapper";
@@ -25,11 +16,28 @@ const FORM_VALIDATION = Yup.object().shape({
 });
 
 function LoginPage() {
-  const [values, setValues] = useState<object>({});
-  const handleonSubmit = (values: object) => {
-    setValues(values);
+  const handleonSubmit = async (values: object) => {
+    const newValues = JSON.stringify(values);
+    await triggerFormBasedAuth(newValues)
   };
-  useEffect(() => console.log({values}), [values]);
+  const triggerFormBasedAuth = async (values: string) => {
+    try {
+      const result = await fetch("http://localhost:8000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: values,
+      });
+      if (result.ok) {
+        const data = await result.json(); // Read the response body as text
+        console.log("result", result);
+        console.log("Data", data); // Log the response body directly
+      } else {
+        console.error('Failed to submit form', result.statusText);
+      }
+    } catch (error) {
+      console.log({error})
+    }
+  };
   return (
     <Grid
       container
@@ -83,7 +91,6 @@ function LoginPage() {
                 <Grid item xs={12}>
                   <ButtonWrapper>Submit</ButtonWrapper>
                 </Grid>
-
               </Grid>
             </Form>
           </Formik>
