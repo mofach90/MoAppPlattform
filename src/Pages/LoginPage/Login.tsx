@@ -26,6 +26,7 @@ function LoginPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: values,
+        credentials: "include"
       });
       if (result.ok) {
         const data = await result.json(); // Read the response body as text
