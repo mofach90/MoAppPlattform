@@ -8,13 +8,11 @@ import React, {
   useState,
 } from "react";
 
- interface AuthContextType {
+interface AuthContextType {
   isAuthenticated: boolean;
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
-  loading: boolean
+  loading: boolean;
 }
-
-
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -22,7 +20,7 @@ export function AuthProvider({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   const checkAuthentication = async () => {
     try {
@@ -31,31 +29,32 @@ export function AuthProvider({
         credentials: "include",
       });
       const data = await result.json();
-      console.debug("data",data.isAuthenticated);
+      console.debug("data", data.isAuthenticated);
 
       if (data.isAuthenticated) {
         setIsAuthenticated(true);
-        console.debug("from AuthProvider",{isAuthenticated});
+        console.debug("from AuthProvider", { isAuthenticated });
       }
     } catch (error) {
       console.error("Failure in checkAuthentication", error);
-    }
-    finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
-    useEffect(() => {
-  checkAuthentication();
-    }, [])
-    
+  useEffect(() => {
+    checkAuthentication();
+  }, []);
+
   const contextValue = useMemo(
     () => ({ isAuthenticated, setIsAuthenticated, loading }),
-    [isAuthenticated,loading]
+    [isAuthenticated, loading]
   );
-  console.log({contextValue})
+  console.log({ contextValue });
 
   return (
-    <AuthContext.Provider value={contextValue}>{!loading&&children}</AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>
+      {!loading && children}
+    </AuthContext.Provider>
   );
 }
 
@@ -65,4 +64,4 @@ export const useAuth = () => {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-}
+};
