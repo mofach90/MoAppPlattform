@@ -33,10 +33,11 @@ export function AuthProvider({
     return storedValue ? JSON.parse(storedValue) : "";
   });
   useEffect(() => {
-    localStorage.setItem("authenticationForm", JSON.stringify(authenticationForm))
-
-  }, [authenticationForm])
-  
+    localStorage.setItem(
+      "authenticationForm",
+      JSON.stringify(authenticationForm)
+    );
+  }, [authenticationForm]);
 
   const checkAuthentication = async () => {
     try {
@@ -61,8 +62,7 @@ export function AuthProvider({
       // Log the response text
       const dataJwt = await resultJwt.json();
       const dataSessionId = await resultSessionId.json();
-      console.log("dataSessionId",dataSessionId)
-
+      console.log("dataSessionId", dataSessionId);
       if (dataSessionId.isAuthenticatedSessionId) {
         setIsAuthenticatedSessionId(true);
         console.debug(" isAuthenticated from AuthProvider", {
