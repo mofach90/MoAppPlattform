@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from "@mui/material";
 import { useFormikContext } from "formik";
 
-function ButtonWrapper({ children }: { children: any }) {
+function ButtonWrapper({ children }: Readonly<{ children: React.ReactNode }>) {
   const { submitForm } = useFormikContext();
   const handleSubmit = () => {
     submitForm();

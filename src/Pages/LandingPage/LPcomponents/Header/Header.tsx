@@ -39,16 +39,12 @@ const Header = () => {
           credentials: "include", // Include credentials in the request
         }
       );
-      console.log({ response });
     } catch (error) {
       console.error("Error during authentication", error);
     }
   };
 
   const textAlign = setTextAlign();
-  const navigateLoginPage = () => {
-    navigate("/login");
-  };
 
   return (
     <Box
@@ -90,31 +86,44 @@ const Header = () => {
             PaperProps={{
               elevation: 24,
               sx: {
-                width: 400,
+                width: 600,
                 height: 400,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                padding: 4,
               },
             }}
           >
             <DialogTitle>Choose your Authentication methode</DialogTitle>
-            <DialogActions>
+            <DialogActions sx={{ width: "100%" }}>
               <Button
                 variant="contained"
                 sx={{ whiteSpace: "nowrap" }}
+                fullWidth={true}
                 onClick={triggerAuthPopup}
               >
                 Login Using Basic Based Authentication
               </Button>
             </DialogActions>
-            <DialogActions>
+            <DialogActions sx={{ width: "100%" }}>
               <Button
                 variant="contained"
                 sx={{ whiteSpace: "nowrap" }}
-                onClick={navigateLoginPage}
+                onClick={() => navigate("/login")}
+                fullWidth={true}
               >
-                Login Using Form Based Authentication
+                Login Using Form Based Authentication using Sesion ID
+              </Button>
+            </DialogActions>
+            <DialogActions sx={{ width: "100%" }}>
+              <Button
+                variant="contained"
+                sx={{ whiteSpace: "nowrap" }}
+                onClick={() => navigate("/loginJwt")}
+                fullWidth={true}
+              >
+                Login Using Form Based Authentication using JWT
               </Button>
             </DialogActions>
           </Dialog>

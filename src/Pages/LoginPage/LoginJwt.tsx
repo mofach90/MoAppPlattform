@@ -18,24 +18,30 @@ const FORM_VALIDATION = Yup.object().shape({
     .matches(/[a-zA-Z]/, " must include only chars"),
 });
 
-function LoginPage() {
+function LoginPageJwt() {
   const navigate = useNavigate();
-  const {recheckAuthentication, setAuthenticationForm} = useAuth()
+  const {recheckAuthentication,authenticationForm, setAuthenticationForm} = useAuth()
   const handleonSubmit = async (values: object) => {
     const newValues = JSON.stringify(values);
     await triggerFormBasedAuth(newValues);
   };
   const triggerFormBasedAuth = async (values: string) => {
     try {
-      const result = await fetch("http://localhost:8000/login", {
+      const result = await fetch("http://localhost:8000/loginjwt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: values,
         credentials: "include",
       });
-      setAuthenticationForm("form-based-authentication using session-id");
+      setAuthenticationForm("form-based-authentication using Jwt");
+
       if (result.ok) {
-        const data = await result.json(); // Read the response body as text
+        const data = await result.json();
+        if (data.token) {
+          localStorage.setItem("jwtToken",data.token)
+          
+        }
+        console.log("Returned Data after Submit the Form", data); // Log the response body directly
         recheckAuthentication();
         navigate("/dashboard");
       } else {
@@ -44,6 +50,7 @@ function LoginPage() {
     } catch (error) {
       console.log({ error });
     }
+    console.log("AuthenticationForm inside Loginjwt", authenticationForm)
   };
   return (
     <Grid
@@ -72,7 +79,7 @@ function LoginPage() {
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <Typography variant="h5">
-                    This is a Form Based Authentication Using Session ID
+                    This is a Form Based Authentication Using JWT
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
@@ -107,4 +114,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default LoginPageJwt;

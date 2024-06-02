@@ -1,12 +1,16 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Dashboard from "./Pages/DashboardPage/dashboardPage";
 import AboutPage from "./Pages/LandingPage/AboutPage";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import LicencePage from "./Pages/LandingPage/LicencePage";
 import UseragreementPage from "./Pages/LandingPage/UseragreementPage";
+import LoginPage from "./Pages/LoginPage/Login";
 import Klaro from "./components/Klaro";
+import { AuthProvider } from "./contexts/authProvider";
 import data from "./data/KlaroConfig.json";
-import LoginPage from "./Pages/LoginPage/Login"
+import ProtectRoute from "./utilities/ProtectRoute";
+import LoginPageJwt from "./Pages/LoginPage/LoginJwt";
 
 const theme = createTheme({
   components: {
@@ -39,13 +43,24 @@ function App() {
       <Klaro config={data}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/licence" element={<LicencePage />} />
-            <Route path="/useragreement" element={<UseragreementPage />} />
-            <Route path="/login" element={<LoginPage/>}/>
-          </Routes>
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/licence" element={<LicencePage />} />
+              <Route path="/useragreement" element={<UseragreementPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/loginJwt" element={<LoginPageJwt />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectRoute>
+                    <Dashboard />
+                  </ProtectRoute>
+                }
+              />
+            </Routes>
+          </AuthProvider>
         </ThemeProvider>
       </Klaro>
     </Router>
