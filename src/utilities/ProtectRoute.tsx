@@ -5,58 +5,61 @@ import { useAuth } from "../contexts/authProvider";
 function ProtectRoute({ children }: { children: Readonly<React.ReactNode> }) {
   const {
     isAuthenticatedSessionId,
-    isAuthenticatedJwt,
+    isAuthenticatedJwtLocalStorage,
+    isAuthenticatedJwtCookie,
     loading,
     authenticationForm,
   } = useAuth();
   const navigate = useNavigate();
-  setTimeout(function () {
-
   console.log("Initial auth states: ", {
     isAuthenticatedSessionId,
-    isAuthenticatedJwt,
+    isAuthenticatedJwtLocalStorage,
+    isAuthenticatedJwtCookie,
     loading,
     authenticationForm,
   });
 
   useEffect(() => {
-      if (!loading) {
-        console.log("Auth check conditions: ", {
-          isAuthenticatedSessionId,
-          isAuthenticatedJwt,
-          authenticationForm,
-        });
-
-        if (
-          !isAuthenticatedSessionId &&
-          authenticationForm === "form-based-authentication using session-id"
-        ) {
-          navigate("/login");
-          console.log(
-            " You are not authenticated with your Session-Id ",
-            isAuthenticatedSessionId
-          );
-        } else if (
-          !isAuthenticatedJwt &&
-          authenticationForm === "form-based-authentication using Jwt"
-        ) {
-          navigate("/loginJwt");
-          console.log(
-            " You are not authenticated with your Jwt ",
-            isAuthenticatedJwt
-          );
-        } else if (
-          !isAuthenticatedJwt &&
-          !isAuthenticatedSessionId &&
-          authenticationForm === ""
-        ) {
-          navigate("/");
-          console.log("Choose your Login Option");
-        }
+    if (!loading) {
+      if (
+        !isAuthenticatedSessionId &&
+        authenticationForm === "form-based-authentication using session-id"
+      ) {
+        navigate("/login");
+        console.log(" You are not authenticated with your Session-Id ");
+      } else if (
+        !isAuthenticatedJwtLocalStorage &&
+        authenticationForm ===
+          "form-based-authentication using Jwt stored in browser local session"
+      ) {
+        navigate("/login-jwt-stored-in-localSession");
+        console.log(" You are not authenticated with your Jwt ");
+      } else if (
+        !isAuthenticatedJwtCookie &&
+        authenticationForm ===
+          "form-based-authentication using Jwt stored in browser Cookie"
+      ) {
+        navigate("/login-jwt-stored-in-cookie");
+        console.log(" You are not authenticated with your Jwt ");
+      } else if (
+        !isAuthenticatedJwtLocalStorage &&
+        !isAuthenticatedJwtCookie &&
+        !isAuthenticatedSessionId &&
+        authenticationForm === ""
+      ) {
+        navigate("/");
+        console.log("Choose your Login Option");
       }
-      console.log("AuthenticationForm inside protect", authenticationForm);
-    }, [isAuthenticatedJwt, isAuthenticatedSessionId, loading, navigate]);
-}, 1000);
+    }
+  }, [
+    isAuthenticatedJwtLocalStorage,
+    authenticationForm,
+    isAuthenticatedJwtCookie,
+    isAuthenticatedSessionId,
+    loading,
+    navigate,
+  ]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
