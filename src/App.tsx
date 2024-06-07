@@ -6,11 +6,12 @@ import LandingPage from "./Pages/LandingPage/LandingPage";
 import LicencePage from "./Pages/LandingPage/LicencePage";
 import UseragreementPage from "./Pages/LandingPage/UseragreementPage";
 import LoginPage from "./Pages/LoginPage/Login";
+import LoginJwtCookieStorage from "./Pages/LoginPage/LoginJwt-CookiesStorage";
+import LoginJwtlocalStorage from "./Pages/LoginPage/LoginJwt-localStorage";
 import Klaro from "./components/Klaro";
 import { AuthProvider } from "./contexts/authProvider";
 import data from "./data/KlaroConfig.json";
 import ProtectRoute from "./utilities/ProtectRoute";
-import LoginPageJwt from "./Pages/LoginPage/LoginJwt";
 
 const theme = createTheme({
   components: {
@@ -50,7 +51,14 @@ function App() {
               <Route path="/licence" element={<LicencePage />} />
               <Route path="/useragreement" element={<UseragreementPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/loginJwt" element={<LoginPageJwt />} />
+              <Route
+                path="/login-jwt-stored-in-localSession"
+                element={<LoginJwtlocalStorage />}
+              />
+              <Route
+                path="/login-jwt-stored-in-cookie"
+                element={<LoginJwtCookieStorage />}
+              />
               <Route
                 path="/dashboard"
                 element={

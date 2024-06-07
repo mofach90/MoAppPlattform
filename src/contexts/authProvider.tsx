@@ -7,10 +7,12 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import CircularProgressWithLabel from "../utilities/LoadingUtility";
 
 interface AuthContextType {
   isAuthenticatedSessionId: boolean;
-  isAuthenticatedJwt: boolean;
+  isAuthenticatedJwtLocalStorage: boolean;
+  isAuthenticatedJwtCookie: boolean;
   // setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
   loading: boolean;
   recheckAuthentication: () => void;
@@ -25,7 +27,10 @@ export function AuthProvider({
 }: Readonly<{ children: React.ReactNode }>) {
   const [isAuthenticatedSessionId, setIsAuthenticatedSessionId] =
     useState(false);
-  const [isAuthenticatedJwt, setIsAuthenticatedJwt] = useState(false);
+  const [isAuthenticatedJwtLocalStorage, setIsAuthenticatedJwtLocalStorage] =
+    useState(false);
+  const [isAuthenticatedJwtCookie, setIsAuthenticatedJwtCookie] =
+    useState(false);
   const [loading, setLoading] = useState(true);
   const [authenticationForm, setAuthenticationForm] = useState<string>(() => {
     const storedValue = localStorage.getItem("authenticationForm");
@@ -41,38 +46,47 @@ export function AuthProvider({
 
   const checkAuthentication = async () => {
     try {
+      setLoading(true);
       const token = localStorage.getItem("jwtToken");
-      if (!token) {
-        setLoading(false);
-      }
-
       console.debug("this is the token from localStorage", token);
       const resultSessionId = await fetch("http://localhost:8000/check-auth", {
         method: "GET",
         credentials: "include",
       });
-      const resultJwt = await fetch("http://localhost:8000/check-auth-jwt", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const resultJwtLocalStorage = await fetch(
+        "http://localhost:8000/check-auth-jwt-local-storage",
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const resultJwtCookie = await fetch(
+        "http://localhost:8000/check-auth-jwt-cookie",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
       // Log the response text
-      const dataJwt = await resultJwt.json();
+      const dataJwtLocalStorage = await resultJwtLocalStorage.json();
+      const dataJwtCookie = await resultJwtCookie.json();
       const dataSessionId = await resultSessionId.json();
-      console.log("dataSessionId", dataSessionId);
       if (dataSessionId.isAuthenticatedSessionId) {
         setIsAuthenticatedSessionId(true);
-        console.debug(" isAuthenticated from AuthProvider", {
-          isAuthenticatedSessionId,
-        });
-      } else if (dataJwt.isAuthenticatedJwt) {
-        setIsAuthenticatedJwt(true);
-        console.debug(" isAuthenticated from AuthProvider", {
-          isAuthenticatedJwt,
-        });
+      }
+      if (dataJwtLocalStorage.isAuthenticatedJwtLocalStorage) {
+        setIsAuthenticatedJwtLocalStorage(true);
+        console.log(
+          "status of isAuthenticatedJwtLocalStorage",
+          isAuthenticatedJwtLocalStorage
+        );
+      }
+      if (dataJwtCookie.isAuthenticatedJwtCookie) {
+        setIsAuthenticatedJwtCookie(true);
       }
     } catch (error) {
       console.error("Failure in checkAuthentication", error);
@@ -84,27 +98,35 @@ export function AuthProvider({
     checkAuthentication();
   }, []);
 
-  const recheckAuthentication = () => {
-    setLoading(true);
-    checkAuthentication();
+  const recheckAuthentication = async () => {
+    try {
+      setLoading(true);
+      await checkAuthentication();
+    } catch (error) {
+      console.log("error from recheckauth : ", error);
+    }
   };
-  console.log("AuthenticationForm inside auth provider", authenticationForm);
-
   const contextValue = useMemo(
     () => ({
-      isAuthenticatedJwt,
+      isAuthenticatedJwtLocalStorage,
+      isAuthenticatedJwtCookie,
       isAuthenticatedSessionId,
       loading,
       recheckAuthentication,
       authenticationForm,
       setAuthenticationForm,
     }),
-    [isAuthenticatedJwt, isAuthenticatedSessionId, loading]
+    [
+      isAuthenticatedJwtLocalStorage,
+      isAuthenticatedJwtCookie,
+      isAuthenticatedSessionId,
+      loading,
+    ]
   );
 
   return (
     <AuthContext.Provider value={contextValue}>
-      {!loading && children}
+      {loading ? <CircularProgressWithLabel /> : children}
     </AuthContext.Provider>
   );
 }

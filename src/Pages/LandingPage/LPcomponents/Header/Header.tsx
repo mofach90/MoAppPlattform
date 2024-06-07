@@ -86,7 +86,7 @@ const Header = () => {
             PaperProps={{
               elevation: 24,
               sx: {
-                width: 600,
+                width: 800,
                 height: 400,
                 display: "flex",
                 flexDirection: "column",
@@ -99,7 +99,6 @@ const Header = () => {
             <DialogActions sx={{ width: "100%" }}>
               <Button
                 variant="contained"
-                sx={{ whiteSpace: "nowrap" }}
                 fullWidth={true}
                 onClick={triggerAuthPopup}
               >
@@ -109,7 +108,6 @@ const Header = () => {
             <DialogActions sx={{ width: "100%" }}>
               <Button
                 variant="contained"
-                sx={{ whiteSpace: "nowrap" }}
                 onClick={() => navigate("/login")}
                 fullWidth={true}
               >
@@ -119,11 +117,20 @@ const Header = () => {
             <DialogActions sx={{ width: "100%" }}>
               <Button
                 variant="contained"
-                sx={{ whiteSpace: "nowrap" }}
-                onClick={() => navigate("/loginJwt")}
+                onClick={() => navigate("/login-jwt-stored-in-localSession")}
                 fullWidth={true}
               >
-                Login Using Form Based Authentication using JWT
+                Login Using Form Based Authentication using JWT Stored in
+                Local-Session
+              </Button>
+            </DialogActions>
+            <DialogActions sx={{ width: "100%" }}>
+              <Button
+                variant="contained"
+                onClick={() => navigate("/login-jwt-stored-in-cookie")}
+                fullWidth={true}
+              >
+                Login Using Form Based Authentication using JWT Stored in Cookie
               </Button>
             </DialogActions>
           </Dialog>

@@ -2,9 +2,9 @@ import { Grid, Paper, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { useAuth } from "../../contexts/authProvider";
 import ButtonWrapper from "./LPComponents/ButtonWrapper";
 import TextfieldWrapper from "./LPComponents/TextfieldWrapper";
-import { useAuth } from "../../contexts/authProvider";
 
 const INITIAL_FORM_STATE = {
   userName: "",
@@ -18,30 +18,31 @@ const FORM_VALIDATION = Yup.object().shape({
     .matches(/[a-zA-Z]/, " must include only chars"),
 });
 
-function LoginPageJwt() {
+function LoginPageJwtLocalStorage() {
   const navigate = useNavigate();
-  const {recheckAuthentication,authenticationForm, setAuthenticationForm} = useAuth()
+  const { recheckAuthentication, authenticationForm, setAuthenticationForm } =
+    useAuth();
   const handleonSubmit = async (values: object) => {
     const newValues = JSON.stringify(values);
     await triggerFormBasedAuth(newValues);
   };
   const triggerFormBasedAuth = async (values: string) => {
     try {
-      const result = await fetch("http://localhost:8000/loginjwt", {
+      const result = await fetch("http://localhost:8000/loginJwt-in-cookie", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: values,
         credentials: "include",
       });
-      setAuthenticationForm("form-based-authentication using Jwt");
+      setAuthenticationForm(
+        "form-based-authentication using Jwt stored in browser cookie"
+      );
 
       if (result.ok) {
         const data = await result.json();
-        if (data.token) {
-          localStorage.setItem("jwtToken",data.token)
-          
+        if (data) {
+          console.log({ data });
         }
-        console.log("Returned Data after Submit the Form", data); // Log the response body directly
         recheckAuthentication();
         navigate("/dashboard");
       } else {
@@ -50,7 +51,7 @@ function LoginPageJwt() {
     } catch (error) {
       console.log({ error });
     }
-    console.log("AuthenticationForm inside Loginjwt", authenticationForm)
+    console.log("AuthenticationForm inside Loginjwt", authenticationForm);
   };
   return (
     <Grid
@@ -114,4 +115,4 @@ function LoginPageJwt() {
   );
 }
 
-export default LoginPageJwt;
+export default LoginPageJwtLocalStorage;

@@ -60,10 +60,6 @@ function ProtectRoute({ children }: { children: Readonly<React.ReactNode> }) {
     navigate,
   ]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return <>{children}</>;
 }
 
