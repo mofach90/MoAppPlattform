@@ -68,7 +68,7 @@ const Header = () => {
           src="assets/logomoPNG.png"
           alt="Logo"
           className="logo-animation"
-          style={{ width: 100, height: 100 }}
+          style={{  width: 100, height: 100 }}
         />
         <Stack direction={"row"} gap={2} mr={2} alignItems="center">
           <Button
