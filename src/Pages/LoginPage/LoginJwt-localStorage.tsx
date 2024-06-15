@@ -29,7 +29,7 @@ function LoginPageJwtLocalStorage() {
   const triggerFormBasedAuth = async (values: string) => {
     try {
       const result = await fetch(
-        "http://localhost:8000/loginJwt-in-localStorage",
+        "http://localhost:8000/auth/login-jwt-in-localStorage",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

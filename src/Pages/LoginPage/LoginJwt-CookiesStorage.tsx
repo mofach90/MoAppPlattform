@@ -28,12 +28,15 @@ function LoginPageJwtLocalStorage() {
   };
   const triggerFormBasedAuth = async (values: string) => {
     try {
-      const result = await fetch("http://localhost:8000/loginJwt-in-cookie", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: values,
-        credentials: "include",
-      });
+      const result = await fetch(
+        "http://localhost:8000/auth/login-jwt-in-cookie",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: values,
+          credentials: "include",
+        }
+      );
       setAuthenticationForm(
         "form-based-authentication using Jwt stored in browser cookie"
       );

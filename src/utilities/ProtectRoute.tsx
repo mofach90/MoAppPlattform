@@ -7,6 +7,7 @@ function ProtectRoute({ children }: { children: Readonly<React.ReactNode> }) {
     isAuthenticatedSessionId,
     isAuthenticatedJwtLocalStorage,
     isAuthenticatedJwtCookie,
+    isAuthenticatedBasic,
     loading,
     authenticationForm,
   } = useAuth();
@@ -15,6 +16,7 @@ function ProtectRoute({ children }: { children: Readonly<React.ReactNode> }) {
     isAuthenticatedSessionId,
     isAuthenticatedJwtLocalStorage,
     isAuthenticatedJwtCookie,
+    isAuthenticatedBasic,
     loading,
     authenticationForm,
   });
@@ -22,6 +24,12 @@ function ProtectRoute({ children }: { children: Readonly<React.ReactNode> }) {
   useEffect(() => {
     if (!loading) {
       if (
+        !isAuthenticatedBasic &&
+        authenticationForm === "Simple Basic Authentication"
+      ) {
+        navigate("/");
+        console.log(" You are not authenticated using Simple Basic Authentication");
+      } else if (
         !isAuthenticatedSessionId &&
         authenticationForm === "form-based-authentication using session-id"
       ) {

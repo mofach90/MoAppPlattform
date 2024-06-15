@@ -11,12 +11,13 @@ import CircularProgressWithLabel from "../utilities/LoadingUtility";
 
 interface AuthContextType {
   isAuthenticatedSessionId: boolean;
+  isAuthenticatedBasic: boolean;
   isAuthenticatedJwtLocalStorage: boolean;
   isAuthenticatedJwtCookie: boolean;
-  // setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
   loading: boolean;
   recheckAuthentication: () => void;
   setAuthenticationForm: Dispatch<SetStateAction<string>>;
+  setIsAuthenticatedBasic: Dispatch<SetStateAction<boolean>>;
   authenticationForm: string;
 }
 
@@ -25,13 +26,15 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const [isAuthenticatedBasic, setIsAuthenticatedBasic] = useState<boolean>(false)
+
   const [isAuthenticatedSessionId, setIsAuthenticatedSessionId] =
-    useState(false);
+    useState<boolean>(false);
   const [isAuthenticatedJwtLocalStorage, setIsAuthenticatedJwtLocalStorage] =
-    useState(false);
+    useState<boolean>(false);
   const [isAuthenticatedJwtCookie, setIsAuthenticatedJwtCookie] =
-    useState(false);
-  const [loading, setLoading] = useState(true);
+    useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [authenticationForm, setAuthenticationForm] = useState<string>(() => {
     const storedValue = localStorage.getItem("authenticationForm");
     // console.log({storedValue})
@@ -49,12 +52,15 @@ export function AuthProvider({
       setLoading(true);
       const token = localStorage.getItem("jwtToken");
       console.debug("this is the token from localStorage", token);
-      const resultSessionId = await fetch("http://localhost:8000/check-auth", {
-        method: "GET",
-        credentials: "include",
-      });
+      const resultSessionId = await fetch(
+        "http://localhost:8000/auth/check-session-id-cookie",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
       const resultJwtLocalStorage = await fetch(
-        "http://localhost:8000/check-auth-jwt-local-storage",
+        "http://localhost:8000/auth/check-jwt-local-storage",
         {
           method: "GET",
           credentials: "include",
@@ -65,7 +71,7 @@ export function AuthProvider({
         }
       );
       const resultJwtCookie = await fetch(
-        "http://localhost:8000/check-auth-jwt-cookie",
+        "http://localhost:8000/auth/check-jwt-cookie",
         {
           method: "GET",
           credentials: "include",
@@ -111,15 +117,18 @@ export function AuthProvider({
       isAuthenticatedJwtLocalStorage,
       isAuthenticatedJwtCookie,
       isAuthenticatedSessionId,
+      isAuthenticatedBasic,
       loading,
       recheckAuthentication,
       authenticationForm,
       setAuthenticationForm,
+      setIsAuthenticatedBasic,
     }),
     [
       isAuthenticatedJwtLocalStorage,
       isAuthenticatedJwtCookie,
       isAuthenticatedSessionId,
+      isAuthenticatedBasic,
       loading,
     ]
   );

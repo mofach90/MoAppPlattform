@@ -27,7 +27,7 @@ function LoginPage() {
   };
   const triggerFormBasedAuth = async (values: string) => {
     try {
-      const result = await fetch("http://localhost:8000/login", {
+      const result = await fetch("http://localhost:8000/auth/login-sessionid", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: values,

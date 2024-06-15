@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../contexts/authProvider";
 import setTextAlign from "./../../../../utilities/settextAlignement";
 import "./Header.css";
 import SnackbarAlert from "./headerComponents/SnackbarAlert";
@@ -20,6 +21,7 @@ const Header = () => {
   const [openSnackbarAlert, setOpenSnackbarAlert] = useState<boolean>(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { setAuthenticationForm, recheckAuthentication , setIsAuthenticatedBasic} = useAuth();
   const handleClose = (
     _event: React.SyntheticEvent | Event,
     reason?: string
@@ -33,12 +35,23 @@ const Header = () => {
   const triggerAuthPopup = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8000/basicauthentication",
+        "http://localhost:8000/auth/login-basic-authentication",
         {
           method: "GET",
           credentials: "include", // Include credentials in the request
         }
       );
+      setAuthenticationForm("Simple Basic Authentication");
+      if (response.ok) {
+        const data = await response.json();
+        console.log( data.ok)
+        setIsAuthenticatedBasic(true);
+        recheckAuthentication();
+        navigate("/dashboard");
+      } else {
+        setIsAuthenticatedBasic(false);
+        console.error(" Response Status ", response.statusText);
+      }
     } catch (error) {
       console.error("Error during authentication", error);
     }
@@ -68,7 +81,7 @@ const Header = () => {
           src="assets/logomoPNG.png"
           alt="Logo"
           className="logo-animation"
-          style={{  width: 100, height: 100 }}
+          style={{ width: 100, height: 100 }}
         />
         <Stack direction={"row"} gap={2} mr={2} alignItems="center">
           <Button
@@ -173,4 +186,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header ;
