@@ -21,7 +21,11 @@ const Header = () => {
   const [openSnackbarAlert, setOpenSnackbarAlert] = useState<boolean>(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { setAuthenticationForm, recheckAuthentication , setIsAuthenticatedBasic} = useAuth();
+  const {
+    setAuthenticationForm,
+    recheckAuthentication,
+    setIsAuthenticatedBasic,
+  } = useAuth();
   const handleClose = (
     _event: React.SyntheticEvent | Event,
     reason?: string
@@ -34,17 +38,14 @@ const Header = () => {
   };
   const triggerAuthPopup = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:8000/auth/login-basic-authentication",
-        {
-          method: "GET",
-          credentials: "include", // Include credentials in the request
-        }
-      );
+      const response = await fetch("/api/v1/auth/login-basic-authentication", {
+        method: "GET",
+        credentials: "include", // Include credentials in the request
+      });
       setAuthenticationForm("Simple Basic Authentication");
       if (response.ok) {
         const data = await response.json();
-        console.log( data.ok)
+        console.log(data.ok);
         setIsAuthenticatedBasic(true);
         recheckAuthentication();
         navigate("/dashboard");
@@ -100,7 +101,7 @@ const Header = () => {
               elevation: 24,
               sx: {
                 width: 800,
-                height: 400,
+                height: 500,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -146,6 +147,15 @@ const Header = () => {
                 Login Using Form Based Authentication using JWT Stored in Cookie
               </Button>
             </DialogActions>
+            <DialogActions sx={{ width: "100%" }}>
+              <Button
+                variant="contained"
+                onClick={() => navigate("/login-with-social-networks")}
+                fullWidth={true}
+              >
+                Login using your Social Network Account
+              </Button>
+            </DialogActions>
           </Dialog>
           <Button
             variant="outlined"
@@ -186,4 +196,4 @@ const Header = () => {
   );
 };
 
-export default Header ;
+export default Header;

@@ -27,12 +27,14 @@ function LoginPage() {
   };
   const triggerFormBasedAuth = async (values: string) => {
     try {
-      const result = await fetch("http://localhost:8000/auth/login-sessionid", {
+      const result = await fetch("/api/v1/auth/login-sessionid", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: values,
         credentials: "include",
       });
+      const data = await result.json()
+      console.log("Response from session id login ", data)
       setAuthenticationForm("form-based-authentication using session-id");
       if (result.ok) {
         await recheckAuthentication();

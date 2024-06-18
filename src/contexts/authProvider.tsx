@@ -26,7 +26,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const [isAuthenticatedBasic, setIsAuthenticatedBasic] = useState<boolean>(false)
+  const [isAuthenticatedBasic, setIsAuthenticatedBasic] =
+    useState<boolean>(false);
 
   const [isAuthenticatedSessionId, setIsAuthenticatedSessionId] =
     useState<boolean>(false);
@@ -52,15 +53,12 @@ export function AuthProvider({
       setLoading(true);
       const token = localStorage.getItem("jwtToken");
       console.debug("this is the token from localStorage", token);
-      const resultSessionId = await fetch(
-        "http://localhost:8000/auth/check-session-id-cookie",
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      const resultSessionId = await fetch("/api/v1/auth/check-session-id-cookie", {
+        method: "GET",
+        credentials: "include",
+      });
       const resultJwtLocalStorage = await fetch(
-        "http://localhost:8000/auth/check-jwt-local-storage",
+        "/api/v1/auth/check-jwt-local-storage",
         {
           method: "GET",
           credentials: "include",
@@ -70,26 +68,37 @@ export function AuthProvider({
           },
         }
       );
-      const resultJwtCookie = await fetch(
-        "http://localhost:8000/auth/check-jwt-cookie",
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      // const resultGoogleAuth = await fetch(
+      //   "/api/v1/auth/",
+      //   {
+      //     method: "GET",
+      //     credentials: "include",
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+      const resultJwtCookie = await fetch("/api/v1/auth/social-auth/google", {
+        method: "GET",
+        credentials: "include",
+      });
       // Log the response text
       const dataJwtLocalStorage = await resultJwtLocalStorage.json();
       const dataJwtCookie = await resultJwtCookie.json();
       const dataSessionId = await resultSessionId.json();
+      // const dataGoogleAuth = await resultGoogleAuth.json();
+      // console.log("dataGoogleAuth",dataGoogleAuth)
+      //  resultSessionId.json().then((data)=>{
+
+      //   console.log("Data", data)
+      // });
+      console.log("this ist the response that i wait for",dataJwtCookie); //TODO delete
       if (dataSessionId.isAuthenticatedSessionId) {
         setIsAuthenticatedSessionId(true);
       }
       if (dataJwtLocalStorage.isAuthenticatedJwtLocalStorage) {
         setIsAuthenticatedJwtLocalStorage(true);
-        console.log(
-          "status of isAuthenticatedJwtLocalStorage",
-          isAuthenticatedJwtLocalStorage
-        );
       }
       if (dataJwtCookie.isAuthenticatedJwtCookie) {
         setIsAuthenticatedJwtCookie(true);
