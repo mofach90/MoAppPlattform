@@ -1,14 +1,20 @@
 import { Button, Grid, Paper, Typography } from "@mui/material";
+import { useAuth } from "../../contexts/authProvider";
 
 function LoginSocialNetworksPage() {
   // const navigate = useNavigate();
-  // const { recheckAuthentication, setAuthenticationForm } = useAuth();
+  const { recheckAuthentication, setAuthenticationForm } = useAuth();
   // const handleonSubmit = async (values: object) => {
   //   const newValues = JSON.stringify(values);
   //   await triggerFormBasedAuth(newValues);
   // };
   const handleGoogleAuthentication = async () => {
     try {
+      const result = window.open("/api/v1/auth/social-auth/google", "_self");
+      console.log("this is the result of window.open", result);
+      setAuthenticationForm("social based authentication");
+      // recheckAuthentication();
+
       // window.open("http://[server:port]/auth/google", "_self")
       // const result = await fetch("/api/v1/auth/social-auth/google", {
       //   method: "GET",
@@ -61,7 +67,7 @@ function LoginSocialNetworksPage() {
             </Grid>
             <Grid item xs={12}>
               <Button
-                onClick={()=>{window.open("/api/v1/auth/social-auth/google", "_self")}}
+                onClick={handleGoogleAuthentication}
                 color="success"
                 fullWidth
                 variant="contained"

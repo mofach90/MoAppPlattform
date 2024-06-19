@@ -89,6 +89,15 @@ const Header = () => {
             variant="contained"
             sx={{ whiteSpace: "nowrap" }}
             onClick={() => {
+              navigate("/dashboard");
+            }}
+          >
+            Go to Dashboard
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ whiteSpace: "nowrap" }}
+            onClick={() => {
               setOpen(true);
             }}
           >
