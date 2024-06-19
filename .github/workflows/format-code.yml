@@ -12,7 +12,7 @@ on:
 jobs:
   format:
     runs-on: ubuntu-latest
-    
+
 
     steps:
       - name: Checkout repository
@@ -20,17 +20,8 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      # - name: Extract The NodeJs Version From .tool-versions File
-      #   id: extract_node_version
-      #   run: |
-      #     NODE_VERSION=$(grep -i 'nodejs' .tool-versions | awk '{print $2}')
-      #     echo "node-version=$NODE_VERSION" >> $GITHUB_OUTPUT
-      #   shell: bash
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
-        # with:
-        #   node-version: ${{ steps.extract_node_version.outputs.node-version }}
 
       - name: Install Dependencies
         run: npm install
