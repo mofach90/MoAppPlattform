@@ -17,7 +17,7 @@ function TextfieldWrapper(props: Readonly<TextfieldWrapperProps>) {
     setShowPassword((prev) => !prev);
   };
   const handlMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
   };

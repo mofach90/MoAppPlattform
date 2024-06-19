@@ -34,7 +34,7 @@ function LoginPageJwtLocalStorage() {
         credentials: "include",
       });
       setAuthenticationForm(
-        "form-based-authentication using Jwt stored in browser local session"
+        "form-based-authentication using Jwt stored in browser local session",
       );
 
       if (result.ok) {

@@ -12,7 +12,6 @@ function ButtonWrapper({ children }: Readonly<{ children: React.ReactNode }>) {
     color: "primary",
     fullWidth: true,
     onClick: handleSubmit,
-    
   };
   return <Button {...buttonConfig}>{children}</Button>;
 }

@@ -13,7 +13,6 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
     loading,
     authenticationForm,
     recheckAuthentication,
-    
   } = useAuth();
   const navigate = useNavigate();
   console.log("Initial auth states: ", {
@@ -26,7 +25,7 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
     loading,
     authenticationForm,
   });
-  
+
   // console.log("before use effect", hasCheckedAuth)
   // useEffect(() => {
   //   if (!hasCheckedAuth.current) {
@@ -44,7 +43,7 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
       ) {
         navigate("/");
         console.log(
-          " You are not authenticated using Simple Basic Authentication"
+          " You are not authenticated using Simple Basic Authentication",
         );
       } else if (
         !isAuthenticatedSessionId &&
@@ -71,7 +70,9 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
         authenticationForm === "social based authentication"
       ) {
         navigate("/login-with-social-networks");
-        console.log(" You are not authenticated with your Social Network Account ");
+        console.log(
+          " You are not authenticated with your Social Network Account ",
+        );
       } else if (
         !isAuthenticatedJwtLocalStorage &&
         !isAuthenticatedJwtCookie &&

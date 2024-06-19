@@ -52,7 +52,10 @@ function App() {
               <Route path="/licence" element={<LicencePage />} />
               <Route path="/useragreement" element={<UseragreementPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/login-with-social-networks" element={<LoginSocialNetworksPage />} />
+              <Route
+                path="/login-with-social-networks"
+                element={<LoginSocialNetworksPage />}
+              />
               <Route
                 path="/login-jwt-stored-in-localSession"
                 element={<LoginJwtlocalStorage />}

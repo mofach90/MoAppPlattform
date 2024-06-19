@@ -27,9 +27,6 @@ Welcome to the Mo Application Platform, a versatile platform designed to streaml
 
 (Currently under development - instructions will be provided in future updates)
 
-
-
 ---
 
 For more information, questions, or to get involved, please contact me at [ayari.mohamed@web.de].
-

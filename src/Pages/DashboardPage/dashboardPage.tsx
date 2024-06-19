@@ -5,17 +5,21 @@ import { useAuth } from "../../contexts/authProvider";
 import { HomeButton } from "../LoginPage/LPComponents/goHomeButton";
 
 function Dashboard() {
-  const navigate = useNavigate()
-  const {recheckAuthentication} = useAuth();
+  const navigate = useNavigate();
+  const { recheckAuthentication } = useAuth();
   return (
     <Grid container height="100vh">
       <Grid container alignItems={"center"} justifyContent={"end"} p={2}>
-        <Grid item >
-          <Button variant="contained" onClick={()=>{LogoutHandler(navigate,recheckAuthentication)}} >
+        <Grid item>
+          <Button
+            variant="contained"
+            onClick={() => {
+              LogoutHandler(navigate, recheckAuthentication);
+            }}
+          >
             LOGOUT
           </Button>
-          <HomeButton/>
-
+          <HomeButton />
         </Grid>
       </Grid>
       <Grid

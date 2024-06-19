@@ -7,7 +7,7 @@ export const DashboardButton = () => {
 
   const buttonConfig: ButtonProps = {
     variant: "contained",
-    onClick:  handleGoToDashboard ,
+    onClick: handleGoToDashboard,
     sx: { whiteSpace: "nowrap" },
   };
   return <Button {...buttonConfig}>Go to Dashboard</Button>;

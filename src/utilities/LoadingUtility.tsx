@@ -5,7 +5,7 @@ import CircularProgress, {
 import Typography from "@mui/material/Typography";
 
 export default function CircularProgressWithLabel(
-  props: CircularProgressProps
+  props: CircularProgressProps,
 ) {
   return (
     <Box

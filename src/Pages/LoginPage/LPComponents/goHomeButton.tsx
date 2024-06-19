@@ -7,8 +7,8 @@ export const HomeButton = () => {
 
   const buttonConfig: ButtonProps = {
     variant: "contained",
-    onClick:  handleHome ,
-    sx: { whiteSpace: "nowrap", ml:2 },
+    onClick: handleHome,
+    sx: { whiteSpace: "nowrap", ml: 2 },
   };
   return <Button {...buttonConfig}>Home</Button>;
 };
