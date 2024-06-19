@@ -1,6 +1,5 @@
 import { Grid, Paper, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useAuth } from "../../contexts/authProvider";
 import ButtonWrapper from "./LPComponents/ButtonWrapper";
@@ -19,9 +18,7 @@ const FORM_VALIDATION = Yup.object().shape({
 });
 
 function LoginPageJwtLocalStorage() {
-  const navigate = useNavigate();
-  const { recheckAuthentication, authenticationForm, setAuthenticationForm } =
-    useAuth();
+  const { authenticationForm, setAuthenticationForm } = useAuth();
   const handleonSubmit = async (values: object) => {
     const newValues = JSON.stringify(values);
     await triggerFormBasedAuth(newValues);
@@ -39,12 +36,7 @@ function LoginPageJwtLocalStorage() {
       );
 
       if (result.ok) {
-        const data = await result.json();
-        if (data) {
-          console.log({ data });
-        }
-        recheckAuthentication();
-        navigate("/dashboard");
+        window.open("/dashboard", "_self");
       } else {
         console.error("Failed to submit form", result.statusText);
       }

@@ -2,44 +2,11 @@ import { Button, Grid, Paper, Typography } from "@mui/material";
 import { useAuth } from "../../contexts/authProvider";
 
 function LoginSocialNetworksPage() {
-  // const navigate = useNavigate();
-  const { recheckAuthentication, setAuthenticationForm } = useAuth();
-  // const handleonSubmit = async (values: object) => {
-  //   const newValues = JSON.stringify(values);
-  //   await triggerFormBasedAuth(newValues);
-  // };
-  const handleGoogleAuthentication = async () => {
-    try {
-      const result = window.open("/api/v1/auth/social-auth/google", "_self");
-      console.log("this is the result of window.open", result);
-      setAuthenticationForm("social based authentication");
-      // recheckAuthentication();
+  const { setAuthenticationForm } = useAuth();
 
-      // window.open("http://[server:port]/auth/google", "_self")
-      // const result = await fetch("/api/v1/auth/social-auth/google", {
-      //   method: "GET",
-      // });
-      // setAuthenticationForm("form-based-authentication using session-id");
-      // console.log("this is the result of api/v1/auth/social-auth/google ", result);
-      // const data = await result.json()
-      // console.log("auth/social-auth/google  response",data)
-      // if (result.redirected) {
-      //   console.log("enter if before");
-      //   window.location.href = result.url;
-      //   console.log("enter if after");
-      // } else {
-      //   console.log("enter else");
-      //   console.error("Failed to redirect", result.statusText);
-      // }
-      // if (result.ok) {
-      //   await recheckAuthentication();
-      //   navigate("/dashboard");
-      // } else {
-      //   console.error("Failed to submit form", result.statusText);
-      // }
-    } catch (error) {
-      console.log({ error });
-    }
+  const handleGoogleAuthentication = () => {
+    window.open("/api/v1/auth/social-auth/google", "_self");
+    setAuthenticationForm("social based authentication");
   };
   return (
     <Grid

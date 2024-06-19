@@ -84,8 +84,8 @@ export function AuthProvider({
       // Log the response text
       const dataJwtLocalStorage = await resultJwtLocalStorage.json();
       const dataJwtCookie = await resultJwtCookie.json();
-      console.log({dataJwtCookie})
       const dataSessionId = await resultSessionId.json();
+      console.log("dataSessionId.isAuthenticatedSessionId:",dataSessionId.isAuthenticatedSessionId)
       if (dataSessionId.isAuthenticatedSessionId) {
         setIsAuthenticatedSessionId(true);
       }
@@ -137,6 +137,7 @@ export function AuthProvider({
       isAuthenticatedBasic,
       isAuthenticatedSocialAuth,
       loading,
+      recheckAuthentication
     ]
   );
 

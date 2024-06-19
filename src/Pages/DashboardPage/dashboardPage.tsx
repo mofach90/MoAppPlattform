@@ -1,14 +1,16 @@
 import { Button, Grid, Typography } from "@mui/material";
 import { LogoutHandler } from "../../utilities/logoutHandler";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/authProvider";
 
 function Dashboard() {
   const navigate = useNavigate()
+  const {recheckAuthentication} = useAuth();
   return (
     <Grid container height="100vh">
       <Grid container alignItems={"center"} justifyContent={"end"} p={2}>
         <Grid item>
-          <Button variant="contained" onClick={()=>{LogoutHandler(navigate)}}>
+          <Button variant="contained" onClick={()=>{LogoutHandler(navigate,recheckAuthentication)}}>
             LOGOUT
           </Button>
         </Grid>

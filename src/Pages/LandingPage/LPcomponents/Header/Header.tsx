@@ -57,6 +57,9 @@ const Header = () => {
       console.error("Error during authentication", error);
     }
   };
+  const handleGoToDashboard =  () =>{
+      window.open("/dashboard", "_self");
+  }
 
   const textAlign = setTextAlign();
 
@@ -88,9 +91,7 @@ const Header = () => {
           <Button
             variant="contained"
             sx={{ whiteSpace: "nowrap" }}
-            onClick={() => {
-              navigate("/dashboard");
-            }}
+            onClick={ handleGoToDashboard}
           >
             Go to Dashboard
           </Button>
