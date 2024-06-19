@@ -1,6 +1,6 @@
-import * as klaro from "klaro";
-import "klaro/dist/klaro.css";
-import { useEffect } from "react";
+import * as klaro from 'klaro';
+import 'klaro/dist/klaro.css';
+import { useEffect } from 'react';
 
 interface KlaroProps {
   config: any;

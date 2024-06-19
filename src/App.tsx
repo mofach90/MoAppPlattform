@@ -1,18 +1,18 @@
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Dashboard from "./Pages/DashboardPage/dashboardPage";
-import AboutPage from "./Pages/LandingPage/AboutPage";
-import LandingPage from "./Pages/LandingPage/LandingPage";
-import LicencePage from "./Pages/LandingPage/LicencePage";
-import UseragreementPage from "./Pages/LandingPage/UseragreementPage";
-import LoginPage from "./Pages/LoginPage/Login";
-import LoginJwtCookieStorage from "./Pages/LoginPage/LoginJwt-CookiesStorage";
-import LoginJwtlocalStorage from "./Pages/LoginPage/LoginJwt-localStorage";
-import Klaro from "./components/Klaro";
-import { AuthProvider } from "./contexts/authProvider";
-import data from "./data/KlaroConfig.json";
-import ProtectRoute from "./utilities/ProtectRoute";
-import LoginSocialNetworksPage from "./Pages/LoginPage/LoginSocialNetworks";
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Dashboard from './Pages/DashboardPage/dashboardPage';
+import AboutPage from './Pages/LandingPage/AboutPage';
+import LandingPage from './Pages/LandingPage/LandingPage';
+import LicencePage from './Pages/LandingPage/LicencePage';
+import UseragreementPage from './Pages/LandingPage/UseragreementPage';
+import LoginPage from './Pages/LoginPage/Login';
+import LoginJwtCookieStorage from './Pages/LoginPage/LoginJwt-CookiesStorage';
+import LoginJwtlocalStorage from './Pages/LoginPage/LoginJwt-localStorage';
+import Klaro from './components/Klaro';
+import { AuthProvider } from './contexts/authProvider';
+import data from './data/KlaroConfig.json';
+import ProtectRoute from './utilities/ProtectRoute';
+import LoginSocialNetworksPage from './Pages/LoginPage/LoginSocialNetworks';
 
 const theme = createTheme({
   components: {

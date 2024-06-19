@@ -1,4 +1,4 @@
-import LanguageIcon from "@mui/icons-material/Language";
+import LanguageIcon from '@mui/icons-material/Language';
 import {
   Avatar,
   Box,
@@ -6,53 +6,53 @@ import {
   InputLabel,
   MenuItem,
   Select,
-} from "@mui/material";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
+} from '@mui/material';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const menuItemStyles = {
-  color: "black",
-  "&.Mui-selected": {
-    backgroundColor: "rgb(190,255,255)",
-    "&:hover": {
-      backgroundColor: "rgb(190,255,255)",
+  color: 'black',
+  '&.Mui-selected': {
+    backgroundColor: 'rgb(190,255,255)',
+    '&:hover': {
+      backgroundColor: 'rgb(190,255,255)',
     },
   },
 };
 
 const inputItemStyles = {
-  color: "white",
-  "&.Mui-focused": {
-    transform: "translate(-20px, -14px) scale(0.75) rotate(1turn)",
-    color: "inherit",
+  color: 'white',
+  '&.Mui-focused': {
+    transform: 'translate(-20px, -14px) scale(0.75) rotate(1turn)',
+    color: 'inherit',
   },
-  "&.MuiInputLabel-shrink": {
-    color: "inherit",
-    "&:not(.Mui-focused)": {
-      transform: "translate(-20px, -14px) scale(0.75) rotate(1turn)",
-      color: "inherit",
+  '&.MuiInputLabel-shrink': {
+    color: 'inherit',
+    '&:not(.Mui-focused)': {
+      transform: 'translate(-20px, -14px) scale(0.75) rotate(1turn)',
+      color: 'inherit',
     },
   },
 };
 
 const LanguageButton = () => {
-  const [language, setLanguage] = useState<string>("");
+  const [language, setLanguage] = useState<string>('');
   const { i18n } = useTranslation();
   const selectStyles = {
-    "& .MuiOutlinedInput-notchedOutline": {
-      border: "none",
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
     },
-    "& .MuiSelect-select": {
-      display: "flex",
-      alignItems: "center",
-      color: "white",
-      "& .MuiSvgIcon-root": {
-        color: "yellow",
+    '& .MuiSelect-select': {
+      display: 'flex',
+      alignItems: 'center',
+      color: 'white',
+      '& .MuiSvgIcon-root': {
+        color: 'yellow',
       },
     },
-    "& .MuiSvgIcon-root": {
-      color: language ? "transparent" : "rgb(90,255,255)",
-      fontSize: "30px",
+    '& .MuiSvgIcon-root': {
+      color: language ? 'transparent' : 'rgb(90,255,255)',
+      fontSize: '30px',
     },
   };
 
@@ -64,14 +64,14 @@ const LanguageButton = () => {
   return (
     <Box
       width={165}
-      border={"1px solid"}
+      border={'1px solid'}
       height={40}
       mr={2}
       ml={2}
       borderRadius={10}
-      display={"flex"}
-      flexDirection={"row"}
-      alignItems={"center"}
+      display={'flex'}
+      flexDirection={'row'}
+      alignItems={'center'}
     >
       <LanguageIcon color="inherit" sx={{ ml: 1 }} />
       <FormControl fullWidth>
@@ -85,7 +85,7 @@ const LanguageButton = () => {
           MenuProps={{
             PaperProps: {
               sx: {
-                backgroundColor: "rgb(90,255,255)",
+                backgroundColor: 'rgb(90,255,255)',
                 width: 80,
                 borderRadius: 5,
               },
@@ -96,7 +96,7 @@ const LanguageButton = () => {
             },
           }}
         >
-          <MenuItem sx={menuItemStyles} value={"de"}>
+          <MenuItem sx={menuItemStyles} value={'de'}>
             Deutsch
             <Avatar
               sx={{
@@ -107,7 +107,7 @@ const LanguageButton = () => {
               src="/assets/Flag_of_Germany.png"
             />
           </MenuItem>
-          <MenuItem sx={menuItemStyles} value={"en"}>
+          <MenuItem sx={menuItemStyles} value={'en'}>
             English
             <Avatar
               sx={{
@@ -118,7 +118,7 @@ const LanguageButton = () => {
               src="/assets/Flag_of_the_United_Kingdom.png"
             />
           </MenuItem>
-          <MenuItem sx={menuItemStyles} value={"ar"}>
+          <MenuItem sx={menuItemStyles} value={'ar'}>
             Arabic
             <Avatar
               sx={{

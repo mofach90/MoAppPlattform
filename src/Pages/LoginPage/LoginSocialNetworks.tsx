@@ -1,18 +1,18 @@
-import { Button, Grid, Paper, Typography } from "@mui/material";
-import { useAuth } from "../../contexts/authProvider";
-import { DashboardButton } from "./LPComponents/goDashboardButton copy";
-import { HomeButton } from "./LPComponents/goHomeButton";
+import { Button, Grid, Paper, Typography } from '@mui/material';
+import { useAuth } from '../../contexts/authProvider';
+import { DashboardButton } from './LPComponents/goDashboardButton copy';
+import { HomeButton } from './LPComponents/goHomeButton';
 
 function LoginSocialNetworksPage() {
   const { setAuthenticationForm } = useAuth();
 
   const handleGoogleAuthentication = () => {
-    window.open("/api/v1/auth/social-auth/google", "_self");
-    setAuthenticationForm("social based authentication");
+    window.open('/api/v1/auth/social-auth/google', '_self');
+    setAuthenticationForm('social based authentication');
   };
   return (
     <Grid container height="100vh">
-      <Grid container alignItems={"center"} justifyContent={"end"} p={2}>
+      <Grid container alignItems={'center'} justifyContent={'end'} p={2}>
         <Grid item>
           <DashboardButton />
           <HomeButton />
@@ -29,9 +29,9 @@ function LoginSocialNetworksPage() {
           <Paper
             sx={{
               padding: 4,
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
             }}
             variant="outlined"
           >

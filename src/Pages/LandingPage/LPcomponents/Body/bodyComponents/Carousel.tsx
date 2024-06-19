@@ -1,25 +1,25 @@
-import Carousel from "react-material-ui-carousel";
-import Item from "./carousselComponentS/Item";
+import Carousel from 'react-material-ui-carousel';
+import Item from './carousselComponentS/Item';
 const CarouselComponent = () => {
   const listApps = [
     {
-      name: "To-Do App",
-      url: "assets/TodoApp.jpg",
+      name: 'To-Do App',
+      url: 'assets/TodoApp.jpg',
     },
     {
-      name: "Weather App",
-      url: "assets/wheatherApp.jpg",
+      name: 'Weather App',
+      url: 'assets/wheatherApp.jpg',
     },
     {
-      name: "Recipe App",
-      url: "assets/recipe.jpg",
+      name: 'Recipe App',
+      url: 'assets/recipe.jpg',
     },
   ];
   return (
     <Carousel
       navButtonsProps={{
         style: {
-          color: "rgb(55, 255, 255)",
+          color: 'rgb(55, 255, 255)',
           opacity: 0.5,
         },
       }}

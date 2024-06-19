@@ -1,11 +1,11 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-function setTextAlign(): "left" | "right" | "center" {
+function setTextAlign(): 'left' | 'right' | 'center' {
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language;
-  if (currentLanguage == "ar") {
-    return "right";
+  if (currentLanguage == 'ar') {
+    return 'right';
   }
-  return "left";
+  return 'left';
 }
 export default setTextAlign;

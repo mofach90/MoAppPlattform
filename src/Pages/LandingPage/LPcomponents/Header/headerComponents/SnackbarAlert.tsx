@@ -1,5 +1,5 @@
-import { Alert, AlertProps } from "@mui/material";
-import { forwardRef } from "react";
+import { Alert, AlertProps } from '@mui/material';
+import { forwardRef } from 'react';
 
 const SnackbarAlert = forwardRef<HTMLDivElement, AlertProps>(
   function SnackbarAlert(props, ref) {

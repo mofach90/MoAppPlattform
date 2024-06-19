@@ -1,12 +1,12 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Typography,
-} from "@mui/material";
-import { useTranslation } from "react-i18next";
-import setTextAlign from "./../../../../../../utilities/settextAlignement";
+} from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import setTextAlign from './../../../../../../utilities/settextAlignement';
 
 const AccordionComponent = (props: any) => {
   const { t } = useTranslation();
@@ -17,11 +17,11 @@ const AccordionComponent = (props: any) => {
         expandIcon={
           <ExpandMoreIcon
             sx={{
-              color: "darkblue",
-              "&:hover": {
-                color: "white",
+              color: 'darkblue',
+              '&:hover': {
+                color: 'white',
 
-                backgroundColor: "darkblue",
+                backgroundColor: 'darkblue',
                 borderRadius: 10,
               },
             }}
@@ -29,10 +29,10 @@ const AccordionComponent = (props: any) => {
         }
       >
         <Typography
-          width={"100%"}
+          width={'100%'}
           mr={2}
-          fontWeight={"bold"}
-          color={"darkblue"}
+          fontWeight={'bold'}
+          color={'darkblue'}
         >
           {t(`FaQ.${props.index}.Q`)}
         </Typography>
@@ -40,12 +40,12 @@ const AccordionComponent = (props: any) => {
       <AccordionDetails
         sx={{
           background:
-            "linear-gradient(to right, rgb(240, 255, 255),rgb(170,255,255))",
+            'linear-gradient(to right, rgb(240, 255, 255),rgb(170,255,255))',
           borderRadius: 1,
         }}
       >
-        <Typography color={"darkblue"} variant="body2">
-          {t(`FaQ.${props.index}.A`)}{" "}
+        <Typography color={'darkblue'} variant="body2">
+          {t(`FaQ.${props.index}.A`)}{' '}
         </Typography>
       </AccordionDetails>
     </Accordion>

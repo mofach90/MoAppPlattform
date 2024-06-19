@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/authProvider";
+import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/authProvider';
 
 function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
   // const hasCheckedAuth = useRef(false);
@@ -15,7 +15,7 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
     recheckAuthentication,
   } = useAuth();
   const navigate = useNavigate();
-  console.log("Initial auth states: ", {
+  console.log('Initial auth states: ', {
     isAuthenticatedSessionId,
     isAuthenticatedJwtLocalStorage,
     isAuthenticatedJwtCookie,
@@ -39,49 +39,49 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
     if (!loading) {
       if (
         !isAuthenticatedBasic &&
-        authenticationForm === "Simple Basic Authentication"
+        authenticationForm === 'Simple Basic Authentication'
       ) {
-        navigate("/");
+        navigate('/');
         console.log(
-          " You are not authenticated using Simple Basic Authentication",
+          ' You are not authenticated using Simple Basic Authentication',
         );
       } else if (
         !isAuthenticatedSessionId &&
-        authenticationForm === "form-based-authentication using session-id"
+        authenticationForm === 'form-based-authentication using session-id'
       ) {
-        navigate("/login");
-        console.log(" You are not authenticated with your Session-Id ");
+        navigate('/login');
+        console.log(' You are not authenticated with your Session-Id ');
       } else if (
         !isAuthenticatedJwtLocalStorage &&
         authenticationForm ===
-          "form-based-authentication using Jwt stored in browser local session"
+          'form-based-authentication using Jwt stored in browser local session'
       ) {
-        navigate("/login-jwt-stored-in-localSession");
-        console.log(" You are not authenticated with your Jwt in localSession");
+        navigate('/login-jwt-stored-in-localSession');
+        console.log(' You are not authenticated with your Jwt in localSession');
       } else if (
         !isAuthenticatedJwtCookie &&
         authenticationForm ===
-          "form-based-authentication using Jwt stored in browser cookie"
+          'form-based-authentication using Jwt stored in browser cookie'
       ) {
-        navigate("/login-jwt-stored-in-cookie");
-        console.log(" You are not authenticated with your Jwt in cookie ");
+        navigate('/login-jwt-stored-in-cookie');
+        console.log(' You are not authenticated with your Jwt in cookie ');
       } else if (
         !isAuthenticatedSocialAuth &&
-        authenticationForm === "social based authentication"
+        authenticationForm === 'social based authentication'
       ) {
-        navigate("/login-with-social-networks");
+        navigate('/login-with-social-networks');
         console.log(
-          " You are not authenticated with your Social Network Account ",
+          ' You are not authenticated with your Social Network Account ',
         );
       } else if (
         !isAuthenticatedJwtLocalStorage &&
         !isAuthenticatedJwtCookie &&
         !isAuthenticatedSessionId &&
         !isAuthenticatedSocialAuth &&
-        authenticationForm === ""
+        authenticationForm === ''
       ) {
-        navigate("/");
-        console.log("Choose your Login Option");
+        navigate('/');
+        console.log('Choose your Login Option');
       }
     }
   }, [

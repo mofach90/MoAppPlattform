@@ -7,15 +7,15 @@ import {
   Snackbar,
   Stack,
   Typography,
-} from "@mui/material";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../../contexts/authProvider";
-import setTextAlign from "./../../../../utilities/settextAlignement";
-import "./Header.css";
-import SnackbarAlert from "./headerComponents/SnackbarAlert";
-import { DashboardButton } from "../../../LoginPage/LPComponents/goDashboardButton copy";
+} from '@mui/material';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../../contexts/authProvider';
+import setTextAlign from './../../../../utilities/settextAlignement';
+import './Header.css';
+import SnackbarAlert from './headerComponents/SnackbarAlert';
+import { DashboardButton } from '../../../LoginPage/LPComponents/goDashboardButton copy';
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -31,7 +31,7 @@ const Header = () => {
     _event: React.SyntheticEvent | Event,
     reason?: string,
   ) => {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
     setOpenSnackbarAlert(false);
@@ -39,23 +39,23 @@ const Header = () => {
   };
   const triggerAuthPopup = async () => {
     try {
-      const response = await fetch("/api/v1/auth/login-basic-authentication", {
-        method: "GET",
-        credentials: "include", // Include credentials in the request
+      const response = await fetch('/api/v1/auth/login-basic-authentication', {
+        method: 'GET',
+        credentials: 'include', // Include credentials in the request
       });
-      setAuthenticationForm("Simple Basic Authentication");
+      setAuthenticationForm('Simple Basic Authentication');
       if (response.ok) {
         const data = await response.json();
         console.log(data.ok);
         setIsAuthenticatedBasic(true);
         recheckAuthentication();
-        navigate("/dashboard");
+        navigate('/dashboard');
       } else {
         setIsAuthenticatedBasic(false);
-        console.error(" Response Status ", response.statusText);
+        console.error(' Response Status ', response.statusText);
       }
     } catch (error) {
-      console.error("Error during authentication", error);
+      console.error('Error during authentication', error);
     }
   };
 
@@ -65,19 +65,19 @@ const Header = () => {
     <Box
       sx={{
         backgroundImage: `url(src/assets/nikolaj-habib-J9T8mIL5f4M-unsplash.jpg)`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        display: "flex",
-        flexDirection: "column",
-        textAlign: "center",
-        color: "white",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        textAlign: 'center',
+        color: 'white',
       }}
     >
       <Stack
-        direction={"row"}
-        width={"100%"}
-        alignItems={"center"}
-        justifyContent={"space-between"}
+        direction={'row'}
+        width={'100%'}
+        alignItems={'center'}
+        justifyContent={'space-between'}
       >
         <img
           src="assets/logomoPNG.png"
@@ -85,11 +85,11 @@ const Header = () => {
           className="logo-animation"
           style={{ width: 100, height: 100 }}
         />
-        <Stack direction={"row"} gap={2} mr={2} alignItems="center">
+        <Stack direction={'row'} gap={2} mr={2} alignItems="center">
           <DashboardButton />
           <Button
             variant="contained"
-            sx={{ whiteSpace: "nowrap" }}
+            sx={{ whiteSpace: 'nowrap' }}
             onClick={() => {
               setOpen(true);
             }}
@@ -104,15 +104,15 @@ const Header = () => {
               sx: {
                 width: 800,
                 height: 500,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
                 padding: 4,
               },
             }}
           >
             <DialogTitle>Choose your Authentication methode</DialogTitle>
-            <DialogActions sx={{ width: "100%" }}>
+            <DialogActions sx={{ width: '100%' }}>
               <Button
                 variant="contained"
                 fullWidth={true}
@@ -121,38 +121,38 @@ const Header = () => {
                 Login Using Basic Based Authentication
               </Button>
             </DialogActions>
-            <DialogActions sx={{ width: "100%" }}>
+            <DialogActions sx={{ width: '100%' }}>
               <Button
                 variant="contained"
-                onClick={() => navigate("/login")}
+                onClick={() => navigate('/login')}
                 fullWidth={true}
               >
                 Login Using Form Based Authentication using Sesion ID
               </Button>
             </DialogActions>
-            <DialogActions sx={{ width: "100%" }}>
+            <DialogActions sx={{ width: '100%' }}>
               <Button
                 variant="contained"
-                onClick={() => navigate("/login-jwt-stored-in-localSession")}
+                onClick={() => navigate('/login-jwt-stored-in-localSession')}
                 fullWidth={true}
               >
                 Login Using Form Based Authentication using JWT Stored in
                 Local-Session
               </Button>
             </DialogActions>
-            <DialogActions sx={{ width: "100%" }}>
+            <DialogActions sx={{ width: '100%' }}>
               <Button
                 variant="contained"
-                onClick={() => navigate("/login-jwt-stored-in-cookie")}
+                onClick={() => navigate('/login-jwt-stored-in-cookie')}
                 fullWidth={true}
               >
                 Login Using Form Based Authentication using JWT Stored in Cookie
               </Button>
             </DialogActions>
-            <DialogActions sx={{ width: "100%" }}>
+            <DialogActions sx={{ width: '100%' }}>
               <Button
                 variant="contained"
-                onClick={() => navigate("/login-with-social-networks")}
+                onClick={() => navigate('/login-with-social-networks')}
                 fullWidth={true}
               >
                 Login using your Social Network Account
@@ -161,7 +161,7 @@ const Header = () => {
           </Dialog>
           <Button
             variant="outlined"
-            sx={{ whiteSpace: "nowrap" }}
+            sx={{ whiteSpace: 'nowrap' }}
             color="inherit"
             onClick={() => setOpenSnackbarAlert(true)}
           >
@@ -172,7 +172,7 @@ const Header = () => {
             autoHideDuration={1000}
             open={openSnackbarAlert}
             onClose={handleClose}
-            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           >
             <SnackbarAlert variant="filled" severity="warning">
               Coming soon : Under Developement
@@ -181,17 +181,17 @@ const Header = () => {
         </Stack>
       </Stack>
       <Box
-        display={"flex"}
-        flexDirection={"column"}
-        alignItems={"center"}
-        justifyContent={"center"}
+        display={'flex'}
+        flexDirection={'column'}
+        alignItems={'center'}
+        justifyContent={'center'}
         height={300}
-        flexWrap={"wrap"}
+        flexWrap={'wrap'}
         textAlign={textAlign}
       >
-        <Typography variant="h3">{t("welcome")}</Typography>
-        <Typography mt={2} variant="body1" width={"70%"}>
-          {t("description")}
+        <Typography variant="h3">{t('welcome')}</Typography>
+        <Typography mt={2} variant="body1" width={'70%'}>
+          {t('description')}
         </Typography>
       </Box>
     </Box>

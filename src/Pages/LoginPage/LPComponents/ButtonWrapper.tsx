@@ -1,5 +1,5 @@
-import { Button, ButtonProps } from "@mui/material";
-import { useFormikContext } from "formik";
+import { Button, ButtonProps } from '@mui/material';
+import { useFormikContext } from 'formik';
 
 function ButtonWrapper({ children }: Readonly<{ children: React.ReactNode }>) {
   const { submitForm } = useFormikContext();
@@ -8,8 +8,8 @@ function ButtonWrapper({ children }: Readonly<{ children: React.ReactNode }>) {
   };
 
   const buttonConfig: ButtonProps = {
-    variant: "contained",
-    color: "primary",
+    variant: 'contained',
+    color: 'primary',
     fullWidth: true,
     onClick: handleSubmit,
   };

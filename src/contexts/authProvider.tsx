@@ -6,8 +6,8 @@ import React, {
   useEffect,
   useMemo,
   useState,
-} from "react";
-import CircularProgressWithLabel from "../utilities/LoadingUtility";
+} from 'react';
+import CircularProgressWithLabel from '../utilities/LoadingUtility';
 
 interface AuthContextType {
   isAuthenticatedSessionId: boolean;
@@ -39,13 +39,13 @@ export function AuthProvider({
     useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [authenticationForm, setAuthenticationForm] = useState<string>(() => {
-    const storedValue = localStorage.getItem("authenticationForm");
+    const storedValue = localStorage.getItem('authenticationForm');
     // console.log({storedValue})
-    return storedValue ? JSON.parse(storedValue) : "";
+    return storedValue ? JSON.parse(storedValue) : '';
   });
   useEffect(() => {
     localStorage.setItem(
-      "authenticationForm",
+      'authenticationForm',
       JSON.stringify(authenticationForm),
     );
   }, [authenticationForm]);
@@ -53,47 +53,47 @@ export function AuthProvider({
   const checkAuthentication = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("jwtToken");
-      console.debug("this is the token from localStorage", token);
+      const token = localStorage.getItem('jwtToken');
+      console.debug('this is the token from localStorage', token);
       const resultSessionId = await fetch(
-        "/api/v1/auth/check-session-id-cookie",
+        '/api/v1/auth/check-session-id-cookie',
         {
-          method: "GET",
-          credentials: "include",
+          method: 'GET',
+          credentials: 'include',
         },
       );
       const resultJwtLocalStorage = await fetch(
-        "/api/v1/auth/check-jwt-local-storage",
+        '/api/v1/auth/check-jwt-local-storage',
         {
-          method: "GET",
-          credentials: "include",
+          method: 'GET',
+          credentials: 'include',
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         },
       );
-      const resultGoogleAuth = await fetch("/api/v1/auth/check-google-auth", {
-        method: "GET",
-        credentials: "include",
+      const resultGoogleAuth = await fetch('/api/v1/auth/check-google-auth', {
+        method: 'GET',
+        credentials: 'include',
       });
-      const resultJwtCookie = await fetch("/api/v1/auth/check-jwt-cookie", {
-        method: "GET",
-        credentials: "include",
+      const resultJwtCookie = await fetch('/api/v1/auth/check-jwt-cookie', {
+        method: 'GET',
+        credentials: 'include',
       });
       // Log the response text
       const dataJwtLocalStorage = await resultJwtLocalStorage.json();
       const dataJwtCookie = await resultJwtCookie.json();
       const dataSessionId = await resultSessionId.json();
       console.log(
-        "dataSessionId.isAuthenticatedSessionId:",
+        'dataSessionId.isAuthenticatedSessionId:',
         dataSessionId.isAuthenticatedSessionId,
       );
       if (dataSessionId.isAuthenticatedSessionId) {
         setIsAuthenticatedSessionId(true);
       }
       if (resultGoogleAuth.ok) {
-        console.log("resultGoogleAuth.ok", resultGoogleAuth.ok);
+        console.log('resultGoogleAuth.ok', resultGoogleAuth.ok);
         setIsAuthenticatedSocialAuth(true);
       }
       if (dataJwtLocalStorage.isAuthenticatedJwtLocalStorage) {
@@ -103,7 +103,7 @@ export function AuthProvider({
         setIsAuthenticatedJwtCookie(true);
       }
     } catch (error) {
-      console.error("Failure in checkAuthentication", error);
+      console.error('Failure in checkAuthentication', error);
     } finally {
       setLoading(false);
     }
@@ -117,7 +117,7 @@ export function AuthProvider({
       setLoading(true);
       await checkAuthentication();
     } catch (error) {
-      console.log("error from recheckauth : ", error);
+      console.log('error from recheckauth : ', error);
     }
   };
   const contextValue = useMemo(
@@ -154,7 +154,7 @@ export function AuthProvider({
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };
