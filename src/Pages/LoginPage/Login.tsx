@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { useAuth } from "../../contexts/authProvider";
 import ButtonWrapper from "./LPComponents/ButtonWrapper";
 import TextfieldWrapper from "./LPComponents/TextfieldWrapper";
+import { DashboardButton } from "./LPComponents/goDashboardButton copy";
+import { HomeButton } from "./LPComponents/goHomeButton";
 
 const INITIAL_FORM_STATE = {
   userName: "",
@@ -31,8 +33,8 @@ function LoginPage() {
         body: values,
         credentials: "include",
       });
-      const data = await result.json()
-      console.log("Response from session id login ", data)
+      const data = await result.json();
+      console.log("Response from session id login ", data);
       setAuthenticationForm("form-based-authentication using session-id");
       if (result.ok) {
         window.open("/dashboard", "_self");
@@ -44,62 +46,70 @@ function LoginPage() {
     }
   };
   return (
-    <Grid
-      container
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="100vh"
-    >
-      <Grid item xs={10} md={9} lg={9}>
-        <Paper
-          sx={{
-            padding: 4,
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-          }}
-          variant="outlined"
-        >
-          <Formik
-            validationSchema={FORM_VALIDATION}
-            initialValues={{ ...INITIAL_FORM_STATE }}
-            onSubmit={handleonSubmit}
+    <Grid container height="100vh">
+      <Grid container alignItems={"center"} justifyContent={"end"} p={2}>
+        <Grid item>
+          <DashboardButton />
+          <HomeButton />
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="90%"
+      >
+        <Grid item xs={10} md={9} lg={9}>
+          <Paper
+            sx={{
+              padding: 4,
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+            variant="outlined"
           >
-            <Form style={{ width: "60%" }}>
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <Typography variant="h5">
-                    This is a Form Based Authentication Using Session ID
-                  </Typography>
+            <Formik
+              validationSchema={FORM_VALIDATION}
+              initialValues={{ ...INITIAL_FORM_STATE }}
+              onSubmit={handleonSubmit}
+            >
+              <Form style={{ width: "60%" }}>
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <Typography variant="h5">
+                      This is a Form Based Authentication Using Session ID
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography fontWeight={"bold"}>
+                      Please Enter you User Name and Password
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextfieldWrapper
+                      name="userName"
+                      label="User Name"
+                      type="text"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextfieldWrapper
+                      name="password"
+                      label="Password"
+                      type="password"
+                      size="small"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <ButtonWrapper>Submit</ButtonWrapper>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <Typography fontWeight={"bold"}>
-                    Please Enter you User Name and Password
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <TextfieldWrapper
-                    name="userName"
-                    label="User Name"
-                    type="text"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextfieldWrapper
-                    name="password"
-                    label="Password"
-                    type="password"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <ButtonWrapper>Submit</ButtonWrapper>
-                </Grid>
-              </Grid>
-            </Form>
-          </Formik>
-        </Paper>
+              </Form>
+            </Formik>
+          </Paper>
+        </Grid>
       </Grid>
     </Grid>
   );

@@ -15,6 +15,7 @@ import { useAuth } from "../../../../contexts/authProvider";
 import setTextAlign from "./../../../../utilities/settextAlignement";
 import "./Header.css";
 import SnackbarAlert from "./headerComponents/SnackbarAlert";
+import { DashboardButton } from "../../../LoginPage/LPComponents/goDashboardButton copy";
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -57,9 +58,6 @@ const Header = () => {
       console.error("Error during authentication", error);
     }
   };
-  const handleGoToDashboard =  () =>{
-      window.open("/dashboard", "_self");
-  }
 
   const textAlign = setTextAlign();
 
@@ -88,13 +86,7 @@ const Header = () => {
           style={{ width: 100, height: 100 }}
         />
         <Stack direction={"row"} gap={2} mr={2} alignItems="center">
-          <Button
-            variant="contained"
-            sx={{ whiteSpace: "nowrap" }}
-            onClick={ handleGoToDashboard}
-          >
-            Go to Dashboard
-          </Button>
+          <DashboardButton />
           <Button
             variant="contained"
             sx={{ whiteSpace: "nowrap" }}
