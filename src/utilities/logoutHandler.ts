@@ -1,8 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
 
-export const LogoutHandler = async (
-  navigate: NavigateFunction
-) => {
+export const LogoutHandler = async (navigate: NavigateFunction) => {
   console.log('enter logoutHandler');
   console.log('debug 1 logoutHandler');
   localStorage.removeItem('jwtToken');
