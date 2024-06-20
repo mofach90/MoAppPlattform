@@ -1,9 +1,7 @@
 import { NavigateFunction } from 'react-router-dom';
-import { useAuth } from '../contexts/authProvider';
 
 export const LogoutHandler = async (
-  navigate: NavigateFunction,
-  recheckAuthentication: () => void,
+  navigate: NavigateFunction
 ) => {
   console.log('enter logoutHandler');
   console.log('debug 1 logoutHandler');

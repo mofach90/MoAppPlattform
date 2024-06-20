@@ -14,7 +14,7 @@ function Dashboard() {
           <Button
             variant="contained"
             onClick={() => {
-              LogoutHandler(navigate, recheckAuthentication);
+              LogoutHandler(navigate);
             }}
           >
             LOGOUT
