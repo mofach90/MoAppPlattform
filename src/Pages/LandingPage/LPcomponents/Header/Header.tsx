@@ -24,7 +24,6 @@ const Header = () => {
   const navigate = useNavigate();
   const {
     setAuthenticationForm,
-    recheckAuthentication,
     setIsAuthenticatedBasic,
   } = useAuth();
   const handleClose = (
@@ -153,6 +152,15 @@ const Header = () => {
                 fullWidth={true}
               >
                 Login using your Social Network Account
+              </Button>
+            </DialogActions>
+            <DialogActions sx={{ width: '100%' }}>
+              <Button
+                variant="contained"
+                onClick={() => navigate('/login-with-firebase')}
+                fullWidth={true}
+              >
+                Login using Firebase
               </Button>
             </DialogActions>
           </Dialog>

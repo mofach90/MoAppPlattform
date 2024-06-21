@@ -13,6 +13,7 @@ import { AuthProvider } from './contexts/authProvider';
 import data from './data/KlaroConfig.json';
 import ProtectRoute from './utilities/ProtectRoute';
 import LoginSocialNetworksPage from './Pages/LoginPage/LoginSocialNetworks';
+import FirebaseLoginPage from './Pages/LoginPage/LoginFirebase';
 
 const theme = createTheme({
   components: {
@@ -52,6 +53,7 @@ function App() {
               <Route path="/licence" element={<LicencePage />} />
               <Route path="/useragreement" element={<UseragreementPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/login-with-firebase" element={<FirebaseLoginPage />} />
               <Route
                 path="/login-with-social-networks"
                 element={<LoginSocialNetworksPage />}
