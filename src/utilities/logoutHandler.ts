@@ -1,16 +1,20 @@
 import { NavigateFunction } from 'react-router-dom';
 
 export const LogoutHandler = async (navigate: NavigateFunction) => {
-  console.log('enter logoutHandler');
-  console.log('debug 1 logoutHandler');
-  localStorage.removeItem('jwtToken');
-  console.log('debug 2 logoutHandler');
+  try {
+    localStorage.removeItem('jwtToken');
 
-  const result = await fetch('/api/v1/auth/social-auth/logout', {
-    method: 'GET',
-    credentials: 'include',
-  });
-  if (result.ok) {
-    navigate('/');
-  } else console.log('logout failed');
+    const result = await fetch('/api/v1/auth/social-auth/logout', {
+      method: 'GET',
+      credentials: 'include',
+    });
+
+    if (result.ok) {
+      navigate('/');
+    } else {
+      console.log('logout failed');
+    }
+  } catch (error) {
+    console.log('An error occurred during logout:', error);
+  }
 };

@@ -1,23 +1,15 @@
 import FacebookIcon from '@mui/icons-material/Facebook';
-import {
-  Button,
-  Grid,
-  InputAdornment,
-  Paper,
-  TextField,
-  Typography,
-  colors,
-} from '@mui/material';
+import GoogleIcon from '@mui/icons-material/Google';
+import { Button, Grid, InputAdornment, Paper, Typography } from '@mui/material';
 import { useAuth } from '../../contexts/authProvider';
 import { DashboardButton } from './LPComponents/goDashboardButton copy';
 import { HomeButton } from './LPComponents/goHomeButton';
-import GoogleIcon from '@mui/icons-material/Google';
 
 function LoginSocialNetworksPage() {
   const { setAuthenticationForm } = useAuth();
 
   const handleSocialNetworkAuthentication = (provider: string) => {
-    window.open(`/api/v1/auth/social-auth/${provider}`, '_self');
+    window.open(`/api/v1/auth/login-social-auth/${provider}`, '_self');
     setAuthenticationForm('social based authentication');
   };
   return (
