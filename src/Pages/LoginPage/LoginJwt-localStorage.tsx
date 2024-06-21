@@ -42,7 +42,6 @@ function LoginPageJwtLocalStorage() {
         if (data.token) {
           localStorage.setItem('jwtToken', data.token);
         }
-        console.log('Returned Data after Submit the Form', data); // Log the response body directly
         window.open('/dashboard', '_self');
       } else {
         console.error('Failed to submit form', result.statusText);

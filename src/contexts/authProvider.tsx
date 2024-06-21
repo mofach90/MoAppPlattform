@@ -40,7 +40,6 @@ export function AuthProvider({
   const [loading, setLoading] = useState<boolean>(true);
   const [authenticationForm, setAuthenticationForm] = useState<string>(() => {
     const storedValue = localStorage.getItem('authenticationForm');
-    // console.log({storedValue})
     return storedValue ? JSON.parse(storedValue) : '';
   });
   useEffect(() => {
@@ -53,8 +52,10 @@ export function AuthProvider({
   const checkAuthentication = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('jwtToken');
-      console.debug('this is the token from localStorage', token);
+      const responseBasicAuth = await fetch(`/api/v1/auth/check-basic-authentication`, {
+        method: 'GET',
+        credentials: 'include', 
+      });
       const resultSessionId = await fetch(
         '/api/v1/auth/check-session-id-cookie',
         {
@@ -62,6 +63,7 @@ export function AuthProvider({
           credentials: 'include',
         },
       );
+      const token = localStorage.getItem('jwtToken');
       const resultJwtLocalStorage = await fetch(
         '/api/v1/auth/check-jwt-local-storage',
         {
@@ -81,19 +83,19 @@ export function AuthProvider({
         method: 'GET',
         credentials: 'include',
       });
-      // Log the response text
       const dataJwtLocalStorage = await resultJwtLocalStorage.json();
       const dataJwtCookie = await resultJwtCookie.json();
       const dataSessionId = await resultSessionId.json();
-      console.log(
-        'dataSessionId.isAuthenticatedSessionId:',
-        dataSessionId.isAuthenticatedSessionId,
-      );
+      const dataBasicAuthentication = await responseBasicAuth.json();
+      console.log("dataBasicAuthentication:   ",dataBasicAuthentication)
+      console.log("responseBasicAuth:   ",responseBasicAuth)
+      if (dataBasicAuthentication.isAuthenticatedBasic) {
+        setIsAuthenticatedBasic(true);
+      }
       if (dataSessionId.isAuthenticatedSessionId) {
         setIsAuthenticatedSessionId(true);
       }
       if (resultGoogleAuth.ok) {
-        console.log('resultGoogleAuth.ok', resultGoogleAuth.ok);
         setIsAuthenticatedSocialAuth(true);
       }
       if (dataJwtLocalStorage.isAuthenticatedJwtLocalStorage) {
@@ -111,13 +113,19 @@ export function AuthProvider({
   useEffect(() => {
     checkAuthentication();
   }, []);
+  useEffect(() => {
+    console.log('isAuthenticatedSessionId: ', isAuthenticatedSessionId);
+  }, [isAuthenticatedSessionId]);
+  useEffect(() => {
+    console.log('isAuthenticatedBasic: ', isAuthenticatedBasic);
+  }, [isAuthenticatedBasic]);
 
   const recheckAuthentication = async () => {
     try {
       setLoading(true);
       await checkAuthentication();
     } catch (error) {
-      console.log('error from recheckauth : ', error);
+      console.error('error from recheckauth : ', error);
     }
   };
   const contextValue = useMemo(

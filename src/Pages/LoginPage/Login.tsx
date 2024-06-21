@@ -33,8 +33,6 @@ function LoginPage() {
         body: values,
         credentials: 'include',
       });
-      const data = await result.json();
-      console.log('Response from session id login ', data);
       setAuthenticationForm('form-based-authentication using session-id');
       if (result.ok) {
         window.open('/dashboard', '_self');

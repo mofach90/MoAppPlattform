@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/authProvider';
 
 function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
-  // const hasCheckedAuth = useRef(false);
   const {
     isAuthenticatedSessionId,
     isAuthenticatedJwtLocalStorage,
@@ -12,7 +11,6 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
     isAuthenticatedSocialAuth,
     loading,
     authenticationForm,
-    recheckAuthentication,
   } = useAuth();
   const navigate = useNavigate();
   console.log('Initial auth states: ', {
@@ -21,20 +19,10 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
     isAuthenticatedJwtCookie,
     isAuthenticatedBasic,
     isAuthenticatedSocialAuth,
-    recheckAuthentication,
     loading,
     authenticationForm,
   });
 
-  // console.log("before use effect", hasCheckedAuth)
-  // useEffect(() => {
-  //   if (!hasCheckedAuth.current) {
-  //     recheckAuthentication();
-  //     hasCheckedAuth.current = true; // Set it to true after the first run
-  //     console.log("hasCheckedAuth", hasCheckedAuth)
-  //     }
-  //     }, [recheckAuthentication]);
-  //   console.log("after use effect", hasCheckedAuth)
   useEffect(() => {
     if (!loading) {
       if (

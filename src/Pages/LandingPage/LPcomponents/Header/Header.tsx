@@ -12,10 +12,10 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../../contexts/authProvider';
+import { DashboardButton } from '../../../LoginPage/LPComponents/goDashboardButton copy';
 import setTextAlign from './../../../../utilities/settextAlignement';
 import './Header.css';
 import SnackbarAlert from './headerComponents/SnackbarAlert';
-import { DashboardButton } from '../../../LoginPage/LPComponents/goDashboardButton copy';
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -41,15 +41,12 @@ const Header = () => {
     try {
       const response = await fetch('/api/v1/auth/login-basic-authentication', {
         method: 'GET',
-        credentials: 'include', // Include credentials in the request
-      });
+        credentials: 'include',
+        });
       setAuthenticationForm('Simple Basic Authentication');
       if (response.ok) {
-        const data = await response.json();
-        console.log(data.ok);
         setIsAuthenticatedBasic(true);
-        recheckAuthentication();
-        navigate('/dashboard');
+        window.open('/dashboard', '_self');
       } else {
         setIsAuthenticatedBasic(false);
         console.error(' Response Status ', response.statusText);

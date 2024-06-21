@@ -10,12 +10,6 @@ export const LogoutHandler = async (navigate: NavigateFunction) => {
     method: 'GET',
     credentials: 'include',
   });
-  //   await recheckAuthentication();
-
-  // const data = await result.json()
-  // console.log({data})
-  console.log({ result });
-
   if (result.ok) {
     navigate('/');
   } else console.log('logout failed');
