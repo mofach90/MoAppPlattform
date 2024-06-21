@@ -42,7 +42,7 @@ const Header = () => {
       const response = await fetch('/api/v1/auth/login-basic-authentication', {
         method: 'GET',
         credentials: 'include',
-        });
+      });
       setAuthenticationForm('Simple Basic Authentication');
       if (response.ok) {
         setIsAuthenticatedBasic(true);

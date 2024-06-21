@@ -52,10 +52,13 @@ export function AuthProvider({
   const checkAuthentication = async () => {
     try {
       setLoading(true);
-      const responseBasicAuth = await fetch(`/api/v1/auth/check-basic-authentication`, {
-        method: 'GET',
-        credentials: 'include', 
-      });
+      const responseBasicAuth = await fetch(
+        `/api/v1/auth/check-basic-authentication`,
+        {
+          method: 'GET',
+          credentials: 'include',
+        },
+      );
       const resultSessionId = await fetch(
         '/api/v1/auth/check-session-id-cookie',
         {
@@ -87,8 +90,8 @@ export function AuthProvider({
       const dataJwtCookie = await resultJwtCookie.json();
       const dataSessionId = await resultSessionId.json();
       const dataBasicAuthentication = await responseBasicAuth.json();
-      console.log("dataBasicAuthentication:   ",dataBasicAuthentication)
-      console.log("responseBasicAuth:   ",responseBasicAuth)
+      console.log('dataBasicAuthentication:   ', dataBasicAuthentication);
+      console.log('responseBasicAuth:   ', responseBasicAuth);
       if (dataBasicAuthentication.isAuthenticatedBasic) {
         setIsAuthenticatedBasic(true);
       }
