@@ -53,7 +53,10 @@ function App() {
               <Route path="/licence" element={<LicencePage />} />
               <Route path="/useragreement" element={<UseragreementPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/login-with-firebase" element={<FirebaseLoginPage />} />
+              <Route
+                path="/login-with-firebase"
+                element={<FirebaseLoginPage />}
+              />
               <Route
                 path="/login-with-social-networks"
                 element={<LoginSocialNetworksPage />}

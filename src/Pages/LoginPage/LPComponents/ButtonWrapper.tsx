@@ -6,7 +6,10 @@ type ButtonWrapperProps = {
   buttonProps?: ButtonProps; // Make buttonProps optional
 };
 
-function ButtonWrapper({ children, buttonProps={} }: Readonly<ButtonWrapperProps>) {
+function ButtonWrapper({
+  children,
+  buttonProps = {},
+}: Readonly<ButtonWrapperProps>) {
   const { submitForm } = useFormikContext();
   const handleSubmit = () => {
     submitForm();
@@ -18,7 +21,11 @@ function ButtonWrapper({ children, buttonProps={} }: Readonly<ButtonWrapperProps
     fullWidth: true,
     onClick: handleSubmit,
   };
-  return <Button {...buttonConfig} {...buttonProps}>{children}</Button>;
+  return (
+    <Button {...buttonConfig} {...buttonProps}>
+      {children}
+    </Button>
+  );
 }
 
 export default ButtonWrapper;

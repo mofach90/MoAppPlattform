@@ -22,10 +22,7 @@ const Header = () => {
   const [openSnackbarAlert, setOpenSnackbarAlert] = useState<boolean>(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const {
-    setAuthenticationForm,
-    setIsAuthenticatedBasic,
-  } = useAuth();
+  const { setAuthenticationForm, setIsAuthenticatedBasic } = useAuth();
   const handleClose = (
     _event: React.SyntheticEvent | Event,
     reason?: string,

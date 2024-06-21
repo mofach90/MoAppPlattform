@@ -26,14 +26,13 @@ const FORM_VALIDATION = Yup.object().shape({
 });
 
 function FirebaseLoginPage() {
-  connectAuthEmulator(auth,"http://127.0.0.1:8500")
+  connectAuthEmulator(auth, 'http://127.0.0.1:8500');
   const handleonSubmit = async (values: object) => {
     const newValues = JSON.stringify(values);
     await triggerFormBasedAuth(newValues);
   };
   const triggerFormBasedAuth = async (values: string) => {
     try {
-
     } catch (error) {
       console.log({ error });
     }
@@ -140,7 +139,11 @@ function FirebaseLoginPage() {
                       <ButtonWrapper>Submit</ButtonWrapper>
                     </Grid>
                     <Grid item xs={12} marginBottom={4}>
-                      <ButtonWrapper buttonProps={{sx:{bgcolor:"#34a1eb"}}}>Sign Up</ButtonWrapper>
+                      <ButtonWrapper
+                        buttonProps={{ sx: { bgcolor: '#34a1eb' } }}
+                      >
+                        Sign Up
+                      </ButtonWrapper>
                     </Grid>
                   </Grid>
                 </Grid>
