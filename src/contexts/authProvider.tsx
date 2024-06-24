@@ -1,3 +1,4 @@
+import { onAuthStateChanged } from 'firebase/auth';
 import React, {
   Dispatch,
   SetStateAction,
@@ -7,6 +8,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { auth } from '../config/firebaseConfig';
 import CircularProgressWithLabel from '../utilities/LoadingUtility';
 
 interface AuthContextType {
@@ -15,6 +17,7 @@ interface AuthContextType {
   isAuthenticatedJwtLocalStorage: boolean;
   isAuthenticatedJwtCookie: boolean;
   isAuthenticatedSocialAuth: boolean;
+  isAuthenticatedFirebaseEmailPassword: boolean;
   loading: boolean;
   recheckAuthentication: () => void;
   setAuthenticationForm: Dispatch<SetStateAction<string>>;
@@ -29,6 +32,10 @@ export function AuthProvider({
 }: Readonly<{ children: React.ReactNode }>) {
   const [isAuthenticatedBasic, setIsAuthenticatedBasic] =
     useState<boolean>(false);
+  const [
+    isAuthenticatedFirebaseEmailPassword,
+    setIsAuthenticatedFirebaseEmailPassword,
+  ] = useState<boolean>(false);
   const [isAuthenticatedSessionId, setIsAuthenticatedSessionId] =
     useState<boolean>(false);
   const [isAuthenticatedJwtLocalStorage, setIsAuthenticatedJwtLocalStorage] =
@@ -90,8 +97,9 @@ export function AuthProvider({
       const dataJwtCookie = await resultJwtCookie.json();
       const dataSessionId = await resultSessionId.json();
       const dataBasicAuthentication = await responseBasicAuth.json();
-      console.log('dataBasicAuthentication:   ', dataBasicAuthentication);
-      console.log('responseBasicAuth:   ', responseBasicAuth);
+      //  check Firebase authentication
+      await checkFirebaseAuthentication();
+      //
       if (dataBasicAuthentication.isAuthenticatedBasic) {
         setIsAuthenticatedBasic(true);
       }
@@ -117,11 +125,27 @@ export function AuthProvider({
     checkAuthentication();
   }, []);
   useEffect(() => {
-    console.log('isAuthenticatedSessionId: ', isAuthenticatedSessionId);
-  }, [isAuthenticatedSessionId]);
-  useEffect(() => {
-    console.log('isAuthenticatedBasic: ', isAuthenticatedBasic);
-  }, [isAuthenticatedBasic]);
+    console.log(
+      'isAuthenticatedFirebaseEmailPassword in use effect',
+      isAuthenticatedFirebaseEmailPassword,
+    );
+  }, [isAuthenticatedFirebaseEmailPassword]);
+
+  function checkFirebaseAuthentication(): Promise<void> {
+    return new Promise((resolve) => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log('User is logged In', user.uid);
+          console.log('user details  : ', user);
+          setIsAuthenticatedFirebaseEmailPassword(true);
+        } else {
+          console.log('User is Not Logged in');
+          setIsAuthenticatedFirebaseEmailPassword(false);
+        }
+        resolve();
+      });
+    });
+  }
 
   const recheckAuthentication = async () => {
     try {
@@ -143,6 +167,7 @@ export function AuthProvider({
       authenticationForm,
       setAuthenticationForm,
       setIsAuthenticatedBasic,
+      isAuthenticatedFirebaseEmailPassword,
     }),
     [
       isAuthenticatedJwtLocalStorage,
@@ -152,6 +177,7 @@ export function AuthProvider({
       isAuthenticatedSocialAuth,
       loading,
       recheckAuthentication,
+      isAuthenticatedFirebaseEmailPassword,
     ],
   );
 

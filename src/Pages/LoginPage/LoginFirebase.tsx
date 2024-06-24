@@ -1,12 +1,12 @@
 import { Grid, Paper, Typography } from '@mui/material';
 import {
-  connectAuthEmulator,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword
 } from 'firebase/auth';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { auth } from '../../config/firebaseConfig';
+import { useAuth } from '../../contexts/authProvider';
 import ButtonWrapper from './LPComponents/ButtonWrapper';
 import TextfieldWrapper from './LPComponents/TextfieldWrapper';
 import { DashboardButton } from './LPComponents/goDashboardButton copy';
@@ -29,12 +29,13 @@ const FORM_VALIDATION = Yup.object().shape({
   password: Yup.string()
     .required('Required FIeld')
     .min(8, 'password is too short, -should be 8 chars minimum')
-    .matches(/[a-zA-Z]/, ' must include only chars'),
+    .matches(/^[a-zA-Z]+$/, ' must include only chars'),
 });
 
 function FirebaseLoginPage() {
-  connectAuthEmulator(auth, 'http://127.0.0.1:8500');
+  // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
 
+  const {setAuthenticationForm} = useAuth()
   const handleOnSubmit = async (values: valueType) => {
     try {
       const emailAdress: string = values.emailAdress;
@@ -47,6 +48,9 @@ function FirebaseLoginPage() {
         password,
       );
       console.log('checkUser: ', checkUser);
+      if (checkUser.user) {
+        window.open("/dashboard", "_self");
+      }
     } catch (error) {
       console.log({ error });
     }
@@ -69,6 +73,7 @@ function FirebaseLoginPage() {
   };
 
   const handleFormSubmit = async (values: valueType) => {
+    setAuthenticationForm('Firebase based authentication using Email and Password');
     if (values.actionType === 'signIn') {
       await handleOnSubmit(values);
     } else if (values.actionType === 'signUp') {

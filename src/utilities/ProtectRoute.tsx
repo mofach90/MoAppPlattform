@@ -11,6 +11,7 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
     isAuthenticatedSocialAuth,
     loading,
     authenticationForm,
+    isAuthenticatedFirebaseEmailPassword,
   } = useAuth();
   const navigate = useNavigate();
   console.log('Initial auth states: ', {
@@ -21,6 +22,7 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
     isAuthenticatedSocialAuth,
     loading,
     authenticationForm,
+    isAuthenticatedFirebaseEmailPassword,
   });
 
   useEffect(() => {
@@ -60,6 +62,14 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
         navigate('/login-with-social-networks');
         console.log(
           ' You are not authenticated with your Social Network Account ',
+        );
+      } else if (
+        !isAuthenticatedFirebaseEmailPassword &&
+        authenticationForm === 'Firebase based authentication using Email and Password'
+      ) {
+        navigate('/login-with-firebase');
+        console.log(
+          ' You are not authenticated with Firebase using Email and Password ',
         );
       } else if (
         !isAuthenticatedJwtLocalStorage &&
