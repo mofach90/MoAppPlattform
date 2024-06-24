@@ -1,7 +1,7 @@
 import { Grid, Paper, Typography } from '@mui/material';
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -35,7 +35,7 @@ const FORM_VALIDATION = Yup.object().shape({
 function FirebaseLoginPage() {
   // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
 
-  const {setAuthenticationForm} = useAuth()
+  const { setAuthenticationForm } = useAuth();
   const handleOnSubmit = async (values: valueType) => {
     try {
       const emailAdress: string = values.emailAdress;
@@ -49,7 +49,7 @@ function FirebaseLoginPage() {
       );
       console.log('checkUser: ', checkUser);
       if (checkUser.user) {
-        window.open("/dashboard", "_self");
+        window.open('/dashboard', '_self');
       }
     } catch (error) {
       console.log({ error });
@@ -73,7 +73,9 @@ function FirebaseLoginPage() {
   };
 
   const handleFormSubmit = async (values: valueType) => {
-    setAuthenticationForm('Firebase based authentication using Email and Password');
+    setAuthenticationForm(
+      'Firebase based authentication using Email and Password',
+    );
     if (values.actionType === 'signIn') {
       await handleOnSubmit(values);
     } else if (values.actionType === 'signUp') {

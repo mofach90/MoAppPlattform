@@ -65,7 +65,8 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
         );
       } else if (
         !isAuthenticatedFirebaseEmailPassword &&
-        authenticationForm === 'Firebase based authentication using Email and Password'
+        authenticationForm ===
+          'Firebase based authentication using Email and Password'
       ) {
         navigate('/login-with-firebase');
         console.log(
