@@ -3,15 +3,18 @@ import { useFormikContext } from 'formik';
 
 type ButtonWrapperProps = {
   children: React.ReactNode;
-  buttonProps?: ButtonProps; // Make buttonProps optional
+  buttonProps?: ButtonProps;
+  onClick?: () => void;
 };
 
-function ButtonWrapper({
+export function ButtonWrapper({
   children,
   buttonProps = {},
+  onClick,
 }: Readonly<ButtonWrapperProps>) {
   const { submitForm } = useFormikContext();
   const handleSubmit = () => {
+    if (onClick) onClick();
     submitForm();
   };
 

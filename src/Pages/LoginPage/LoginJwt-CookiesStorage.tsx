@@ -19,10 +19,11 @@ const FORM_VALIDATION = Yup.object().shape({
     .matches(/[a-zA-Z]/, ' must include only chars'),
 });
 
-function LoginPageJwtLocalStorage() {
+function LoginPageJwtCookieStorage() {
   const { authenticationForm, setAuthenticationForm } = useAuth();
   const handleonSubmit = async (values: object) => {
     const newValues = JSON.stringify(values);
+    console.log("newvalues: ",newValues )
     await triggerFormBasedAuth(newValues);
   };
   const triggerFormBasedAuth = async (values: string) => {
@@ -117,4 +118,4 @@ function LoginPageJwtLocalStorage() {
   );
 }
 
-export default LoginPageJwtLocalStorage;
+export default LoginPageJwtCookieStorage;
