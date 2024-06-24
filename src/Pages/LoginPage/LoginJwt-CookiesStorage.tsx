@@ -23,7 +23,7 @@ function LoginPageJwtCookieStorage() {
   const { authenticationForm, setAuthenticationForm } = useAuth();
   const handleonSubmit = async (values: object) => {
     const newValues = JSON.stringify(values);
-    console.log("newvalues: ",newValues )
+    console.log('newvalues: ', newValues);
     await triggerFormBasedAuth(newValues);
   };
   const triggerFormBasedAuth = async (values: string) => {
