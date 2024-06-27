@@ -103,7 +103,7 @@ export function AuthProvider({
       const dataSessionId = await resultSessionId.json();
       const dataBasicAuthentication = await responseBasicAuth.json();
       const dataFirebaseAuthCheck = await resultFirebaseAuthCheck.json();
-      console.log({dataFirebaseAuthCheck })
+      console.log({ dataFirebaseAuthCheck });
       if (dataBasicAuthentication.isAuthenticatedBasic) {
         setIsAuthenticatedBasic(true);
       }
@@ -120,7 +120,7 @@ export function AuthProvider({
         setIsAuthenticatedJwtCookie(true);
       }
       if (dataFirebaseAuthCheck.isAuthenticatedFirebaseEmailPassword) {
-        console.log("PROOOOF")
+        console.log('PROOOOF');
         setIsAuthenticatedFirebaseEmailPassword(true);
       }
     } catch (error) {
