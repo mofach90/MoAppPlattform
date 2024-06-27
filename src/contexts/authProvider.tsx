@@ -1,4 +1,3 @@
-import { onAuthStateChanged } from 'firebase/auth';
 import React, {
   Dispatch,
   SetStateAction,
@@ -8,7 +7,6 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { auth } from '../config/firebaseConfig';
 import CircularProgressWithLabel from '../utilities/LoadingUtility';
 
 interface AuthContextType {
@@ -73,6 +71,13 @@ export function AuthProvider({
           credentials: 'include',
         },
       );
+      const resultFirebaseAuthCheck = await fetch(
+        '/api/v1/auth/check-firebase-authentication',
+        {
+          method: 'GET',
+          credentials: 'include',
+        },
+      );
       const token = localStorage.getItem('jwtToken');
       const resultJwtLocalStorage = await fetch(
         '/api/v1/auth/check-jwt-local-storage',
@@ -97,9 +102,8 @@ export function AuthProvider({
       const dataJwtCookie = await resultJwtCookie.json();
       const dataSessionId = await resultSessionId.json();
       const dataBasicAuthentication = await responseBasicAuth.json();
-      //  check Firebase authentication
-      await checkFirebaseAuthentication();
-      //
+      const dataFirebaseAuthCheck = await resultFirebaseAuthCheck.json();
+      console.log({dataFirebaseAuthCheck })
       if (dataBasicAuthentication.isAuthenticatedBasic) {
         setIsAuthenticatedBasic(true);
       }
@@ -114,6 +118,10 @@ export function AuthProvider({
       }
       if (dataJwtCookie.isAuthenticatedJwtCookie) {
         setIsAuthenticatedJwtCookie(true);
+      }
+      if (dataFirebaseAuthCheck.isAuthenticatedFirebaseEmailPassword) {
+        console.log("PROOOOF")
+        setIsAuthenticatedFirebaseEmailPassword(true);
       }
     } catch (error) {
       console.error('Failure in checkAuthentication', error);
@@ -131,21 +139,22 @@ export function AuthProvider({
     );
   }, [isAuthenticatedFirebaseEmailPassword]);
 
-  function checkFirebaseAuthentication(): Promise<void> {
-    return new Promise((resolve) => {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          console.log('User is logged In', user.uid);
-          console.log('user details  : ', user);
-          setIsAuthenticatedFirebaseEmailPassword(true);
-        } else {
-          console.log('User is Not Logged in');
-          setIsAuthenticatedFirebaseEmailPassword(false);
-        }
-        resolve();
-      });
-    });
-  }
+  // }
+  // function checkFirebaseAuthentication(): Promise<void> {
+  //   return new Promise((resolve) => {
+  //     onAuthStateChanged(auth, (user) => {
+  //       if (user) {
+  //         console.log('User is logged In', user.uid);
+  //         console.log('user details  : ', user);
+  //         setIsAuthenticatedFirebaseEmailPassword(true);
+  //       } else {
+  //         console.log('User is Not Logged in');
+  //         setIsAuthenticatedFirebaseEmailPassword(false);
+  //       }
+  //       resolve();
+  //     });
+  //   });
+  // }
 
   const recheckAuthentication = async () => {
     try {
