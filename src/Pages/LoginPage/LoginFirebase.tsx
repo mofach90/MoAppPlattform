@@ -42,14 +42,27 @@ function FirebaseLoginPage() {
       const password: string = values.password;
 
       console.log('values: ', values);
-      const checkUser = await signInWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         emailAdress,
         password,
       );
-      console.log('checkUser: ', checkUser);
-      if (checkUser.user) {
-        window.open('/dashboard', '_self');
+      console.log('userCredential: ', userCredential);
+      if (userCredential.user) {
+        const idToken = await userCredential.user.getIdToken();
+        console.log('idToken: ' ,idToken)
+        const response: Response = await fetch('/api/v1/auth/login-firebase-email-password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ idToken }),
+        });  
+        if (response.ok) {
+          window.open("/dashboard", '_self');
+        }else{
+          console.error("failed to Validate idToken from Backend")
+        }
       }
     } catch (error) {
       console.log({ error });
