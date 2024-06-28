@@ -74,7 +74,7 @@ function FirebaseLoginPage() {
                 <LoginFirebaseEmailPass />
                 <LoginFirebaseAnonymous />
                 <LoginFirebaseGoogleAuth />
-                <LoginFirebase method={"anonymous"}/>
+                <LoginFirebase method={'anonymous'} />
               </Grid>
             </Grid>
           </Paper>

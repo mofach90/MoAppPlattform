@@ -83,56 +83,58 @@ function LoginFirebase({ method }: { method: string }) {
 
   return (
     <>
-      {(method === "google" || method === "facebook") && <LoginFirebaseGoogleAuth />}
-      {method === "anonymous" && <LoginFirebaseAnonymous />}
+      {(method === 'google' || method === 'facebook') && (
+        <LoginFirebaseGoogleAuth />
+      )}
+      {method === 'anonymous' && <LoginFirebaseAnonymous />}
     </>
   );
-  }
-  
-  export default LoginFirebase;
-  
-  // <Grid
-  //   container
-  //   display={'flex'}
-  //   alignItems={'center'}
-  //   justifyContent={'center'}
-  //   marginBottom={4}
-  // >
-  //   <Box style={{ width: '80%' }}>
-  //     <Grid container border={'1px solid'} borderRadius={4} padding={4}>
-  //       <Grid
-  //         item
-  //         xs={12}
-  //         marginBottom={4}
-  //         display={'flex'}
-  //         alignItems={'center'}
-  //       >
-  //         <Typography
-  //           variant="h6"
-  //           fontFamily={'monospace'}
-  //           fontStyle={'oblique'}
-  //           mr={8}
-  //         >
-  //           {method.charAt(0).toUpperCase() + method.slice(1)} - Firebase
-  //           Method
-  //         </Typography>
-  //         <img
-  //           src="assets/incognito-svgrepo-com.svg"
-  //           alt="Logo"
-  //           style={{ width: 50, height: 50 }}
-  //         />
-  //       </Grid>
+}
 
-  //       <Grid item xs={12} marginBottom={2}>
-  //         <Button
-  //           variant="contained"
-  //           color="primary"
-  //           fullWidth
-  //           onClick={handleOnClick}
-  //         >
-  //           {method.charAt(0).toUpperCase() + method.slice(1)} Sign In
-  //         </Button>
-  //       </Grid>
-  //     </Grid>
-  //   </Box>
-  // </Grid>
+export default LoginFirebase;
+
+// <Grid
+//   container
+//   display={'flex'}
+//   alignItems={'center'}
+//   justifyContent={'center'}
+//   marginBottom={4}
+// >
+//   <Box style={{ width: '80%' }}>
+//     <Grid container border={'1px solid'} borderRadius={4} padding={4}>
+//       <Grid
+//         item
+//         xs={12}
+//         marginBottom={4}
+//         display={'flex'}
+//         alignItems={'center'}
+//       >
+//         <Typography
+//           variant="h6"
+//           fontFamily={'monospace'}
+//           fontStyle={'oblique'}
+//           mr={8}
+//         >
+//           {method.charAt(0).toUpperCase() + method.slice(1)} - Firebase
+//           Method
+//         </Typography>
+//         <img
+//           src="assets/incognito-svgrepo-com.svg"
+//           alt="Logo"
+//           style={{ width: 50, height: 50 }}
+//         />
+//       </Grid>
+
+//       <Grid item xs={12} marginBottom={2}>
+//         <Button
+//           variant="contained"
+//           color="primary"
+//           fullWidth
+//           onClick={handleOnClick}
+//         >
+//           {method.charAt(0).toUpperCase() + method.slice(1)} Sign In
+//         </Button>
+//       </Grid>
+//     </Grid>
+//   </Box>
+// </Grid>

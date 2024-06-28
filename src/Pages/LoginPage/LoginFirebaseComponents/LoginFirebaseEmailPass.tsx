@@ -11,7 +11,7 @@ import ButtonWrapper from '../LPComponents/ButtonWrapper';
 import TextfieldWrapper from '../LPComponents/TextfieldWrapper';
 
 export type valueType = {
-  emailAdress: string ;
+  emailAdress: string;
   password: string;
   actionType?: string;
 };
@@ -30,30 +30,22 @@ const FORM_VALIDATION = Yup.object().shape({
     .matches(/^[a-zA-Z]+$/, ' must include only chars'),
 });
 
-
 const firebaseSignInWithEmailAndPassword = (values: valueType) => {
+  const emailAdress: string = values.emailAdress;
+  const password: string = values.password;
 
-    const emailAdress: string = values.emailAdress;
-    const password: string = values.password;
+  console.log('values: ', values);
 
-    console.log('values: ', values);
-
-    return signInWithEmailAndPassword(
-        auth,
-        emailAdress,
-        password,
-      );
-}
+  return signInWithEmailAndPassword(auth, emailAdress, password);
+};
 
 function LoginFirebaseEmailPass() {
   // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
 
   const { setAuthenticationForm } = useAuth();
-  const handleOnSubmit = async (values: valueType ) => {
+  const handleOnSubmit = async (values: valueType) => {
     try {
-
-
-      const userCredential = await firebaseSignInWithEmailAndPassword(values)
+      const userCredential = await firebaseSignInWithEmailAndPassword(values);
       console.log('userCredential: ', userCredential);
       if (userCredential.user) {
         const idToken = await userCredential.user.getIdToken();

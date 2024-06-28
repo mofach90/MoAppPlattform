@@ -1,22 +1,22 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
-import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import {
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 import { auth } from '../../../config/firebaseConfig';
 import { useAuth } from '../../../contexts/authProvider';
-
-
 
 function LoginFirebaseGoogleAuth() {
   // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
 
   const { setAuthenticationForm } = useAuth();
-  const handleOnClick  = async (providerType: string) => {
-    let provider : FacebookAuthProvider | GoogleAuthProvider 
+  const handleOnClick = async (providerType: string) => {
+    let provider: FacebookAuthProvider | GoogleAuthProvider;
     if (providerType === 'google') {
       provider = new GoogleAuthProvider();
-      
-      }else {
+    } else {
       provider = new FacebookAuthProvider();
-        
     }
     console.log('iam in');
     setAuthenticationForm(
