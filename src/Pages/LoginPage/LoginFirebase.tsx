@@ -66,7 +66,7 @@ function FirebaseLoginPage() {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                flexDirection={"column"}
+                flexDirection={'column'}
                 xs={12}
               >
                 <LoginFirebaseEmailPass />

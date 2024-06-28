@@ -102,9 +102,7 @@ function LoginFirebaseEmailPass() {
       display={'flex'}
       alignItems={'center'}
       justifyContent={'center'}
-      marginBottom={
-        4
-      }
+      marginBottom={4}
     >
       <Formik
         validationSchema={FORM_VALIDATION}
@@ -167,6 +165,5 @@ function LoginFirebaseEmailPass() {
     </Grid>
   );
 }
-
 
 export default LoginFirebaseEmailPass;

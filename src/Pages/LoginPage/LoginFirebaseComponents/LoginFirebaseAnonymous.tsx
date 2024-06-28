@@ -71,11 +71,7 @@ function LoginFirebaseAnonymous() {
           </Grid>
 
           <Grid item xs={12} marginBottom={2}>
-            <Button
-              onClick={handleOnClick}
-            >
-              Anonymous Sign In
-            </Button>
+            <Button onClick={handleOnClick}>Anonymous Sign In</Button>
           </Grid>
         </Grid>
       </Box>
