@@ -3,6 +3,7 @@ import { Grid, Paper, Typography } from '@mui/material';
 import { DashboardButton } from './LPComponents/goDashboardButton copy';
 import { HomeButton } from './LPComponents/goHomeButton';
 import LoginFirebaseEmailPass from './LoginFirebaseComponents/LoginFirebaseEmailPass';
+import LoginFirebaseAnonymous from './LoginFirebaseComponents/LoginFirebaseAnonymous';
 
 function FirebaseLoginPage() {
   return (
@@ -52,7 +53,7 @@ function FirebaseLoginPage() {
                     Login Using Firebase Authentication
                   </Typography>
                 </Grid>
-                <Grid container xs={2} justifyContent={'end'}>
+                <Grid container justifyContent={'end'}>
                   <img
                     src="assets/firebase.png"
                     alt="Logo"
@@ -65,9 +66,11 @@ function FirebaseLoginPage() {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
+                flexDirection={"column"}
                 xs={12}
               >
                 <LoginFirebaseEmailPass />
+                <LoginFirebaseAnonymous />
               </Grid>
             </Grid>
           </Paper>
