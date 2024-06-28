@@ -11,7 +11,7 @@ import ButtonWrapper from '../LPComponents/ButtonWrapper';
 import TextfieldWrapper from '../LPComponents/TextfieldWrapper';
 
 export type valueType = {
-  emailAdress: string;
+  emailAdress: string ;
   password: string;
   actionType?: string;
 };
@@ -30,27 +30,36 @@ const FORM_VALIDATION = Yup.object().shape({
     .matches(/^[a-zA-Z]+$/, ' must include only chars'),
 });
 
-function LoginFirebaseEmailPass() {
-  // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
 
-  const { setAuthenticationForm } = useAuth();
-  const handleOnSubmit = async (values: valueType) => {
-    try {
-      const emailAdress: string = values.emailAdress;
-      const password: string = values.password;
+const firebaseSignInWithEmailAndPassword = (values: valueType) => {
 
-      console.log('values: ', values);
-      const userCredential = await signInWithEmailAndPassword(
+    const emailAdress: string = values.emailAdress;
+    const password: string = values.password;
+
+    console.log('values: ', values);
+
+    return signInWithEmailAndPassword(
         auth,
         emailAdress,
         password,
       );
+}
+
+function LoginFirebaseEmailPass() {
+  // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
+
+  const { setAuthenticationForm } = useAuth();
+  const handleOnSubmit = async (values: valueType ) => {
+    try {
+
+
+      const userCredential = await firebaseSignInWithEmailAndPassword(values)
       console.log('userCredential: ', userCredential);
       if (userCredential.user) {
         const idToken = await userCredential.user.getIdToken();
         console.log('idToken: ', idToken);
         const response: Response = await fetch(
-          '/api/v1/auth/login-firebase-email-password',
+          '/api/v1/auth/login-firebase-email-password-or-anonymously',
           {
             method: 'POST',
             headers: {
@@ -88,7 +97,7 @@ function LoginFirebaseEmailPass() {
 
   const handleFormSubmit = async (values: valueType) => {
     setAuthenticationForm(
-      'Firebase based authentication using Email and Password',
+      'Firebase based authentication using Email and Password or Anonymously',
     );
     if (values.actionType === 'signIn') {
       await handleOnSubmit(values);

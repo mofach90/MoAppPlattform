@@ -66,11 +66,11 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
       } else if (
         !isAuthenticatedFirebaseEmailPassword &&
         authenticationForm ===
-          'Firebase based authentication using Email and Password'
+          'Firebase based authentication using Email and Password or Anonymously'
       ) {
         navigate('/login-with-firebase');
         console.log(
-          ' You are not authenticated with Firebase using Email and Password ',
+          ' You are not authenticated with Firebase using Email and Password  ',
         );
       } else if (
         !isAuthenticatedJwtLocalStorage &&

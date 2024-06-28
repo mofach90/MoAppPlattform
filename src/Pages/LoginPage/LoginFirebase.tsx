@@ -4,6 +4,8 @@ import { DashboardButton } from './LPComponents/goDashboardButton copy';
 import { HomeButton } from './LPComponents/goHomeButton';
 import LoginFirebaseEmailPass from './LoginFirebaseComponents/LoginFirebaseEmailPass';
 import LoginFirebaseAnonymous from './LoginFirebaseComponents/LoginFirebaseAnonymous';
+import LoginFirebaseGoogleAuth from './LoginFirebaseComponents/LoginFirebaseGoogleAuth';
+import LoginFirebase from './LoginFirebaseComponents/LoginFirebaseTest';
 
 function FirebaseLoginPage() {
   return (
@@ -44,7 +46,7 @@ function FirebaseLoginPage() {
                 marginBottom={8}
                 marginTop={5}
               >
-                <Grid container alignItems={'center'}>
+                <Grid container alignItems={'center'} justifyContent={'end'}>
                   <Typography
                     variant="h5"
                     fontWeight={'bold'}
@@ -53,7 +55,7 @@ function FirebaseLoginPage() {
                     Login Using Firebase Authentication
                   </Typography>
                 </Grid>
-                <Grid container justifyContent={'end'}>
+                <Grid container justifyContent={'center'}>
                   <img
                     src="assets/firebase.png"
                     alt="Logo"
@@ -71,6 +73,8 @@ function FirebaseLoginPage() {
               >
                 <LoginFirebaseEmailPass />
                 <LoginFirebaseAnonymous />
+                <LoginFirebaseGoogleAuth />
+                <LoginFirebase method={"anonymous"}/>
               </Grid>
             </Grid>
           </Paper>

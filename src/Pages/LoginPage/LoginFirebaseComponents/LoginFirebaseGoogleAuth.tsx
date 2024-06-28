@@ -1,19 +1,29 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
-import { signInAnonymously } from 'firebase/auth';
+import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../../../config/firebaseConfig';
 import { useAuth } from '../../../contexts/authProvider';
 
-function LoginFirebaseAnonymous() {
+
+
+function LoginFirebaseGoogleAuth() {
   // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
 
   const { setAuthenticationForm } = useAuth();
-  const handleOnClick = async () => {
+  const handleOnClick  = async (providerType: string) => {
+    let provider : FacebookAuthProvider | GoogleAuthProvider 
+    if (providerType === 'google') {
+      provider = new GoogleAuthProvider();
+      
+      }else {
+      provider = new FacebookAuthProvider();
+        
+    }
     console.log('iam in');
     setAuthenticationForm(
       'Firebase based authentication using Email and Password or Anonymously',
     );
     try {
-      const userCredential = await signInAnonymously(auth);
+      const userCredential = await signInWithPopup(auth, provider);
       console.log('userCredential: ', userCredential);
       if (userCredential.user) {
         const idToken = await userCredential.user.getIdToken();
@@ -61,7 +71,7 @@ function LoginFirebaseAnonymous() {
               fontStyle={'oblique'}
               mr={8}
             >
-              Anonymous - Firebase Method
+              Google Authentication - Firebase Method
             </Typography>
             <img
               src="assets/incognito-svgrepo-com.svg"
@@ -75,9 +85,20 @@ function LoginFirebaseAnonymous() {
               variant="contained"
               color="primary"
               fullWidth={true}
-              onClick={handleOnClick}
+              onClick={() => handleOnClick('google')}
+              sx={{
+                marginBottom: 3,
+              }}
             >
-              Anonymous Sign In
+              Login With Your Google Account
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth={true}
+              onClick={() => handleOnClick('facebook')}
+            >
+              Login With Your Facebook Account
             </Button>
           </Grid>
         </Grid>
@@ -86,4 +107,4 @@ function LoginFirebaseAnonymous() {
   );
 }
 
-export default LoginFirebaseAnonymous;
+export default LoginFirebaseGoogleAuth;
