@@ -3,17 +3,20 @@ import { signInAnonymously } from 'firebase/auth';
 import { auth } from '../../../config/firebaseConfig';
 import { useAuth } from '../../../contexts/authProvider';
 
-function LoginFirebaseAnonymous({handleOnClick}:{handleOnClick: () => Promise<void>}) {
+function LoginFirebaseAnonymous({
+  handleOnClick,
+}: {
+  handleOnClick: () => Promise<void>;
+}) {
   // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
 
   // const { setAuthenticationForm } = useAuth();
 
-  
   // const handleOnClick = async () => {
   //   console.log('iam in');
-    // setAuthenticationForm(
-    //   'Firebase based authentication using Email and Password or Anonymously',
-    // );
+  // setAuthenticationForm(
+  //   'Firebase based authentication using Email and Password or Anonymously',
+  // );
   //   try {
   //     const userCredential = await signInAnonymously(auth);
   //     console.log('userCredential: ', userCredential);

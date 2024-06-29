@@ -29,7 +29,10 @@ const firebaseSignInWithSocialAccount = async (
   return signInWithPopup(auth, provider);
 };
 
-const handleOnClickTest = async (signInMethod: () => Promise<any>, setAuthenticationForm: (value: string) => void) => {
+const handleOnClickTest = async (
+  signInMethod: () => Promise<any>,
+  setAuthenticationForm: (value: string) => void,
+) => {
   console.log('iam in');
   setAuthenticationForm(
     'Firebase based authentication using Email and Password or Anonymously',
@@ -66,57 +69,72 @@ function LoginFirebase({ method }: { method: string }) {
   let handleOnClick: () => Promise<void> = async () => {};
   if (method === 'google') {
     handleOnClick = () =>
-      handleOnClickTest(() => firebaseSignInWithSocialAccount(auth, 'google'), setAuthenticationForm);
+      handleOnClickTest(
+        () => firebaseSignInWithSocialAccount(auth, 'google'),
+        setAuthenticationForm,
+      );
   } else if (method === 'facebook') {
     handleOnClick = () =>
-      handleOnClickTest(() => firebaseSignInWithSocialAccount(auth, 'facebook'), setAuthenticationForm);
+      handleOnClickTest(
+        () => firebaseSignInWithSocialAccount(auth, 'facebook'),
+        setAuthenticationForm,
+      );
   } else if (method === 'anonymous') {
     handleOnClick = () =>
-      handleOnClickTest(() => firebaseSignInAnonymously(auth), setAuthenticationForm);
+      handleOnClickTest(
+        () => firebaseSignInAnonymously(auth),
+        setAuthenticationForm,
+      );
   }
 
   return (
     <>
-      {(method === 'google' || method === 'facebook') && <LoginFirebaseGoogleAuth handleOnClick={handleOnClick} method={method}/>}
-      {method === 'anonymous' && <LoginFirebaseAnonymous handleOnClick={handleOnClick} />}
+      {(method === 'google' || method === 'facebook') && (
+        <LoginFirebaseGoogleAuth
+          handleOnClick={handleOnClick}
+          method={method}
+        />
+      )}
+      {method === 'anonymous' && (
+        <LoginFirebaseAnonymous handleOnClick={handleOnClick} />
+      )}
     </>
   );
 }
 
-  
-  export default LoginFirebase;
-  
-  // <Grid
-  //   container
-  //   display={'flex'}
-  //   alignItems={'center'}
-  //   justifyContent={'center'}
-  //   marginBottom={4}
-  // >
-  //   <Box style={{ width: '80%' }}>
-  //     <Grid container border={'1px solid'} borderRadius={4} padding={4}>
-  //       <Grid
-  //         item
-  //         xs={12}
-  //         marginBottom={4}
-  //         display={'flex'}
-  //         alignItems={'center'}
-  //       >
-  //         <Typography
-  //           variant="h6"
-  //           fontFamily={'monospace'}
-  //           fontStyle={'oblique'}
-  //           mr={8}
-  //         >
-  //           {method.charAt(0).toUpperCase() + method.slice(1)} - Firebase
-  //           Method
-  //         </Typography>
-  //         <img
-  //           src="assets/incognito-svgrepo-com.svg"
-  //           alt="Logo"
-  //           style={{ width: 50, height: 50 }}
-  //         />
-  //       </Grid>
+export default LoginFirebase;
+
+// <Grid
+//   container
+//   display={'flex'}
+//   alignItems={'center'}
+//   justifyContent={'center'}
+//   marginBottom={4}
+// >
+//   <Box style={{ width: '80%' }}>
+//     <Grid container border={'1px solid'} borderRadius={4} padding={4}>
+//       <Grid
+//         item
+//         xs={12}
+//         marginBottom={4}
+//         display={'flex'}
+//         alignItems={'center'}
+//       >
+//         <Typography
+//           variant="h6"
+//           fontFamily={'monospace'}
+//           fontStyle={'oblique'}
+//           mr={8}
+//         >
+//           {method.charAt(0).toUpperCase() + method.slice(1)} - Firebase
+//           Method
+//         </Typography>
+//         <img
+//           src="assets/incognito-svgrepo-com.svg"
+//           alt="Logo"
+//           style={{ width: 50, height: 50 }}
+//         />
+//       </Grid>
 
 // export default LoginFirebase;
 
