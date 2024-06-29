@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import {
   Auth,
@@ -25,24 +26,18 @@ const firebaseSignInWithSocialAccount = async (
   } else {
     provider = new FacebookAuthProvider();
   }
-  console.log('iam in');
   return signInWithPopup(auth, provider);
 };
 
-const handleOnClicktest = async (signInMethode: any) => {
-  const { setAuthenticationForm } = useAuth();
-
+const handleOnClickTest = async (signInMethod: () => Promise<any>, setAuthenticationForm: (value: string) => void) => {
   console.log('iam in');
   setAuthenticationForm(
     'Firebase based authentication using Email and Password or Anonymously',
   );
   try {
-    const userCredential = await signInMethode();
-
-    console.log('userCredential: ', userCredential);
+    const userCredential = await signInMethod();
     if (userCredential.user) {
       const idToken = await userCredential.user.getIdToken();
-      console.log('idToken: ', idToken);
       const response: Response = await fetch(
         '/api/v1/auth/login-firebase-email-password-or-anonymously',
         {
@@ -66,32 +61,64 @@ const handleOnClicktest = async (signInMethode: any) => {
 
 // Main component
 function LoginFirebase({ method }: { method: string }) {
-  // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
+  const { setAuthenticationForm } = useAuth();
+
   let handleOnClick: () => Promise<void> = async () => {};
   if (method === 'google') {
     handleOnClick = () =>
-      handleOnClicktest(() => firebaseSignInWithSocialAccount(auth, 'google'));
+      handleOnClickTest(() => firebaseSignInWithSocialAccount(auth, 'google'), setAuthenticationForm);
   } else if (method === 'facebook') {
     handleOnClick = () =>
-      handleOnClicktest(() =>
-        firebaseSignInWithSocialAccount(auth, 'facebook'),
-      );
+      handleOnClickTest(() => firebaseSignInWithSocialAccount(auth, 'facebook'), setAuthenticationForm);
   } else if (method === 'anonymous') {
     handleOnClick = () =>
-      handleOnClicktest(() => firebaseSignInAnonymously(auth));
+      handleOnClickTest(() => firebaseSignInAnonymously(auth), setAuthenticationForm);
   }
 
   return (
     <>
-      {(method === 'google' || method === 'facebook') && (
-        <LoginFirebaseGoogleAuth />
-      )}
-      {method === 'anonymous' && <LoginFirebaseAnonymous />}
+      {(method === 'google' || method === 'facebook') && <LoginFirebaseGoogleAuth handleOnClick={handleOnClick} method={method}/>}
+      {method === 'anonymous' && <LoginFirebaseAnonymous handleOnClick={handleOnClick} />}
     </>
   );
 }
 
-export default LoginFirebase;
+  
+  export default LoginFirebase;
+  
+  // <Grid
+  //   container
+  //   display={'flex'}
+  //   alignItems={'center'}
+  //   justifyContent={'center'}
+  //   marginBottom={4}
+  // >
+  //   <Box style={{ width: '80%' }}>
+  //     <Grid container border={'1px solid'} borderRadius={4} padding={4}>
+  //       <Grid
+  //         item
+  //         xs={12}
+  //         marginBottom={4}
+  //         display={'flex'}
+  //         alignItems={'center'}
+  //       >
+  //         <Typography
+  //           variant="h6"
+  //           fontFamily={'monospace'}
+  //           fontStyle={'oblique'}
+  //           mr={8}
+  //         >
+  //           {method.charAt(0).toUpperCase() + method.slice(1)} - Firebase
+  //           Method
+  //         </Typography>
+  //         <img
+  //           src="assets/incognito-svgrepo-com.svg"
+  //           alt="Logo"
+  //           style={{ width: 50, height: 50 }}
+  //         />
+  //       </Grid>
+
+// export default LoginFirebase;
 
 // <Grid
 //   container

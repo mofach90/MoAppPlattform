@@ -72,9 +72,11 @@ function FirebaseLoginPage() {
                 xs={12}
               >
                 <LoginFirebaseEmailPass />
-                <LoginFirebaseAnonymous />
-                <LoginFirebaseGoogleAuth />
-                <LoginFirebase method={'anonymous'} />
+                {/* <LoginFirebaseAnonymous /> */}
+                {/* <LoginFirebaseGoogleAuth /> */}
+                <LoginFirebase method={"google"}/>
+                <LoginFirebase method={"facebook"}/>
+                <LoginFirebase method={"anonymous"}/>
               </Grid>
             </Grid>
           </Paper>

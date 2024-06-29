@@ -1,53 +1,54 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
-import {
-  FacebookAuthProvider,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from 'firebase/auth';
-import { auth } from '../../../config/firebaseConfig';
-import { useAuth } from '../../../contexts/authProvider';
 
-function LoginFirebaseGoogleAuth() {
+function LoginFirebaseGoogleAuth({
+  handleOnClick,
+  method,
+}: {
+  handleOnClick: () => Promise<void>;
+  method: string;
+}) {
   // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
 
-  const { setAuthenticationForm } = useAuth();
-  const handleOnClick = async (providerType: string) => {
-    let provider: FacebookAuthProvider | GoogleAuthProvider;
-    if (providerType === 'google') {
-      provider = new GoogleAuthProvider();
-    } else {
-      provider = new FacebookAuthProvider();
-    }
-    console.log('iam in');
-    setAuthenticationForm(
-      'Firebase based authentication using Email and Password or Anonymously',
-    );
-    try {
-      const userCredential = await signInWithPopup(auth, provider);
-      console.log('userCredential: ', userCredential);
-      if (userCredential.user) {
-        const idToken = await userCredential.user.getIdToken();
-        console.log('idToken: ', idToken);
-        const response: Response = await fetch(
-          '/api/v1/auth/login-firebase-email-password-or-anonymously',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ idToken }),
-          },
-        );
-        if (response.ok) {
-          window.open('/dashboard', '_self');
-        } else {
-          console.error('failed to Validate idToken from Backend');
-        }
-      }
-    } catch (error) {
-      console.log({ error });
-    }
-  };
+  // const { setAuthenticationForm } = useAuth();
+  // const handleOnClick  = async (providerType: string) => {
+  //   let provider : FacebookAuthProvider | GoogleAuthProvider
+  //   if (providerType === 'google') {
+  //     provider = new GoogleAuthProvider();
+
+  //     }else {
+  //     provider = new FacebookAuthProvider();
+
+  //   }
+  //   console.log('iam in');
+  //   setAuthenticationForm(
+  //     'Firebase based authentication using Email and Password or Anonymously',
+  //   );
+  //   try {
+  //     const userCredential = await signInWithPopup(auth, provider);
+  //     console.log('userCredential: ', userCredential);
+  //     if (userCredential.user) {
+  //       const idToken = await userCredential.user.getIdToken();
+  //       console.log('idToken: ', idToken);
+  //       const response: Response = await fetch(
+  //         '/api/v1/auth/login-firebase-email-password-or-anonymously',
+  //         {
+  //           method: 'POST',
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //           },
+  //           body: JSON.stringify({ idToken }),
+  //         },
+  //       );
+  //       if (response.ok) {
+  //         window.open('/dashboard', '_self');
+  //       } else {
+  //         console.error('failed to Validate idToken from Backend');
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.log({ error });
+  //   }
+  // };
   return (
     <Grid
       container
@@ -71,7 +72,7 @@ function LoginFirebaseGoogleAuth() {
               fontStyle={'oblique'}
               mr={8}
             >
-              Google Authentication - Firebase Method
+              {method} Authentication - Firebase Method
             </Typography>
             <img
               src="assets/incognito-svgrepo-com.svg"
@@ -81,25 +82,32 @@ function LoginFirebaseGoogleAuth() {
           </Grid>
 
           <Grid item xs={12} marginBottom={2}>
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth={true}
-              onClick={() => handleOnClick('google')}
-              sx={{
-                marginBottom: 3,
-              }}
-            >
-              Login With Your Google Account
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth={true}
-              onClick={() => handleOnClick('facebook')}
-            >
-              Login With Your Facebook Account
-            </Button>
+            {method === 'google' && (
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth={true}
+                onClick={handleOnClick}
+                sx={{
+                  marginBottom: 3,
+                }}
+              >
+                Login With Your Google Account
+              </Button>
+            )}
+            {method === 'facebook' && (
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth={true}
+                onClick={handleOnClick}
+                sx={{
+                  marginBottom: 3,
+                }}
+              >
+                Login With Your Facebook Account
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Box>
