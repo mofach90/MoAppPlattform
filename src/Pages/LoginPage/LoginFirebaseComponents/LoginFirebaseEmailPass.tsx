@@ -39,7 +39,11 @@ const firebaseSignInWithEmailAndPassword = (values: valueType) => {
   return signInWithEmailAndPassword(auth, emailAdress, password);
 };
 
-function LoginFirebaseEmailPass() {
+function LoginFirebaseEmailPass({
+  handleOnClick,
+}: {
+  handleOnClick: () => Promise<void>;
+}) {
   // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
 
   const { setAuthenticationForm } = useAuth();

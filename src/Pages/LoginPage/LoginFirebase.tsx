@@ -2,9 +2,6 @@ import { Grid, Paper, Typography } from '@mui/material';
 
 import { DashboardButton } from './LPComponents/goDashboardButton copy';
 import { HomeButton } from './LPComponents/goHomeButton';
-import LoginFirebaseEmailPass from './LoginFirebaseComponents/LoginFirebaseEmailPass';
-import LoginFirebaseAnonymous from './LoginFirebaseComponents/LoginFirebaseAnonymous';
-import LoginFirebaseGoogleAuth from './LoginFirebaseComponents/LoginFirebaseGoogleAuth';
 import LoginFirebase from './LoginFirebaseComponents/LoginFirebaseTest';
 
 function FirebaseLoginPage() {
@@ -71,9 +68,10 @@ function FirebaseLoginPage() {
                 flexDirection={'column'}
                 xs={12}
               >
-                <LoginFirebaseEmailPass />
+                {/* <LoginFirebaseEmailPass /> */}
                 {/* <LoginFirebaseAnonymous /> */}
                 {/* <LoginFirebaseGoogleAuth /> */}
+                <LoginFirebase method={'email_password'} />
                 <LoginFirebase method={'google'} />
                 <LoginFirebase method={'facebook'} />
                 <LoginFirebase method={'anonymous'} />

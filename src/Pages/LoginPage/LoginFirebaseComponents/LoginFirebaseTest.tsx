@@ -9,7 +9,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth';
-import { Formik, Form } from 'formik';
+import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { auth } from '../../../config/firebaseConfig';
 import { useAuth } from '../../../contexts/authProvider';
@@ -19,7 +19,7 @@ import LoginFirebaseAnonymous from './LoginFirebaseAnonymous';
 import LoginFirebaseGoogleAuth from './LoginFirebaseGoogleAuth';
 
 export type valueType = {
-  emailAdress: string ;
+  emailAdress: string;
   password: string;
   actionType?: string;
 };
@@ -100,38 +100,41 @@ const handleOnClickTest = async (
 function LoginFirebase({ method }: { method: string }) {
   const { setAuthenticationForm } = useAuth();
 
-  let handleOnClick: (values?: valueType ) => Promise<void> = async (values?: valueType) => {
-  if (method === 'google') {
-    handleOnClick = () =>
-      handleOnClickTest(
+  let handleOnClick: (values?: valueType) => Promise<void> = async (
+    values?: valueType,
+  ) => {
+    if (method === 'google') {
+      await handleOnClickTest(
         () => firebaseSignInWithSocialAccount(auth, 'google'),
         setAuthenticationForm,
       );
-  } else if (method === 'facebook') {
-    handleOnClick = () =>
-      handleOnClickTest(
+    } else if (method === 'facebook') {
+      await handleOnClickTest(
         () => firebaseSignInWithSocialAccount(auth, 'facebook'),
         setAuthenticationForm,
       );
-  } else if (method === 'anonymous') {
-    handleOnClick = () =>
-      handleOnClickTest(
+    } else if (method === 'anonymous') {
+      await handleOnClickTest(
         () => firebaseSignInAnonymously(auth),
         setAuthenticationForm,
       );
-  } else if (method === 'email_password' && values) {
-    handleOnClick = () =>
-      handleOnClickTest(
+    } else if (method === 'email_password' && values) {
+      await handleOnClickTest(
         () => firebaseSignInWithEmailAndPassword(values),
-        setAuthenticationForm
+        setAuthenticationForm,
       );
-  }}
+    }
+  };
 
   const handleFormSubmit = async (values: valueType) => {
     setAuthenticationForm(
       'Firebase based authentication using Email and Password or Anonymously',
     );
-    await handleOnClick(values);
+    if (values.actionType === 'signIn') {
+      await handleOnClick(values);
+    } else if (values.actionType === 'signUp') {
+      await handleOnSignUp(values);
+    }
   };
   const handleOnSignUp = async (values: valueType) => {
     try {
@@ -240,82 +243,4 @@ function LoginFirebase({ method }: { method: string }) {
 
 export default LoginFirebase;
 
-// <Grid
-//   container
-//   display={'flex'}
-//   alignItems={'center'}
-//   justifyContent={'center'}
-//   marginBottom={4}
-// >
-//   <Box style={{ width: '80%' }}>
-//     <Grid container border={'1px solid'} borderRadius={4} padding={4}>
-//       <Grid
-//         item
-//         xs={12}
-//         marginBottom={4}
-//         display={'flex'}
-//         alignItems={'center'}
-//       >
-//         <Typography
-//           variant="h6"
-//           fontFamily={'monospace'}
-//           fontStyle={'oblique'}
-//           mr={8}
-//         >
-//           {method.charAt(0).toUpperCase() + method.slice(1)} - Firebase
-//           Method
-//         </Typography>
-//         <img
-//           src="assets/incognito-svgrepo-com.svg"
-//           alt="Logo"
-//           style={{ width: 50, height: 50 }}
-//         />
-//       </Grid>
 
-// export default LoginFirebase;
-
-// <Grid
-//   container
-//   display={'flex'}
-//   alignItems={'center'}
-//   justifyContent={'center'}
-//   marginBottom={4}
-// >
-//   <Box style={{ width: '80%' }}>
-//     <Grid container border={'1px solid'} borderRadius={4} padding={4}>
-//       <Grid
-//         item
-//         xs={12}
-//         marginBottom={4}
-//         display={'flex'}
-//         alignItems={'center'}
-//       >
-//         <Typography
-//           variant="h6"
-//           fontFamily={'monospace'}
-//           fontStyle={'oblique'}
-//           mr={8}
-//         >
-//           {method.charAt(0).toUpperCase() + method.slice(1)} - Firebase
-//           Method
-//         </Typography>
-//         <img
-//           src="assets/incognito-svgrepo-com.svg"
-//           alt="Logo"
-//           style={{ width: 50, height: 50 }}
-//         />
-//       </Grid>
-
-//       <Grid item xs={12} marginBottom={2}>
-//         <Button
-//           variant="contained"
-//           color="primary"
-//           fullWidth
-//           onClick={handleOnClick}
-//         >
-//           {method.charAt(0).toUpperCase() + method.slice(1)} Sign In
-//         </Button>
-//       </Grid>
-//     </Grid>
-//   </Box>
-// </Grid>

@@ -1,7 +1,4 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
-import { signInAnonymously } from 'firebase/auth';
-import { auth } from '../../../config/firebaseConfig';
-import { useAuth } from '../../../contexts/authProvider';
 
 function LoginFirebaseAnonymous({
   handleOnClick,
