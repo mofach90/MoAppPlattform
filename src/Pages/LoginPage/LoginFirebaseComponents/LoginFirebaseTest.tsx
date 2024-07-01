@@ -134,7 +134,6 @@ function LoginFirebase({ method }: { method: string }) {
       console.log({ error });
     }
   };
-  
 
   return (
     <>
