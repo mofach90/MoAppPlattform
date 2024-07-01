@@ -242,5 +242,3 @@ function LoginFirebase({ method }: { method: string }) {
 }
 
 export default LoginFirebase;
-
-
