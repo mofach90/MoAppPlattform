@@ -2,7 +2,7 @@ import { Grid, Paper, Typography } from '@mui/material';
 
 import { DashboardButton } from './LPComponents/goDashboardButton copy';
 import { HomeButton } from './LPComponents/goHomeButton';
-import LoginFirebase from './LoginFirebaseComponents/LoginFirebaseTest';
+import LoginFirebase from './LoginFirebaseComponents/LoginFirebaseLoginComponent';
 
 function FirebaseLoginPage() {
   return (
@@ -42,8 +42,9 @@ function FirebaseLoginPage() {
                 display={'flex'}
                 marginBottom={8}
                 marginTop={5}
+
               >
-                <Grid container alignItems={'center'} justifyContent={'end'}>
+                <Grid container alignItems={'center'} justifyContent={'end'} >
                   <Typography
                     variant="h5"
                     fontWeight={'bold'}
@@ -54,7 +55,7 @@ function FirebaseLoginPage() {
                 </Grid>
                 <Grid container justifyContent={'center'}>
                   <img
-                    src="assets/firebase.png"
+                    src="assets/firebase-1.svg"
                     alt="Logo"
                     style={{ width: 50, height: 50 }}
                   />
@@ -68,9 +69,6 @@ function FirebaseLoginPage() {
                 flexDirection={'column'}
                 xs={12}
               >
-                {/* <LoginFirebaseEmailPass /> */}
-                {/* <LoginFirebaseAnonymous /> */}
-                {/* <LoginFirebaseGoogleAuth /> */}
                 <LoginFirebase method={'email_password'} />
                 <LoginFirebase method={'google'} />
                 <LoginFirebase method={'facebook'} />

@@ -5,41 +5,6 @@ function LoginFirebaseAnonymous({
 }: {
   handleOnClick: () => Promise<void>;
 }) {
-  // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
-
-  // const { setAuthenticationForm } = useAuth();
-
-  // const handleOnClick = async () => {
-  //   console.log('iam in');
-  // setAuthenticationForm(
-  //   'Firebase based authentication using Email and Password or Anonymously',
-  // );
-  //   try {
-  //     const userCredential = await signInAnonymously(auth);
-  //     console.log('userCredential: ', userCredential);
-  //     if (userCredential.user) {
-  //       const idToken = await userCredential.user.getIdToken();
-  //       console.log('idToken: ', idToken);
-  //       const response: Response = await fetch(
-  //         '/api/v1/auth/login-firebase-email-password-or-anonymously',
-  //         {
-  //           method: 'POST',
-  //           headers: {
-  //             'Content-Type': 'application/json',
-  //           },
-  //           body: JSON.stringify({ idToken }),
-  //         },
-  //       );
-  //       if (response.ok) {
-  //         window.open('/dashboard', '_self');
-  //       } else {
-  //         console.error('failed to Validate idToken from Backend');
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.log({ error });
-  //   }
-  // };
   return (
     <Grid
       container
@@ -57,19 +22,19 @@ function LoginFirebaseAnonymous({
             display={'flex'}
             alignItems={'center'}
           >
-            <Typography
-              variant="h6"
-              fontFamily={'monospace'}
-              fontStyle={'oblique'}
-              mr={8}
-            >
-              Anonymous - Firebase Method
-            </Typography>
             <img
               src="assets/incognito-svgrepo-com.svg"
               alt="Logo"
               style={{ width: 50, height: 50 }}
             />
+            <Typography
+              variant="h6"
+              fontFamily={'monospace'}
+              fontStyle={'oblique'}
+              ml={8}
+            >
+              Anonymous - Firebase Method
+            </Typography>
           </Grid>
 
           <Grid item xs={12} marginBottom={2}>

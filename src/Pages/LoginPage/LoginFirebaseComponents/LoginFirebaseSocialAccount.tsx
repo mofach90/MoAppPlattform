@@ -1,4 +1,6 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 function LoginFirebaseGoogleAuth({
   handleOnClick,
@@ -7,48 +9,6 @@ function LoginFirebaseGoogleAuth({
   handleOnClick: () => Promise<void>;
   method: string;
 }) {
-  // connectAuthEmulator(auth, 'http://127.0.0.1:8500'); // TODO Delete only for DEV
-
-  // const { setAuthenticationForm } = useAuth();
-  // const handleOnClick  = async (providerType: string) => {
-  //   let provider : FacebookAuthProvider | GoogleAuthProvider
-  //   if (providerType === 'google') {
-  //     provider = new GoogleAuthProvider();
-
-  //     }else {
-  //     provider = new FacebookAuthProvider();
-
-  //   }
-  //   console.log('iam in');
-  //   setAuthenticationForm(
-  //     'Firebase based authentication using Email and Password or Anonymously',
-  //   );
-  //   try {
-  //     const userCredential = await signInWithPopup(auth, provider);
-  //     console.log('userCredential: ', userCredential);
-  //     if (userCredential.user) {
-  //       const idToken = await userCredential.user.getIdToken();
-  //       console.log('idToken: ', idToken);
-  //       const response: Response = await fetch(
-  //         '/api/v1/auth/login-firebase-email-password-or-anonymously',
-  //         {
-  //           method: 'POST',
-  //           headers: {
-  //             'Content-Type': 'application/json',
-  //           },
-  //           body: JSON.stringify({ idToken }),
-  //         },
-  //       );
-  //       if (response.ok) {
-  //         window.open('/dashboard', '_self');
-  //       } else {
-  //         console.error('failed to Validate idToken from Backend');
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.log({ error });
-  //   }
-  // };
   return (
     <Grid
       container
@@ -66,19 +26,17 @@ function LoginFirebaseGoogleAuth({
             display={'flex'}
             alignItems={'center'}
           >
+            {method === "google" && (<GoogleIcon fontSize="large"  />)}
+            {method === "facebook" && (<FacebookIcon fontSize="large"  />)}
             <Typography
               variant="h6"
               fontFamily={'monospace'}
               fontStyle={'oblique'}
-              mr={8}
+              ml={8}
             >
               {method} Authentication - Firebase Method
             </Typography>
-            <img
-              src="assets/incognito-svgrepo-com.svg"
-              alt="Logo"
-              style={{ width: 50, height: 50 }}
-            />
+
           </Grid>
 
           <Grid item xs={12} marginBottom={2}>
