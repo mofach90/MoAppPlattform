@@ -42,9 +42,8 @@ function FirebaseLoginPage() {
                 display={'flex'}
                 marginBottom={8}
                 marginTop={5}
-
               >
-                <Grid container alignItems={'center'} justifyContent={'end'} >
+                <Grid container alignItems={'center'} justifyContent={'end'}>
                   <Typography
                     variant="h5"
                     fontWeight={'bold'}

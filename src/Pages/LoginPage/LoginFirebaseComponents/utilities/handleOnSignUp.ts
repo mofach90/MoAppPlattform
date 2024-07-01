@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { valueType } from "../LoginFirebaseEmailPass";
-import { auth } from "../../../../config/firebaseConfig";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { valueType } from '../LoginFirebaseEmailPass';
+import { auth } from '../../../../config/firebaseConfig';
 
 export const handleOnSignUp = async (values: valueType) => {
   try {

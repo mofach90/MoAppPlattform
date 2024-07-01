@@ -26,8 +26,8 @@ function LoginFirebaseGoogleAuth({
             display={'flex'}
             alignItems={'center'}
           >
-            {method === "google" && (<GoogleIcon fontSize="large"  />)}
-            {method === "facebook" && (<FacebookIcon fontSize="large"  />)}
+            {method === 'google' && <GoogleIcon fontSize="large" />}
+            {method === 'facebook' && <FacebookIcon fontSize="large" />}
             <Typography
               variant="h6"
               fontFamily={'monospace'}
@@ -36,7 +36,6 @@ function LoginFirebaseGoogleAuth({
             >
               {method} Authentication - Firebase Method
             </Typography>
-
           </Grid>
 
           <Grid item xs={12} marginBottom={2}>
