@@ -1,5 +1,6 @@
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Dashboard from './Pages/DashboardPage/sceanes/dashboardPage';
 import DemoProtectRoute from './Pages/Demo/DemoProtectRoute';
 import LandingPageDemo from './Pages/Demo/LandingPageDemo';
 import DemoDashboard from './Pages/Demo/demoDashboardPage';
@@ -15,7 +16,6 @@ import LoginSocialNetworksPage from './Pages/LoginPage/LoginSocialNetworks';
 import Klaro from './components/Klaro';
 import { AuthProvider } from './contexts/authProvider';
 import data from './data/KlaroConfig.json';
-import Dashboard from './Pages/DashboardPage/dashboardPage';
 import ProtectRoute from './utilities/ProtectRoute';
 
 const theme = createTheme({
