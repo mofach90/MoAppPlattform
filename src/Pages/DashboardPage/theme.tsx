@@ -322,8 +322,9 @@ export const Theme = ({ children }: { children: React.ReactNode }) => {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <CssBaseline/>
-        {children}</ThemeProvider>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
     </ColorModeContext.Provider>
   );
 };

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Topbar = () => {
-  return (
-  <div>Topbar</div>
-  )
-}
+  return <div>Topbar</div>;
+};
 
-export default Topbar 
+export default Topbar;
