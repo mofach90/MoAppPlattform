@@ -1,19 +1,17 @@
-import { auth } from "../../../../config/firebaseConfig";
-import { valueType } from "../LoginFirebaseEmailPass";
-import { firebaseSignInAnonymously } from "./firebaseSignInAnoumously";
-import { firebaseSignInWithEmailAndPassword } from "./firebaseSignInWithEmailAndPassword";
-import { firebaseSignInWithSocialAccount } from "./firebaseSignInWithSocialAccount";
-import { handleOnClick } from "./handleOnClick";
+import { auth } from '../../../../config/firebaseConfig';
+import { valueType } from '../LoginFirebaseEmailPass';
+import { firebaseSignInAnonymously } from './firebaseSignInAnoumously';
+import { firebaseSignInWithEmailAndPassword } from './firebaseSignInWithEmailAndPassword';
+import { firebaseSignInWithSocialAccount } from './firebaseSignInWithSocialAccount';
+import { handleOnClick } from './handleOnClick';
 
 export const handleOnClickDispach: (
-setAuthenticationForm: (value: string) => void,
-method?: string,
+  setAuthenticationForm: (value: string) => void,
+  method?: string,
   values?: valueType,
-
-) => Promise<void> = async (setAuthenticationForm,method,values) => {
-  
-  console.log("Hello from Dispatch ", method)
-    if (method === 'google') {
+) => Promise<void> = async (setAuthenticationForm, method, values) => {
+  console.log('Hello from Dispatch ', method);
+  if (method === 'google') {
     await handleOnClick(
       () => firebaseSignInWithSocialAccount(auth, 'google'),
       setAuthenticationForm,
@@ -21,7 +19,7 @@ method?: string,
   } else if (method === 'facebook') {
     await handleOnClick(
       () => firebaseSignInWithSocialAccount(auth, 'facebook'),
-       setAuthenticationForm,
+      setAuthenticationForm,
     );
   } else if (method === 'anonymous') {
     await handleOnClick(

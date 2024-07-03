@@ -27,7 +27,9 @@ function DemoDashboard() {
         alignItems={'center'}
       >
         <Grid item xs={6} textAlign={'center'}>
-          <Typography variant="h3">Welcome to Your  ** DEMO ** Dashboard</Typography>
+          <Typography variant="h3">
+            Welcome to Your ** DEMO ** Dashboard
+          </Typography>
           <Typography fontFamily={'fantasy'} variant="h2" color={'red'}>
             Habibi
           </Typography>{' '}

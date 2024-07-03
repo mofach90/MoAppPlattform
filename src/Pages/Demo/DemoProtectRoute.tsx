@@ -63,18 +63,16 @@ function DemoProtectRoute({
         console.log(
           ' You are not authenticated with your Social Network Account ',
         );
-      } 
-      else if (
+      } else if (
         // !isAuthenticatedFirebaseEmailPassword &&
         authenticationForm ===
-          'Firebase based authentication using Email and Password or Anonymously'
+        'Firebase based authentication using Email and Password or Anonymously'
       ) {
         navigate('/demo');
         console.log(
           ' You are not authenticated with Firebase using Email and Password  ',
         );
-      } 
-      else if (
+      } else if (
         !isAuthenticatedJwtLocalStorage &&
         !isAuthenticatedJwtCookie &&
         !isAuthenticatedSessionId &&

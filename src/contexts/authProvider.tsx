@@ -30,10 +30,8 @@ export function AuthProvider({
 }: Readonly<{ children: React.ReactNode }>) {
   const [isAuthenticatedBasic, setIsAuthenticatedBasic] =
     useState<boolean>(false);
-  const [
-    isAuthenticatedFirebase,
-    setIsAuthenticatedFirebase,
-  ] = useState<boolean>(false);
+  const [isAuthenticatedFirebase, setIsAuthenticatedFirebase] =
+    useState<boolean>(false);
   const [isAuthenticatedSessionId, setIsAuthenticatedSessionId] =
     useState<boolean>(false);
   const [isAuthenticatedJwtLocalStorage, setIsAuthenticatedJwtLocalStorage] =
@@ -137,7 +135,6 @@ export function AuthProvider({
       isAuthenticatedFirebase,
     );
   }, [isAuthenticatedFirebase]);
-
 
   const recheckAuthentication = async () => {
     try {

@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/authProvider';
 
 function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
-  const { loading, authenticationForm, isAuthenticatedFirebase } =
-    useAuth();
+  const { loading, authenticationForm, isAuthenticatedFirebase } = useAuth();
   const navigate = useNavigate();
   console.log('Initial auth states: ', {
     loading,
@@ -23,10 +22,7 @@ function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
         console.log(
           ' You are not authenticated with Firebase using Email and Password  ',
         );
-      } else if (
-        !isAuthenticatedFirebase &&
-        authenticationForm === ''
-      ) {
+      } else if (!isAuthenticatedFirebase && authenticationForm === '') {
         navigate('/');
         console.log('Choose your Login Option');
       }
