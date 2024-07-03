@@ -15,7 +15,7 @@ interface AuthContextType {
   isAuthenticatedJwtLocalStorage: boolean;
   isAuthenticatedJwtCookie: boolean;
   isAuthenticatedSocialAuth: boolean;
-  isAuthenticatedFirebaseEmailPassword: boolean;
+  isAuthenticatedFirebase: boolean;
   loading: boolean;
   recheckAuthentication: () => void;
   setAuthenticationForm: Dispatch<SetStateAction<string>>;
@@ -31,8 +31,8 @@ export function AuthProvider({
   const [isAuthenticatedBasic, setIsAuthenticatedBasic] =
     useState<boolean>(false);
   const [
-    isAuthenticatedFirebaseEmailPassword,
-    setIsAuthenticatedFirebaseEmailPassword,
+    isAuthenticatedFirebase,
+    setIsAuthenticatedFirebase,
   ] = useState<boolean>(false);
   const [isAuthenticatedSessionId, setIsAuthenticatedSessionId] =
     useState<boolean>(false);
@@ -119,9 +119,8 @@ export function AuthProvider({
       if (dataJwtCookie.isAuthenticatedJwtCookie) {
         setIsAuthenticatedJwtCookie(true);
       }
-      if (dataFirebaseAuthCheck.isAuthenticatedFirebaseEmailPassword) {
-        console.log('PROOOOF');
-        setIsAuthenticatedFirebaseEmailPassword(true);
+      if (dataFirebaseAuthCheck.isAuthenticatedFirebase) {
+        setIsAuthenticatedFirebase(true);
       }
     } catch (error) {
       console.error('Failure in checkAuthentication', error);
@@ -134,27 +133,11 @@ export function AuthProvider({
   }, []);
   useEffect(() => {
     console.log(
-      'isAuthenticatedFirebaseEmailPassword in use effect',
-      isAuthenticatedFirebaseEmailPassword,
+      'isAuthenticatedFirebase in use effect',
+      isAuthenticatedFirebase,
     );
-  }, [isAuthenticatedFirebaseEmailPassword]);
+  }, [isAuthenticatedFirebase]);
 
-  // }
-  // function checkFirebaseAuthentication(): Promise<void> {
-  //   return new Promise((resolve) => {
-  //     onAuthStateChanged(auth, (user) => {
-  //       if (user) {
-  //         console.log('User is logged In', user.uid);
-  //         console.log('user details  : ', user);
-  //         setIsAuthenticatedFirebaseEmailPassword(true);
-  //       } else {
-  //         console.log('User is Not Logged in');
-  //         setIsAuthenticatedFirebaseEmailPassword(false);
-  //       }
-  //       resolve();
-  //     });
-  //   });
-  // }
 
   const recheckAuthentication = async () => {
     try {
@@ -176,7 +159,7 @@ export function AuthProvider({
       authenticationForm,
       setAuthenticationForm,
       setIsAuthenticatedBasic,
-      isAuthenticatedFirebaseEmailPassword,
+      isAuthenticatedFirebase,
     }),
     [
       isAuthenticatedJwtLocalStorage,
@@ -186,7 +169,7 @@ export function AuthProvider({
       isAuthenticatedSocialAuth,
       loading,
       recheckAuthentication,
-      isAuthenticatedFirebaseEmailPassword,
+      isAuthenticatedFirebase,
     ],
   );
 

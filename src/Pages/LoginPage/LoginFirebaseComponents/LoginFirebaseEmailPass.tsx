@@ -27,7 +27,7 @@ const FORM_VALIDATION = Yup.object().shape({
 function LoginFirebaseEmailPass({
   onSubmit,
 }: {
-  onSubmit: (values: valueType) => Promise<void>;
+  onSubmit: (values: valueType) => void;
 }) {
   return (
     <Grid

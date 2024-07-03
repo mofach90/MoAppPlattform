@@ -11,13 +11,13 @@ import {
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../../contexts/authProvider';
-import { DashboardButton } from '../../../LoginPage/LPComponents/goDashboardButton';
-import setTextAlign from './../../../../utilities/settextAlignement';
-import './Header.css';
-import SnackbarAlert from './headerComponents/SnackbarAlert';
+import { useAuth } from '../../contexts/authProvider';
+import setTextAlign from '../../utilities/settextAlignement';
+import '../LandingPage/LPcomponents/Header/Header.css';
+import SnackbarAlert from '../LandingPage/LPcomponents/Header/headerComponents/SnackbarAlert';
+import { DashboardButton } from '../LoginPage/LPComponents/goDashboardButton';
 
-const Header = () => {
+const HeaderDemo = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [openSnackbarAlert, setOpenSnackbarAlert] = useState<boolean>(false);
   const { t } = useTranslation();
@@ -96,7 +96,7 @@ const Header = () => {
               elevation: 24,
               sx: {
                 width: 800,
-                height: 300,
+                height: 500,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -105,14 +105,50 @@ const Header = () => {
             }}
           >
             <DialogTitle>Choose your Authentication methode</DialogTitle>
-
             <DialogActions sx={{ width: '100%' }}>
               <Button
                 variant="contained"
-                onClick={() => navigate('/login-with-firebase')}
+                fullWidth={true}
+                onClick={triggerAuthPopup}
+              >
+                Login Using Basic Based Authentication
+              </Button>
+            </DialogActions>
+            <DialogActions sx={{ width: '100%' }}>
+              <Button
+                variant="contained"
+                onClick={() => navigate('/login')}
                 fullWidth={true}
               >
-                Login using Firebase
+                Login Using Form Based Authentication using Sesion ID
+              </Button>
+            </DialogActions>
+            <DialogActions sx={{ width: '100%' }}>
+              <Button
+                variant="contained"
+                onClick={() => navigate('/login-jwt-stored-in-localSession')}
+                fullWidth={true}
+              >
+                Login Using Form Based Authentication using JWT Stored in
+                Local-Session
+              </Button>
+            </DialogActions>
+            <DialogActions sx={{ width: '100%' }}>
+              <Button
+                variant="contained"
+                onClick={() => navigate('/login-jwt-stored-in-cookie')}
+                fullWidth={true}
+              >
+                Login Using Form Based Authentication using JWT Stored in Cookie
+              </Button>
+            </DialogActions>
+            <DialogActions sx={{ width: '100%' }}>
+              <Button
+                variant="contained"
+                onClick={() => navigate('/login-with-social-networks')}
+                fullWidth={true}
+              >
+                Login using your Social Network Account
               </Button>
             </DialogActions>
           </Dialog>
@@ -120,21 +156,10 @@ const Header = () => {
             variant="outlined"
             sx={{ whiteSpace: 'nowrap' }}
             color="inherit"
-            onClick={() => navigate('/demo')}
+            onClick={() => navigate('/')}
           >
-            DEMO VERSION
+            REAL VERSION
           </Button>
-          <Snackbar
-            message="Coming soon : Under Developement"
-            autoHideDuration={1000}
-            open={openSnackbarAlert}
-            onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          >
-            <SnackbarAlert variant="filled" severity="warning">
-              Coming soon : Under Developement
-            </SnackbarAlert>
-          </Snackbar>
         </Stack>
       </Stack>
       <Box
@@ -155,4 +180,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderDemo;

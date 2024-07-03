@@ -6,7 +6,7 @@ function LoginFirebaseGoogleAuth({
   handleOnClick,
   method,
 }: {
-  handleOnClick: () => Promise<void>;
+  handleOnClick: () => void;
   method: string;
 }) {
   return (

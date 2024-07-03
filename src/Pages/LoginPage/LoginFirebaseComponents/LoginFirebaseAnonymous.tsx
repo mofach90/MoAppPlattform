@@ -3,7 +3,7 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 function LoginFirebaseAnonymous({
   handleOnClick,
 }: {
-  handleOnClick: () => Promise<void>;
+  handleOnClick: () => void;
 }) {
   return (
     <Grid

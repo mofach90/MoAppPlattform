@@ -1,6 +1,6 @@
 import { Grid, Paper, Typography } from '@mui/material';
 
-import { DashboardButton } from './LPComponents/goDashboardButton copy';
+import { DashboardButton } from './LPComponents/goDashboardButton';
 import { HomeButton } from './LPComponents/goHomeButton';
 import LoginFirebase from './LoginFirebaseComponents/LoginFirebaseLoginComponent';
 

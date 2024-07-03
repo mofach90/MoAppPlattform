@@ -1,19 +1,22 @@
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Dashboard from './Pages/DashboardPage/dashboardPage';
+import DemoProtectRoute from './Pages/Demo/DemoProtectRoute';
+import LandingPageDemo from './Pages/Demo/LandingPageDemo';
+import DemoDashboard from './Pages/Demo/demoDashboardPage';
 import AboutPage from './Pages/LandingPage/AboutPage';
 import LandingPage from './Pages/LandingPage/LandingPage';
 import LicencePage from './Pages/LandingPage/LicencePage';
 import UseragreementPage from './Pages/LandingPage/UseragreementPage';
 import LoginPage from './Pages/LoginPage/Login';
+import FirebaseLoginPage from './Pages/LoginPage/LoginFirebase';
 import LoginJwtCookieStorage from './Pages/LoginPage/LoginJwt-CookiesStorage';
 import LoginJwtlocalStorage from './Pages/LoginPage/LoginJwt-localStorage';
+import LoginSocialNetworksPage from './Pages/LoginPage/LoginSocialNetworks';
 import Klaro from './components/Klaro';
 import { AuthProvider } from './contexts/authProvider';
 import data from './data/KlaroConfig.json';
+import Dashboard from './Pages/DashboardPage/dashboardPage';
 import ProtectRoute from './utilities/ProtectRoute';
-import LoginSocialNetworksPage from './Pages/LoginPage/LoginSocialNetworks';
-import FirebaseLoginPage from './Pages/LoginPage/LoginFirebase';
 
 const theme = createTheme({
   components: {
@@ -49,6 +52,7 @@ function App() {
           <AuthProvider>
             <Routes>
               <Route path="/" element={<LandingPage />} />
+              <Route path="/demo" element={<LandingPageDemo />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/licence" element={<LicencePage />} />
               <Route path="/useragreement" element={<UseragreementPage />} />
@@ -68,6 +72,14 @@ function App() {
               <Route
                 path="/login-jwt-stored-in-cookie"
                 element={<LoginJwtCookieStorage />}
+              />
+              <Route
+                path="/demo-dashboard"
+                element={
+                  <DemoProtectRoute>
+                    <DemoDashboard />
+                  </DemoProtectRoute>
+                }
               />
               <Route
                 path="/dashboard"
