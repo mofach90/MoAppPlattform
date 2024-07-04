@@ -332,13 +332,11 @@ export const Theme = ({ children }: { children: React.ReactNode }) => {
     console.log('theme in useEffect ', theme.palette.mode);
   }, [theme]);
 
-  return 
-  (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </ThemeProvider>
-    </ColorModeContext.Provider>
-  );
+  return;
+  <ColorModeContext.Provider value={colorMode}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  </ColorModeContext.Provider>;
 };
