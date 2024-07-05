@@ -1,5 +1,5 @@
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
-import { createContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 
 interface colorLibrary {
   grey: {
@@ -187,7 +187,7 @@ export const tokens = (mode: Mode): colorLibrary => ({
 // mui theme setting
 
 interface themeSettingInterface {
-  Palette: {
+  palette: {
     primary: {
       main: string;
     };
@@ -234,11 +234,29 @@ interface themeSettingInterface {
   };
 }
 
-const themeSetting = (mode: Mode): themeSettingInterface => {
-  console.log('mode in themeSetting: ', mode);
+const themeSetting = (mode: Mode) => {
   const colors = tokens(mode);
   return {
-    Palette: {
+    components: {
+      MuiCssBaseline: {
+        ...(mode === 'dark'
+          ? {
+              styleOverrides: `
+          body {
+            background: linear-gradient(to right, rgb(0, 0, 0), #010d45);
+          }
+          `,
+            }
+          : {
+              styleOverrides: `
+          body {
+            background: linear-gradient(to right, rgb(133, 133, 133), #e0e0e0);
+          }
+          `,
+            }),
+      },
+    },
+    palette: {
       mode: mode,
       ...(mode === 'dark'
         ? {
@@ -324,19 +342,12 @@ export const Theme = ({ children }: { children: React.ReactNode }) => {
 
   const theme = useMemo(() => createTheme(themeSetting(mode)), [mode]);
 
-  useEffect(() => {
-    console.log('mode in useEffect ', mode);
-  }, [mode]);
-
-  useEffect(() => {
-    console.log('theme in useEffect ', theme.palette.mode);
-  }, [theme]);
-
-  return;
-  <ColorModeContext.Provider value={colorMode}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
-  </ColorModeContext.Provider>;
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
 };
