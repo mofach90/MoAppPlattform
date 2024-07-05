@@ -17,7 +17,12 @@ const Topbar = () => {
   const colors = tokens(theme.palette?.mode ?? 'dark');
   const colorMode = useContext(ColorModeContext);
   return (
-    <Stack display={'flex'} justifyContent="space-between" p={2} flexDirection={"row"}>
+    <Stack
+      display={'flex'}
+      justifyContent="space-between"
+      p={2}
+      flexDirection={'row'}
+    >
       <Box
         display="flex"
         sx={{ backgroundColor: colors.primary[400] }}
