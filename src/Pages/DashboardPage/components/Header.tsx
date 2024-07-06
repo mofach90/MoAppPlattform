@@ -1,11 +1,11 @@
-import { Typography, Box, useTheme } from "@mui/material";
-import { tokens } from "../theme";
+import { Typography, Box, useTheme } from '@mui/material';
+import { tokens } from '../theme';
 interface HeaderTypes {
-    title:string;
-    subtitle:string
+  title: string;
+  subtitle: string;
 }
 
-const Header = ({ title, subtitle }:HeaderTypes) => {
+const Header = ({ title, subtitle }: HeaderTypes) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -14,7 +14,7 @@ const Header = ({ title, subtitle }:HeaderTypes) => {
         variant="h2"
         color={colors.grey[100]}
         fontWeight="bold"
-        sx={{ m: "0 0 5px 0" }}
+        sx={{ m: '0 0 5px 0' }}
       >
         {title}
       </Typography>
