@@ -2,7 +2,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Button, Grid, InputAdornment, Paper, Typography } from '@mui/material';
 import { useAuth } from '../../contexts/authProvider';
-import { DemoDashboardButton } from '../Demo/goDemoDashboardButton';
+import { DashboardButton } from './LPComponents/goDashboardButton';
 import { HomeButton } from './LPComponents/goHomeButton';
 
 function LoginSocialNetworksPage() {
@@ -16,7 +16,7 @@ function LoginSocialNetworksPage() {
     <Grid container height="100vh">
       <Grid container alignItems={'center'} justifyContent={'end'} p={2}>
         <Grid item>
-          <DemoDashboardButton />
+          <DashboardButton version="demo" />
           <HomeButton />
         </Grid>
       </Grid>

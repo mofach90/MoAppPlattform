@@ -1,6 +1,13 @@
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Dashboard from './Pages/DashboardPage/sceanes/dashboardPage';
+import HomeDashboard from './Pages/DashboardPage/sceanes/dashboard';
+import DashboardApp from './Pages/DashboardPage/sceanes/dashboardPage';
+import Sidebar from './Pages/DashboardPage/sceanes/global/Sidebar';
+import Topbar from './Pages/DashboardPage/sceanes/global/Topbar';
+import ReceipeApp from './Pages/DashboardPage/sceanes/receipe';
+import TodoApp from './Pages/DashboardPage/sceanes/to-do';
+import WeatherApp from './Pages/DashboardPage/sceanes/weather';
+import { Theme } from './Pages/DashboardPage/theme';
 import DemoProtectRoute from './Pages/Demo/DemoProtectRoute';
 import LandingPageDemo from './Pages/Demo/LandingPageDemo';
 import DemoDashboard from './Pages/Demo/demoDashboardPage';
@@ -74,7 +81,7 @@ function App() {
                 element={<LoginJwtCookieStorage />}
               />
               <Route
-                path="/demo-dashboard"
+                path="/demodashboard"
                 element={
                   <DemoProtectRoute>
                     <DemoDashboard />
@@ -82,11 +89,68 @@ function App() {
                 }
               />
               <Route
-                path="/dashboard"
+                path="/realdashboard"
                 element={
                   <ProtectRoute>
-                    <Dashboard />
+                    <DashboardApp />
                   </ProtectRoute>
+                }
+              />
+
+              <Route
+                path="/home-dashboard"
+                element={
+                  <Theme>
+                    <div className="app">
+                      <Sidebar />
+                      <main className="content">
+                        <Topbar />
+                        <HomeDashboard />
+                      </main>
+                    </div>
+                  </Theme>
+                }
+              />
+              <Route
+                path="/to-do"
+                element={
+                  <Theme>
+                    <div className="app">
+                      <Sidebar />
+                      <main className="content">
+                        <Topbar />
+                        <TodoApp />
+                      </main>
+                    </div>
+                  </Theme>
+                }
+              />
+              <Route
+                path="/weather"
+                element={
+                  <Theme>
+                    <div className="app">
+                      <Sidebar />
+                      <main className="content">
+                        <Topbar />
+                        <WeatherApp />
+                      </main>
+                    </div>
+                  </Theme>
+                }
+              />
+              <Route
+                path="/receipe"
+                element={
+                  <Theme>
+                    <div className="app">
+                      <Sidebar />
+                      <main className="content">
+                        <Topbar />
+                        <ReceipeApp />
+                      </main>
+                    </div>
+                  </Theme>
                 }
               />
             </Routes>

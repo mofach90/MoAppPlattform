@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogActions,
   DialogTitle,
-  Snackbar,
   Stack,
   Typography,
 } from '@mui/material';
@@ -14,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/authProvider';
 import setTextAlign from '../../utilities/settextAlignement';
 import '../LandingPage/LPcomponents/Header/Header.css';
-import SnackbarAlert from '../LandingPage/LPcomponents/Header/headerComponents/SnackbarAlert';
 import { DashboardButton } from '../LoginPage/LPComponents/goDashboardButton';
 
 const HeaderDemo = () => {
@@ -42,7 +40,7 @@ const HeaderDemo = () => {
       setAuthenticationForm('Simple Basic Authentication');
       if (response.ok) {
         setIsAuthenticatedBasic(true);
-        window.open('/demo-dashboard', '_self');
+        window.open('/demodashboard', '_self');
       } else {
         setIsAuthenticatedBasic(false);
         console.error(' Response Status ', response.statusText);
@@ -79,7 +77,7 @@ const HeaderDemo = () => {
           style={{ width: 100, height: 100 }}
         />
         <Stack direction={'row'} gap={2} mr={2} alignItems="center">
-          <DashboardButton />
+          <DashboardButton version="demo" />
           <Button
             variant="contained"
             sx={{ whiteSpace: 'nowrap' }}

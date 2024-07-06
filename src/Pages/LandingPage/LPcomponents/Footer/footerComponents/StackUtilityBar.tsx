@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material';
-import BreadcrumbsComponent from './BreadcrumbsComponent';
+import BreadcrumbsComponent from './BreadcrumbsComponent.tsx';
 import LanguageButton from './LanguageButton.tsx';
 
 function StackUtilityBar() {

@@ -1,8 +1,10 @@
 import { Button, ButtonProps } from '@mui/material';
 
-export const DashboardButton = () => {
+type DashboardButtonProps = "real" | "demo"
+
+export const DashboardButton = ({version}:{version:DashboardButtonProps}) => {
   const handleGoToDashboard = () => {
-    window.open('/dashboard', '_self');
+    window.open(`/${version}dashboard`, '_self');
   };
 
   const buttonConfig: ButtonProps = {

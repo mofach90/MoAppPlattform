@@ -42,7 +42,7 @@ const Header = () => {
       setAuthenticationForm('Simple Basic Authentication');
       if (response.ok) {
         setIsAuthenticatedBasic(true);
-        window.open('/demo-dashboard', '_self');
+        window.open('/demodashboard', '_self');
       } else {
         setIsAuthenticatedBasic(false);
         console.error(' Response Status ', response.statusText);
@@ -79,7 +79,7 @@ const Header = () => {
           style={{ width: 100, height: 100 }}
         />
         <Stack direction={'row'} gap={2} mr={2} alignItems="center">
-          <DashboardButton />
+          <DashboardButton version="real" />
           <Button
             variant="contained"
             sx={{ whiteSpace: 'nowrap' }}

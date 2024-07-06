@@ -2,9 +2,9 @@ import { Grid, Paper, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useAuth } from '../../contexts/authProvider';
-import { DemoDashboardButton } from '../Demo/goDemoDashboardButton';
 import ButtonWrapper from './LPComponents/ButtonWrapper';
 import TextfieldWrapper from './LPComponents/TextfieldWrapper';
+import { DashboardButton } from './LPComponents/goDashboardButton';
 import { HomeButton } from './LPComponents/goHomeButton';
 
 const INITIAL_FORM_STATE = {
@@ -39,7 +39,7 @@ function LoginPageJwtCookieStorage() {
       );
 
       if (result.ok) {
-        window.open('/demo-dashboard', '_self');
+        window.open('/demodashboard', '_self');
       } else {
         console.error('Failed to submit form', result.statusText);
       }
@@ -52,7 +52,7 @@ function LoginPageJwtCookieStorage() {
     <Grid container height="100vh">
       <Grid container alignItems={'center'} justifyContent={'end'} p={2}>
         <Grid item>
-          <DemoDashboardButton />
+          <DashboardButton version="demo" />
           <HomeButton />
         </Grid>
       </Grid>

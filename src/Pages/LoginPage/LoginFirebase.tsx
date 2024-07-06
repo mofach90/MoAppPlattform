@@ -9,8 +9,8 @@ function FirebaseLoginPage() {
     <Grid container height="100vh">
       <Grid container alignItems={'center'} justifyContent={'end'} p={2}>
         <Grid item>
-          <DashboardButton />
-          <HomeButton />
+        <DashboardButton version='real' />
+        <HomeButton />
         </Grid>
       </Grid>
       <Grid
