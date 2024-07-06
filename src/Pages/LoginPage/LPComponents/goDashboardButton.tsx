@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 export const DashboardButton = () => {
   const { version } = useContext(versionContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleGoToDashboard = () => {
     navigate(`/${version}-dashboard`);
   };
-  console.log("version from dashboeradr button", version)
+  console.log('version from dashboeradr button', version);
 
   const buttonConfig: ButtonProps = {
     variant: 'contained',

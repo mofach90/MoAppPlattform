@@ -5,10 +5,9 @@ import { versionContext } from '../../contexts/versionprovider';
 import { useContext } from 'react';
 import Header from '../../Pages/LandingPage/LPcomponents/Header/Header';
 
-
 const LandingPage = () => {
-    const {version} = useContext(versionContext)
-    console.log({version})
+  const { version } = useContext(versionContext);
+  console.log({ version });
   return (
     <Box
       minHeight={'100hv'}
@@ -25,9 +24,7 @@ const LandingPage = () => {
         maxWidth={1200}
       >
         <Grid item>
-        
           <Header version={version} />
-          
         </Grid>
         <Grid item>
           <Body />
