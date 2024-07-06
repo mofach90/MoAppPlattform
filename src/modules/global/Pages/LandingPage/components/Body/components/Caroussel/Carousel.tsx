@@ -1,5 +1,5 @@
 import Carousel from 'react-material-ui-carousel';
-import Item from './carousselComponentS/Item';
+import Item from './components/Item';
 const CarouselComponent = () => {
   const listApps = [
     {

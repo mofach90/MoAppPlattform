@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import { useAuth } from '../../contexts/authProvider';
 import ButtonWrapper from './LPComponents/ButtonWrapper';
 import TextfieldWrapper from './LPComponents/TextfieldWrapper';
-import { DashboardButton } from './LPComponents/goDashboardButton';
 import { HomeButton } from './LPComponents/goHomeButton';
 
 const INITIAL_FORM_STATE = {

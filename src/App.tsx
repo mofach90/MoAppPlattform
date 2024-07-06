@@ -9,8 +9,7 @@ import TodoApp from './Pages/DashboardPage/sceanes/to-do';
 import WeatherApp from './Pages/DashboardPage/sceanes/weather';
 import { Theme } from './Pages/DashboardPage/theme';
 import DemoProtectRoute from './Pages/Demo/DemoProtectRoute';
-import LandingPageDemo from './Pages/Demo/LandingPageDemo';
-import AboutPage from './Pages/LandingPage/AboutPage';
+import DemoDashboard from './Pages/Demo/demoDashboardPage';
 import LicencePage from './Pages/LandingPage/LicencePage';
 import UseragreementPage from './Pages/LandingPage/UseragreementPage';
 import LoginPage from './Pages/LoginPage/Login';
@@ -22,9 +21,9 @@ import Klaro from './components/Klaro';
 import { AuthProvider } from './contexts/authProvider';
 import { VersionProvider } from './contexts/versionprovider';
 import data from './data/KlaroConfig.json';
-import LandingPage from './modules/global/LandingPage';
+import AboutPage from './modules/global/Pages/AboutPage/AboutPage';
+import LandingPage from './modules/global/Pages/LandingPage/LandingPage';
 import ProtectRoute from './utilities/ProtectRoute';
-import DemoDashboard from './Pages/Demo/demoDashboardPage';
 
 const theme = createTheme({
   components: {

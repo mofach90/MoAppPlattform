@@ -1,34 +1,27 @@
 import { Button, ButtonProps } from '@mui/material';
-import { useFormikContext } from 'formik';
 
 type ButtonWrapperProps = {
-  children: React.ReactNode;
-  buttonProps?: ButtonProps;
-  onClick?: () => void;
+  children?: React.ReactNode;
+  buttonConfig?: ButtonProps;
 };
 
 export function ButtonWrapper({
   children,
-  buttonProps = {},
-  onClick,
+  buttonConfig = {},
 }: Readonly<ButtonWrapperProps>) {
-  const { submitForm } = useFormikContext();
-  const handleSubmit = () => {
-    if (onClick) onClick();
-    submitForm();
-  };
+  // const { submitForm } = useFormikContext();
+  // const handleSubmit = () => {
+  //   if (onClick) onClick();
+  //   submitForm();
+  // };
 
-  const buttonConfig: ButtonProps = {
-    variant: 'contained',
-    color: 'primary',
-    fullWidth: true,
-    onClick: handleSubmit,
-  };
-  return (
-    <Button {...buttonConfig} {...buttonProps}>
-      {children}
-    </Button>
-  );
+  // const buttonConfig: ButtonProps = {
+  //   variant: 'contained',
+  //   color: 'primary',
+  //   fullWidth: true,
+  //   onClick: handleSubmit,
+  // };
+  return <Button {...buttonConfig}>{children}</Button>;
 }
 
 export default ButtonWrapper;

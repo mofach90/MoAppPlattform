@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import data from '../../../../../../public/locales/en/translation.json';
-import AccordionComponent from './faqComponents/AccordionComponent';
+import data from '../../../../../../../../../public/locales/en/translation.json';
+import AccordionComponent from './components/AccordionComponent';
 const FaQ = () => {
   const { t } = useTranslation();
 
