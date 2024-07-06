@@ -1,4 +1,4 @@
-import { Box, Stack} from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 import { DashboardButton } from './Components/DashboardButton/DashboardButton';
 import LoginButton from './Components/LoginButton/LoginButton';
@@ -6,8 +6,6 @@ import './utils/Header.css';
 import GoToVersionButton from './Components/GoToVersionButton/GoToVersionButton';
 
 const Header = () => {
-
-
   return (
     <Box
       sx={{
