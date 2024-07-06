@@ -13,6 +13,14 @@ Welcome to the Mo Application Platform, a versatile platform designed to streaml
   - Movie List: Curate and manage your personal movie collection.
 - **And more to come**: We are continuously expanding our suite of applications to cater to a wider range of needs and interests.
 
+for example:
+``` interface my_interaface {...} // Noncompliant ```
+should be renamed to
+```interface MyInterface {...}```
+
+### Name Convention 
+- **Interfaces and Types**: Interfaces and Types Naming must follow this  regular expression ^[A-Z][a-zA-Z0-9]*$
+
 ### Built With
 
 - **Frontend**:

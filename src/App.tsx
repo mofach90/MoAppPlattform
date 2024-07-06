@@ -10,9 +10,7 @@ import WeatherApp from './Pages/DashboardPage/sceanes/weather';
 import { Theme } from './Pages/DashboardPage/theme';
 import DemoProtectRoute from './Pages/Demo/DemoProtectRoute';
 import LandingPageDemo from './Pages/Demo/LandingPageDemo';
-import DemoDashboard from './Pages/Demo/demoDashboardPage';
 import AboutPage from './Pages/LandingPage/AboutPage';
-import LandingPage from './Pages/LandingPage/LandingPage';
 import LicencePage from './Pages/LandingPage/LicencePage';
 import UseragreementPage from './Pages/LandingPage/UseragreementPage';
 import LoginPage from './Pages/LoginPage/Login';
@@ -22,8 +20,11 @@ import LoginJwtlocalStorage from './Pages/LoginPage/LoginJwt-localStorage';
 import LoginSocialNetworksPage from './Pages/LoginPage/LoginSocialNetworks';
 import Klaro from './components/Klaro';
 import { AuthProvider } from './contexts/authProvider';
+import { VersionProvider } from './contexts/versionprovider';
 import data from './data/KlaroConfig.json';
+import LandingPage from './modules/global/LandingPage';
 import ProtectRoute from './utilities/ProtectRoute';
+import DemoDashboard from './Pages/Demo/demoDashboardPage';
 
 const theme = createTheme({
   components: {
@@ -57,103 +58,104 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <AuthProvider>
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/demo" element={<LandingPageDemo />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/licence" element={<LicencePage />} />
-              <Route path="/useragreement" element={<UseragreementPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route
-                path="/login-with-firebase"
-                element={<FirebaseLoginPage />}
-              />
-              <Route
-                path="/login-with-social-networks"
-                element={<LoginSocialNetworksPage />}
-              />
-              <Route
-                path="/login-jwt-stored-in-localSession"
-                element={<LoginJwtlocalStorage />}
-              />
-              <Route
-                path="/login-jwt-stored-in-cookie"
-                element={<LoginJwtCookieStorage />}
-              />
-              <Route
-                path="/demodashboard"
-                element={
-                  <DemoProtectRoute>
-                    <DemoDashboard />
-                  </DemoProtectRoute>
-                }
-              />
-              <Route
-                path="/realdashboard"
-                element={
-                  <ProtectRoute>
-                    <DashboardApp />
-                  </ProtectRoute>
-                }
-              />
+            <VersionProvider>
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/licence" element={<LicencePage />} />
+                <Route path="/useragreement" element={<UseragreementPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route
+                  path="/login-with-firebase"
+                  element={<FirebaseLoginPage />}
+                />
+                <Route
+                  path="/login-with-social-networks"
+                  element={<LoginSocialNetworksPage />}
+                />
+                <Route
+                  path="/login-jwt-stored-in-localSession"
+                  element={<LoginJwtlocalStorage />}
+                />
+                <Route
+                  path="/login-jwt-stored-in-cookie"
+                  element={<LoginJwtCookieStorage />}
+                />
+                <Route
+                  path="/demo-dashboard"
+                  element={
+                    <DemoProtectRoute>
+                      <DemoDashboard />
+                    </DemoProtectRoute>
+                  }
+                />
+                <Route
+                  path="/main-dashboard"
+                  element={
+                    <ProtectRoute>
+                      <DashboardApp />
+                    </ProtectRoute>
+                  }
+                />
 
-              <Route
-                path="/home-dashboard"
-                element={
-                  <Theme>
-                    <div className="app">
-                      <Sidebar />
-                      <main className="content">
-                        <Topbar />
-                        <HomeDashboard />
-                      </main>
-                    </div>
-                  </Theme>
-                }
-              />
-              <Route
-                path="/to-do"
-                element={
-                  <Theme>
-                    <div className="app">
-                      <Sidebar />
-                      <main className="content">
-                        <Topbar />
-                        <TodoApp />
-                      </main>
-                    </div>
-                  </Theme>
-                }
-              />
-              <Route
-                path="/weather"
-                element={
-                  <Theme>
-                    <div className="app">
-                      <Sidebar />
-                      <main className="content">
-                        <Topbar />
-                        <WeatherApp />
-                      </main>
-                    </div>
-                  </Theme>
-                }
-              />
-              <Route
-                path="/receipe"
-                element={
-                  <Theme>
-                    <div className="app">
-                      <Sidebar />
-                      <main className="content">
-                        <Topbar />
-                        <ReceipeApp />
-                      </main>
-                    </div>
-                  </Theme>
-                }
-              />
-            </Routes>
+                <Route
+                  path="/home-dashboard"
+                  element={
+                    <Theme>
+                      <div className="app">
+                        <Sidebar />
+                        <main className="content">
+                          <Topbar />
+                          <HomeDashboard />
+                        </main>
+                      </div>
+                    </Theme>
+                  }
+                />
+                <Route
+                  path="/to-do"
+                  element={
+                    <Theme>
+                      <div className="app">
+                        <Sidebar />
+                        <main className="content">
+                          <Topbar />
+                          <TodoApp />
+                        </main>
+                      </div>
+                    </Theme>
+                  }
+                />
+                <Route
+                  path="/weather"
+                  element={
+                    <Theme>
+                      <div className="app">
+                        <Sidebar />
+                        <main className="content">
+                          <Topbar />
+                          <WeatherApp />
+                        </main>
+                      </div>
+                    </Theme>
+                  }
+                />
+                <Route
+                  path="/receipe"
+                  element={
+                    <Theme>
+                      <div className="app">
+                        <Sidebar />
+                        <main className="content">
+                          <Topbar />
+                          <ReceipeApp />
+                        </main>
+                      </div>
+                    </Theme>
+                  }
+                />
+              </Routes>
+            </VersionProvider>
           </AuthProvider>
         </ThemeProvider>
       </Klaro>

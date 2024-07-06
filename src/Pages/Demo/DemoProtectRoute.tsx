@@ -68,7 +68,7 @@ function DemoProtectRoute({
         authenticationForm ===
         'Firebase based authentication using Email and Password or Anonymously'
       ) {
-        navigate('/demo');
+        navigate('/');
         console.log(
           ' You are not authenticated with Firebase using Email and Password  ',
         );

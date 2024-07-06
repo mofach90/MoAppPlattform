@@ -42,7 +42,7 @@ function LoginPageJwtLocalStorage() {
         if (data.token) {
           localStorage.setItem('jwtToken', data.token);
         }
-        window.open('/demodashboard', '_self');
+        window.open('/demo-dashboard', '_self');
       } else {
         console.error('Failed to submit form', result.statusText);
       }
@@ -55,7 +55,6 @@ function LoginPageJwtLocalStorage() {
     <Grid container height="100vh">
       <Grid container alignItems={'center'} justifyContent={'end'} p={2}>
         <Grid item>
-          <DashboardButton version="demo" />
           <HomeButton />
         </Grid>
       </Grid>

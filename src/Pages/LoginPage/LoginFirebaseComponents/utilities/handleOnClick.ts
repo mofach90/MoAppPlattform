@@ -23,7 +23,7 @@ export const handleOnClick = async (
         },
       );
       if (response.ok) {
-        window.open('/realdashboard', '_self');
+        window.open('/main-dashboard', '_self');
       } else {
         console.error('failed to Validate idToken from Backend');
       }

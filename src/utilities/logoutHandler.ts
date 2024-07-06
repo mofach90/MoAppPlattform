@@ -1,6 +1,4 @@
-import { NavigateFunction } from 'react-router-dom';
-
-export const LogoutHandler = async (navigate: NavigateFunction) => {
+export const LogoutHandler = async () => {
   try {
     localStorage.removeItem('jwtToken');
 
@@ -8,9 +6,10 @@ export const LogoutHandler = async (navigate: NavigateFunction) => {
       method: 'GET',
       credentials: 'include',
     });
+    console.log(result.ok);
 
     if (result.ok) {
-      navigate('/');
+      window.open('/', '_self');
     } else {
       console.log('logout failed');
     }

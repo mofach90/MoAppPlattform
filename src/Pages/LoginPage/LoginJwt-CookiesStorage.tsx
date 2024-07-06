@@ -39,7 +39,7 @@ function LoginPageJwtCookieStorage() {
       );
 
       if (result.ok) {
-        window.open('/demodashboard', '_self');
+        window.open('/demo-dashboard', '_self');
       } else {
         console.error('Failed to submit form', result.statusText);
       }
@@ -52,7 +52,6 @@ function LoginPageJwtCookieStorage() {
     <Grid container height="100vh">
       <Grid container alignItems={'center'} justifyContent={'end'} p={2}>
         <Grid item>
-          <DashboardButton version="demo" />
           <HomeButton />
         </Grid>
       </Grid>

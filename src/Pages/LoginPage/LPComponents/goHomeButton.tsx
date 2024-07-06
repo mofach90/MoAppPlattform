@@ -1,8 +1,10 @@
 import { Button, ButtonProps } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export const HomeButton = () => {
+  const navigate = useNavigate();
   const handleHome = () => {
-    window.open('/', '_self');
+    navigate('/');
   };
 
   const buttonConfig: ButtonProps = {
