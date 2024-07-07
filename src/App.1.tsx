@@ -1,5 +1,17 @@
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { theme } from './App';
+import { AuthProvider } from './contexts/authProvider';
+import { VersionProvider } from './contexts/versionprovider';
+import data from './data/KlaroConfig.json';
+import AboutPage from './modules/global/Pages/AboutPage/AboutPage';
+import LandingPage from './modules/global/Pages/LandingPage/LandingPage';
+import LicencePage from './modules/global/Pages/LicencePage/LicencePage';
+import FirebaseLoginPage from './modules/global/Pages/LoginPages/firebase-login/firebaseLogin';
+import FormBasedLoginPage from './modules/global/Pages/LoginPages/form-based-login/FormBasedLogin';
+import LoginSocialNetworksPage from './modules/global/Pages/LoginPages/social-network-based-login/LoginSocialNetworks';
+import UseragreementPage from './modules/global/Pages/UserAgreement/UseragreementPage';
+import Klaro from './modules/global/components/Klaro';
 import HomeDashboard from './others/Pages/DashboardPage/sceanes/dashboard';
 import DashboardApp from './others/Pages/DashboardPage/sceanes/dashboardPage';
 import Sidebar from './others/Pages/DashboardPage/sceanes/global/Sidebar';
@@ -10,48 +22,9 @@ import WeatherApp from './others/Pages/DashboardPage/sceanes/weather';
 import { Theme } from './others/Pages/DashboardPage/theme';
 import DemoProtectRoute from './others/Pages/Demo/DemoProtectRoute';
 import DemoDashboard from './others/Pages/Demo/demoDashboardPage';
-
-import { AuthProvider } from './contexts/authProvider';
-import { VersionProvider } from './contexts/versionprovider';
-import data from './data/KlaroConfig.json';
-import AboutPage from './modules/global/Pages/AboutPage/AboutPage';
-import LandingPage from './modules/global/Pages/LandingPage/LandingPage';
-import LicencePage from './modules/global/Pages/LicencePage/LicencePage';
-import FirebaseLoginPage from './modules/global/Pages/LoginPages/firebase-login/firebaseLogin';
-import FormBasedLoginPage from './modules/global/Pages/LoginPages/form-based-login/FormBasedLogin';
-import LoginPageJwtCookieStorage from './modules/global/Pages/LoginPages/jwt-cookie-storage-login/JwtCookieStorage';
-import LoginPageJwtLocalStorage from './modules/global/Pages/LoginPages/jwt-local-storage-login/JwtlocalStorage';
-import LoginSocialNetworksPage from './modules/global/Pages/LoginPages/social-network-based-login/LoginSocialNetworks';
-import UseragreementPage from './modules/global/Pages/UserAgreement/UseragreementPage';
-import Klaro from './modules/global/components/Klaro';
 import ProtectRoute from './others/utilities/ProtectRoute';
 
-const theme = createTheme({
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: `    
-      html {
-        height: 100%;
-      }
-      
-      body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background: linear-gradient(to right, rgb(0, 0, 0), #010d45);
-        color: rgb(55, 255, 255);
-      }
-      
-      #root {
-        height: 100%;
-      }
-      
-      `,
-    },
-  },
-});
-
-function App() {
+export function App() {
   return (
     <Router>
       <Klaro config={data}>
@@ -75,11 +48,11 @@ function App() {
                 />
                 <Route
                   path="/login-jwt-stored-in-localSession"
-                  element={<LoginPageJwtLocalStorage />}
+                  element={<LoginJwtlocalStorage />}
                 />
                 <Route
                   path="/login-jwt-stored-in-cookie"
-                  element={<LoginPageJwtCookieStorage />}
+                  element={<LoginJwtCookieStorage />}
                 />
                 <Route
                   path="/demo-dashboard"
@@ -162,5 +135,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;

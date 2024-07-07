@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
-import ButtonWrapper from '../../../../../../../../Pages/LoginPage/LPComponents/ButtonWrapper';
 import { useGoToVersionButton } from './hooks/useGoToVersionButton';
+import ButtonWrapper from '../../../../../../components/ButtonWrapper';
 
 const GoToVersionButton = () => {
   const { buttonConfig, version } = useGoToVersionButton();

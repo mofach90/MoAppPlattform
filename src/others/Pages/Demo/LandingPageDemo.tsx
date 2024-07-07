@@ -1,13 +1,9 @@
 import { Box, Grid } from '@mui/material';
-import { useContext } from 'react';
-import { versionContext } from '../../contexts/versionprovider';
-import Body from './Pages/LandingPage/components/Body/Body';
-import Footer from './Pages/LandingPage/components/Footer/Footer';
-import Header from './Pages/LandingPage/components/Header/Header';
+import Footer from '../../../modules/global/Pages/LandingPage/components/Footer/Footer';
+import Body from '../LandingPage/LPcomponents/Body/Body';
+import HeaderDemo from './HeaderDemo';
 
-const LandingPage = () => {
-  const { version } = useContext(versionContext);
-  console.log({ version });
+const LandingPageDemo = () => {
   return (
     <Box
       minHeight={'100hv'}
@@ -24,7 +20,7 @@ const LandingPage = () => {
         maxWidth={1200}
       >
         <Grid item>
-          <Header />
+          <HeaderDemo />
         </Grid>
         <Grid item>
           <Body />
@@ -37,4 +33,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default LandingPageDemo;

@@ -2,9 +2,9 @@ import { Box, Typography } from '@mui/material';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { versionContext } from '../../../../../../../../contexts/versionprovider';
-import setTextAlign from '../../../../../../../../utilities/settextAlignement';
+import setTextAlign from '../../../../../../utilities/settextAlignement';
 
-const AppDEscription = () => {
+const AppDescription = () => {
   const { version } = useContext(versionContext);
   const { t } = useTranslation();
   const textAlign = setTextAlign();
@@ -32,4 +32,4 @@ const AppDEscription = () => {
   );
 };
 
-export default AppDEscription;
+export default AppDescription;
