@@ -2,6 +2,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { HomeButton } from '../../../modules/global/components/goHomeButton';
 import { LogoutHandler } from '../../utilities/logoutHandler';
 
+
 function DemoDashboard() {
   return (
     <Grid container height="100vh">

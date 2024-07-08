@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material';
-import { Form, Formik, useFormikContext } from 'formik';
+import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../components/TextfieldWrapper';
 import { useForm } from '../../../hooks/useForm';
@@ -15,8 +15,8 @@ function LoginFirebaseEmailPass({
 }: {
   onSubmit: (values: valueType) => void;
 }) {
-  const { submitForm } = useFormikContext();
   const { FORM_VALIDATION, INITIAL_FORM_STATE, buttonConfig } = useForm();
+
   return (
     <Grid
       container
@@ -30,7 +30,7 @@ function LoginFirebaseEmailPass({
         initialValues={{ ...INITIAL_FORM_STATE }}
         onSubmit={onSubmit}
       >
-        {({ setFieldValue }) => (
+        {({ setFieldValue, submitForm }) => (
           <Form style={{ width: '80%' }}>
             <Grid container border={'1px solid'} borderRadius={4} padding={4}>
               <Grid item xs={12} marginBottom={4}>

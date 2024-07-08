@@ -15,11 +15,20 @@ export const VersionProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [version, setVersion] = useState<VersionType['version']>('main');
+  const storedVersion = localStorage.getItem('version') as
+    | VersionType['version']
+    | null;
+  const initVersion: VersionType['version'] =
+    storedVersion !== null ? storedVersion : 'main';
+  const [version, setVersion] = useState<VersionType['version']>(initVersion);
   const contextValue = useMemo(
     () => ({
       toggleVersion: () => {
-        setVersion((prev) => (prev === 'demo' ? 'main' : 'demo'));
+        setVersion((prev) => {
+          const newVersion = prev === 'demo' ? 'main' : 'demo';
+          localStorage.setItem('version', newVersion);
+          return newVersion;
+        });
       },
       version,
     }),

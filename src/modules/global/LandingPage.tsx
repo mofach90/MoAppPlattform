@@ -1,13 +1,10 @@
 import { Box, Grid } from '@mui/material';
-import { useContext } from 'react';
-import { versionContext } from '../../contexts/versionprovider';
 import Body from './Pages/LandingPage/components/Body/Body';
 import Footer from './Pages/LandingPage/components/Footer/Footer';
 import Header from './Pages/LandingPage/components/Header/Header';
 
 const LandingPage = () => {
-  const { version } = useContext(versionContext);
-  console.log({ version });
+
   return (
     <Box
       minHeight={'100hv'}

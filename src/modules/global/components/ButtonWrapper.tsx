@@ -9,6 +9,8 @@ export function ButtonWrapper({
   children,
   buttonConfig = {},
 }: Readonly<ButtonWrapperProps>) {
+
+  
   return <Button {...buttonConfig}>{children}</Button>;
 }
 

@@ -6,10 +6,11 @@ import { HomeButton } from '../../../components/goHomeButton';
 import { useForm } from '../hooks/useForm';
 
 function FormBasedLoginPage() {
-  const { FORM_VALIDATION, INITIAL_FORM_STATE, handleonSubmit } = useForm({
-    endpoint: 'login-sessionid',
-    setAuthFormMessage: 'form-based-authentication using session-id',
-  });
+  const { FORM_VALIDATION, INITIAL_FORM_STATE, handleonSubmit, buttonConfig } =
+    useForm({
+      endpoint: 'login-sessionid',
+      setAuthFormMessage: 'form-based-authentication using session-id',
+    });
   return (
     <Grid container height="100vh">
       <Grid container alignItems={'center'} justifyContent={'end'} p={2}>
@@ -39,38 +40,50 @@ function FormBasedLoginPage() {
               initialValues={{ ...INITIAL_FORM_STATE }}
               onSubmit={handleonSubmit}
             >
-              <Form style={{ width: '60%' }}>
-                <Grid container spacing={3}>
-                  <Grid item xs={12}>
-                    <Typography variant="h5">
-                      This is a Form Based Authentication Using Session ID
-                    </Typography>
+              {({ submitForm }) => (
+                <Form style={{ width: '60%' }}>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                      <Typography variant="h5">
+                        This is a Form Based Authentication Using Session ID
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography fontWeight={'bold'}>
+                        Please Enter you User Name and Password
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextfieldWrapper
+                        name="emailAdress"
+                        label="Email Adresse"
+                        type="text"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextfieldWrapper
+                        name="password"
+                        label="Password"
+                        type="password"
+                        size="small"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <ButtonWrapper
+                        buttonConfig={{
+                          ...buttonConfig,
+                          sx: { bgcolor: '#34a1eb' },
+                          onClick: () => {
+                            submitForm();
+                          },
+                        }}
+                      >
+                        Submit
+                      </ButtonWrapper>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12}>
-                    <Typography fontWeight={'bold'}>
-                      Please Enter you User Name and Password
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextfieldWrapper
-                      name="userName"
-                      label="User Name"
-                      type="text"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextfieldWrapper
-                      name="password"
-                      label="Password"
-                      type="password"
-                      size="small"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <ButtonWrapper>Submit</ButtonWrapper>
-                  </Grid>
-                </Grid>
-              </Form>
+                </Form>
+              )}
             </Formik>
           </Paper>
         </Grid>
