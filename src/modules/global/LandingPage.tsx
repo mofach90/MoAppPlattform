@@ -4,7 +4,6 @@ import Footer from './Pages/LandingPage/components/Footer/Footer';
 import Header from './Pages/LandingPage/components/Header/Header';
 
 const LandingPage = () => {
-
   return (
     <Box
       minHeight={'100hv'}
