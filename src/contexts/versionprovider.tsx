@@ -18,8 +18,7 @@ export const VersionProvider = ({
   const storedVersion = localStorage.getItem('version') as
     | VersionType['version']
     | null;
-  const initVersion: VersionType['version'] =
-    storedVersion !== null ? storedVersion : 'main';
+  const initVersion: VersionType['version'] = storedVersion ?? 'main';
   const [version, setVersion] = useState<VersionType['version']>(initVersion);
   const contextValue = useMemo(
     () => ({

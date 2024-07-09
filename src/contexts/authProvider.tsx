@@ -9,6 +9,9 @@ import React, {
 } from 'react';
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
 
+export type AuthenticationFormType =
+| 'Firebase based authentication using Email and Password or Anonymously'
+| '';
 interface AuthContextType {
   isAuthenticatedSessionId: boolean;
   isAuthenticatedBasic: boolean;
@@ -18,9 +21,9 @@ interface AuthContextType {
   isAuthenticatedFirebase: boolean;
   loading: boolean;
   recheckAuthentication: () => void;
-  setAuthenticationForm: Dispatch<SetStateAction<string>>;
+  setAuthenticationForm: Dispatch<SetStateAction<AuthenticationFormType>>;
   setIsAuthenticatedBasic: Dispatch<SetStateAction<boolean>>;
-  authenticationForm: string;
+  authenticationForm: AuthenticationFormType;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -41,7 +44,7 @@ export function AuthProvider({
   const [isAuthenticatedSocialAuth, setIsAuthenticatedSocialAuth] =
     useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  const [authenticationForm, setAuthenticationForm] = useState<string>(() => {
+  const [authenticationForm, setAuthenticationForm] = useState<AuthenticationFormType>(() => {
     const storedValue = localStorage.getItem('authenticationForm');
     return storedValue ? JSON.parse(storedValue) : '';
   });

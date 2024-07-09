@@ -13,6 +13,7 @@ function DemoProtectRoute({
     isAuthenticatedSocialAuth,
     loading,
     authenticationForm,
+    
   } = useAuth();
   const navigate = useNavigate();
   console.log('Initial auth states: ', {
@@ -64,7 +65,6 @@ function DemoProtectRoute({
           ' You are not authenticated with your Social Network Account ',
         );
       } else if (
-        // !isAuthenticatedFirebaseEmailPassword &&
         authenticationForm ===
         'Firebase based authentication using Email and Password or Anonymously'
       ) {

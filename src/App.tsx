@@ -24,7 +24,7 @@ import LoginPageJwtLocalStorage from './modules/global/Pages/LoginPages/jwt-loca
 import LoginSocialNetworksPage from './modules/global/Pages/LoginPages/social-network-based-login/LoginSocialNetworks';
 import UseragreementPage from './modules/global/Pages/UserAgreement/UseragreementPage';
 import Klaro from './modules/global/components/Klaro';
-import ProtectRoute from './modules/main/Pages/components/ProtectRoute';
+import ProtectRoute from './modules/main/components/ProtectRoute';
 
 const theme = createTheme({
   components: {
