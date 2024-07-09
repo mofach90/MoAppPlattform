@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import setTextAlign from '../../../../../../../utilities/settextAlignement';
+import setTextAlign from '../../../../../../../utilities/settextAlignement.ts';
 
 const AccordionComponent = (props: any) => {
   const { t } = useTranslation();

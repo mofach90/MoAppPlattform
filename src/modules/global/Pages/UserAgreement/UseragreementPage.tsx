@@ -1,7 +1,7 @@
 import { Box, Grid, Stack, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import BackToHomeButton from '../../components/BackToHomeButton';
-import setTextAlign from '../../utilities/settextAlignement';
+import setTextAlign from '../../utilities/settextAlignement.ts';
 
 function UserAgreementPage() {
   const { t } = useTranslation();

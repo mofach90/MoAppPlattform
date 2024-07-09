@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/authProvider';
+import { useAuth } from '../../../../contexts/authProvider';
 
 function ProtectRoute({ children }: Readonly<{ children: React.ReactNode }>) {
   const { loading, authenticationForm, isAuthenticatedFirebase } = useAuth();

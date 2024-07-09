@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import CircularProgressWithLabel from '../others/utilities/LoadingUtility';
+import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
 
 interface AuthContextType {
   isAuthenticatedSessionId: boolean;

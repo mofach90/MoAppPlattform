@@ -1,19 +1,19 @@
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import HomeDashboard from './others/Pages/DashboardPage/sceanes/dashboard';
-import DashboardApp from './others/Pages/DashboardPage/sceanes/dashboardPage';
-import Sidebar from './others/Pages/DashboardPage/sceanes/global/Sidebar';
-import Topbar from './others/Pages/DashboardPage/sceanes/global/Topbar';
-import ReceipeApp from './others/Pages/DashboardPage/sceanes/receipe';
-import TodoApp from './others/Pages/DashboardPage/sceanes/to-do';
-import WeatherApp from './others/Pages/DashboardPage/sceanes/weather';
-import { Theme } from './others/Pages/DashboardPage/theme';
-import DemoProtectRoute from './others/Pages/Demo/DemoProtectRoute';
-import DemoDashboard from './others/Pages/Demo/demoDashboardPage';
+import DemoProtectRoute from './modules/demo/components/DemoProtectRoute';
+import DemoDashboard from './modules/demo/pages/dashboard/DemoDashboard';
+import HomeDashboard from './modules/main/Pages/DashboardPage/sceanes/dashboard';
+import DashboardApp from './modules/main/Pages/DashboardPage/sceanes/dashboardPage';
+import Sidebar from './modules/main/Pages/DashboardPage/sceanes/global/Sidebar';
+import Topbar from './modules/main/Pages/DashboardPage/sceanes/global/Topbar';
+import ReceipeApp from './modules/main/Pages/DashboardPage/sceanes/receipe';
+import TodoApp from './modules/main/Pages/DashboardPage/sceanes/to-do';
+import WeatherApp from './modules/main/Pages/DashboardPage/sceanes/weather';
+import { Theme } from './modules/main/Pages/DashboardPage/theme';
 
 import { AuthProvider } from './contexts/authProvider';
 import { VersionProvider } from './contexts/versionprovider';
-import data from './data/KlaroConfig.json';
+import data from './config/KlaroConfig.json';
 import AboutPage from './modules/global/Pages/AboutPage/AboutPage';
 import LandingPage from './modules/global/Pages/LandingPage/LandingPage';
 import LicencePage from './modules/global/Pages/LicencePage/LicencePage';
@@ -24,7 +24,7 @@ import LoginPageJwtLocalStorage from './modules/global/Pages/LoginPages/jwt-loca
 import LoginSocialNetworksPage from './modules/global/Pages/LoginPages/social-network-based-login/LoginSocialNetworks';
 import UseragreementPage from './modules/global/Pages/UserAgreement/UseragreementPage';
 import Klaro from './modules/global/components/Klaro';
-import ProtectRoute from './others/utilities/ProtectRoute';
+import ProtectRoute from './modules/main/Pages/components/ProtectRoute';
 
 const theme = createTheme({
   components: {
