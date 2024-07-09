@@ -1,5 +1,7 @@
-import { AuthenticationFormType, useAuth } from '../../../contexts/authProvider';
-
+import {
+  AuthenticationFormType,
+  useAuth,
+} from '../../../contexts/authProvider';
 
 export interface AuthStates {
   firebase: boolean;

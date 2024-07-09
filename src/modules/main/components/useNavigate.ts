@@ -10,8 +10,6 @@ interface AuthRoute {
 }
 type UseAuthNavigate = () => void;
 
-
-
 const getAuthRoute = (
   currentAuthenticationForm: AuthenticationFormType,
   authStates: AuthStates,

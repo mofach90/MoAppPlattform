@@ -13,7 +13,6 @@ function DemoProtectRoute({
     isAuthenticatedSocialAuth,
     loading,
     authenticationForm,
-    
   } = useAuth();
   const navigate = useNavigate();
   console.log('Initial auth states: ', {

@@ -10,8 +10,8 @@ import React, {
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
 
 export type AuthenticationFormType =
-| 'Firebase based authentication using Email and Password or Anonymously'
-| '';
+  | 'Firebase based authentication using Email and Password or Anonymously'
+  | '';
 interface AuthContextType {
   isAuthenticatedSessionId: boolean;
   isAuthenticatedBasic: boolean;
@@ -44,10 +44,11 @@ export function AuthProvider({
   const [isAuthenticatedSocialAuth, setIsAuthenticatedSocialAuth] =
     useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  const [authenticationForm, setAuthenticationForm] = useState<AuthenticationFormType>(() => {
-    const storedValue = localStorage.getItem('authenticationForm');
-    return storedValue ? JSON.parse(storedValue) : '';
-  });
+  const [authenticationForm, setAuthenticationForm] =
+    useState<AuthenticationFormType>(() => {
+      const storedValue = localStorage.getItem('authenticationForm');
+      return storedValue ? JSON.parse(storedValue) : '';
+    });
   useEffect(() => {
     localStorage.setItem(
       'authenticationForm',
