@@ -19,9 +19,8 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": true
     /* This will make  */
-
   },
   "include": ["src/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]

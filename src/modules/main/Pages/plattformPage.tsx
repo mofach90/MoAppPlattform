@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import Topbar from '../components/Topbar';
-import '../../global/theme/theme.css'
+import '../../global/theme/theme.css';
 export enum pages {
   dashboard = 'Dashboard',
   todo = 'To-do',

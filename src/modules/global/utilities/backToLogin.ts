@@ -1,7 +1,8 @@
-import { NavigateFunction } from "react-router-dom";
+import { NavigateFunction } from 'react-router-dom';
 
-
-export function backToLogin(curentLoginPath:string, navigate: NavigateFunction
+export function backToLogin(
+  curentLoginPath: string,
+  navigate: NavigateFunction,
 ) {
-    navigate(curentLoginPath);
-  }
+  navigate(curentLoginPath);
+}

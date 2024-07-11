@@ -26,12 +26,12 @@ const useAuthStates: () => UseAuthStatesReturnType = () => {
     isAuthenticatedSocialAuth,
   } = useAuth();
   const authStates: AuthStates = {
-    firebase:isAuthenticatedFirebase,
-    basic:isAuthenticatedBasic,
-    sessionId:isAuthenticatedSessionId,
-    jwtLocalStorage:isAuthenticatedJwtLocalStorage,
-    jwtCookie:isAuthenticatedJwtCookie,
-    socialMedia:isAuthenticatedSocialAuth,
+    firebase: isAuthenticatedFirebase,
+    basic: isAuthenticatedBasic,
+    sessionId: isAuthenticatedSessionId,
+    jwtLocalStorage: isAuthenticatedJwtLocalStorage,
+    jwtCookie: isAuthenticatedJwtCookie,
+    socialMedia: isAuthenticatedSocialAuth,
   };
   return { loading, authenticationForm, authStates };
 };

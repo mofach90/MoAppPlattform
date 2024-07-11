@@ -1,4 +1,3 @@
-
 import { AuthStates } from './useAuthStates';
 import { AuthFlow, AuthenticationFormType } from './useNavigate';
 
