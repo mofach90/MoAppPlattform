@@ -22,6 +22,44 @@ should be renamed to
 
 - **Interfaces and Types**: Interfaces and Types Naming must follow this regular expression ^[A-Z][a-zA-Z0-9]\*$
 
+### Folder Structure
+
+```
+├── public
+│   ├── assets
+│   └── locales
+│       ├── ar
+│       ├── de
+│       └── en
+└── src
+    ├── config
+    ├── contexts
+    ├── data
+    ├── modules
+    │   ├── demo
+    │   │   ├── components
+    │   │   └── pages
+    │   │       └── dashboard
+    │   ├── global
+    │   │   ├── Pages
+    │   │   │   ├── AboutPage
+    │   │   │   ├── LandingPage
+    │   │   │   ├── LicencePage
+    │   │   │   ├── LoginPages
+    │   │   │   └── UserAgreement
+    │   │   ├── components
+    │   │   ├── theme
+    │   │   └── utilities
+    │   └── main
+    │       ├── Pages
+    │       │   ├── DashboardPage
+    │       │   ├── receipe
+    │       │   ├── to-do
+    │       │   └── weather
+    │       └── components
+    └── routes    
+```
+
 ### Built With
 
 - **Frontend**:
