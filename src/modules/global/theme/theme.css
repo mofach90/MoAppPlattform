@@ -3,14 +3,14 @@
 html,
 body,
 #root,
-.app,
+.PlattformPage,
 .content {
   height: 100%;
   width: 100%;
   font-family: 'Source Sans 3', sans-serif;
 }
 
-.app {
+.PlattformPage {
   display: flex;
   position: relative;
 }

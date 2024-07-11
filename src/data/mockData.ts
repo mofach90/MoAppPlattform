@@ -1,4 +1,4 @@
-import { tokens } from '../modules/main/Pages/DashboardPage/theme';
+import { tokens } from '../modules/global/theme/theme';
 
 export const mockDataTeam = [
   {

@@ -1,5 +1,5 @@
-import { Typography, Box, useTheme } from '@mui/material';
-import { tokens } from '../theme';
+import { Box, Typography, useTheme } from '@mui/material';
+import { tokens } from '../../global/theme/theme';
 interface HeaderTypes {
   title: string;
   subtitle: string;

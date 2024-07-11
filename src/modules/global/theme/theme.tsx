@@ -1,5 +1,7 @@
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { createContext, useMemo, useState } from 'react';
+import './theme.css';
+
 
 interface colorLibrary {
   grey: {

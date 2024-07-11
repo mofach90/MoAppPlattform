@@ -9,7 +9,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { Menu, MenuItem, ProSidebar } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { Link } from 'react-router-dom';
-import { tokens } from '../../theme';
+import { tokens } from '../../global/theme/theme';
 
 interface ItemTypes {
   title: string;
@@ -122,7 +122,7 @@ const Sidebar = () => {
           <Box paddingLeft={isCollapsed ? undefined : '10%'}>
             <Item
               title="Dashboard"
-              to="/home-dashboard"
+              to="/main-dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

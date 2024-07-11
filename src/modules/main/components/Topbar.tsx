@@ -4,7 +4,7 @@ import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, IconButton, InputBase, Stack } from '@mui/material';
 import { useContext } from 'react';
-import { ColorModeContext, Mode, tokens } from '../../theme';
+import { ColorModeContext, Mode, tokens } from '../../global/theme/theme';
 
 interface Theme {
   palette?: {

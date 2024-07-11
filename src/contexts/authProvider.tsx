@@ -8,11 +8,10 @@ import React, {
   useState,
 } from 'react';
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
+import { AuthenticationFormType } from '../modules/main/components/useNavigate';
 
-export type AuthenticationFormType =
-  | 'Firebase based authentication using Email and Password or Anonymously'
-  | '';
-interface AuthContextType {
+
+export interface AuthContextType {
   isAuthenticatedSessionId: boolean;
   isAuthenticatedBasic: boolean;
   isAuthenticatedJwtLocalStorage: boolean;
