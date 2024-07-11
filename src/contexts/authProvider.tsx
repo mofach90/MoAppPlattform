@@ -8,7 +8,7 @@ import React, {
   useState,
 } from 'react';
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
-import { AuthenticationFormType } from '../modules/main/components/useNavigate';
+import { AuthenticationFormType } from '../modules/global/utilities/useNavigate';
 
 export interface AuthContextType {
   isAuthenticatedSessionId: boolean;
