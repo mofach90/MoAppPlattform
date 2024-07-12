@@ -8,7 +8,75 @@ import React, {
   useState,
 } from 'react';
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
-import { AuthenticationFormType } from '../modules/global/utilities/useNavigate';
+// import { AuthenticationFormType } from '../modules/global/utilities/useNavigate';
+
+
+type AuthenticationFormType = 
+  | 'Simple Basic Authentication'
+  | 'form-based-authentication using session-id'
+  | 'form-based-authentication using Jwt stored in browser local session'
+  | 'form-based-authentication using Jwt stored in browser cookie'
+  | 'Firebase based authentication using Email and Password or Anonymously'
+  | 'social based authentication'
+  | '';
+
+const authCheckRoutes: authCheckRoutesType = {
+  'Simple Basic Authentication': {
+    path: '/check-basic-authentication',
+    method: 'GET',
+    credentials: 'include',
+  },
+  'form-based-authentication using session-id': {
+    path: '/check-session-id-cookie',
+    method: 'GET',
+    credentials: 'include',
+  },
+  'form-based-authentication using Jwt stored in browser local session': {
+    path: '/check-jwt-local-storage',
+    method: 'GET',
+    credentials: 'include',
+    // headers: {
+    //   Authorization: `Bearer ${token}`,
+    //   'Content-Type': 'application/json',
+    // },
+  },
+  'form-based-authentication using Jwt stored in browser cookie': {
+    path: '/check-jwt-cookie',
+    method: 'GET',
+    credentials: 'include',
+  },
+
+  'Firebase based authentication using Email and Password or Anonymously': {
+    path: '/check-firebase-authentication',
+    method: 'GET',
+    credentials: 'include',
+  },
+  'social based authentication': {
+    path: '/check-google-auth',
+    method: 'GET',
+    credentials: 'include',
+  },
+  "":{
+    path: '/',
+    method: 'GET',
+    credentials: 'include',
+  }
+};
+
+export interface MyRequest {
+  path: string;
+  method: RequestInit['method'];
+  credentials: RequestInit['credentials'];
+}
+
+export type authCheckRoutesType = Record<AuthenticationFormType, MyRequest>;
+
+const getAuthCheckRoute = (
+  authenticationForm:AuthenticationFormType,
+  authCheckRoutes: authCheckRoutesType,
+): authCheckRoutesType => {
+  return authCheckRoutes[authenticationForm];
+};
 
 export interface AuthContextType {
   isAuthenticatedSessionId: boolean;
@@ -57,6 +125,7 @@ export function AuthProvider({
   const checkAuthentication = async () => {
     try {
       setLoading(true);
+
       const responseBasicAuth = await fetch(
         `/api/v1/auth/check-basic-authentication`,
         {
