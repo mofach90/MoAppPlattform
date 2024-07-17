@@ -9,7 +9,6 @@ function FormBasedLoginPage() {
   const { FORM_VALIDATION, INITIAL_FORM_STATE, handleonSubmit, buttonConfig } =
     useForm({
       endpoint: 'login-sessionid',
-      setAuthFormMessage: 'form-based-authentication using session-id',
     });
   return (
     <Grid container height="100vh">

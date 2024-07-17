@@ -2,7 +2,7 @@ import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { useLogin } from '../hooks/useLogin';
 
 export const MainLoginService = () => {
-  const { navigate, open, setOpen, handleClose } = useLogin();
+  const { open, setOpen, handleClose, handleOnClick } = useLogin();
 
   return (
     <>
@@ -35,7 +35,9 @@ export const MainLoginService = () => {
         <DialogActions sx={{ width: '100%' }}>
           <Button
             variant="contained"
-            onClick={() => navigate('/login-with-firebase')}
+            onClick={() => {
+              handleOnClick("/login-with-firebase","Firebase based authentication using Email and Password or Anonymously")
+            }}
             fullWidth={true}
           >
             Login using Firebase

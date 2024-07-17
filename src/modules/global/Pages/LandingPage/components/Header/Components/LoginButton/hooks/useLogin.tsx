@@ -1,9 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../../../../../../../contexts/authProvider';
+import { AuthenticationFormType } from '../../../../../../../../../types/authTypes';
 export const useLogin = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState<boolean>(false);
+  const { setAuthenticationForm, setIsAuthenticatedBasic } = useAuth();
+  const handleOnClick = (
+    path: string,
+    authenticationForm: AuthenticationFormType,
+  ) => {
+    setAuthenticationForm(authenticationForm);
+    navigate(path);
+  };
   const handleClose = (
     _event: React.SyntheticEvent | Event,
     reason?: string,
@@ -13,7 +22,6 @@ export const useLogin = () => {
     }
     setOpen(false);
   };
-  const { setAuthenticationForm, setIsAuthenticatedBasic } = useAuth();
 
   const triggerAuthPopup = async () => {
     try {
@@ -34,5 +42,5 @@ export const useLogin = () => {
     }
   };
 
-  return { navigate, open, setOpen, handleClose, triggerAuthPopup };
+  return { handleOnClick, open, setOpen, handleClose, triggerAuthPopup, navigate };
 };

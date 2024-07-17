@@ -1,6 +1,5 @@
 import { ButtonProps } from '@mui/material/Button';
 import * as Yup from 'yup';
-import { useAuth } from '../../../../../contexts/authProvider';
 
 const buttonConfig: ButtonProps = {
   variant: 'contained',
@@ -14,7 +13,6 @@ const INITIAL_FORM_STATE = {
 };
 interface useFormProps {
   endpoint?: string;
-  setAuthFormMessage?: string;
 }
 
 const FORM_VALIDATION = Yup.object().shape({
@@ -27,11 +25,7 @@ const FORM_VALIDATION = Yup.object().shape({
     .matches(/^[a-zA-Z]+$/, ' must include only chars'),
 });
 
-export const useForm = ({
-  endpoint = '',
-  setAuthFormMessage = '',
-}: useFormProps = {}) => {
-  const { setAuthenticationForm } = useAuth();
+export const useForm = ({ endpoint = '' }: useFormProps = {}) => {
   const handleonSubmit = async (values: object) => {
     const newValues = JSON.stringify(values);
     await triggerFormBasedAuth(newValues);
@@ -44,7 +38,9 @@ export const useForm = ({
         body: values,
         credentials: 'include',
       });
-      setAuthenticationForm(`${setAuthFormMessage}`);
+      console.log({endpoint})
+      console.log({result})
+      console.log({values})
       if (result.ok) {
         const data = await result.json();
         if (data.token) {

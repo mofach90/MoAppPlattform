@@ -2,7 +2,7 @@ import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { useLogin } from '../hooks/useLogin';
 
 function DemoLoginService() {
-  const { navigate, open, setOpen, handleClose, triggerAuthPopup } = useLogin();
+  const { handleOnClick, open, setOpen, handleClose, triggerAuthPopup } = useLogin();
 
   return (
     <>
@@ -43,7 +43,9 @@ function DemoLoginService() {
         <DialogActions sx={{ width: '100%' }}>
           <Button
             variant="contained"
-            onClick={() => navigate('/login')}
+            onClick={() => {
+              handleOnClick("/login","form-based-authentication using session-id")
+            }}
             fullWidth={true}
           >
             Login Using Form Based Authentication using Sesion ID
@@ -52,7 +54,7 @@ function DemoLoginService() {
         <DialogActions sx={{ width: '100%' }}>
           <Button
             variant="contained"
-            onClick={() => navigate('/login-jwt-stored-in-localSession')}
+            onClick={() => handleOnClick('/login-jwt-stored-in-localSession',"form-based-authentication using Jwt stored in browser local session")}
             fullWidth={true}
           >
             Login Using Form Based Authentication using JWT Stored in
@@ -62,7 +64,7 @@ function DemoLoginService() {
         <DialogActions sx={{ width: '100%' }}>
           <Button
             variant="contained"
-            onClick={() => navigate('/login-jwt-stored-in-cookie')}
+            onClick={() => handleOnClick('/login-jwt-stored-in-cookie',"form-based-authentication using Jwt stored in browser cookie")}
             fullWidth={true}
           >
             Login Using Form Based Authentication using JWT Stored in Cookie
@@ -71,7 +73,7 @@ function DemoLoginService() {
         <DialogActions sx={{ width: '100%' }}>
           <Button
             variant="contained"
-            onClick={() => navigate('/login-with-social-networks')}
+            onClick={() => handleOnClick('/login-with-social-networks',"social based authentication")}
             fullWidth={true}
           >
             Login using your Social Network Account

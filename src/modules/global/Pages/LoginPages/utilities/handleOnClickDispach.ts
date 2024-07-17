@@ -6,30 +6,25 @@ import { firebaseSignInWithSocialAccount } from './firebaseSignInWithSocialAccou
 import { handleOnClick } from './handleOnClick';
 
 export const handleOnClickDispach: (
-  setAuthenticationForm: (value: string) => void,
   method?: string,
   values?: valueType,
-) => Promise<void> = async (setAuthenticationForm, method, values) => {
+) => Promise<void> = async ( method, values) => {
   console.log('Hello from Dispatch ', method);
   if (method === 'google') {
     await handleOnClick(
-      () => firebaseSignInWithSocialAccount(auth, 'google'),
-      setAuthenticationForm,
+      () => firebaseSignInWithSocialAccount(auth, 'google')
     );
   } else if (method === 'facebook') {
     await handleOnClick(
-      () => firebaseSignInWithSocialAccount(auth, 'facebook'),
-      setAuthenticationForm,
+      () => firebaseSignInWithSocialAccount(auth, 'facebook')
     );
   } else if (method === 'anonymous') {
     await handleOnClick(
-      () => firebaseSignInAnonymously(auth),
-      setAuthenticationForm,
+      () => firebaseSignInAnonymously(auth)
     );
   } else if (method === 'email_password' && values) {
     await handleOnClick(
-      () => firebaseSignInWithEmailAndPassword(values),
-      setAuthenticationForm,
+      () => firebaseSignInWithEmailAndPassword(values)
     );
   }
 };

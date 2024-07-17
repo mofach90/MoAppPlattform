@@ -2,12 +2,7 @@ import { UserCredential } from 'firebase/auth';
 
 export const handleOnClick = async (
   signInMethod: () => Promise<UserCredential>,
-  setAuthenticationForm: (value: string) => void,
 ) => {
-  console.log('iam in');
-  setAuthenticationForm(
-    'Firebase based authentication using Email and Password or Anonymously',
-  );
   try {
     const userCredential = await signInMethod();
     if (userCredential.user) {

@@ -1,120 +1,34 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useEffect, useMemo } from 'react';
+import { AuthContextType } from '../data/authData';
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
-// import { AuthenticationFormType } from '../modules/global/utilities/useNavigate';
-
-
-type AuthenticationFormType = 
-  | 'Simple Basic Authentication'
-  | 'form-based-authentication using session-id'
-  | 'form-based-authentication using Jwt stored in browser local session'
-  | 'form-based-authentication using Jwt stored in browser cookie'
-  | 'Firebase based authentication using Email and Password or Anonymously'
-  | 'social based authentication'
-  | '';
-
-const authCheckRoutes: authCheckRoutesType = {
-  'Simple Basic Authentication': {
-    path: '/check-basic-authentication',
-    method: 'GET',
-    credentials: 'include',
-  },
-  'form-based-authentication using session-id': {
-    path: '/check-session-id-cookie',
-    method: 'GET',
-    credentials: 'include',
-  },
-  'form-based-authentication using Jwt stored in browser local session': {
-    path: '/check-jwt-local-storage',
-    method: 'GET',
-    credentials: 'include',
-    // headers: {
-    //   Authorization: `Bearer ${token}`,
-    //   'Content-Type': 'application/json',
-    // },
-  },
-  'form-based-authentication using Jwt stored in browser cookie': {
-    path: '/check-jwt-cookie',
-    method: 'GET',
-    credentials: 'include',
-  },
-
-  'Firebase based authentication using Email and Password or Anonymously': {
-    path: '/check-firebase-authentication',
-    method: 'GET',
-    credentials: 'include',
-  },
-  'social based authentication': {
-    path: '/check-google-auth',
-    method: 'GET',
-    credentials: 'include',
-  },
-  "":{
-    path: '/',
-    method: 'GET',
-    credentials: 'include',
-  }
-};
-
-export interface MyRequest {
-  path: string;
-  method: RequestInit['method'];
-  credentials: RequestInit['credentials'];
-}
-
-export type authCheckRoutesType = Record<AuthenticationFormType, MyRequest>;
-
-const getAuthCheckRoute = (
-  authenticationForm:AuthenticationFormType,
-  authCheckRoutes: authCheckRoutesType,
-): authCheckRoutesType => {
-  return authCheckRoutes[authenticationForm];
-};
-
-export interface AuthContextType {
-  isAuthenticatedSessionId: boolean;
-  isAuthenticatedBasic: boolean;
-  isAuthenticatedJwtLocalStorage: boolean;
-  isAuthenticatedJwtCookie: boolean;
-  isAuthenticatedSocialAuth: boolean;
-  isAuthenticatedFirebase: boolean;
-  loading: boolean;
-  recheckAuthentication: () => void;
-  setAuthenticationForm: Dispatch<SetStateAction<AuthenticationFormType>>;
-  setIsAuthenticatedBasic: Dispatch<SetStateAction<boolean>>;
-  authenticationForm: AuthenticationFormType;
-}
+import { useAuthProvider } from '../modules/global/utilities/authProviderUtils';
+import { MyRequest } from '../types/authTypes';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const [isAuthenticatedBasic, setIsAuthenticatedBasic] =
-    useState<boolean>(false);
-  const [isAuthenticatedFirebase, setIsAuthenticatedFirebase] =
-    useState<boolean>(false);
-  const [isAuthenticatedSessionId, setIsAuthenticatedSessionId] =
-    useState<boolean>(false);
-  const [isAuthenticatedJwtLocalStorage, setIsAuthenticatedJwtLocalStorage] =
-    useState<boolean>(false);
-  const [isAuthenticatedJwtCookie, setIsAuthenticatedJwtCookie] =
-    useState<boolean>(false);
-  const [isAuthenticatedSocialAuth, setIsAuthenticatedSocialAuth] =
-    useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [authenticationForm, setAuthenticationForm] =
-    useState<AuthenticationFormType>(() => {
-      const storedValue = localStorage.getItem('authenticationForm');
-      return storedValue ? JSON.parse(storedValue) : '';
-    });
+  const {
+    isAuthenticatedBasic,
+    isAuthenticatedFirebase,
+    isAuthenticatedSessionId,
+    isAuthenticatedJwtLocalStorage,
+    isAuthenticatedJwtCookie,
+    isAuthenticatedSocialAuth,
+    getAuthCheckRoute,
+    loading,
+    authenticationForm,
+    setAuthenticationForm,
+    setIsAuthenticatedBasic,
+    setLoading,
+    setIsAuthenticatedSessionId,
+    setIsAuthenticatedJwtLocalStorage,
+    setIsAuthenticatedJwtCookie,
+    setIsAuthenticatedFirebase,
+    setIsAuthenticatedSocialAuth
+  } = useAuthProvider();
+
   useEffect(() => {
     localStorage.setItem(
       'authenticationForm',
@@ -125,81 +39,65 @@ export function AuthProvider({
   const checkAuthentication = async () => {
     try {
       setLoading(true);
+      const authCheckRoute: MyRequest = getAuthCheckRoute(authenticationForm);
 
-      const responseBasicAuth = await fetch(
-        `/api/v1/auth/check-basic-authentication`,
-        {
-          method: 'GET',
-          credentials: 'include',
-        },
-      );
-      const resultSessionId = await fetch(
-        '/api/v1/auth/check-session-id-cookie',
-        {
-          method: 'GET',
-          credentials: 'include',
-        },
-      );
-      const resultFirebaseAuthCheck = await fetch(
-        '/api/v1/auth/check-firebase-authentication',
-        {
-          method: 'GET',
-          credentials: 'include',
-        },
-      );
-      const token = localStorage.getItem('jwtToken');
-      const resultJwtLocalStorage = await fetch(
-        '/api/v1/auth/check-jwt-local-storage',
-        {
-          method: 'GET',
-          credentials: 'include',
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        },
-      );
-      const resultGoogleAuth = await fetch('/api/v1/auth/check-google-auth', {
-        method: 'GET',
-        credentials: 'include',
-      });
-      const resultJwtCookie = await fetch('/api/v1/auth/check-jwt-cookie', {
-        method: 'GET',
-        credentials: 'include',
-      });
-      const dataJwtLocalStorage = await resultJwtLocalStorage.json();
-      const dataJwtCookie = await resultJwtCookie.json();
-      const dataSessionId = await resultSessionId.json();
-      const dataBasicAuthentication = await responseBasicAuth.json();
-      const dataFirebaseAuthCheck = await resultFirebaseAuthCheck.json();
-      console.log({ dataFirebaseAuthCheck });
-      if (dataBasicAuthentication.isAuthenticatedBasic) {
-        setIsAuthenticatedBasic(true);
+      console.log('authCheckRoute ', authCheckRoute);
+      // const MyResponse = await fetch(`/api/v1/auth${authCheckRoute.path}`, {
+      //   method: authCheckRoute.method,
+      //   credentials: authCheckRoute.credentials,
+      // });
+
+      const getAuthStateFromBackend = async (authCheckRoute: MyRequest ) => {
+        const response = await fetch(`/api/v1/auth${authCheckRoute.path}`, {
+          method: authCheckRoute.method,
+          credentials: authCheckRoute.credentials,
+        });
+        console.log("response", response)
+        const contentType = response.headers.get('Content-Type')
+        console.log("contentType ", contentType)
+        if (contentType && contentType.includes('application/json')) {
+          const data = await response.json()
+          console.log("DATA", data)
+          return data
+        } else return response
       }
-      if (dataSessionId.isAuthenticatedSessionId) {
-        setIsAuthenticatedSessionId(true);
-      }
-      if (resultGoogleAuth.ok) {
-        setIsAuthenticatedSocialAuth(true);
-      }
-      if (dataJwtLocalStorage.isAuthenticatedJwtLocalStorage) {
-        setIsAuthenticatedJwtLocalStorage(true);
-      }
-      if (dataJwtCookie.isAuthenticatedJwtCookie) {
-        setIsAuthenticatedJwtCookie(true);
-      }
-      if (dataFirebaseAuthCheck.isAuthenticatedFirebase) {
-        setIsAuthenticatedFirebase(true);
-      }
-    } catch (error) {
+
+      const dataMyResponse: any = await getAuthStateFromBackend(authCheckRoute)
+        console.log('dataMyResponse', dataMyResponse);
+        if (dataMyResponse.isAuthenticatedBasic) {
+          setIsAuthenticatedBasic(true);
+        }
+        if (dataMyResponse.isAuthenticatedSessionId) {
+          setIsAuthenticatedSessionId(true);
+        }
+
+        if (dataMyResponse.isAuthenticatedJwtLocalStorage) {
+          setIsAuthenticatedJwtLocalStorage(true);
+        }
+        if (dataMyResponse.isAuthenticatedJwtCookie) {
+          setIsAuthenticatedJwtCookie(true);
+        }
+        if (dataMyResponse.isAuthenticatedFirebase) {
+          setIsAuthenticatedFirebase(true);
+        }
+        if (
+          dataMyResponse.ok &&
+          authenticationForm === 'social based authentication'
+        ) {
+          setIsAuthenticatedSocialAuth(true);
+        }
+      
+      } catch (error) {
       console.error('Failure in checkAuthentication', error);
     } finally {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     checkAuthentication();
   }, []);
+
   useEffect(() => {
     console.log(
       'isAuthenticatedFirebase in use effect',

@@ -1,5 +1,6 @@
+import { AuthenticationFormType } from '../../../types/authTypes';
 import { AuthStates } from './useAuthStates';
-import { AuthFlow, AuthenticationFormType } from './useNavigate';
+import { AuthFlow } from './useProtectRoute';
 
 export const getCurrentAuthFlow = (
   currentAuthenticationForm: AuthenticationFormType,
