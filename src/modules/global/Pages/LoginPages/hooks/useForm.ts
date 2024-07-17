@@ -38,9 +38,9 @@ export const useForm = ({ endpoint = '' }: useFormProps = {}) => {
         body: values,
         credentials: 'include',
       });
-      console.log({endpoint})
-      console.log({result})
-      console.log({values})
+      console.log({ endpoint });
+      console.log({ result });
+      console.log({ values });
       if (result.ok) {
         const data = await result.json();
         if (data.token) {

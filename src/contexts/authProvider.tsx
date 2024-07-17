@@ -26,7 +26,7 @@ export function AuthProvider({
     setIsAuthenticatedJwtLocalStorage,
     setIsAuthenticatedJwtCookie,
     setIsAuthenticatedFirebase,
-    setIsAuthenticatedSocialAuth
+    setIsAuthenticatedSocialAuth,
   } = useAuthProvider();
 
   useEffect(() => {
@@ -47,47 +47,46 @@ export function AuthProvider({
       //   credentials: authCheckRoute.credentials,
       // });
 
-      const getAuthStateFromBackend = async (authCheckRoute: MyRequest ) => {
+      const getAuthStateFromBackend = async (authCheckRoute: MyRequest) => {
         const response = await fetch(`/api/v1/auth${authCheckRoute.path}`, {
           method: authCheckRoute.method,
           credentials: authCheckRoute.credentials,
         });
-        console.log("response", response)
-        const contentType = response.headers.get('Content-Type')
-        console.log("contentType ", contentType)
+        console.log('response', response);
+        const contentType = response.headers.get('Content-Type');
+        console.log('contentType ', contentType);
         if (contentType && contentType.includes('application/json')) {
-          const data = await response.json()
-          console.log("DATA", data)
-          return data
-        } else return response
+          const data = await response.json();
+          console.log('DATA', data);
+          return data;
+        } else return response;
+      };
+
+      const dataMyResponse: any = await getAuthStateFromBackend(authCheckRoute);
+      console.log('dataMyResponse', dataMyResponse);
+      if (dataMyResponse.isAuthenticatedBasic) {
+        setIsAuthenticatedBasic(true);
+      }
+      if (dataMyResponse.isAuthenticatedSessionId) {
+        setIsAuthenticatedSessionId(true);
       }
 
-      const dataMyResponse: any = await getAuthStateFromBackend(authCheckRoute)
-        console.log('dataMyResponse', dataMyResponse);
-        if (dataMyResponse.isAuthenticatedBasic) {
-          setIsAuthenticatedBasic(true);
-        }
-        if (dataMyResponse.isAuthenticatedSessionId) {
-          setIsAuthenticatedSessionId(true);
-        }
-
-        if (dataMyResponse.isAuthenticatedJwtLocalStorage) {
-          setIsAuthenticatedJwtLocalStorage(true);
-        }
-        if (dataMyResponse.isAuthenticatedJwtCookie) {
-          setIsAuthenticatedJwtCookie(true);
-        }
-        if (dataMyResponse.isAuthenticatedFirebase) {
-          setIsAuthenticatedFirebase(true);
-        }
-        if (
-          dataMyResponse.ok &&
-          authenticationForm === 'social based authentication'
-        ) {
-          setIsAuthenticatedSocialAuth(true);
-        }
-      
-      } catch (error) {
+      if (dataMyResponse.isAuthenticatedJwtLocalStorage) {
+        setIsAuthenticatedJwtLocalStorage(true);
+      }
+      if (dataMyResponse.isAuthenticatedJwtCookie) {
+        setIsAuthenticatedJwtCookie(true);
+      }
+      if (dataMyResponse.isAuthenticatedFirebase) {
+        setIsAuthenticatedFirebase(true);
+      }
+      if (
+        dataMyResponse.ok &&
+        authenticationForm === 'social based authentication'
+      ) {
+        setIsAuthenticatedSocialAuth(true);
+      }
+    } catch (error) {
       console.error('Failure in checkAuthentication', error);
     } finally {
       setLoading(false);

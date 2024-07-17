@@ -2,7 +2,8 @@ import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { useLogin } from '../hooks/useLogin';
 
 function DemoLoginService() {
-  const { handleOnClick, open, setOpen, handleClose, triggerAuthPopup } = useLogin();
+  const { handleOnClick, open, setOpen, handleClose, triggerAuthPopup } =
+    useLogin();
 
   return (
     <>
@@ -44,7 +45,10 @@ function DemoLoginService() {
           <Button
             variant="contained"
             onClick={() => {
-              handleOnClick("/login","form-based-authentication using session-id")
+              handleOnClick(
+                '/login',
+                'form-based-authentication using session-id',
+              );
             }}
             fullWidth={true}
           >
@@ -54,7 +58,12 @@ function DemoLoginService() {
         <DialogActions sx={{ width: '100%' }}>
           <Button
             variant="contained"
-            onClick={() => handleOnClick('/login-jwt-stored-in-localSession',"form-based-authentication using Jwt stored in browser local session")}
+            onClick={() =>
+              handleOnClick(
+                '/login-jwt-stored-in-localSession',
+                'form-based-authentication using Jwt stored in browser local session',
+              )
+            }
             fullWidth={true}
           >
             Login Using Form Based Authentication using JWT Stored in
@@ -64,7 +73,12 @@ function DemoLoginService() {
         <DialogActions sx={{ width: '100%' }}>
           <Button
             variant="contained"
-            onClick={() => handleOnClick('/login-jwt-stored-in-cookie',"form-based-authentication using Jwt stored in browser cookie")}
+            onClick={() =>
+              handleOnClick(
+                '/login-jwt-stored-in-cookie',
+                'form-based-authentication using Jwt stored in browser cookie',
+              )
+            }
             fullWidth={true}
           >
             Login Using Form Based Authentication using JWT Stored in Cookie
@@ -73,7 +87,12 @@ function DemoLoginService() {
         <DialogActions sx={{ width: '100%' }}>
           <Button
             variant="contained"
-            onClick={() => handleOnClick('/login-with-social-networks',"social based authentication")}
+            onClick={() =>
+              handleOnClick(
+                '/login-with-social-networks',
+                'social based authentication',
+              )
+            }
             fullWidth={true}
           >
             Login using your Social Network Account

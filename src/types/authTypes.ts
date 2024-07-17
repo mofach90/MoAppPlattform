@@ -1,13 +1,13 @@
 export interface MyRequest {
-    path: string;
-    method: RequestInit['method'];
-    credentials: RequestInit['credentials'];
-    headers?:RequestInit['headers']
-  }
-  
-  export type authCheckRoutesType = Record<AuthenticationFormType, MyRequest>;
+  path: string;
+  method: RequestInit['method'];
+  credentials: RequestInit['credentials'];
+  headers?: RequestInit['headers'];
+}
 
-  export type AuthenticationFormType =
+export type authCheckRoutesType = Record<AuthenticationFormType, MyRequest>;
+
+export type AuthenticationFormType =
   | 'Simple Basic Authentication'
   | 'form-based-authentication using session-id'
   | 'form-based-authentication using Jwt stored in browser local session'

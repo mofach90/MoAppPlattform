@@ -84,8 +84,6 @@ export const useAuthProvider = () => {
     setIsAuthenticatedJwtLocalStorage,
     setIsAuthenticatedJwtCookie,
     setIsAuthenticatedFirebase,
-    setIsAuthenticatedSocialAuth
-
-
+    setIsAuthenticatedSocialAuth,
   };
 };

@@ -36,7 +36,10 @@ export const MainLoginService = () => {
           <Button
             variant="contained"
             onClick={() => {
-              handleOnClick("/login-with-firebase","Firebase based authentication using Email and Password or Anonymously")
+              handleOnClick(
+                '/login-with-firebase',
+                'Firebase based authentication using Email and Password or Anonymously',
+              );
             }}
             fullWidth={true}
           >

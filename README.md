@@ -57,7 +57,7 @@ should be renamed to
     │       │   ├── to-do
     │       │   └── weather
     │       └── components
-    └── routes    
+    └── routes
 ```
 
 ### Built With

@@ -42,5 +42,12 @@ export const useLogin = () => {
     }
   };
 
-  return { handleOnClick, open, setOpen, handleClose, triggerAuthPopup, navigate };
+  return {
+    handleOnClick,
+    open,
+    setOpen,
+    handleClose,
+    triggerAuthPopup,
+    navigate,
+  };
 };

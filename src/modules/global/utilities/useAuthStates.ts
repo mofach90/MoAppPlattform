@@ -1,4 +1,4 @@
-import {  useAuth } from '../../../contexts/authProvider';
+import { useAuth } from '../../../contexts/authProvider';
 import { AuthContextType } from '../../../data/authData';
 
 export interface AuthStates {

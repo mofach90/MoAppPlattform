@@ -6,9 +6,10 @@ import { HomeButton } from '../../../components/goHomeButton';
 import { useForm } from '../hooks/useForm';
 
 function LoginPageJwtLocalStorage() {
-  const { FORM_VALIDATION, INITIAL_FORM_STATE, handleonSubmit, buttonConfig } = useForm({
-    endpoint: 'login-jwt-in-localStorage',
-  });
+  const { FORM_VALIDATION, INITIAL_FORM_STATE, handleonSubmit, buttonConfig } =
+    useForm({
+      endpoint: 'login-jwt-in-localStorage',
+    });
   return (
     <Grid container height="100vh">
       <Grid container alignItems={'center'} justifyContent={'end'} p={2}>
