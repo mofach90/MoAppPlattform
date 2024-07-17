@@ -3,7 +3,7 @@ name: Format Code
 on:
   push:
     branches:
-      - feature/add-form-based-auth/mo
+      - dev
       - main
   pull_request:
     branches:
