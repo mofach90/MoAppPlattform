@@ -37,9 +37,9 @@ const TodoSidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState('Dashboard');
   useEffect(() => {
-    console.log({selected})
-  }, [selected])
-  
+    console.log({ selected });
+  }, [selected]);
+
   return (
     <Box
       sx={{

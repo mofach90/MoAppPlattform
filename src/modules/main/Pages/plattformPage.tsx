@@ -14,7 +14,7 @@ export enum pages {
 function PlattformPage({
   children,
   page,
-  imgPath
+  imgPath,
 }: Readonly<{
   children: React.ReactNode;
   page: pages;
