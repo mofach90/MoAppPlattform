@@ -11,7 +11,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { Link } from 'react-router-dom';
 import { tokens } from '../../global/theme/theme';
 
-interface ItemTypes {
+export interface ItemTypes {
   title: string;
   to: string;
   icon: React.ReactNode;

@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import Header from '../components/Header';
+import '../../global/theme/theme.css';
+import Header, { HeaderTypes } from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import Topbar from '../components/Topbar';
-import '../../global/theme/theme.css';
 export enum pages {
   dashboard = 'Dashboard',
   todo = 'To-do',
@@ -14,7 +14,12 @@ export enum pages {
 function PlattformPage({
   children,
   page,
-}: Readonly<{ children: React.ReactNode; page: pages }>) {
+  imgPath
+}: Readonly<{
+  children: React.ReactNode;
+  page: pages;
+  imgPath?: HeaderTypes['imgPath'];
+}>) {
   return (
     <div className="PlattformPage">
       <Sidebar />
@@ -29,6 +34,7 @@ function PlattformPage({
             <Header
               title={`${page} App`}
               subtitle={`Welcome to your ${page} App`}
+              imgPath={imgPath}
             />
           </Box>
         </Box>
