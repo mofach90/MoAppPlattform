@@ -16,7 +16,7 @@ export interface TaskStore {
   selectedTask: Task | null;
   selectTask: (task: Task) => void;
   addTask: (task: Task) => void;
-  deleteTask: (task: Task["title"]) => void;
+  deleteTask: (task: Task['title']) => void;
 }
 
 export interface ManageTasksState {
@@ -28,6 +28,6 @@ export interface ManageTasksState {
 }
 
 export interface CreateTaskFormValues {
-  taskTitle:string,
-  taskDescription:string,
+  taskTitle: string;
+  taskDescription: string;
 }

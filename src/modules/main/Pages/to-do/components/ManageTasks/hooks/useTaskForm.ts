@@ -35,7 +35,11 @@ const CREATE_FORM_VALIDATION = Yup.object().shape({
 const DELETE_FORM_VALIDATION = Yup.object().shape({
   taskTitle: Yup.string()
     .required('Required Field')
-    .matches(/^[a-zA-Z0-9 ]+$/, 'Title must include only letters, numbers, and spaces')    .max(25, 'Title must be 25 characters or less'),
+    .matches(
+      /^[a-zA-Z0-9 ]+$/,
+      'Title must include only letters, numbers, and spaces',
+    )
+    .max(25, 'Title must be 25 characters or less'),
 });
 
 export const useTaskForm = () => {
@@ -47,8 +51,10 @@ export const useTaskForm = () => {
     };
     addTask(Task);
   };
-  const handleDeleteTask =  (values: Pick<CreateTaskFormValues,"taskTitle">) => {
-    console.log("tasks",values)
+  const handleDeleteTask = (
+    values: Pick<CreateTaskFormValues, 'taskTitle'>,
+  ) => {
+    console.log('tasks', values);
     deleteTask(values.taskTitle);
   };
 
@@ -59,6 +65,6 @@ export const useTaskForm = () => {
     INITIAL_CREATE_FORM_STATE,
     INITIAL_REMOVE_FORM_STATE,
     handleCreateTask,
-    handleDeleteTask
+    handleDeleteTask,
   };
 };

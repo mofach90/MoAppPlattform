@@ -10,7 +10,7 @@ const TodoItem = ({ title, icon, selected, onClick }: TodoItemType) => {
     <MenuItem
       active={selected === title}
       style={{
-        color: "red",
+        color: 'red',
       }}
       onClick={onClick}
       icon={icon}

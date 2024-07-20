@@ -5,8 +5,12 @@ import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapp
 import { useTaskForm } from '../hooks/useTaskForm';
 
 function RemoveTaskForm() {
-  const { DELETE_FORM_VALIDATION, INITIAL_REMOVE_FORM_STATE, handleDeleteTask, buttonConfig } =
-    useTaskForm();
+  const {
+    DELETE_FORM_VALIDATION,
+    INITIAL_REMOVE_FORM_STATE,
+    handleDeleteTask,
+    buttonConfig,
+  } = useTaskForm();
 
   return (
     <Grid
