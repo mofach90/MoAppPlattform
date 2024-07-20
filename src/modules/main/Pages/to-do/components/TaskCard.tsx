@@ -7,7 +7,7 @@ const TaskCard = ({ children }: { children: React.ReactNode }) => {
   return (
     <Paper
       sx={{
-        backgroundColor: 'white',
+        backgroundColor: 'pink',
         width: '90%',
         padding: 5,
         height: 300,

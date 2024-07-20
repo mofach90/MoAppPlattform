@@ -1,11 +1,22 @@
 import { Box, useTheme } from '@mui/material';
+import { useEffect } from 'react';
 import { tokens } from '../../../global/theme/theme';
 import PlattformPage, { pages } from '../plattformPage';
+import ManageTasks from './components/ManageTasks/ManageTasks';
+import TaskDetailView from './components/TaskDetailView';
 import TodoSidebar from './components/TodoSidebar';
+import useTaskStore from './hooks/useTaskStore';
+import { TaskStore } from './types';
 
 const TodoApp = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const selectedTask: TaskStore['selectedTask'] = useTaskStore(
+    (state) => state.selectedTask,
+  );
+  useEffect(() => {
+    console.log({ selectedTask });
+  }, [selectedTask]);
 
   return (
     <PlattformPage page={pages.todo} imgPath="public/assets/to-do-app.png">
@@ -14,8 +25,11 @@ const TodoApp = () => {
         height={'100vh'}
         margin={'15px'}
         borderRadius={3}
+        display={'flex'}
       >
         <TodoSidebar />
+        <TaskDetailView task={selectedTask} />
+        <ManageTasks />
       </Box>
     </PlattformPage>
   );

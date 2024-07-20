@@ -1,18 +1,18 @@
 import { create } from 'zustand';
+import { Task, TaskStore } from '../types';
 
-interface Tasks {
-  title: string;
-  description: string;
-}
-
-const useTaskStore = create((set) => ({
+const useTaskStore = create<TaskStore>((set) => ({
   tasks: [
     { title: 'Go for Shopping', description: 'Buy groceries and essentials' },
   ],
   selectedTask: null,
-  selectTask: (task: Tasks) => set({ selectedTask: task }),
-  addTask: (task: Tasks) =>
-    set((state: { tasks: Tasks[] }) => ({ tasks: [...state.tasks, task] })),
+  selectTask: (task: Task) => set({ selectedTask: task }),
+  addTask: (task: Task) =>
+    set((state: { tasks: Task[] }) => ({ tasks: [...state.tasks, task] })),
+  deleteTask: (title: string) =>
+    set((state: { tasks: Task[] }) => ({
+      tasks: state.tasks.filter((task) => task.title !== title),
+    })),
 }));
 
 export default useTaskStore;
