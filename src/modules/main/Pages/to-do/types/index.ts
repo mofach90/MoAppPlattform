@@ -1,20 +1,17 @@
-import { MouseEventHandler } from 'react';
-
 export interface Task {
   title: string;
   description: string;
+  isChecked?: boolean;
 }
 export interface TodoItemType {
-  title: string;
-  icon: React.ReactNode;
-  selected: string;
-  onClick: MouseEventHandler<HTMLLIElement> | undefined;
+  task: Task;
 }
 
 export interface TaskStore {
   tasks: Task[];
   selectedTask: Task | null;
   selectTask: (task: Task) => void;
+  setIsChecked: (task: Task) => void;
   addTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;
 }
@@ -30,4 +27,10 @@ export interface ManageTasksState {
 export interface CreateTaskFormValues {
   taskTitle: string;
   taskDescription: string;
+}
+
+export function isSelectedTask(
+  selectedTask: Task | null,
+): selectedTask is Task {
+  return selectedTask !== null;
 }

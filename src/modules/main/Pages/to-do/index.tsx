@@ -21,7 +21,6 @@ const TodoApp = () => {
   return (
     <PlattformPage page={pages.todo} imgPath="public/assets/to-do-app.png">
       <Box
-        // sx={{ backgroundColor: 'pink' }}
         height={'100vh'}
         margin={'15px'}
         borderRadius={3}
