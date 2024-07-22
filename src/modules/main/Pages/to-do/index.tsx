@@ -20,12 +20,7 @@ const TodoApp = () => {
 
   return (
     <PlattformPage page={pages.todo} imgPath="public/assets/to-do-app.png">
-      <Box
-        height={'100vh'}
-        margin={'15px'}
-        borderRadius={3}
-        display={'flex'}
-      >
+      <Box height={'100vh'} margin={'15px'} borderRadius={3} display={'flex'}>
         <TodoSidebar />
         <TaskDetailView task={selectedTask} />
         <ManageTasks />
