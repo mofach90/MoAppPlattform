@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import React from 'react';
 import '../../global/theme/theme.css';
 import Header, { HeaderTypes } from '../components/Header';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/SideBar/Sidebar';
 import Topbar from '../components/Topbar';
 export enum pages {
   dashboard = 'Dashboard',
@@ -22,6 +22,8 @@ function PlattformPage({
 }>) {
   return (
     <div className="PlattformPage">
+      {/* <Typography sx={{color:"red"}}>asdghfjkhsfg</Typography> */}
+
       <Sidebar />
       <main className="content">
         <Topbar />

@@ -38,20 +38,22 @@ const TodoSidebar = () => {
       height={'100vh'}
     >
       <ProSidebar collapsed={isCollapsed}>
+
+
         <Menu iconShape="square">
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
               margin: '10px 0 20px 0',
-            }}
+              }}
           >
             {!isCollapsed && (
               <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="15px"
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
                   Your Todo List
