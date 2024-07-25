@@ -22,7 +22,7 @@ const TodoItem = ({ task }: TodoItemType) => {
     setIsChecked(task);
   };
   const checkTaskActive = (selectedTask: Task | null, task: Task) => {
-    return isSelectedTask(selectedTask) && selectedTask.title === task.title;
+    return isSelectedTask(selectedTask) && selectedTask.id === task.id;
   };
 
   useEffect(() => {
@@ -34,11 +34,9 @@ const TodoItem = ({ task }: TodoItemType) => {
 
   return (
     <MenuItem
-    active={checkTaskActive(selectedTask, task)}
-    onClick={() => handleTaskSelected(task)}
-    
+      active={checkTaskActive(selectedTask, task)}
+      onClick={() => handleTaskSelected(task)}
     >
-
       <Box display={'flex'}>
         <Box onClick={() => handleIsChecked(task)} marginRight={2}>
           {task.isChecked ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
@@ -47,7 +45,7 @@ const TodoItem = ({ task }: TodoItemType) => {
           variant="h5"
           sx={{
             textDecoration: task.isChecked ? 'line-through' : 'none',
-            }}
+          }}
         >
           {task.title}
         </Typography>

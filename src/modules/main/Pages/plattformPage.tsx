@@ -40,7 +40,7 @@ function PlattformPage({
             />
           </Box>
         </Box>
-        {children}
+        <Box className="main-content-wrapper">{children}</Box>
       </main>
     </div>
   );

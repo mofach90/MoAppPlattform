@@ -1,9 +1,11 @@
 import { create } from 'zustand';
-import { Task, TaskStore } from '../types';
+import { ApiResponseCreateTask, Task, TaskStore } from '../types';
+import createTaskInFirestore from '../utilities/createTaskInFirestore';
 
 const useTaskStore = create<TaskStore>((set) => ({
   tasks: [
     {
+      id: 'xxxxxx',
       title: 'Go for Shopping',
       description: 'Buy groceries and essentials',
       isChecked: false,
@@ -18,8 +20,16 @@ const useTaskStore = create<TaskStore>((set) => ({
       ),
     }));
   },
-  addTask: (task: Task) =>
-    set((state: TaskStore) => ({ tasks: [...state.tasks, task] })),
+  addTask: async (task: Task) => {
+    try {
+      const response: ApiResponseCreateTask = await createTaskInFirestore(task);
+      set((state: TaskStore) => ({
+        tasks: [...state.tasks, response.newCreatedTask],
+      }));
+    } catch (error) {
+      console.error('Error happen creating a nwe Task in Firestore: ', error);
+    }
+  },
   deleteTask: (title: string) =>
     set((state: TaskStore) => ({
       tasks: state.tasks.filter((task) => task.title !== title),

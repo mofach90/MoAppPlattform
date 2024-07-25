@@ -48,6 +48,7 @@ export const useTaskForm = () => {
     const Task: Task = {
       title: values.taskTitle,
       description: values.taskDescription,
+      isChecked: false,
     };
     addTask(Task);
   };

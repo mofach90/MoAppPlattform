@@ -1,4 +1,5 @@
 export interface Task {
+  id?: string;
   title: string;
   description: string;
   isChecked?: boolean;
@@ -33,4 +34,8 @@ export function isSelectedTask(
   selectedTask: Task | null,
 ): selectedTask is Task {
   return selectedTask !== null;
+}
+export interface ApiResponseCreateTask {
+  taskCreated: boolean;
+  newCreatedTask: Task;
 }

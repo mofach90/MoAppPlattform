@@ -10,11 +10,6 @@ body,
   font-family: 'Source Sans 3', sans-serif;
 }
 
-.PlattformPage {
-  display: flex;
-  position: relative;
-}
-
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -29,4 +24,25 @@ body,
 
 ::-webkit-scrollbar-track:hover {
   background: #555;
+}
+
+/* global/theme/theme.css */
+
+.PlattformPage {
+  display: flex;
+}
+
+.PlattformPage main.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden; /* Prevents main content from overflowing */
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  flex: 1; /* Ensures it takes the remaining space */
+  box-sizing: border-box;
 }
