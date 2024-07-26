@@ -6,22 +6,23 @@ import { Menu, MenuItem, ProSidebar } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { v4 as uuidv4 } from 'uuid';
 import { tokens } from '../../../../global/theme/theme';
-import useTaskStore from '../hooks/useTaskStore';
+import { TodoSidebarProps } from '../types';
 import TodoItem from './TodoItem';
 
-const TodoSidebar = () => {
+const TodoSidebar = ({ title, innerColor, tasks }: TodoSidebarProps) => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const tasks = useTaskStore((state) => state.tasks);
 
   return (
     <Box
       sx={{
-        height: '100vh', // Ensure the sidebar takes the full height of the viewport
+        height: '100vh',
+        marginLeft: "15px",
         '& .pro-sidebar-inner': {
-          background: `${colors.blueAccent[900]} !important`,
+          background: `${innerColor} !important`,
           borderRadius: 3,
+          boxShadow: theme.shadows[6]
         },
         '& .pro-icon-wrapper': {
           backgroundColor: 'transparent !important',
@@ -53,8 +54,13 @@ const TodoSidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
-                  Your Todo List
+                <Typography
+                  variant="h3"
+                  color={colors.grey[100]}
+                  textAlign={'center'}
+                  width={'100%'}
+                >
+                  {title}
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -63,7 +69,10 @@ const TodoSidebar = () => {
             )}
           </MenuItem>
 
-          <Box padding={isCollapsed ? undefined : '5px 0px 5px 20px'}>
+          <Box
+            padding={isCollapsed ? undefined : '5px 0px 5px 20px'}
+            marginLeft={isCollapsed ? '7px' : undefined}
+          >
             {tasks.map((task) => (
               <TodoItem key={uuidv4()} task={task} />
             ))}

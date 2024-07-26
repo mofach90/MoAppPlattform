@@ -14,6 +14,8 @@ const TodoApp = () => {
   const selectedTask: TaskStore['selectedTask'] = useTaskStore(
     (state) => state.selectedTask,
   );
+  const tasks = useTaskStore((state) => state.tasks);
+
   useEffect(() => {
     console.log({ selectedTask });
   }, [selectedTask]);
@@ -21,7 +23,8 @@ const TodoApp = () => {
   return (
     <PlattformPage page={pages.todo} imgPath="public/assets/to-do-app.png">
       <Box margin={'15px'} borderRadius={3} display={'flex'} width={'100%'}>
-        <TodoSidebar />
+        <TodoSidebar variant="on-progress-tasks" title='TO DO'innerColor={colors.blueAccent[900]} tasks={tasks} />
+        <TodoSidebar variant="finished-tasks" title='DONE'innerColor={colors.greenAccent[900]} tasks={tasks} />
         <TaskDetailView task={selectedTask} />
         <ManageTasks />
       </Box>

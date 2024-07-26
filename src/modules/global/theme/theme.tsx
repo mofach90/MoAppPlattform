@@ -2,7 +2,7 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { createContext, useMemo, useState } from 'react';
 import './theme.css';
 
-interface colorLibrary {
+export interface colorLibrary {
   grey: {
     100: string;
     200: string;
@@ -251,7 +251,7 @@ const themeSetting = (mode: Mode) => {
           : {
               styleOverrides: `
           body {
-            background: linear-gradient(to right, rgb(133, 133, 133), #e0e0e0);
+            background: linear-gradient(to right, rgb(233, 233, 233), #e0e0e0);
           }
           `,
             }),

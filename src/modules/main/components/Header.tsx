@@ -16,6 +16,7 @@ const Header = ({ title, subtitle, imgPath }: HeaderTypes) => {
       justifyContent={'space-between'}
       alignItems={'center'}
       width={'100%'}
+      maxHeight={20}
     >
       <Box>
         <Typography
@@ -31,7 +32,7 @@ const Header = ({ title, subtitle, imgPath }: HeaderTypes) => {
         </Typography>
       </Box>
 
-      <img alt="To-do app image" src={imgPath} width={300} height={90}></img>
+      <img alt="To-do app image" src={imgPath} width={300} height={70}></img>
     </Box>
   );
 };
