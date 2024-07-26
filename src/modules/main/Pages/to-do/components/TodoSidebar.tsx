@@ -18,11 +18,11 @@ const TodoSidebar = ({ title, innerColor, tasks }: TodoSidebarProps) => {
     <Box
       sx={{
         height: '100vh',
-        marginLeft: "15px",
+        marginLeft: '15px',
         '& .pro-sidebar-inner': {
           background: `${innerColor} !important`,
           borderRadius: 3,
-          boxShadow: theme.shadows[6]
+          boxShadow: theme.shadows[6],
         },
         '& .pro-icon-wrapper': {
           backgroundColor: 'transparent !important',

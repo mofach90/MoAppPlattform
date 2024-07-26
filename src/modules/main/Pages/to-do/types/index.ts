@@ -56,7 +56,6 @@ export interface colorLibrary {
   };
 }
 
-
 export interface Task {
   id?: string;
   title: string;
@@ -100,9 +99,8 @@ export interface ApiResponseCreateTask {
 }
 
 export interface TodoSidebarProps {
-  variant? : "finished-tasks" | "on-progress-tasks",
-  title : string,
-  innerColor: string,
-  tasks: Task[]
-
+  variant?: 'finished-tasks' | 'on-progress-tasks';
+  title: string;
+  innerColor: string;
+  tasks: Task[];
 }
