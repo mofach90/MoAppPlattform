@@ -1,5 +1,6 @@
 import { Grid, Paper, Typography, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
+import { useEffect } from 'react';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
 import { tokens } from '../../../../../../global/theme/theme';
@@ -18,6 +19,9 @@ function RemoveTaskForm() {
   const handleOnClickRemove = useManageTasksStore(
     (state) => state.handleOnClickRemove,
   );
+  useEffect(() => {
+    console.log(' DELETE_FORM_VALIDATION: ');
+  }, [DELETE_FORM_VALIDATION]);
 
   return (
     <Grid
@@ -42,7 +46,7 @@ function RemoveTaskForm() {
           initialValues={{ ...INITIAL_REMOVE_FORM_STATE }}
           onSubmit={handleDeleteTask}
         >
-          {({ submitForm }) => (
+          {({ submitForm, isValid }) => (
             <Form style={{ width: '60%' }}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -68,8 +72,12 @@ function RemoveTaskForm() {
                         },
                       },
                       onClick: () => {
-                        submitForm();
-                        handleOnClickRemove();
+                        if (isValid) {
+                          submitForm();
+                          handleOnClickRemove();
+                        } else {
+                          console.log('Your Input is not valid');
+                        }
                       },
                     }}
                   >
@@ -86,7 +94,11 @@ function RemoveTaskForm() {
                         marginTop: 2,
                       },
                       onClick: () => {
-                        submitForm();
+                        if (isValid) {
+                          submitForm();
+                        } else {
+                          console.log('Your Input is not valid');
+                        }
                       },
                     }}
                   >

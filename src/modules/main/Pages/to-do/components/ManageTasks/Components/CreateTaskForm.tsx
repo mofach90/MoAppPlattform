@@ -2,15 +2,17 @@ import { Grid, Paper, Typography, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
-import { useTaskForm } from '../hooks/useTaskForm';
 import { tokens } from '../../../../../../global/theme/theme';
 import useManageTasksStore from '../hooks/useManageTasks';
+import { useTaskForm } from '../hooks/useTaskForm';
 
 function CreateTaskForm() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const handleOnclickCreate = useManageTasksStore((state)=>state.handleOnClickCreate)  
-  
+  const handleOnclickCreate = useManageTasksStore(
+    (state) => state.handleOnClickCreate,
+  );
+
   const {
     CREATE_FORM_VALIDATION,
     INITIAL_CREATE_FORM_STATE,
@@ -31,7 +33,7 @@ function CreateTaskForm() {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
-          backgroundColor: `${colors.primary[400]}`
+          backgroundColor: `${colors.primary[400]}`,
         }}
         variant="outlined"
       >
@@ -40,7 +42,7 @@ function CreateTaskForm() {
           initialValues={{ ...INITIAL_CREATE_FORM_STATE }}
           onSubmit={handleCreateTask}
         >
-          {({ submitForm }) => (
+          {({ submitForm, isValid }) => (
             <Form style={{ width: '60%' }}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -63,21 +65,24 @@ function CreateTaskForm() {
                     size="small"
                   />
                 </Grid>
-                <Grid item xs={12} >
+                <Grid item xs={12}>
                   <ButtonWrapper
                     buttonConfig={{
                       ...buttonConfig,
-                      sx: { bgcolor: '#34a1eb',
+                      sx: {
+                        bgcolor: '#34a1eb',
 
                         '&:hover': {
                           backgroundColor: '#1e8fe6',
                         },
-
-                       },
+                      },
                       onClick: () => {
-                        submitForm();
-                        handleOnclickCreate();
-
+                        if (isValid) {
+                          submitForm();
+                          handleOnclickCreate();
+                        } else {
+                          console.log('Your Input is not Valid');
+                        }
                       },
                     }}
                   >
@@ -86,15 +91,20 @@ function CreateTaskForm() {
                   <ButtonWrapper
                     buttonConfig={{
                       ...buttonConfig,
-                      sx: { bgcolor: '#5c7fea',
+                      sx: {
+                        bgcolor: '#5c7fea',
                         '&:hover': {
                           backgroundColor: '#4b70d8',
-                        }
-                        
-                        
-                        , marginTop:2 },
+                        },
+
+                        marginTop: 2,
+                      },
                       onClick: () => {
-                        submitForm();
+                        if (isValid) {
+                          submitForm();
+                        } else {
+                          console.log('Your Input is not Valid');
+                        }
                       },
                     }}
                   >
