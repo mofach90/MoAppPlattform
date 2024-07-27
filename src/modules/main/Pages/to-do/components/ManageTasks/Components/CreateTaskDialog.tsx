@@ -17,6 +17,8 @@ const CreateTaskDialog = () => {
           flexDirection: 'column',
           alignItems: 'center',
           padding: 4,
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          opacity: 0.8, 
         },
       }}
     >

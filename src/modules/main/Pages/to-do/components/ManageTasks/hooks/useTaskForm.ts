@@ -1,7 +1,9 @@
 import { ButtonProps } from '@mui/material/Button';
-import * as Yup from 'yup';
+import { FormikHelpers } from 'formik';
 import useTaskStore from '../../../hooks/useTaskStore';
 import { CreateTaskFormValues, Task } from '../../../types';
+import createFormValidation from '../utils/createFormValidation';
+import deleteFormDublicate from '../utils/deleteFormDublicate';
 
 const buttonConfig: ButtonProps = {
   variant: 'contained',
@@ -17,52 +19,32 @@ const INITIAL_REMOVE_FORM_STATE = {
   taskTitle: '',
 };
 
-const CREATE_FORM_VALIDATION = Yup.object().shape({
-  taskTitle: Yup.string()
-    .required('Required Field')
-    .matches(/^[a-zA-Z0-9 ]+$/, 'Title must include only letters and numbers')
-    .max(25, 'Title must be 25 characters or less'),
-  taskDescription: Yup.string()
-    .required('Required Field')
-    .min(8, 'Description is too short, should be 8 characters minimum')
-    .matches(
-      /^[a-zA-Z0-9 ]+$/,
-      'Description must include only letters and numbers',
-    )
-    .max(500, 'Description must be 500 characters or less'),
-});
-
-const DELETE_FORM_VALIDATION = Yup.object().shape({
-  taskTitle: Yup.string()
-    .required('Required Field')
-    .matches(
-      /^[a-zA-Z0-9 ]+$/,
-      'Title must include only letters, numbers, and spaces',
-    )
-    .max(25, 'Title must be 25 characters or less'),
-});
-
 export const useTaskForm = () => {
-  const { addTask, deleteTask } = useTaskStore();
-  const handleCreateTask = (values: CreateTaskFormValues) => {
+  const { addTask, deleteTask, tasks } = useTaskStore();
+  const handleCreateTask = (
+    values: CreateTaskFormValues,
+    { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
+  ) => {
     const Task: Task = {
       title: values.taskTitle,
       description: values.taskDescription,
       isChecked: false,
     };
     addTask(Task);
+    resetForm();
   };
   const handleDeleteTask = (
     values: Pick<CreateTaskFormValues, 'taskTitle'>,
+    { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
   ) => {
-    console.log('tasks', values);
     deleteTask(values.taskTitle);
+    resetForm();
   };
 
   return {
     buttonConfig,
-    CREATE_FORM_VALIDATION,
-    DELETE_FORM_VALIDATION,
+    CREATE_FORM_VALIDATION: createFormValidation(tasks),
+    DELETE_FORM_VALIDATION: deleteFormDublicate(tasks),
     INITIAL_CREATE_FORM_STATE,
     INITIAL_REMOVE_FORM_STATE,
     handleCreateTask,
