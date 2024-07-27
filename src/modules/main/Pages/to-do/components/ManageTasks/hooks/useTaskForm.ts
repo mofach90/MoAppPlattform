@@ -1,4 +1,5 @@
 import { ButtonProps } from '@mui/material/Button';
+import { FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import useTaskStore from '../../../hooks/useTaskStore';
 import { CreateTaskFormValues, Task } from '../../../types';
@@ -44,13 +45,17 @@ const DELETE_FORM_VALIDATION = Yup.object().shape({
 
 export const useTaskForm = () => {
   const { addTask, deleteTask } = useTaskStore();
-  const handleCreateTask = (values: CreateTaskFormValues) => {
+  const handleCreateTask = (
+    values: CreateTaskFormValues,
+    { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
+  ) => {
     const Task: Task = {
       title: values.taskTitle,
       description: values.taskDescription,
       isChecked: false,
     };
     addTask(Task);
+    resetForm();
   };
   const handleDeleteTask = (
     values: Pick<CreateTaskFormValues, 'taskTitle'>,

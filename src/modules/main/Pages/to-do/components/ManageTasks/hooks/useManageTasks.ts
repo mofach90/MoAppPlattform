@@ -12,8 +12,10 @@ const useManageTasksStore = create<ManageTasksState>((set) => ({
     set({ openRemoveTask: false });
   },
   handleOnClickCreate: () => {
-    set({ openCreateTask: true });
-    console.log('create');
+    set((state: ManageTasksState) => {
+      console.log('create', !state.openCreateTask);
+      return { openCreateTask: !state.openCreateTask };
+    });
   },
   handleOnClickRemove: () => {
     set({ openRemoveTask: true });

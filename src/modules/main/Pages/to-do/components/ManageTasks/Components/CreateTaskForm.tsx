@@ -1,13 +1,15 @@
-import { Grid, Paper, Typography, colors, useTheme } from '@mui/material';
+import { Grid, Paper, Typography, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
 import { useTaskForm } from '../hooks/useTaskForm';
 import { tokens } from '../../../../../../global/theme/theme';
+import useManageTasksStore from '../hooks/useManageTasks';
 
 function CreateTaskForm() {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);  
+  const colors = tokens(theme.palette.mode);
+  const handleOnclickCreate = useManageTasksStore((state)=>state.handleOnClickCreate)  
   
   const {
     CREATE_FORM_VALIDATION,
@@ -74,6 +76,8 @@ function CreateTaskForm() {
                        },
                       onClick: () => {
                         submitForm();
+                        handleOnclickCreate();
+
                       },
                     }}
                   >
