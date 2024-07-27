@@ -1,10 +1,13 @@
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid, Paper, Typography, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
+import { tokens } from '../../../../../../global/theme/theme';
 import { useTaskForm } from '../hooks/useTaskForm';
 
 function RemoveTaskForm() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const {
     DELETE_FORM_VALIDATION,
     INITIAL_REMOVE_FORM_STATE,
@@ -26,6 +29,7 @@ function RemoveTaskForm() {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
+          backgroundColor: `${colors.primary[400]}`,
         }}
         variant="outlined"
       >

@@ -1,10 +1,14 @@
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid, Paper, Typography, colors, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
 import { useTaskForm } from '../hooks/useTaskForm';
+import { tokens } from '../../../../../../global/theme/theme';
 
 function CreateTaskForm() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);  
+  
   const {
     CREATE_FORM_VALIDATION,
     INITIAL_CREATE_FORM_STATE,
@@ -25,6 +29,7 @@ function CreateTaskForm() {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
+          backgroundColor: `${colors.primary[400]}`
         }}
         variant="outlined"
       >
