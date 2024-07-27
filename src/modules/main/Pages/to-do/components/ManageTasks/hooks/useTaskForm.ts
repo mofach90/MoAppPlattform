@@ -54,14 +54,17 @@ export const useTaskForm = () => {
       description: values.taskDescription,
       isChecked: false,
     };
+    console.log('handleCreateTask values', values);
     addTask(Task);
     resetForm();
   };
   const handleDeleteTask = (
     values: Pick<CreateTaskFormValues, 'taskTitle'>,
+    { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
   ) => {
-    console.log('tasks', values);
+    console.log('handleDeleteTask values', values);
     deleteTask(values.taskTitle);
+    resetForm();
   };
 
   return {

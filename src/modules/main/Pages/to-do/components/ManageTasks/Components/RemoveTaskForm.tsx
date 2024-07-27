@@ -3,6 +3,7 @@ import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
 import { tokens } from '../../../../../../global/theme/theme';
+import useManageTasksStore from '../hooks/useManageTasks';
 import { useTaskForm } from '../hooks/useTaskForm';
 
 function RemoveTaskForm() {
@@ -14,6 +15,9 @@ function RemoveTaskForm() {
     handleDeleteTask,
     buttonConfig,
   } = useTaskForm();
+  const handleOnClickRemove = useManageTasksStore(
+    (state) => state.handleOnClickRemove,
+  );
 
   return (
     <Grid
@@ -57,15 +61,15 @@ function RemoveTaskForm() {
                   <ButtonWrapper
                     buttonConfig={{
                       ...buttonConfig,
-                      sx: { bgcolor: '#eb3434' 
-                        ,
+                      sx: {
+                        bgcolor: '#eb3434',
                         '&:hover': {
                           backgroundColor: '#d62d2d',
                         },
-
                       },
                       onClick: () => {
                         submitForm();
+                        handleOnClickRemove();
                       },
                     }}
                   >
@@ -74,13 +78,13 @@ function RemoveTaskForm() {
                   <ButtonWrapper
                     buttonConfig={{
                       ...buttonConfig,
-                      sx: { bgcolor: '#cc0000',
+                      sx: {
+                        bgcolor: '#cc0000',
                         '&:hover': {
                           backgroundColor: '#b30000',
-                        }
-                        
-                        
-                        , marginTop:2 },
+                        },
+                        marginTop: 2,
+                      },
                       onClick: () => {
                         submitForm();
                       },
