@@ -15,8 +15,8 @@ const TodoApp = () => {
     (state) => state.selectedTask,
   );
   const tasks = useTaskStore((state) => state.tasks);
-  const onprogressTasks = tasks.filter((task)=>!task.isChecked)
-  const completedTasks = tasks.filter((task)=>task.isChecked)
+  const onprogressTasks = tasks.filter((task) => !task.isChecked);
+  const completedTasks = tasks.filter((task) => task.isChecked);
 
   useEffect(() => {
     console.log({ selectedTask });
