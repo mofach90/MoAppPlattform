@@ -61,17 +61,40 @@ function CreateTaskForm() {
                     size="small"
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} >
                   <ButtonWrapper
                     buttonConfig={{
                       ...buttonConfig,
-                      sx: { bgcolor: '#34a1eb' },
+                      sx: { bgcolor: '#34a1eb',
+
+                        '&:hover': {
+                          backgroundColor: '#1e8fe6',
+                        },
+
+                       },
                       onClick: () => {
                         submitForm();
                       },
                     }}
                   >
-                    Create New Task
+                    Create and exit
+                  </ButtonWrapper>
+                  <ButtonWrapper
+                    buttonConfig={{
+                      ...buttonConfig,
+                      sx: { bgcolor: '#5c7fea',
+                        '&:hover': {
+                          backgroundColor: '#4b70d8',
+                        }
+                        
+                        
+                        , marginTop:2 },
+                      onClick: () => {
+                        submitForm();
+                      },
+                    }}
+                  >
+                    Create and add another
                   </ButtonWrapper>
                 </Grid>
               </Grid>

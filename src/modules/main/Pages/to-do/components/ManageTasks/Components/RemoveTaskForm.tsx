@@ -57,13 +57,36 @@ function RemoveTaskForm() {
                   <ButtonWrapper
                     buttonConfig={{
                       ...buttonConfig,
-                      sx: { bgcolor: '#eb3434' },
+                      sx: { bgcolor: '#eb3434' 
+                        ,
+                        '&:hover': {
+                          backgroundColor: '#d62d2d',
+                        },
+
+                      },
                       onClick: () => {
                         submitForm();
                       },
                     }}
                   >
-                    Delete Task
+                    Delete Task and Exit
+                  </ButtonWrapper>
+                  <ButtonWrapper
+                    buttonConfig={{
+                      ...buttonConfig,
+                      sx: { bgcolor: '#cc0000',
+                        '&:hover': {
+                          backgroundColor: '#b30000',
+                        }
+                        
+                        
+                        , marginTop:2 },
+                      onClick: () => {
+                        submitForm();
+                      },
+                    }}
+                  >
+                    Delete Task and Continue
                   </ButtonWrapper>
                 </Grid>
               </Grid>
