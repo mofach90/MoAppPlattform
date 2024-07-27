@@ -15,6 +15,8 @@ const TodoApp = () => {
     (state) => state.selectedTask,
   );
   const tasks = useTaskStore((state) => state.tasks);
+  const onprogressTasks = tasks.filter((task)=>!task.isChecked)
+  const completedTasks = tasks.filter((task)=>task.isChecked)
 
   useEffect(() => {
     console.log({ selectedTask });
@@ -27,13 +29,13 @@ const TodoApp = () => {
           variant="on-progress-tasks"
           title="TO DO"
           innerColor={colors.blueAccent[900]}
-          tasks={tasks}
+          tasks={onprogressTasks}
         />
         <TodoSidebar
           variant="finished-tasks"
           title="DONE"
           innerColor={colors.greenAccent[900]}
-          tasks={tasks}
+          tasks={completedTasks}
         />
         <TaskDetailView task={selectedTask} />
         <ManageTasks />
