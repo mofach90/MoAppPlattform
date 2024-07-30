@@ -43,14 +43,14 @@ const DELETE_FORM_VALIDATION = Yup.object().shape({
 });
 
 export const useTaskForm = () => {
-  const { addTask, deleteTask } = useTaskStore();
+  const { createTask, deleteTask } = useTaskStore();
   const handleCreateTask = (values: CreateTaskFormValues) => {
     const Task: Task = {
       title: values.taskTitle,
       description: values.taskDescription,
       isChecked: false,
     };
-    addTask(Task);
+    createTask(Task);
   };
   const handleDeleteTask = (
     values: Pick<CreateTaskFormValues, 'taskTitle'>,

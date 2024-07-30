@@ -71,8 +71,9 @@ export interface TaskStore {
   selectedTask: Task | null;
   selectTask: (task: Task) => void;
   setIsChecked: (task: Task) => void;
-  addTask: (task: Task) => void;
+  createTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;
+  addTasksFromFirestore: ()=>void;
 }
 
 export interface ManageTasksState {
@@ -96,6 +97,10 @@ export function isSelectedTask(
 export interface ApiResponseCreateTask {
   taskCreated: boolean;
   newCreatedTask: Task;
+}
+
+export interface ApiResponseGetTask {
+  tasks: Task[];
 }
 
 export interface TodoSidebarProps {

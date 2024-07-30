@@ -1,6 +1,12 @@
 import { create } from 'zustand';
-import { ApiResponseCreateTask, Task, TaskStore } from '../types';
+import {
+  ApiResponseCreateTask,
+  ApiResponseGetTask,
+  Task,
+  TaskStore,
+} from '../types';
 import createTaskInFirestore from '../utilities/createTaskInFirestore';
+import getTasksFromFirestore from '../utilities/getTasksFromFirestore';
 
 const useTaskStore = create<TaskStore>((set) => ({
   tasks: [
@@ -20,7 +26,7 @@ const useTaskStore = create<TaskStore>((set) => ({
       ),
     }));
   },
-  addTask: async (task: Task) => {
+  createTask: async (task: Task) => {
     try {
       const response: ApiResponseCreateTask = await createTaskInFirestore(task);
       set((state: TaskStore) => ({
@@ -28,6 +34,16 @@ const useTaskStore = create<TaskStore>((set) => ({
       }));
     } catch (error) {
       console.error('Error happen creating a nwe Task in Firestore: ', error);
+    }
+  },
+  addTasksFromFirestore: async () => {
+    try {
+      const Tasks: ApiResponseGetTask = await getTasksFromFirestore();
+      set(() => ({
+        tasks: [...Tasks.tasks],
+      }));
+    } catch (error) {
+      console.error(error);
     }
   },
   deleteTask: (title: string) =>
