@@ -8,35 +8,10 @@ import { Box, IconButton, Theme, Typography, useTheme } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { Menu, MenuItem, ProSidebar } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { Link } from 'react-router-dom';
 import { tokens } from '../../../global/theme/theme';
+import Item from './components/items';
+import useHandleSpecForApp from './hooks/useHandleSpecForApp';
 import useSideBarStore from './hooks/useSideBarStore';
-
-export interface ItemTypes {
-  title: string;
-  to: string;
-  icon: React.ReactNode;
-  selected: string;
-  handleItemClick: any;
-}
-
-const Item = ({ title, to, icon, selected, handleItemClick }: ItemTypes) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-
-  return (
-    <Box>
-      <MenuItem
-        active={selected === title}
-        onClick={() => handleItemClick(title)}
-        icon={icon}
-      >
-        <Typography variant="h6">{title}</Typography>
-        <Link to={to} />
-      </MenuItem>
-    </Box>
-  );
-};
 
 const Sidebar = () => {
   const theme: Theme = useTheme();
@@ -44,9 +19,14 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const isSelected = useSideBarStore((state) => state.selected);
   const setSelected = useSideBarStore((state) => state.setSelect);
-  const handleItemClick = useCallback((title: any) => {
-    setSelected(title);
-  }, []);
+  const handleSpecforApp = useHandleSpecForApp();
+  const handleItemClick = useCallback(
+    (title: string) => {
+      setSelected(title);
+      handleSpecforApp(title);
+    },
+    [isSelected, handleSpecforApp],
+  );
 
   return (
     <Box
