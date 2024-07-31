@@ -43,7 +43,7 @@ export const useTaskForm = () => {
 
   return {
     buttonConfig,
-    CREATE_FORM_VALIDATION: createFormValidation(tasks),
+    CREATE_FORM_VALIDATION: createFormValidation(),
     DELETE_FORM_VALIDATION: deleteFormDublicate(tasks),
     INITIAL_CREATE_FORM_STATE,
     INITIAL_REMOVE_FORM_STATE,

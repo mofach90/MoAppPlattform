@@ -1,19 +1,15 @@
 import * as Yup from 'yup';
-import { Task } from '../../../types';
-import { deboucedisTitleUnique } from './checkForDublicate';
+import { deboucedisTitleNotEmpty } from './CheckForTitleNotEmpty';
 
-const createFormValidation = (tasks: Task[]) =>
+const createFormValidation = () =>
   Yup.object().shape({
     taskTitle: Yup.string()
       .required('Required Field')
       .test(
         'is-not-empty-after-trim',
         'Title cannot be empty or just spaces',
-        (value) => value !== undefined && value.trim().length > 0,
+        (value) => deboucedisTitleNotEmpty(value),
       )
-      .test('is-not-duplicate', 'This Task already Exist', (value) => {
-        return deboucedisTitleUnique(tasks, value);
-      })
       .matches(/^[a-zA-Z0-9 ]+$/, 'Title must include only letters and numbers')
       .max(55, 'Title must be 55 characters or less'),
     taskDescription: Yup.string()
