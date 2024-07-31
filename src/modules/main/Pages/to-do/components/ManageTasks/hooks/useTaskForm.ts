@@ -28,7 +28,6 @@ export const useTaskForm = () => {
       isChecked: false,
     };
     createTask(Task);
-
   };
   const handleDeleteTask = (
     values: Pick<CreateTaskFormValues, 'taskTitle'>,

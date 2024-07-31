@@ -73,7 +73,7 @@ export interface TaskStore {
   setIsChecked: (task: Task) => void;
   createTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;
-  addTasksFromFirestore: ()=>void;
+  addTasksFromFirestore: () => void;
 }
 
 export interface ManageTasksState {
