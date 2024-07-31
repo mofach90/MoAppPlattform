@@ -22,7 +22,7 @@ const useTaskStore = create<TaskStore>((set) => ({
   setIsChecked: (task: Task) => {
     set((state: TaskStore) => ({
       tasks: state.tasks.map((t) =>
-        t.title === task.title ? { ...t, isChecked: !t.isChecked } : t,
+        t.id === task.id ? { ...t, isChecked: !t.isChecked } : t,
       ),
     }));
   },

@@ -1,10 +1,18 @@
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid, Paper, Typography, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
+import { tokens } from '../../../../../../global/theme/theme';
+import useManageTasksStore from '../hooks/useManageTasks';
 import { useTaskForm } from '../hooks/useTaskForm';
 
 function CreateTaskForm() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const handleOnclickCreate = useManageTasksStore(
+    (state) => state.handleOnClickCreate,
+  );
+
   const {
     CREATE_FORM_VALIDATION,
     INITIAL_CREATE_FORM_STATE,
@@ -25,6 +33,7 @@ function CreateTaskForm() {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
+          backgroundColor: `${colors.primary[400]}`,
         }}
         variant="outlined"
       >
@@ -33,7 +42,7 @@ function CreateTaskForm() {
           initialValues={{ ...INITIAL_CREATE_FORM_STATE }}
           onSubmit={handleCreateTask}
         >
-          {({ submitForm }) => (
+          {({ submitForm, isValid }) => (
             <Form style={{ width: '60%' }}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -60,13 +69,46 @@ function CreateTaskForm() {
                   <ButtonWrapper
                     buttonConfig={{
                       ...buttonConfig,
-                      sx: { bgcolor: '#34a1eb' },
+                      sx: {
+                        bgcolor: '#34a1eb',
+
+                        '&:hover': {
+                          backgroundColor: '#1e8fe6',
+                        },
+                      },
                       onClick: () => {
-                        submitForm();
+                        if (isValid) {
+                          submitForm();
+                          handleOnclickCreate();
+                        } else {
+                          console.log('Your Input is not Valid');
+                        }
                       },
                     }}
                   >
-                    Create New Task
+                    Create and exit
+                  </ButtonWrapper>
+                  <ButtonWrapper
+                    buttonConfig={{
+                      ...buttonConfig,
+                      sx: {
+                        bgcolor: '#5c7fea',
+                        '&:hover': {
+                          backgroundColor: '#4b70d8',
+                        },
+
+                        marginTop: 2,
+                      },
+                      onClick: () => {
+                        if (isValid) {
+                          submitForm();
+                        } else {
+                          console.log('Your Input is not Valid');
+                        }
+                      },
+                    }}
+                  >
+                    Create and add another
                   </ButtonWrapper>
                 </Grid>
               </Grid>
