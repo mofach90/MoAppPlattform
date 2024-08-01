@@ -1,12 +1,12 @@
-import { Box, Dialog, useTheme } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { useEffect } from 'react';
 import { tokens } from '../../../global/theme/theme';
 import PlattformPage, { pages } from '../plattformPage';
 import ManageTasks from './components/ManageTasks/ManageTasks';
 import TaskDetailView from './components/TaskDetailView';
+import DeleteConfirmDialog from './components/ToDoItem/components/DeleteConfirmDialog';
 import TodoSidebar from './components/TodoSidebar';
 import useTaskStore from './hooks/useTaskStore';
-import TestDialog from './testDialog';
 import { TaskStore } from './types';
 
 const TodoApp = () => {
@@ -40,8 +40,7 @@ const TodoApp = () => {
         />
         <TaskDetailView task={selectedTask} />
         <ManageTasks />
-        <Dialog open={false}></Dialog>
-        {/* <TestDialog /> */}
+        <DeleteConfirmDialog />
       </Box>
     </PlattformPage>
   );

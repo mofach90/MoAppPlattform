@@ -14,7 +14,6 @@ const TaskDetailView = ({ task }: { task: Task | null }) => {
       width={'100%'}
       display={'flex'}
       justifyContent={'center'}
-      // alignItems={'center'}
       padding={3}
     >
       {task ? (

@@ -8,6 +8,7 @@ const TaskTitle = ({task}:{task:Task}) => {
     sx={{
       textDecoration: task.isChecked ? 'line-through' : 'none',
     }}
+    noWrap
   >
     {task.title}
   </Typography>  )

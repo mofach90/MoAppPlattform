@@ -1,13 +1,12 @@
-import { Box } from '@mui/material';
 import { useEffect } from 'react';
 import { MenuItem } from 'react-pro-sidebar';
 import useTaskStore from '../../hooks/useTaskStore';
 import { Task } from '../../types';
 import CheckBox from './components/Checkbox';
-import useToDo from './hooks/useToDo';
-import TaskTitle from './components/TaskTitle';
 import DeleteIcon from './components/DeleteIcon';
-import DeleteConfirmDialog from './components/DeleteConfirmDialog';
+import TaskTitle from './components/TaskTitle';
+import useToDo from './hooks/useToDo';
+import { Box } from '@mui/material';
 
 const TodoItem = ({ task }: { task: Task }) => {
   const selectedTask = useTaskStore((state) => state.selectedTask);
@@ -26,10 +25,9 @@ const TodoItem = ({ task }: { task: Task }) => {
       onClick={() => handleTaskSelected(task)}
     >
       <Box display={'flex'} justifyContent={"space-between"}>
-        <CheckBox task={task} />
-        <TaskTitle task={task}/>
-        <DeleteIcon/>
-        <DeleteConfirmDialog />
+      <CheckBox task={task} />
+      <TaskTitle task={task} />
+      <DeleteIcon />
 
       </Box>
     </MenuItem>
