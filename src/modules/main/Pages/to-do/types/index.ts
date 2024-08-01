@@ -62,18 +62,17 @@ export interface Task {
   description: string;
   isChecked?: boolean;
 }
-export interface TodoItemType {
-  task: Task;
-}
 
 export interface TaskStore {
   tasks: Task[];
   selectedTask: Task | null;
+  deleteTaskDialog: boolean;
+  setDeleteTaskDialog: () => void;
   selectTask: (task: Task) => void;
   setIsChecked: (task: Task) => void;
   createTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;
-  addTasksFromFirestore: ()=>void;
+  addTasksFromFirestore: () => void;
 }
 
 export interface ManageTasksState {
