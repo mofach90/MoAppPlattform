@@ -21,13 +21,12 @@ const CancelButton = () => {
           ':hover': {
             backgroundColor: colors.greenAccent[500],
           },
-          width:90,
+          width: 90,
           height: 37,
 
-          fontSize:"14px"
-
+          fontSize: '14px',
         },
-        onClick: () => setDeleteTaskDialog()
+        onClick: () => setDeleteTaskDialog(),
       }}
     >
       Cancel

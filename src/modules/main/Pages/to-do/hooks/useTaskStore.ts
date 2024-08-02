@@ -19,9 +19,10 @@ const useTaskStore = create<TaskStore>((set) => ({
   ],
   selectedTask: null,
   deleteTaskDialog: false,
-  setDeleteTaskDialog: () => set((state) => ({
-    deleteTaskDialog: !state.deleteTaskDialog,
-  })),
+  setDeleteTaskDialog: () =>
+    set((state) => ({
+      deleteTaskDialog: !state.deleteTaskDialog,
+    })),
   selectTask: (task: Task) => set({ selectedTask: task }),
   setIsChecked: (task: Task) => {
     set((state: TaskStore) => ({

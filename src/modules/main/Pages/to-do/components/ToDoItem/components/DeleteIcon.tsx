@@ -14,13 +14,13 @@ const DeleteIcon = () => {
     <Box onClick={() => setDeleteTaskDialog()}>
       <DeleteForeverIcon
         fontSize="medium"
-        sx={{ color: colors.redAccent[700] ,
+        sx={{
+          color: colors.redAccent[700],
 
           '&:hover': {
             transform: 'scale(1.35)',
             boxShadow: theme.shadows[6],
           },
-
         }}
       />
     </Box>

@@ -10,12 +10,7 @@ const TaskDetailView = ({ task }: { task: Task | null }) => {
   }, [task]);
 
   return (
-    <Box
-      width={'100%'}
-      display={'flex'}
-      justifyContent={'center'}
-      padding={3}
-    >
+    <Box width={'100%'} display={'flex'} justifyContent={'center'} padding={3}>
       {task ? (
         <TaskCard>
           <Typography

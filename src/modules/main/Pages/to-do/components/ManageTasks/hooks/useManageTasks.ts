@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { ManageTasksState } from '../../../types';
 
-
 const useManageTasksStore = create<ManageTasksState>((set) => ({
   openCreateTask: false,
   openRemoveTask: false,

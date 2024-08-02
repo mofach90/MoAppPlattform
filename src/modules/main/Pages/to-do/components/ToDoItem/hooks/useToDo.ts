@@ -14,7 +14,7 @@ const useToDo = () => {
   const checkTaskActive = (selectedTask: Task | null, task: Task) => {
     return isSelectedTask(selectedTask) && selectedTask.id === task.id;
   };
-  return {handleTaskSelected,handleIsChecked, checkTaskActive}
+  return { handleTaskSelected, handleIsChecked, checkTaskActive };
 };
 
 export default useToDo;

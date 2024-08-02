@@ -24,11 +24,10 @@ const TodoItem = ({ task }: { task: Task }) => {
       active={checkTaskActive(selectedTask, task)}
       onClick={() => handleTaskSelected(task)}
     >
-      <Box display={'flex'} justifyContent={"space-between"}>
-      <CheckBox task={task} />
-      <TaskTitle task={task} />
-      <DeleteIcon />
-
+      <Box display={'flex'} justifyContent={'space-between'}>
+        <CheckBox task={task} />
+        <TaskTitle task={task} />
+        <DeleteIcon />
       </Box>
     </MenuItem>
   );
