@@ -7,7 +7,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { v4 as uuidv4 } from 'uuid';
 import { tokens } from '../../../../global/theme/theme';
 import { TodoSidebarProps } from '../types';
-import TodoItem from './TodoItem';
+import TodoItem from './ToDoItem/TodoItem';
 
 const TodoSidebar = ({ title, innerColor, tasks }: TodoSidebarProps) => {
   const theme: Theme = useTheme();

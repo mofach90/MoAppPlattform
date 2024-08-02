@@ -102,6 +102,7 @@ function CreateTaskForm() {
                       onClick: () => {
                         if (isValid) {
                           submitForm();
+                          // handleOnclickCreate();
                         } else {
                           console.log('Your Input is not Valid');
                         }

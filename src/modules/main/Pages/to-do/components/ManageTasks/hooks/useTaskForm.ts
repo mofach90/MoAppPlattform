@@ -20,14 +20,19 @@ const INITIAL_REMOVE_FORM_STATE = {
 };
 
 export const useTaskForm = () => {
-  const { createTask, deleteTask } = useTaskStore();
-  const handleCreateTask = (values: CreateTaskFormValues) => {
+  const { createTask, deleteTask, tasks } = useTaskStore();
+  const handleCreateTask = (
+    values: CreateTaskFormValues,
+    { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
+  ) => {
     const Task: Task = {
       title: values.taskTitle,
       description: values.taskDescription,
       isChecked: false,
     };
     createTask(Task);
+    resetForm();
+
   };
   const handleDeleteTask = (
     values: Pick<CreateTaskFormValues, 'taskTitle'>,
@@ -39,7 +44,7 @@ export const useTaskForm = () => {
 
   return {
     buttonConfig,
-    CREATE_FORM_VALIDATION: createFormValidation(tasks),
+    CREATE_FORM_VALIDATION: createFormValidation(),
     DELETE_FORM_VALIDATION: deleteFormDublicate(tasks),
     INITIAL_CREATE_FORM_STATE,
     INITIAL_REMOVE_FORM_STATE,

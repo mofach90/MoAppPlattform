@@ -4,6 +4,7 @@ import { tokens } from '../../../global/theme/theme';
 import PlattformPage, { pages } from '../plattformPage';
 import ManageTasks from './components/ManageTasks/ManageTasks';
 import TaskDetailView from './components/TaskDetailView';
+import DeleteConfirmDialog from './components/ToDoItem/components/DeleteConfirmDialog';
 import TodoSidebar from './components/TodoSidebar';
 import useTaskStore from './hooks/useTaskStore';
 import { TaskStore } from './types';
@@ -39,6 +40,7 @@ const TodoApp = () => {
         />
         <TaskDetailView task={selectedTask} />
         <ManageTasks />
+        <DeleteConfirmDialog />
       </Box>
     </PlattformPage>
   );

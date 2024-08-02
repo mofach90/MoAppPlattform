@@ -22,8 +22,6 @@ function PlattformPage({
 }>) {
   return (
     <div className="PlattformPage">
-      {/* <Typography sx={{color:"red"}}>asdghfjkhsfg</Typography> */}
-
       <Sidebar />
       <main className="content">
         <Topbar />
