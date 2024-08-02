@@ -20,9 +20,14 @@ const useTaskStore = create<TaskStore>((set) => ({
   ],
   selectedTask: null,
   deleteTaskDialog: false,
+  UpdateTaskDialog: false,
   setDeleteTaskDialog: () =>
     set((state) => ({
       deleteTaskDialog: !state.deleteTaskDialog,
+    })),
+  setUpdateTaskDialog: () =>
+    set((state) => ({
+      UpdateTaskDialog: !state.UpdateTaskDialog,
     })),
   selectTask: (task: Task) => set({ selectedTask: task }),
   setIsChecked: (task: Task) => {
@@ -37,6 +42,24 @@ const useTaskStore = create<TaskStore>((set) => ({
       const response: ApiResponseCreateTask = await createTaskInFirestore(task);
       set((state: TaskStore) => ({
         tasks: [...state.tasks, response.newCreatedTask],
+      }));
+    } catch (error) {
+      console.error('Error happen creating a nwe Task in Firestore: ', error);
+    }
+  },
+  updateTask: async (task: Task) => {
+    try {
+      // const response: ApiResponseCreateTask = await updateTaskInFirestore(task);
+      set((state: TaskStore) => ({
+        tasks: state.tasks.map((t) => {
+          if (t.id === task.id) {
+            t.title = task.title;
+            t.description = task.description;
+            return t;
+          } else {
+            return t;
+          }
+        }),
       }));
     } catch (error) {
       console.error('Error happen creating a nwe Task in Firestore: ', error);
@@ -60,7 +83,6 @@ const useTaskStore = create<TaskStore>((set) => ({
           tasks: state.tasks.filter((task) => task.id !== taskId),
           selectedTask: null,
         }));
-
       } else {
         console.log('Error: ', response.message);
       }

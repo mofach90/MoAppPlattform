@@ -27,8 +27,8 @@ function TextfieldWrapper(props: Readonly<TextfieldWrapperProps>) {
     ...props,
     fullWidth: true,
     variant: 'outlined',
+    defaultValue: 'Hello World',
   };
-
   if (meta && meta.touched && meta.error) {
     configOption.error = true;
     configOption.helperText = meta.error;
@@ -49,7 +49,7 @@ function TextfieldWrapper(props: Readonly<TextfieldWrapperProps>) {
     };
   }
 
-  return <TextField {...configOption} />;
+  return <TextField {...configOption}/>;
 }
 
 export default TextfieldWrapper;

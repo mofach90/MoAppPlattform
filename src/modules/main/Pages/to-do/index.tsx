@@ -8,6 +8,7 @@ import DeleteConfirmDialog from './components/ToDoItem/components/DeleteConfirmD
 import TodoSidebar from './components/TodoSidebar';
 import useTaskStore from './hooks/useTaskStore';
 import { TaskStore } from './types';
+import UpdateTaskDialog from './components/ManageTasks/Components/UpdateTaskDialog';
 
 const TodoApp = () => {
   const theme = useTheme();
@@ -41,6 +42,7 @@ const TodoApp = () => {
         {selectedTask? <TaskDetailView task={selectedTask} /> : null}
         <ManageTasks />
         <DeleteConfirmDialog />
+        <UpdateTaskDialog/>
       </Box>
     </PlattformPage>
   );

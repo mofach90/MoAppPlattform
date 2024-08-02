@@ -1,4 +1,3 @@
-import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import { Theme, Typography, useTheme } from '@mui/material';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import { tokens } from '../../../../../../global/theme/theme';
@@ -7,8 +6,8 @@ import useTaskStore from '../../../hooks/useTaskStore';
 const UpdateButton = () => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const setDeleteTaskDialog = useTaskStore(
-    (state) => state.setDeleteTaskDialog,
+  const setUpdateTaskDialog = useTaskStore(
+    (state) => state.setUpdateTaskDialog,
   );
 
   return (
@@ -23,11 +22,15 @@ const UpdateButton = () => {
             backgroundColor: colors.greenAccent[400],
           },
         },
+        onClick: ()=>setUpdateTaskDialog() 
       }}
     >
-      <Typography color={'black'} textAlign={'center'} fontFamily={"monospace"} fontWeight={"bold"}
-      //  variant="h6"
-       >
+      <Typography
+        color={'black'}
+        textAlign={'center'}
+        fontFamily={'monospace'}
+        fontWeight={'bold'}
+      >
         Update
       </Typography>
     </ButtonWrapper>
