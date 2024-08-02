@@ -1,19 +1,22 @@
-import { ApiResponseGetTask } from '../types';
+import { ApiResponseDeleteTask } from '../types';
 import { isResponseJson } from './isResponseJson';
 
-const getTasksFromFirestore = async () => {
+const deleteTaskInFirestore = async (taskId: string) => {
   try {
-    const request = await fetch('/api/v1/todo-app/tasks/get-tasks', {
-      method: 'GET',
+    const request = await fetch('/api/v1/todo-app/tasks/delete-task', {
+      method: 'POST',
       headers: { 'content-type': 'application/json' },
       credentials: 'include',
+      body: JSON.stringify({
+        taskId: taskId,
+      }),
     });
 
     if (!request.ok) {
       throw new Error(`HTTP error! status: ${request.status}`);
     }
     const response: unknown = await request.json();
-    if (isResponseJson<ApiResponseGetTask>(response)) {
+    if (isResponseJson<ApiResponseDeleteTask>(response)) {
       return response;
     } else {
       throw new Error('Invalid response format');
@@ -27,4 +30,4 @@ const getTasksFromFirestore = async () => {
   }
 };
 
-export default getTasksFromFirestore;
+export default deleteTaskInFirestore;
