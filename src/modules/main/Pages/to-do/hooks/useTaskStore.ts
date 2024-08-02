@@ -60,7 +60,7 @@ const useTaskStore = create<TaskStore>((set) => ({
           tasks: state.tasks.filter((task) => task.id !== taskId),
         }));
       } else {
-        console.log("Error: ",response.message)
+        console.log('Error: ', response.message);
       }
     } catch (error) {}
   },
