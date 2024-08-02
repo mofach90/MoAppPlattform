@@ -26,7 +26,7 @@ const Topbar = () => {
         </IconButton>
       </Box>
       <Box display={'flex'}>
-        <DarkLightToggleButton/>
+        <DarkLightToggleButton />
         <LogoutButton />
       </Box>
     </Stack>
