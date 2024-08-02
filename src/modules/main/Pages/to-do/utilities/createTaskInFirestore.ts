@@ -3,7 +3,7 @@ import { isResponseJson } from './isResponseJson';
 
 const createTaskInFirestore = async (task: Task) => {
   try {
-    const request = await fetch('/api/v1/tasks/create-task', {
+    const request = await fetch('/api/v1/todo-app/tasks/create-task', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       credentials: 'include',

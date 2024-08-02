@@ -6,6 +6,7 @@ import {
   TaskStore,
 } from '../types';
 import createTaskInFirestore from '../utilities/createTaskInFirestore';
+import deleteTaskInFirestore from '../utilities/deleteTaskInFirestore';
 import getTasksFromFirestore from '../utilities/getTasksFromFirestore';
 
 const useTaskStore = create<TaskStore>((set) => ({
@@ -51,10 +52,18 @@ const useTaskStore = create<TaskStore>((set) => ({
       console.error(error);
     }
   },
-  deleteTask: (title: string) =>
-    set((state: TaskStore) => ({
-      tasks: state.tasks.filter((task) => task.title !== title),
-    })),
+  deleteTask: async (taskId: string) => {
+    try {
+      const response = await deleteTaskInFirestore(taskId);
+      if (response.taskDeleted) {
+        set((state: TaskStore) => ({
+          tasks: state.tasks.filter((task) => task.id !== taskId),
+        }));
+      } else {
+        console.log("Error: ",response.message)
+      }
+    } catch (error) {}
+  },
 }));
 
 export default useTaskStore;
