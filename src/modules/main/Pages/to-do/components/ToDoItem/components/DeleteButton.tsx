@@ -26,6 +26,7 @@ const DeleteButton = () => {
           width: 90,
           height: 37,
           fontSize: '14px',
+          borderRadius:5
         },
         onClick: () => {
           deleteTask(selectedTask?.id ? selectedTask.id : '');

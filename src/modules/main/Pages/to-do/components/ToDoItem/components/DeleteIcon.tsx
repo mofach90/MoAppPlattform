@@ -3,7 +3,11 @@ import { Box, Theme, useTheme } from '@mui/material';
 import { tokens } from '../../../../../../global/theme/theme';
 import useTaskStore from '../../../hooks/useTaskStore';
 
-const DeleteIcon = () => {
+const DeleteIcon = ({
+  fontSize,
+}: {
+  fontSize?: 'small' | 'large' | 'medium';
+}) => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const setDeleteTaskDialog = useTaskStore(
@@ -13,13 +17,13 @@ const DeleteIcon = () => {
   return (
     <Box onClick={() => setDeleteTaskDialog()}>
       <DeleteForeverIcon
-        fontSize="medium"
+        fontSize={fontSize ? fontSize : 'medium'}
         sx={{
           color: colors.redAccent[700],
 
           '&:hover': {
             transform: 'scale(1.35)',
-            boxShadow: theme.shadows[6],
+            // boxShadow: theme.shadows[6],
           },
         }}
       />

@@ -38,7 +38,7 @@ const TodoApp = () => {
           innerColor={colors.greenAccent[900]}
           tasks={completedTasks}
         />
-        <TaskDetailView task={selectedTask} />
+        {selectedTask? <TaskDetailView task={selectedTask} /> : null}
         <ManageTasks />
         <DeleteConfirmDialog />
       </Box>

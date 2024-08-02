@@ -58,7 +58,9 @@ const useTaskStore = create<TaskStore>((set) => ({
       if (response.taskDeleted) {
         set((state: TaskStore) => ({
           tasks: state.tasks.filter((task) => task.id !== taskId),
+          selectedTask: null,
         }));
+
       } else {
         console.log('Error: ', response.message);
       }
