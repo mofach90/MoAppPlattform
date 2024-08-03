@@ -32,13 +32,6 @@ const useTaskStore = create<TaskStore>((set) => ({
       UpdateTaskDialog: !state.UpdateTaskDialog,
     })),
   selectTask: (task: Task) => set({ selectedTask: task }),
-  setIsChecked: (task: Task) => {
-    set((state: TaskStore) => ({
-      tasks: state.tasks.map((t) =>
-        t.id === task.id ? { ...t, isChecked: !t.isChecked } : t,
-      ),
-    }));
-  },
   createTask: async (task: Task) => {
     try {
       const response: ApiResponseCreateTask = await createTaskInFirestore(task);

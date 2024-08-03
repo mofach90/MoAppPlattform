@@ -71,7 +71,6 @@ export interface TaskStore {
   setDeleteTaskDialog: () => void;
   setUpdateTaskDialog: () => void;
   selectTask: (task: Task) => void;
-  setIsChecked: (task: Task) => void;
   createTask: (task: Task) => void;
   updateTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;

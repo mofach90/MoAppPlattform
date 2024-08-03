@@ -72,7 +72,6 @@ function UpdateTaskForm() {
                       ...buttonConfig,
                       sx: {
                         bgcolor: '#34a1eb',
-
                         '&:hover': {
                           backgroundColor: '#1e8fe6',
                         },
