@@ -1,9 +1,15 @@
 import { ButtonProps } from '@mui/material/Button';
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import { FormikHelpers } from 'formik';
 import useTaskStore from '../../../hooks/useTaskStore';
 import { CreateTaskFormValues, Task } from '../../../types';
 import createFormValidation from '../utils/createFormValidation';
 import deleteFormDublicate from '../utils/deleteFormDublicate';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const buttonConfig: ButtonProps = {
   variant: 'contained',
@@ -14,6 +20,8 @@ const buttonConfig: ButtonProps = {
 const INITIAL_CREATE_FORM_STATE = {
   taskTitle: '',
   taskDescription: '',
+  // taskDueDate: dayjs(new Date()).toISOString(),
+  taskDueDate: '',
 };
 const INITIAL_REMOVE_FORM_STATE = {
   taskTitle: '',
@@ -28,11 +36,15 @@ export const useTaskForm = () => {
     values: CreateTaskFormValues,
     { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
   ) => {
+    console.log("values to crteate", values)
     const Task: Task = {
       title: values.taskTitle,
       description: values.taskDescription,
       isChecked: false,
+      dueDate: values.taskDueDate ? dayjs(values.taskDueDate).toISOString() : undefined,
     };
+    console.log("task to crteate", Task)
+
     createTask(Task);
     resetForm();
   };

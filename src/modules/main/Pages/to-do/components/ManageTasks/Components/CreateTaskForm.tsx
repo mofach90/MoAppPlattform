@@ -1,10 +1,17 @@
 import { Grid, Paper, Typography, useTheme } from '@mui/material';
+import { DatePicker, DateTimePicker, MobileTimePicker } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
 import { tokens } from '../../../../../../global/theme/theme';
 import useManageTasksStore from '../hooks/useManageTasks';
 import { useTaskForm } from '../hooks/useTaskForm';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 function CreateTaskForm() {
   const theme = useTheme();
@@ -42,7 +49,7 @@ function CreateTaskForm() {
           initialValues={{ ...INITIAL_CREATE_FORM_STATE }}
           onSubmit={handleCreateTask}
         >
-          {({ submitForm, isValid }) => (
+          {({ submitForm, isValid, setFieldValue }) => (
             <Form style={{ width: '60%' }}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -62,7 +69,47 @@ function CreateTaskForm() {
                     name="taskDescription"
                     label="Description"
                     type="text"
-                    size="small"
+                  />
+                </Grid>
+                {/* <Grid
+                  item
+                  xs={12}
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                >
+                  <DatePicker
+                    sx={{ width: 140 }}
+                    // defaultValue={dayjs(`${new Date()}`)}
+                    label="Select Date"
+                    // format="Defaults"
+                    views={['year', 'month', 'day']}
+                    onChange={(newValue) => {
+                      console.log("new Date Value", newValue)
+                      setFieldValue('taskDueDate', newValue);
+                    }}
+                  />
+                  <MobileTimePicker
+                    sx={{ width: 120 }}
+                    timezone="Europe/Berlin"
+                    label='Europe/Berlin'
+                    onChange={(newValue) => {
+                      console.log("new Time Value", newValue)
+                      setFieldValue('taskDueTime', newValue);
+                    }}
+                  />
+                </Grid> */}
+                <Grid
+                  item
+                  xs={12}
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                >
+                <DateTimePicker
+                    label='Task due Date'
+                    onChange={(newValue) => {
+                      setFieldValue('taskDueDate', newValue);
+                    }}
+                    sx={{ width: "100%" }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -102,7 +149,6 @@ function CreateTaskForm() {
                       onClick: () => {
                         if (isValid) {
                           submitForm();
-                          // handleOnclickCreate();
                         } else {
                           console.log('Your Input is not Valid');
                         }

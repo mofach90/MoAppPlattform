@@ -52,6 +52,7 @@ const useTaskStore = create<TaskStore>((set) => ({
               t.title = task.title;
               t.description = task.description;
               t.isChecked = task.isChecked;
+              t.dueDate = task.dueDate;
               return t;
             } else {
               return t;

@@ -61,6 +61,9 @@ export interface Task {
   title: string;
   description: string;
   isChecked?: boolean;
+  dueDate?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface TaskStore {
@@ -88,6 +91,7 @@ export interface ManageTasksState {
 export interface CreateTaskFormValues {
   taskTitle: string;
   taskDescription: string;
+  taskDueDate?:string;
 }
 
 export function isSelectedTask(

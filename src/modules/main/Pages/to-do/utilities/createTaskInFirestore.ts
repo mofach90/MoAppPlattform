@@ -11,6 +11,8 @@ const createTaskInFirestore = async (task: Task) => {
         title: task.title,
         description: task.description,
         isChecked: task.isChecked,
+        dueDate: task.dueDate,
+        
       }),
     });
 
