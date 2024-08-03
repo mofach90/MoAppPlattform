@@ -41,7 +41,7 @@ export const useTaskForm = () => {
     { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
   ) => {
     const Task: Task = {
-      id:selectedTask?.id,
+      id: selectedTask?.id,
       title: values.taskTitle,
       description: values.taskDescription,
       isChecked: false,

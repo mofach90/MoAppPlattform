@@ -1,4 +1,4 @@
-import { Grid, Paper, TextField, Typography, useTheme } from '@mui/material';
+import { Grid, Paper, Typography, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
@@ -55,7 +55,6 @@ function UpdateTaskForm() {
                   <TextfieldWrapper
                     name="taskTitle"
                     label="Title"
-                    defaultValue="title"
                     type="text"
                   />
                 </Grid>
@@ -65,11 +64,7 @@ function UpdateTaskForm() {
                     label="Description"
                     type="text"
                     size="small"
-                    defaultValue="Description"
                   />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField label="already" defaultValue="Hello World" />
                 </Grid>
                 <Grid item xs={12}>
                   <ButtonWrapper
@@ -92,7 +87,7 @@ function UpdateTaskForm() {
                       },
                     }}
                   >
-                    Create and exit
+                    Update and exit
                   </ButtonWrapper>
                 </Grid>
               </Grid>

@@ -100,6 +100,10 @@ export interface ApiResponseCreateTask {
   taskCreated: boolean;
   newCreatedTask: Task;
 }
+export interface ApiResponseUpdateTask {
+  message?: string,
+  taskUpdated: boolean;
+}
 export interface ApiResponseDeleteTask {
   message: string;
   taskDeleted: boolean;

@@ -2,12 +2,14 @@ import { create } from 'zustand';
 import {
   ApiResponseCreateTask,
   ApiResponseGetTask,
+  ApiResponseUpdateTask,
   Task,
   TaskStore,
 } from '../types';
 import createTaskInFirestore from '../utilities/createTaskInFirestore';
 import deleteTaskInFirestore from '../utilities/deleteTaskInFirestore';
 import getTasksFromFirestore from '../utilities/getTasksFromFirestore';
+import updateTaskInFirestore from '../utilities/updateTaskInFirestore';
 
 const useTaskStore = create<TaskStore>((set) => ({
   tasks: [
@@ -49,18 +51,25 @@ const useTaskStore = create<TaskStore>((set) => ({
   },
   updateTask: async (task: Task) => {
     try {
-      // const response: ApiResponseCreateTask = await updateTaskInFirestore(task);
-      set((state: TaskStore) => ({
-        tasks: state.tasks.map((t) => {
-          if (t.id === task.id) {
-            t.title = task.title;
-            t.description = task.description;
-            return t;
-          } else {
-            return t;
-          }
-        }),
-      }));
+      const response: ApiResponseUpdateTask = await updateTaskInFirestore(task);
+      if (response.taskUpdated) {
+        set((state: TaskStore) => ({
+          tasks: state.tasks.map((t) => {
+            if (t.id === task.id) {
+              t.title = task.title;
+              t.description = task.description;
+              t.isChecked = task.isChecked;
+              return t;
+            } else {
+              return t;
+            }
+          }),
+        }));
+      }else{
+
+        console.log('Error while Updating the Task: ', response.message);
+      }
+      console.log('the response: ', response);
     } catch (error) {
       console.error('Error happen creating a nwe Task in Firestore: ', error);
     }
