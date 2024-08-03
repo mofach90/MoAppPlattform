@@ -25,8 +25,7 @@ const CancelButton = () => {
           height: 37,
 
           fontSize: '14px',
-          borderRadius:5
-
+          borderRadius: 5,
         },
         onClick: () => setDeleteTaskDialog(),
       }}

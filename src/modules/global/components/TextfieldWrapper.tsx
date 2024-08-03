@@ -48,7 +48,7 @@ function TextfieldWrapper(props: Readonly<TextfieldWrapperProps>) {
     };
   }
 
-  return <TextField {...configOption}/>;
+  return <TextField {...configOption} />;
 }
 
 export default TextfieldWrapper;

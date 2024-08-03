@@ -101,7 +101,7 @@ export interface ApiResponseCreateTask {
   newCreatedTask: Task;
 }
 export interface ApiResponseUpdateTask {
-  message?: string,
+  message?: string;
   taskUpdated: boolean;
 }
 export interface ApiResponseDeleteTask {

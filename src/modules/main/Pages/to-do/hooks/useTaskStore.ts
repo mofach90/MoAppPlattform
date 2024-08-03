@@ -65,8 +65,7 @@ const useTaskStore = create<TaskStore>((set) => ({
             }
           }),
         }));
-      }else{
-
+      } else {
         console.log('Error while Updating the Task: ', response.message);
       }
       console.log('the response: ', response);

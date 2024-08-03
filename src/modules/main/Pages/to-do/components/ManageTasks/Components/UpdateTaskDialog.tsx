@@ -3,8 +3,10 @@ import useTaskStore from '../../../hooks/useTaskStore';
 import UpdateTaskForm from './UpdateTaskForm';
 
 const UpdateTaskDialog = () => {
-  const  UpdateTaskDialog  = useTaskStore((state) => state.UpdateTaskDialog);
-  const  setUpdateTaskDialog  = useTaskStore((state) => state.setUpdateTaskDialog);
+  const UpdateTaskDialog = useTaskStore((state) => state.UpdateTaskDialog);
+  const setUpdateTaskDialog = useTaskStore(
+    (state) => state.setUpdateTaskDialog,
+  );
   return (
     <Dialog
       open={UpdateTaskDialog}

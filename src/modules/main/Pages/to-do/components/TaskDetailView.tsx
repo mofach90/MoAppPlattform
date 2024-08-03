@@ -24,7 +24,7 @@ const TaskDetailView = ({ task }: { task: Task | null }) => {
             // sx={{ backgroundColor: 'yellow !important' }}
           >
             <UpdateButton />
-            <DeleteIcon fontSize='large'/>
+            <DeleteIcon fontSize="large" />
           </Box>
           <Typography
             variant="h4"

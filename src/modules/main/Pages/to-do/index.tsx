@@ -39,10 +39,10 @@ const TodoApp = () => {
           innerColor={colors.greenAccent[900]}
           tasks={completedTasks}
         />
-        {selectedTask? <TaskDetailView task={selectedTask} /> : null}
+        {selectedTask ? <TaskDetailView task={selectedTask} /> : null}
         <ManageTasks />
         <DeleteConfirmDialog />
-        <UpdateTaskDialog/>
+        <UpdateTaskDialog />
       </Box>
     </PlattformPage>
   );

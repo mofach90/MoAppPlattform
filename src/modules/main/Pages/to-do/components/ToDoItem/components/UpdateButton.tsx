@@ -22,7 +22,7 @@ const UpdateButton = () => {
             backgroundColor: colors.greenAccent[400],
           },
         },
-        onClick: ()=>setUpdateTaskDialog() 
+        onClick: () => setUpdateTaskDialog(),
       }}
     >
       <Typography

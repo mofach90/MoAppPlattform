@@ -19,17 +19,14 @@ const updateTaskInFirestore = async (task: Task) => {
       throw new Error(`HTTP error! status: ${request.status}`);
     }
     const response: unknown = await request.json();
-    console.log("this is the response: ", response)
+    console.log('this is the response: ', response);
     if (isResponseJson<ApiResponseUpdateTask>(response)) {
       return response;
     } else {
       throw new Error('Invalid response format');
     }
   } catch (error) {
-    console.error(
-      'Error happen when sending updated task to backend: ',
-      error,
-    );
+    console.error('Error happen when sending updated task to backend: ', error);
     throw error;
   }
 };
