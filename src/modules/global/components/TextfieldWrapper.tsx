@@ -28,7 +28,6 @@ function TextfieldWrapper(props: Readonly<TextfieldWrapperProps>) {
     fullWidth: true,
     variant: 'outlined',
   };
-
   if (meta && meta.touched && meta.error) {
     configOption.error = true;
     configOption.helperText = meta.error;

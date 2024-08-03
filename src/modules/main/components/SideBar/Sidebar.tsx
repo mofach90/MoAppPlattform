@@ -5,43 +5,29 @@ import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import { Box, IconButton, Theme, Typography, useTheme } from '@mui/material';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Menu, MenuItem, ProSidebar } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { Link } from 'react-router-dom';
-import { tokens } from '../../global/theme/theme';
-
-interface ItemTypes {
-  title: string;
-  to: string;
-  icon: React.ReactNode;
-  selected: string;
-  setSelected: Dispatch<SetStateAction<string>>;
-}
-
-const Item = ({ title, to, icon, selected, setSelected }: ItemTypes) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  return (
-    <MenuItem
-      active={selected === title}
-      style={{
-        color: colors.grey[100],
-      }}
-      onClick={() => setSelected(title)}
-      icon={icon}
-    >
-      <Typography>{title}</Typography>
-      <Link to={to} />
-    </MenuItem>
-  );
-};
+import { tokens } from '../../../global/theme/theme';
+import Item from './components/items';
+import useHandleSpecForApp from './hooks/useHandleSpecForApp';
+import useSideBarStore from './hooks/useSideBarStore';
 
 const Sidebar = () => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState('Dashboard');
+  const isSelected = useSideBarStore((state) => state.selected);
+  const setSelected = useSideBarStore((state) => state.setSelect);
+  const handleSpecforApp = useHandleSpecForApp();
+  const handleItemClick = useCallback(
+    (title: string) => {
+      setSelected(title);
+      handleSpecforApp(title);
+    },
+    [isSelected, handleSpecforApp],
+  );
+
   return (
     <Box
       sx={{
@@ -58,8 +44,9 @@ const Sidebar = () => {
           color: '#868dfb !important',
         },
         '& .pro-menu-item.active': {
-          color: '#6870fa !important',
+          color: '#868dfb !important',
         },
+        backgroundColor: 'red',
       }}
     >
       <ProSidebar collapsed={isCollapsed}>
@@ -124,15 +111,15 @@ const Sidebar = () => {
               title="Dashboard"
               to="/main-dashboard"
               icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
+              selected={isSelected}
+              handleItemClick={handleItemClick}
             />
             <Item
               title="Landing Page"
               to="/"
               icon={<FlightLandIcon />}
-              selected={selected}
-              setSelected={setSelected}
+              selected={isSelected}
+              handleItemClick={handleItemClick}
             />
             <Typography
               variant="h6"
@@ -146,22 +133,22 @@ const Sidebar = () => {
               title="To do"
               to="/to-do"
               icon={<PlaylistAddCheckIcon />}
-              selected={selected}
-              setSelected={setSelected}
+              selected={isSelected}
+              handleItemClick={handleItemClick}
             />
             <Item
               title="Weather"
               to="/weather"
               icon={<ThunderstormIcon />}
-              selected={selected}
-              setSelected={setSelected}
+              selected={isSelected}
+              handleItemClick={handleItemClick}
             />
             <Item
               title="Receipe"
               to="/receipe"
               icon={<ReceiptLongIcon />}
-              selected={selected}
-              setSelected={setSelected}
+              selected={isSelected}
+              handleItemClick={handleItemClick}
             />
           </Box>
         </Menu>

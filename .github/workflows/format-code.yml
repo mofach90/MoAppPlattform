@@ -6,6 +6,7 @@ on:
       - dev
       - main
       - app/to-do/mo
+      - basic-feature/task-creation/mo
   pull_request:
     branches:
       - dev
