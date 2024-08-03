@@ -67,10 +67,13 @@ export interface TaskStore {
   tasks: Task[];
   selectedTask: Task | null;
   deleteTaskDialog: boolean;
+  UpdateTaskDialog: boolean;
   setDeleteTaskDialog: () => void;
+  setUpdateTaskDialog: () => void;
   selectTask: (task: Task) => void;
   setIsChecked: (task: Task) => void;
   createTask: (task: Task) => void;
+  updateTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;
   addTasksFromFirestore: () => void;
 }
@@ -96,6 +99,10 @@ export function isSelectedTask(
 export interface ApiResponseCreateTask {
   taskCreated: boolean;
   newCreatedTask: Task;
+}
+export interface ApiResponseUpdateTask {
+  message?: string,
+  taskUpdated: boolean;
 }
 export interface ApiResponseDeleteTask {
   message: string;

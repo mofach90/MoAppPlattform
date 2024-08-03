@@ -3,6 +3,8 @@ import { Box, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { Task } from '../types';
 import TaskCard from './TaskCard';
+import DeleteIcon from './ToDoItem/components/DeleteIcon';
+import UpdateButton from './ToDoItem/components/UpdateButton';
 
 const TaskDetailView = ({ task }: { task: Task | null }) => {
   useEffect(() => {
@@ -13,6 +15,17 @@ const TaskDetailView = ({ task }: { task: Task | null }) => {
     <Box width={'100%'} display={'flex'} justifyContent={'center'} padding={3}>
       {task ? (
         <TaskCard>
+          <Box
+            display={'flex'}
+            justifyContent={'flex-end'}
+            width={'100%'}
+            alignItems={'center'}
+            marginBottom={2}
+            // sx={{ backgroundColor: 'yellow !important' }}
+          >
+            <UpdateButton />
+            <DeleteIcon fontSize='large'/>
+          </Box>
           <Typography
             variant="h4"
             gutterBottom
