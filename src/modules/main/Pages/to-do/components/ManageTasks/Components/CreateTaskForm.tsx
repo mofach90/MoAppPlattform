@@ -71,38 +71,10 @@ function CreateTaskForm() {
                     type="text"
                   />
                 </Grid>
-                {/* <Grid
-                  item
-                  xs={12}
-                  display={'flex'}
-                  justifyContent={'space-between'}
-                >
-                  <DatePicker
-                    sx={{ width: 140 }}
-                    // defaultValue={dayjs(`${new Date()}`)}
-                    label="Select Date"
-                    // format="Defaults"
-                    views={['year', 'month', 'day']}
-                    onChange={(newValue) => {
-                      console.log("new Date Value", newValue)
-                      setFieldValue('taskDueDate', newValue);
-                    }}
-                  />
-                  <MobileTimePicker
-                    sx={{ width: 120 }}
-                    timezone="Europe/Berlin"
-                    label='Europe/Berlin'
-                    onChange={(newValue) => {
-                      console.log("new Time Value", newValue)
-                      setFieldValue('taskDueTime', newValue);
-                    }}
-                  />
-                </Grid> */}
+ 
                 <Grid
                   item
                   xs={12}
-                  display={'flex'}
-                  justifyContent={'space-between'}
                 >
                 <DateTimePicker
                     label='Task due Date'

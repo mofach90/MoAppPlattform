@@ -70,6 +70,7 @@ const useTaskStore = create<TaskStore>((set) => ({
   addTasksFromFirestore: async () => {
     try {
       const Tasks: ApiResponseGetTask = await getTasksFromFirestore();
+      console.log({Tasks})
       set(() => ({
         tasks: [...Tasks.tasks],
       }));

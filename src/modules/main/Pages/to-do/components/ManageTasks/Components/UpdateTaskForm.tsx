@@ -5,6 +5,8 @@ import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapp
 import { tokens } from '../../../../../../global/theme/theme';
 import useTaskStore from '../../../hooks/useTaskStore';
 import { useTaskForm } from '../hooks/useTaskForm';
+import { DateTimePicker } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 
 function UpdateTaskForm() {
   const theme = useTheme();
@@ -43,7 +45,7 @@ function UpdateTaskForm() {
           initialValues={{ ...INITIAL_UPDATE_FORM_STATE }}
           onSubmit={handleUpdateTask}
         >
-          {({ submitForm, isValid }) => (
+          {({ submitForm, isValid, setFieldValue }) => (
             <Form style={{ width: '60%' }}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -64,6 +66,20 @@ function UpdateTaskForm() {
                     label="Description"
                     type="text"
                     size="small"
+                  />
+                </Grid>
+                 
+                <Grid
+                  item
+                  xs={12}
+                >
+                <DateTimePicker
+                    label='Task due Date'
+                    onChange={(newValue) => {
+                      setFieldValue('taskDueDate', newValue);
+                    }}
+                    sx={{ width: "100%" }}
+                    defaultValue={dayjs(INITIAL_UPDATE_FORM_STATE.dueDate)}
                   />
                 </Grid>
                 <Grid item xs={12}>

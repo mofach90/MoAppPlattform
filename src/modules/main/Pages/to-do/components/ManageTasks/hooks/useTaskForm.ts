@@ -32,18 +32,21 @@ export const useTaskForm = () => {
   const selectedTask = useTaskStore((state) => state.selectedTask);
   const title = selectedTask ? selectedTask.title : '';
   const description = selectedTask ? selectedTask.description : '';
+  const dueDate = selectedTask ? dayjs(selectedTask.dueDate) : '';
   const handleCreateTask = (
     values: CreateTaskFormValues,
     { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
   ) => {
-    console.log("values to crteate", values)
+    console.log('values to crteate', values);
     const Task: Task = {
       title: values.taskTitle,
       description: values.taskDescription,
       isChecked: false,
-      dueDate: values.taskDueDate ? dayjs(values.taskDueDate).toISOString() : undefined,
+      dueDate: values.taskDueDate
+        ? dayjs(values.taskDueDate).toISOString()
+        : undefined,
     };
-    console.log("task to crteate", Task)
+    console.log('task to crteate', Task);
 
     createTask(Task);
     resetForm();
@@ -78,6 +81,7 @@ export const useTaskForm = () => {
     INITIAL_UPDATE_FORM_STATE: {
       taskTitle: title,
       taskDescription: description,
+      dueDate: dueDate
     },
     handleCreateTask,
     handleDeleteTask,

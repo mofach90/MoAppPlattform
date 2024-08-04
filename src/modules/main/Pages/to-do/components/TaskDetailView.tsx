@@ -48,6 +48,34 @@ const TaskDetailView = ({ task }: { task: Task | null }) => {
       </Box>
     );
   };
+  const renderCreatedDate = (createdDate: Date) => {
+    console.log("createddate", createdDate)
+    console.log("createddate formnated", dayjs(createdDate).format('YYYY-MM-DD HH:mm:ss'))
+;
+    return (
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent={"center"}
+        width={"100%"}
+        maxWidth={400}
+        padding={2}
+        borderRadius={1}
+        bgcolor={ 'rgba(0, 255, 255, 0.25)'}
+      >
+        <AccessTimeIcon color={'success'} />
+        <Typography
+          variant="h6"
+          color={"black"}
+          marginLeft={1}
+          display="flex"
+        >
+          Creating Date: {dayjs(createdDate).format('YYYY-MM-DD HH:mm:ss')}
+
+        </Typography>
+      </Box>
+    );
+  };
 
   return (
     <Box width={'100%'} display={'flex'} justifyContent={'center'} padding={3}>
@@ -76,8 +104,17 @@ const TaskDetailView = ({ task }: { task: Task | null }) => {
             {task.description}
           </Typography>
           <Box width={'100%'} display={"flex"} justifyContent={"center"}>
+          <Box display={"flex"} flexDirection={"column"}  marginTop={3}>
+            <Box marginBottom={2}>
 
           {task.dueDate && renderDueDate(task.dueDate)}
+            </Box>
+            <Box>
+
+          {task.createdAt && renderCreatedDate(task.createdAt)}
+            </Box>
+
+          </Box>
           </Box>
         </TaskCard>
       ) : (

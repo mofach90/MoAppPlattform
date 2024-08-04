@@ -10,7 +10,7 @@ const TaskCard = ({ children }: { children: React.ReactNode }) => {
       sx={{
         background: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
         width: '90%',
-        height: 300,
+        height: 500,
         padding: theme.spacing(4),
         borderRadius: theme.shape.borderRadius * 2,
         boxShadow: theme.shadows[4],
