@@ -45,6 +45,7 @@ const useTaskStore = create<TaskStore>((set) => ({
   updateTask: async (task: Task) => {
     try {
       const response: ApiResponseUpdateTask = await updateTaskInFirestore(task);
+      console.log("Task inside the UpdateTask un store: ", task)
       if (response.taskUpdated) {
         set((state: TaskStore) => ({
           tasks: state.tasks.map((t) => {
@@ -53,6 +54,9 @@ const useTaskStore = create<TaskStore>((set) => ({
               t.description = task.description;
               t.isChecked = task.isChecked;
               t.dueDate = task.dueDate;
+              t.createdAt = task.createdAt;
+              t.updatedAt = task.updatedAt;
+
               return t;
             } else {
               return t;
@@ -70,7 +74,7 @@ const useTaskStore = create<TaskStore>((set) => ({
   addTasksFromFirestore: async () => {
     try {
       const Tasks: ApiResponseGetTask = await getTasksFromFirestore();
-      console.log({Tasks})
+      console.log({ Tasks });
       set(() => ({
         tasks: [...Tasks.tasks],
       }));

@@ -6,7 +6,7 @@ import { tokens } from '../../../../../../global/theme/theme';
 import useTaskStore from '../../../hooks/useTaskStore';
 import { useTaskForm } from '../hooks/useTaskForm';
 import { DateTimePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
+import { useEffect } from 'react';
 
 function UpdateTaskForm() {
   const theme = useTheme();
@@ -22,6 +22,12 @@ function UpdateTaskForm() {
     handleUpdateTask,
     buttonConfig,
   } = useTaskForm();
+  useEffect(() => {
+    console.log(INITIAL_UPDATE_FORM_STATE.dueDate)
+  
+
+  }, [INITIAL_UPDATE_FORM_STATE])
+  
   return (
     <Grid
       container
@@ -79,7 +85,7 @@ function UpdateTaskForm() {
                       setFieldValue('taskDueDate', newValue);
                     }}
                     sx={{ width: "100%" }}
-                    defaultValue={dayjs(INITIAL_UPDATE_FORM_STATE.dueDate)}
+                    defaultValue={INITIAL_UPDATE_FORM_STATE.dueDate}
                   />
                 </Grid>
                 <Grid item xs={12}>

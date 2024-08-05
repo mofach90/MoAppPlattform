@@ -49,7 +49,7 @@ function CreateTaskForm() {
           initialValues={{ ...INITIAL_CREATE_FORM_STATE }}
           onSubmit={handleCreateTask}
         >
-          {({ submitForm, isValid, setFieldValue }) => (
+          {({ submitForm, isValid, setFieldValue, values }) => (
             <Form style={{ width: '60%' }}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -78,10 +78,18 @@ function CreateTaskForm() {
                 >
                 <DateTimePicker
                     label='Task due Date'
+                    slotProps={{
+                      actionBar: {
+                        actions: ['clear'],
+                      },
+                    }}
                     onChange={(newValue) => {
                       setFieldValue('taskDueDate', newValue);
+                      // setFieldValue('taskDueDate',null);
                     }}
                     sx={{ width: "100%" }}
+                    value={values.taskDueDate !== null ? dayjs(values.taskDueDate): null}
+                    // defaultValue={null}
                   />
                 </Grid>
                 <Grid item xs={12}>
