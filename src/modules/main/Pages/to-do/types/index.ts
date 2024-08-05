@@ -71,6 +71,9 @@ export interface TaskStore {
   selectedTask: Task | null;
   deleteTaskDialog: boolean;
   UpdateTaskDialog: boolean;
+  openSnackbarTaskCreated: boolean,
+  openSnackbarTaskUpdated: boolean,
+  openSnackbarTaskDeleted: boolean,
   setDeleteTaskDialog: () => void;
   setUpdateTaskDialog: () => void;
   selectTask: (task: Task) => void;
@@ -78,6 +81,10 @@ export interface TaskStore {
   updateTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;
   addTasksFromFirestore: () => void;
+  handleCloseNotification: (
+    _event: React.SyntheticEvent | Event,
+    reason?: string,
+  ) => void;
 }
 
 export interface ManageTasksState {

@@ -7,10 +7,13 @@ import useTaskStore from '../../../hooks/useTaskStore';
 import { useTaskForm } from '../hooks/useTaskForm';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { useEffect } from 'react';
+import useSlotProps from '../hooks/slotProps';
 
 function UpdateTaskForm() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { slotProps } = useSlotProps();
+
 
   const setUpdateTaskDialog = useTaskStore(
     (state) => state.setUpdateTaskDialog,
@@ -81,6 +84,8 @@ function UpdateTaskForm() {
                 >
                 <DateTimePicker
                     label='Task due Date'
+                    slotProps={slotProps}
+
                     onChange={(newValue) => {
                       setFieldValue('taskDueDate', newValue);
                     }}

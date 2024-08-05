@@ -23,6 +23,10 @@ const useTaskStore = create<TaskStore>((set) => ({
   selectedTask: null,
   deleteTaskDialog: false,
   UpdateTaskDialog: false,
+  openSnackbarTaskCreated: false,
+  openSnackbarTaskUpdated: false,
+  openSnackbarTaskDeleted: false,
+
   setDeleteTaskDialog: () =>
     set((state) => ({
       deleteTaskDialog: !state.deleteTaskDialog,
@@ -37,6 +41,7 @@ const useTaskStore = create<TaskStore>((set) => ({
       const response: ApiResponseCreateTask = await createTaskInFirestore(task);
       set((state: TaskStore) => ({
         tasks: [...state.tasks, response.newCreatedTask],
+        openSnackbarTaskCreated: true,
       }));
     } catch (error) {
       console.error('Error happen creating a nwe Task in Firestore: ', error);
@@ -45,7 +50,7 @@ const useTaskStore = create<TaskStore>((set) => ({
   updateTask: async (task: Task) => {
     try {
       const response: ApiResponseUpdateTask = await updateTaskInFirestore(task);
-      console.log("Task inside the UpdateTask un store: ", task)
+      console.log('Task inside the UpdateTask un store: ', task);
       if (response.taskUpdated) {
         set((state: TaskStore) => ({
           tasks: state.tasks.map((t) => {
@@ -62,6 +67,7 @@ const useTaskStore = create<TaskStore>((set) => ({
               return t;
             }
           }),
+          openSnackbarTaskUpdated: true,
         }));
       } else {
         console.log('Error while Updating the Task: ', response.message);
@@ -89,11 +95,26 @@ const useTaskStore = create<TaskStore>((set) => ({
         set((state: TaskStore) => ({
           tasks: state.tasks.filter((task) => task.id !== taskId),
           selectedTask: null,
+          openSnackbarTaskDeleted: true,
         }));
       } else {
         console.log('Error: ', response.message);
       }
     } catch (error) {}
+  },
+  handleCloseNotification: (
+    _event: React.SyntheticEvent | Event,
+    reason?: string,
+  ) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    set({
+      openSnackbarTaskCreated: false,
+      openSnackbarTaskUpdated: false,
+      openSnackbarTaskDeleted: false,
+    });
   },
 }));
 

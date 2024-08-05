@@ -4,6 +4,7 @@ import { ManageTasksState } from '../../../types';
 const useManageTasksStore = create<ManageTasksState>((set) => ({
   openCreateTask: false,
   openRemoveTask: false,
+  
   handleClose: (_event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;

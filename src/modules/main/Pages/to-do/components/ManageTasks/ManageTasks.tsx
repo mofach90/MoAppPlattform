@@ -1,5 +1,6 @@
 import CreateTaskDialog from './Components/CreateTaskDialog';
 import ManageTaskButton from './Components/ManageTaskButton';
+import OperationStatusNotification from './Components/OperationStatusNotification';
 import RemoveTaskDialog from './Components/RemoveTaskDialog';
 
 const ManageTasks = () => {
@@ -8,6 +9,7 @@ const ManageTasks = () => {
       <ManageTaskButton />
       <CreateTaskDialog />
       <RemoveTaskDialog />
+      <OperationStatusNotification/>
     </>
   );
 };

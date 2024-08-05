@@ -7,7 +7,6 @@ import useTaskStore from '../../../hooks/useTaskStore';
 import { CreateTaskFormValues, Task } from '../../../types';
 import createFormValidation from '../utils/createFormValidation';
 import deleteFormDublicate from '../utils/deleteFormDublicate';
-import { useEffect } from 'react';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -22,7 +21,7 @@ const INITIAL_CREATE_FORM_STATE = {
   taskTitle: '',
   taskDescription: '',
   // taskDueDate: dayjs(new Date()).toISOString(),
-  taskDueDate: '',
+  taskDueDate: null,
 };
 const INITIAL_REMOVE_FORM_STATE = {
   taskTitle: '',
@@ -35,8 +34,7 @@ export const useTaskForm = () => {
   const title = selectedTask?.title ? selectedTask.title : '';
   const description = selectedTask?.description ? selectedTask.description : '';
   const dueDate = selectedTask?.dueDate ? dayjs(selectedTask.dueDate) : null;
-  
-  
+
   const handleCreateTask = (
     values: CreateTaskFormValues,
     { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,

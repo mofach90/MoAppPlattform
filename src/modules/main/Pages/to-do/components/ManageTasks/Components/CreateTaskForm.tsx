@@ -1,5 +1,5 @@
 import { Grid, Paper, Typography, useTheme } from '@mui/material';
-import { DatePicker, DateTimePicker, MobileTimePicker } from '@mui/x-date-pickers';
+import { DateTimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
@@ -7,6 +7,7 @@ import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
 import { tokens } from '../../../../../../global/theme/theme';
+import  useSlotProps  from '../hooks/slotProps';
 import useManageTasksStore from '../hooks/useManageTasks';
 import { useTaskForm } from '../hooks/useTaskForm';
 
@@ -19,6 +20,7 @@ function CreateTaskForm() {
   const handleOnclickCreate = useManageTasksStore(
     (state) => state.handleOnClickCreate,
   );
+  const { slotProps } = useSlotProps();
 
   const {
     CREATE_FORM_VALIDATION,
@@ -71,25 +73,20 @@ function CreateTaskForm() {
                     type="text"
                   />
                 </Grid>
- 
-                <Grid
-                  item
-                  xs={12}
-                >
-                <DateTimePicker
-                    label='Task due Date'
-                    slotProps={{
-                      actionBar: {
-                        actions: ['clear'],
-                      },
-                    }}
+
+                <Grid item xs={12}>
+                  <DateTimePicker
+                    label="Task due Date"
+                    slotProps={slotProps}
                     onChange={(newValue) => {
                       setFieldValue('taskDueDate', newValue);
-                      // setFieldValue('taskDueDate',null);
                     }}
-                    sx={{ width: "100%" }}
-                    value={values.taskDueDate !== null ? dayjs(values.taskDueDate): null}
-                    // defaultValue={null}
+                    sx={{ width: '100%' }}
+                    value={
+                      values.taskDueDate !== null
+                        ? dayjs(values.taskDueDate)
+                        : null
+                    }
                   />
                 </Grid>
                 <Grid item xs={12}>
