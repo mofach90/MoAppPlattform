@@ -7,6 +7,7 @@ import useTaskStore from '../../../hooks/useTaskStore';
 import { CreateTaskFormValues, PriorityType, Task } from '../../../types';
 import createFormValidation from '../utils/createFormValidation';
 import deleteFormDublicate from '../utils/deleteFormDublicate';
+import TaskPriority from '../../ToDoItem/components/TaskPriority';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -32,6 +33,7 @@ export const useTaskForm = () => {
   const selectedTask = useTaskStore((state) => state.selectedTask);
 
   const title = selectedTask?.title ? selectedTask.title : '';
+  const priority = selectedTask?.priority ? selectedTask.priority : 'medium';
   const description = selectedTask?.description ? selectedTask.description : '';
   const dueDate = selectedTask?.dueDate ? dayjs(selectedTask.dueDate) : null;
 
@@ -90,6 +92,7 @@ export const useTaskForm = () => {
       taskTitle: title,
       taskDescription: description,
       dueDate: dueDate,
+      taskPriority: priority,
     },
     handleCreateTask,
     handleDeleteTask,

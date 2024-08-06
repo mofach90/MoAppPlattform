@@ -1,14 +1,25 @@
-import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { Task } from '../../../types';
-import LowPriorityIcon from '@mui/icons-material/LowPriority';
-import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 
 const TaskPriority = ({ task }: { readonly task: Task }) => {
-  return <>
-  {  task.priority === 'high' ? <PriorityHighIcon /> : null}
-  {  task.priority === 'medium' ? <DensityMediumIcon /> : null}
-  {  task.priority === 'low' ? <LowPriorityIcon /> : null}
-    </>;
+  return (
+    <>
+      {task.priority === 'high' ? (
+        <KeyboardDoubleArrowUpIcon sx={{ color: 'red' }} fontSize="medium" />
+      ) : null}
+      {task.priority === 'medium' ? (
+        <MenuOpenIcon sx={{ color: 'aqua' }} fontSize="medium" />
+      ) : null}
+      {task.priority === 'low' ? (
+        <KeyboardDoubleArrowDownIcon
+          sx={{ color: 'green' }}
+          fontSize="medium"
+        />
+      ) : null}
+    </>
+  );
 };
 
 export default TaskPriority;

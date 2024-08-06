@@ -29,7 +29,12 @@ const TodoItem = ({ task }: { readonly task: Task }) => {
         <CheckBox task={task} />
         <Box display={'flex'} width="100%" justifyContent={'space-between'}>
           <TaskPriority task={task} />
-          <Box display={'flex'} justifyContent={'center'} width={'100%'}>
+          <Box
+            display={'flex'}
+            justifyContent={'start'}
+            width={'100%'}
+            maxWidth={100}
+          >
             <TaskTitle task={task} />
           </Box>
         </Box>
