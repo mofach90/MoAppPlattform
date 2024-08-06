@@ -7,7 +7,7 @@ import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
 import { tokens } from '../../../../../../global/theme/theme';
-import  useSlotProps  from '../hooks/slotProps';
+import useSlotProps from '../hooks/slotProps';
 import useManageTasksStore from '../hooks/useManageTasks';
 import { useTaskForm } from '../hooks/useTaskForm';
 import SelectPriority from './SelectPriority';
@@ -75,9 +75,8 @@ function CreateTaskForm() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-
-                <SelectPriority setFieldValue={setFieldValue} />                </Grid>
-
+                  <SelectPriority setFieldValue={setFieldValue} />{' '}
+                </Grid>
                 <Grid item xs={12}>
                   <DateTimePicker
                     label="Task due Date"

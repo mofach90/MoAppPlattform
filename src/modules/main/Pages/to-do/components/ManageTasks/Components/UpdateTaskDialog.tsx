@@ -15,7 +15,7 @@ const UpdateTaskDialog = () => {
         elevation: 24,
         sx: {
           width: 600,
-          height: 500,
+          height: 550,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
