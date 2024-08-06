@@ -4,7 +4,7 @@ import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { FormikHelpers } from 'formik';
 import useTaskStore from '../../../hooks/useTaskStore';
-import { CreateTaskFormValues, Task } from '../../../types';
+import { CreateTaskFormValues, PriorityType, Task } from '../../../types';
 import createFormValidation from '../utils/createFormValidation';
 import deleteFormDublicate from '../utils/deleteFormDublicate';
 
@@ -21,6 +21,7 @@ const INITIAL_CREATE_FORM_STATE = {
   taskTitle: '',
   taskDescription: '',
   taskDueDate: null,
+  taskPriority: 'medium' as PriorityType,
 };
 const INITIAL_REMOVE_FORM_STATE = {
   taskTitle: '',
@@ -46,6 +47,7 @@ export const useTaskForm = () => {
       dueDate: values.taskDueDate
         ? dayjs(values.taskDueDate).toISOString()
         : undefined,
+        priority:values.taskPriority
     };
     console.log('task to crteate', Task);
 
@@ -64,6 +66,8 @@ export const useTaskForm = () => {
       dueDate: values.taskDueDate ? values.taskDueDate : selectedTask?.dueDate,
       createdAt: selectedTask?.createdAt,
       updatedAt: dayjs(new Date()).toISOString(),
+      priority:values.taskPriority
+
     };
     updateTask(Task);
     resetForm();

@@ -12,6 +12,7 @@ const createTaskInFirestore = async (task: Task) => {
         description: task.description,
         isChecked: task.isChecked,
         dueDate: task.dueDate,
+        priority: task.priority
         
       }),
     });

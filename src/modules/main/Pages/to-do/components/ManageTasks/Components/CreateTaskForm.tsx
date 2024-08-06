@@ -10,6 +10,7 @@ import { tokens } from '../../../../../../global/theme/theme';
 import  useSlotProps  from '../hooks/slotProps';
 import useManageTasksStore from '../hooks/useManageTasks';
 import { useTaskForm } from '../hooks/useTaskForm';
+import SelectPriority from './SelectPriority';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -73,6 +74,9 @@ function CreateTaskForm() {
                     type="text"
                   />
                 </Grid>
+                <Grid item xs={12}>
+
+                <SelectPriority setFieldValue={setFieldValue} />                </Grid>
 
                 <Grid item xs={12}>
                   <DateTimePicker

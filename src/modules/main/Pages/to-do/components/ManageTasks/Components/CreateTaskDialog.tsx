@@ -12,7 +12,7 @@ const CreateTaskDialog = () => {
         elevation: 24,
         sx: {
           width: 800,
-          height: 500,
+          height: 600,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',

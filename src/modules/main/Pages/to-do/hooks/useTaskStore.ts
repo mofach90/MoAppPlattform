@@ -18,6 +18,7 @@ const useTaskStore = create<TaskStore>((set) => ({
       title: 'Go for Shopping',
       description: 'Buy groceries and essentials',
       isChecked: false,
+      priority: "high"
     },
   ],
   selectedTask: null,
@@ -50,7 +51,6 @@ const useTaskStore = create<TaskStore>((set) => ({
   updateTask: async (task: Task) => {
     try {
       const response: ApiResponseUpdateTask = await updateTaskInFirestore(task);
-      console.log('Task inside the UpdateTask un store: ', task);
       if (response.taskUpdated) {
         set((state: TaskStore) => (
           {
@@ -65,6 +65,7 @@ const useTaskStore = create<TaskStore>((set) => ({
               t.dueDate = task.dueDate;
               t.createdAt = task.createdAt;
               t.updatedAt = task.updatedAt;
+              t.priority = task.priority
 
               return t;
             } else {

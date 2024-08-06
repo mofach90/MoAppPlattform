@@ -64,16 +64,18 @@ export interface Task {
   dueDate?: string;
   createdAt?: string;
   updatedAt?: string;
+  priority: PriorityType;
 }
+export type PriorityType = 'medium' | 'high' | 'low';
 
 export interface TaskStore {
   tasks: Task[];
   selectedTask: Task | null;
   deleteTaskDialog: boolean;
   UpdateTaskDialog: boolean;
-  openSnackbarTaskCreated: boolean,
-  openSnackbarTaskUpdated: boolean,
-  openSnackbarTaskDeleted: boolean,
+  openSnackbarTaskCreated: boolean;
+  openSnackbarTaskUpdated: boolean;
+  openSnackbarTaskDeleted: boolean;
   setDeleteTaskDialog: () => void;
   setUpdateTaskDialog: () => void;
   selectTask: (task: Task) => void;
@@ -99,6 +101,7 @@ export interface CreateTaskFormValues {
   taskTitle: string;
   taskDescription: string;
   taskDueDate?: string | null;
+  taskPriority: PriorityType
 }
 
 export function isSelectedTask(

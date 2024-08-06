@@ -14,7 +14,7 @@ const UpdateTaskDialog = () => {
       PaperProps={{
         elevation: 24,
         sx: {
-          width: 800,
+          width: 600,
           height: 500,
           display: 'flex',
           flexDirection: 'column',
