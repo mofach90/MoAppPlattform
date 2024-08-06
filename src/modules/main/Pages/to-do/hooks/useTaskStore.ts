@@ -52,9 +52,13 @@ const useTaskStore = create<TaskStore>((set) => ({
       const response: ApiResponseUpdateTask = await updateTaskInFirestore(task);
       console.log('Task inside the UpdateTask un store: ', task);
       if (response.taskUpdated) {
-        set((state: TaskStore) => ({
-          tasks: state.tasks.map((t) => {
+        set((state: TaskStore) => (
+          {
+            tasks: state.tasks.map((t) => {
             if (t.id === task.id) {
+              if (t.isChecked === task.isChecked) {
+                state.openSnackbarTaskUpdated= true;
+              }
               t.title = task.title;
               t.description = task.description;
               t.isChecked = task.isChecked;
@@ -67,7 +71,6 @@ const useTaskStore = create<TaskStore>((set) => ({
               return t;
             }
           }),
-          openSnackbarTaskUpdated: true,
         }));
       } else {
         console.log('Error while Updating the Task: ', response.message);

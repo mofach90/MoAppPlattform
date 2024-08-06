@@ -8,7 +8,7 @@ import TaskTitle from './components/TaskTitle';
 import useToDo from './hooks/useToDo';
 import { Box } from '@mui/material';
 
-const TodoItem = ({ task }: { task: Task }) => {
+const TodoItem = ({ task }: { readonly task: Task }) => {
   const selectedTask = useTaskStore((state) => state.selectedTask);
   const { handleTaskSelected, checkTaskActive } = useToDo();
 

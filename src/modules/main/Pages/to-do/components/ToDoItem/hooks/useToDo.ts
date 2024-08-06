@@ -10,8 +10,9 @@ const useToDo = () => {
     selectTask(task);
   };
   const handleIsChecked: (task: Task) => Promise<void> = async (task: Task) => {
-    task.isChecked= !task.isChecked
-   await updateTask(task);
+
+    const updatedTask = { ...task, isChecked: !task.isChecked };
+   await updateTask(updatedTask);
   };
   const checkTaskActive = (selectedTask: Task | null, task: Task) => {
     return isSelectedTask(selectedTask) && selectedTask.id === task.id;

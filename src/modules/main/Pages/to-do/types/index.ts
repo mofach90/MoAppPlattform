@@ -127,5 +127,5 @@ export interface TodoSidebarProps {
   variant?: 'finished-tasks' | 'on-progress-tasks';
   title: string;
   innerColor: string;
-  tasks: Task[];
+  readonly tasks: Task[];
 }

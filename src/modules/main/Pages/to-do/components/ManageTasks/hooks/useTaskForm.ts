@@ -20,7 +20,6 @@ const buttonConfig: ButtonProps = {
 const INITIAL_CREATE_FORM_STATE = {
   taskTitle: '',
   taskDescription: '',
-  // taskDueDate: dayjs(new Date()).toISOString(),
   taskDueDate: null,
 };
 const INITIAL_REMOVE_FORM_STATE = {

@@ -3,7 +3,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import { Box } from '@mui/material';
 import { Task } from '../../../types';
 import useToDo from '../hooks/useToDo';
-const Checkbox = ({ task }: { task: Task }) => {
+const Checkbox = ({ task }: { readonly task: Task }) => {
   const { handleIsChecked } = useToDo();
 
   return (
