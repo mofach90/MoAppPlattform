@@ -8,6 +8,7 @@ import DeleteConfirmDialog from './components/ToDoItem/components/DeleteConfirmD
 import TodoSidebar from './components/TodoSidebar';
 import useTaskStore from './hooks/useTaskStore';
 import { TaskStore } from './types';
+import PushNotification from './components/PushNotification';
 
 const TodoApp = () => {
   const theme = useTheme();
@@ -21,6 +22,7 @@ const TodoApp = () => {
 
   return (
     <PlattformPage page={pages.todo} imgPath="public/assets/to-do-app.png">
+      <PushNotification/>
       <Box margin={'15px'} borderRadius={3} display={'flex'} width={'100%'}>
         <TodoSidebar
           variant="on-progress-tasks"
