@@ -56,6 +56,12 @@ export interface colorLibrary {
   };
 }
 
+export enum reminder {
+  default = 0,
+  before_time_1 = "15 min",
+  before_time_2 = "30 min",
+  before_time_3 = "1 hr",
+}
 export interface Task {
   id?: string;
   title: string;

@@ -8,6 +8,7 @@ import { CreateTaskFormValues } from '../../../../types';
 const SelectPriority = ({
   setFieldValue,
   props,
+  taskHasDueTime,
 }: {
   setFieldValue: (
     field: string,
@@ -15,13 +16,17 @@ const SelectPriority = ({
     shouldValidate?: boolean,
   ) => Promise<void | FormikErrors<CreateTaskFormValues>>;
   props?: any;
+  taskHasDueTime: boolean;
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
     setFieldValue('taskPriority', event.target.value);
   };
 
   return (
-    <FormControl sx={{ width: '100%' }} size="medium">
+    <FormControl
+      sx={{ width: `${taskHasDueTime ? '45%' : '100%'}` }}
+      size="medium"
+    >
       <InputLabel id="priority-select-label">Priority</InputLabel>
       <Select
         labelId="priority-select-label"

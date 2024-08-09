@@ -3,7 +3,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormikErrors } from 'formik';
-import { CreateTaskFormValues } from '../../../../types';
+import { CreateTaskFormValues, reminder } from '../../../../types';
+
+
 
 const SelectReminder = ({
   setFieldValue,
@@ -21,18 +23,18 @@ const SelectReminder = ({
   };
 
   return (
-    <FormControl sx={{ width: '100%' }} size="medium">
-      <InputLabel id="priority-select-label">Priority</InputLabel>
+    <FormControl sx={{ width: '45%'}} size="medium" fullWidth>
+      <InputLabel id="reminder-select-label">Reminder</InputLabel>
       <Select
-        labelId="priority-select-label"
-        id="priority-select"
+        labelId="priority-reminder-label"
+        id="reminder-id"
         onChange={handleChange}
-        // value={INITIAL_UPDATE_FORM_STATE.taskPriority?INITIAL_UPDATE_FORM_STATE.taskPriority:""}
         {...props}
       >
-        <MenuItem value={'high'}>High</MenuItem>
-        <MenuItem value={'medium'}>Medium</MenuItem>
-        <MenuItem value={'low'}>Low</MenuItem>
+        <MenuItem value={reminder.default}>"none"</MenuItem>
+        <MenuItem value={reminder.before_time_1}>{reminder.before_time_1}</MenuItem>
+        <MenuItem value={reminder.before_time_2}>{reminder.before_time_2}</MenuItem>
+        <MenuItem value={reminder.before_time_3}>{reminder.before_time_3}</MenuItem>
       </Select>
     </FormControl>
   );

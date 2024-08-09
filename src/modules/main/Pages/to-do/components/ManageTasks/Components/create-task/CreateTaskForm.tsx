@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography, useTheme } from '@mui/material';
+import { Box, Grid, Paper, Typography, useTheme } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
@@ -11,6 +11,7 @@ import useSlotProps from '../../hooks/slotProps';
 import useManageTasksStore from '../../hooks/useManageTasks';
 import { useTaskForm } from '../../hooks/useTaskForm';
 import SelectPriority from '../manage-priority/SelectPriority';
+import SelectReminder from '../manage-reminder/SelectReminder';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -75,7 +76,16 @@ function CreateTaskForm() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <SelectPriority setFieldValue={setFieldValue} />{' '}
+                  <Box  display={"flex"} justifyContent={"space-between"}>
+
+                  <SelectPriority
+                    setFieldValue={setFieldValue}
+                    taskHasDueTime={!!values.taskDueDate}
+                    />
+                  {values.taskDueDate ? (
+                    <SelectReminder setFieldValue={setFieldValue} />
+                  ) : null}
+                  </Box>
                 </Grid>
                 <Grid item xs={12}>
                   <DateTimePicker
