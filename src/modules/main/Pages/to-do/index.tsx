@@ -1,10 +1,8 @@
 import { Box, useTheme } from '@mui/material';
 import { tokens } from '../../../global/theme/theme';
 import PlattformPage, { pages } from '../plattformPage';
-import UpdateTaskDialog from './components/ManageTasks/Components/update-task/UpdateTaskDialog';
 import ManageTasks from './components/ManageTasks/ManageTasks';
 import TaskDetailView from './components/TaskDetailView';
-import DeleteConfirmDialog from './components/ToDoItem/components/DeleteConfirmDialog';
 import TodoSidebar from './components/TodoSidebar';
 import useTaskStore from './hooks/useTaskStore';
 import { TaskStore } from './types';
@@ -37,8 +35,6 @@ const TodoApp = () => {
         />
         {selectedTask ? <TaskDetailView task={selectedTask} /> : null}
         <ManageTasks />
-        <DeleteConfirmDialog />
-        <UpdateTaskDialog />
       </Box>
     </PlattformPage>
   );
