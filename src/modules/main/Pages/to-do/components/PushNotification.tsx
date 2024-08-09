@@ -9,21 +9,24 @@ const PushNotification = () => {
 
   const requestPermission = async () => {
     try {
-      await Notification.requestPermission();
-      const token = await getToken(messaging,
-    //     {
-    //     vapidKey:
-    //       'BMyrgk4-oc7Z53E99SZb0MdWaIquk2x7CClDfYamWfUwgeSVrwkkGI2w4E-aroPwEHQMEhhg0vnlBpvUWnVD_ac',
-    //   }
-    
-    );
-      console.log('FCM Token:', token);
-      const result = await fetch(`/api/v1/todo-app/tasks/get-token`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({token}),
-        credentials: 'include',
-      });
+      const permission =await Notification.requestPermission();
+      if (permission === 'granted') {
+        
+          const token = await getToken(messaging,
+            //     {
+                //     vapidKey:
+                //       'BMyrgk4-oc7Z53E99SZb0MdWaIquk2x7CClDfYamWfUwgeSVrwkkGI2w4E-aroPwEHQMEhhg0vnlBpvUWnVD_ac',
+                //   }
+                
+            );
+            console.log('FCM Token:', token);
+            const result = await fetch(`/api/v1/todo-app/tasks/get-token`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({token}),
+                credentials: 'include',
+            });
+        }
       // You can now send the token to your server to send notifications to this device
     } catch (error) {
       console.error('Error getting permission for notifications:', error);

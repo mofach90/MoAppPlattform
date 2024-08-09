@@ -1,13 +1,13 @@
 import { Alert, AlertProps, Snackbar } from '@mui/material';
 import { forwardRef } from 'react';
-import useTaskStore from '../../../hooks/useTaskStore';
+import useTaskStore from '../../../../hooks/useTaskStore';
 
+const SnackbarAlert = forwardRef<HTMLDivElement, AlertProps>(
+  function SnackbarAlert(props, ref) {
+    return <Alert elevation={9} ref={ref} {...props} />;
+  },
+);
 const OperationStatusNotification = () => {
-  const SnackbarAlert = forwardRef<HTMLDivElement, AlertProps>(
-    function SnackbarAlert(props, ref) {
-      return <Alert elevation={9} ref={ref} {...props} />;
-    },
-  );
   const openSnackbarTaskCreated = useTaskStore(
     (state) => state.openSnackbarTaskCreated,
   );
@@ -29,7 +29,7 @@ const OperationStatusNotification = () => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
       >
         <SnackbarAlert variant="filled" severity="success">
-          Task  Successfully Created
+          Task Successfully Created
         </SnackbarAlert>
       </Snackbar>
       <Snackbar

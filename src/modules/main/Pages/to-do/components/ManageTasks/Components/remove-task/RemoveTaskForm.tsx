@@ -1,11 +1,11 @@
 import { Grid, Paper, Typography, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { useEffect } from 'react';
-import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
-import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
-import { tokens } from '../../../../../../global/theme/theme';
-import useManageTasksStore from '../hooks/useManageTasks';
-import { useTaskForm } from '../hooks/useTaskForm';
+import ButtonWrapper from '../../../../../../../global/components/ButtonWrapper';
+import TextfieldWrapper from '../../../../../../../global/components/TextfieldWrapper';
+import { tokens } from '../../../../../../../global/theme/theme';
+import useManageTasksStore from '../../hooks/useManageTasks';
+import { useTaskForm } from '../../hooks/useTaskForm';
 
 function RemoveTaskForm() {
   const theme = useTheme();

@@ -1,5 +1,5 @@
 import { Dialog } from '@mui/material';
-import useTaskStore from '../../../hooks/useTaskStore';
+import useTaskStore from '../../../../hooks/useTaskStore';
 import UpdateTaskForm from './UpdateTaskForm';
 
 const UpdateTaskDialog = () => {

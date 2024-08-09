@@ -1,18 +1,18 @@
 import { Dialog } from '@mui/material';
-import useManageTasksStore from '../hooks/useManageTasks';
-import RemoveTaskForm from './RemoveTaskForm';
+import useManageTasksStore from '../../hooks/useManageTasks';
+import CreateTaskForm from './CreateTaskForm';
 
-const RemoveTaskDialog = () => {
-  const { openRemoveTask, handleClose } = useManageTasksStore();
+const CreateTaskDialog = () => {
+  const { openCreateTask, handleClose } = useManageTasksStore();
   return (
     <Dialog
-      open={openRemoveTask}
+      open={openCreateTask}
       onClose={handleClose}
       PaperProps={{
         elevation: 24,
         sx: {
           width: 800,
-          height: 500,
+          height: 600,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -22,9 +22,9 @@ const RemoveTaskDialog = () => {
         },
       }}
     >
-      <RemoveTaskForm />
+      <CreateTaskForm />
     </Dialog>
   );
 };
 
-export default RemoveTaskDialog;
+export default CreateTaskDialog;

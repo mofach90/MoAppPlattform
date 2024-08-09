@@ -3,23 +3,22 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormikErrors } from 'formik';
-import { CreateTaskFormValues } from '../../../types';
-import { useTaskForm } from '../hooks/useTaskForm';
+import { CreateTaskFormValues } from '../../../../types';
 
-const SelectPriority = ({
-  setFieldValue, props
+const SelectReminder = ({
+  setFieldValue,
+  props,
 }: {
   setFieldValue: (
     field: string,
     value: any,
     shouldValidate?: boolean,
   ) => Promise<void | FormikErrors<CreateTaskFormValues>>;
-  props?:any
+  props?: any;
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
     setFieldValue('taskPriority', event.target.value);
   };
-
 
   return (
     <FormControl sx={{ width: '100%' }} size="medium">
@@ -39,4 +38,4 @@ const SelectPriority = ({
   );
 };
 
-export default SelectPriority;
+export default SelectReminder;

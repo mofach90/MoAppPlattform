@@ -2,13 +2,13 @@ import { Grid, Paper, Typography, useTheme } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { Form, Formik } from 'formik';
 import { useEffect } from 'react';
-import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
-import TextfieldWrapper from '../../../../../../global/components/TextfieldWrapper';
-import { tokens } from '../../../../../../global/theme/theme';
-import useTaskStore from '../../../hooks/useTaskStore';
-import useSlotProps from '../hooks/slotProps';
-import { useTaskForm } from '../hooks/useTaskForm';
-import SelectPriority from './SelectPriority';
+import ButtonWrapper from '../../../../../../../global/components/ButtonWrapper';
+import TextfieldWrapper from '../../../../../../../global/components/TextfieldWrapper';
+import { tokens } from '../../../../../../../global/theme/theme';
+import useTaskStore from '../../../../hooks/useTaskStore';
+import useSlotProps from '../../hooks/slotProps';
+import { useTaskForm } from '../../hooks/useTaskForm';
+import SelectPriority from '../manage-priority/SelectPriority';
 
 function UpdateTaskForm() {
   const theme = useTheme();
