@@ -27,7 +27,16 @@ const SelectPriority = ({
       sx={{ width: `${taskHasDueTime ? '39%' : '100%'}` }}
       size="medium"
     >
-      <InputLabel id="priority-select-label">Priority</InputLabel>
+      <InputLabel  id="priority-select-label" 
+      
+      sx={{
+
+                  transform: 'translate(0, -17px) scale(0.75)',
+
+
+        
+      }}
+      >Priority</InputLabel>
       <Select
         labelId="priority-select-label"
         id="priority-select"

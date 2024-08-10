@@ -10,7 +10,7 @@ import FormControl, { FormControlProps } from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { FormikErrors, useField } from 'formik';
+import { FormikErrors, useField, useFormikContext } from 'formik';
 import { useState } from 'react';
 import { CreateTaskFormValues, Reminder } from '../../../../types';
 
@@ -25,11 +25,15 @@ const SelectReminder = ({
   ) => Promise<void | FormikErrors<CreateTaskFormValues>>;
   props?: any;
 }) => {
+  const { setFieldTouched, validateField } = useFormikContext();
   const handleChange = (event: SelectChangeEvent) => {
     setFieldValue('taskReminder', event.target.value);
+    setTimeout(() => {
+      validateField('taskReminder');
+    }, 0);
   };
   const [open, setOpen] = useState(false);
-  const [textHelper, setTextHelper] = useState<string>();
+  const [textHelper, setTextHelper] = useState<string>('');
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -44,8 +48,18 @@ const SelectReminder = ({
   };
   if (meta && meta.touched && meta.error) {
     configOptions.error = true;
-    setTextHelper(meta.error);
   }
+  //   useEffect(() =>
+
+  // {    if (meta && meta.touched && meta.error) {
+
+  //       setTextHelper(meta.error)
+  //     }}
+
+  //   , [meta])
+  // useEffect(() => {
+  //   console.log('slecet', meta);
+  // }, [meta]);
 
   return (
     <Box
@@ -58,13 +72,24 @@ const SelectReminder = ({
       }}
     >
       <FormControl size="medium" fullWidth {...configOptions}>
-        <InputLabel id="reminder-select-label">Reminder</InputLabel>
-        {!!textHelper ? <FormHelperText>{textHelper}</FormHelperText> : null}
+        <InputLabel  id="reminder-select-label" 
+        sx={{
+          transform: 'translate(0px, -17px) scale(0.75)',
+          // transform: 'translate(-20px, -14px) scale(0.75) rotate(1turn)',
+          color: 'inherit',
+        
+        }}
+        
+        >Reminder</InputLabel>
         <Select
           labelId="priority-reminder-label"
           id="reminder-id"
           onChange={handleChange}
           {...props}
+          // onBlur={setFieldTouched("taskReminder", true)}
+          onClose={() => setFieldTouched('taskReminder', true)}
+          // onClose={()=>console.log("onCLose")}
+          
         >
           <MenuItem value={Reminder.default}>none</MenuItem>
           <MenuItem value={Reminder.before_time_1}>
@@ -77,6 +102,9 @@ const SelectReminder = ({
             {Reminder.before_time_3}
           </MenuItem>
         </Select>
+        {configOptions.error ? (
+          <FormHelperText sx={{ width: '100%' }}>{meta.error}</FormHelperText>
+        ) : null}
       </FormControl>
 
       <Tooltip
