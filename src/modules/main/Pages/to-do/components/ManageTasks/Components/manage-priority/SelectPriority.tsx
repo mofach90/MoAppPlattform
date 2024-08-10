@@ -24,7 +24,7 @@ const SelectPriority = ({
 
   return (
     <FormControl
-      sx={{ width: `${taskHasDueTime ? '45%' : '100%'}` }}
+      sx={{ width: `${taskHasDueTime ? '39%' : '100%'}` }}
       size="medium"
     >
       <InputLabel id="priority-select-label">Priority</InputLabel>
@@ -32,7 +32,6 @@ const SelectPriority = ({
         labelId="priority-select-label"
         id="priority-select"
         onChange={handleChange}
-        // value={INITIAL_UPDATE_FORM_STATE.taskPriority?INITIAL_UPDATE_FORM_STATE.taskPriority:""}
         {...props}
       >
         <MenuItem value={'high'}>High</MenuItem>

@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import * as Yup from 'yup';
 import { deboucedisTitleNotEmpty } from './CheckForTitleNotEmpty';
 
@@ -20,6 +21,34 @@ const createFormValidation = () =>
         'Description must include only letters and numbers',
       )
       .max(500, 'Description must be 500 characters or less'),
+    taskDueDate: Yup.date()
+      .nullable()
+      .test(
+        'is-future-date',
+        'Due Date must be in the future',
+        (value) => value === null || dayjs(value).isAfter(dayjs()),
+      ),
+
+    taskReminder: Yup.string()
+      .nullable()
+      .test(
+        'is-valid-reminder',
+        'Reminder must be set before the due date',
+        (value) => {
+          // const [field] = useField("taskDueDate");
+          const values = this as unknown as Yup.TestContext;
+          const taskDueDate = values?.parent.taskDueDate;
+          console.log('taskDueDate', taskDueDate);
+          if (!value || !taskDueDate) {
+            return true; // because there is no validation needed
+          }
+          const reminderTime = dayjs(taskDueDate).subtract(
+            parseInt(value),
+            'minute',
+          );
+          return dayjs(reminderTime).isAfter(dayjs());
+        },
+      ),
   });
 
 export default createFormValidation;

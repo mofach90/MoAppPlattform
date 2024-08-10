@@ -1,13 +1,12 @@
 import { Box, Grid, Paper, Typography, useTheme } from '@mui/material';
-import { DateTimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { Form, Formik } from 'formik';
 import ButtonWrapper from '../../../../../../../global/components/ButtonWrapper';
+import DateTimeWrapper from '../../../../../../../global/components/DateTimeWrapper';
 import TextfieldWrapper from '../../../../../../../global/components/TextfieldWrapper';
 import { tokens } from '../../../../../../../global/theme/theme';
-import useSlotProps from '../../hooks/slotProps';
 import useManageTasksStore from '../../hooks/useManageTasks';
 import { useTaskForm } from '../../hooks/useTaskForm';
 import SelectPriority from '../manage-priority/SelectPriority';
@@ -22,7 +21,6 @@ function CreateTaskForm() {
   const handleOnclickCreate = useManageTasksStore(
     (state) => state.handleOnClickCreate,
   );
-  const { slotProps } = useSlotProps();
 
   const {
     CREATE_FORM_VALIDATION,
@@ -53,7 +51,7 @@ function CreateTaskForm() {
           initialValues={{ ...INITIAL_CREATE_FORM_STATE }}
           onSubmit={handleCreateTask}
         >
-          {({ submitForm, isValid, setFieldValue, values }) => (
+          {({ submitForm, isValid, setFieldValue, values, setTouched }) => (
             <Form style={{ width: '60%' }}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -76,31 +74,18 @@ function CreateTaskForm() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Box  display={"flex"} justifyContent={"space-between"}>
-
-                  <SelectPriority
-                    setFieldValue={setFieldValue}
-                    taskHasDueTime={!!values.taskDueDate}
+                  <Box display={'flex'} justifyContent={'space-between'}>
+                    <SelectPriority
+                      setFieldValue={setFieldValue}
+                      taskHasDueTime={!!values.taskDueDate}
                     />
-                  {values.taskDueDate ? (
-                    <SelectReminder setFieldValue={setFieldValue} />
-                  ) : null}
+                    {values.taskDueDate ? (
+                      <SelectReminder setFieldValue={setFieldValue} />
+                    ) : null}
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
-                  <DateTimePicker
-                    label="Task due Date"
-                    slotProps={slotProps}
-                    onChange={(newValue) => {
-                      setFieldValue('taskDueDate', newValue);
-                    }}
-                    sx={{ width: '100%' }}
-                    value={
-                      values.taskDueDate !== null
-                        ? dayjs(values.taskDueDate)
-                        : null
-                    }
-                  />
+                  <DateTimeWrapper name="taskDueDate" />
                 </Grid>
                 <Grid item xs={12}>
                   <ButtonWrapper
