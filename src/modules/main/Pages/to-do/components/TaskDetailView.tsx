@@ -68,7 +68,7 @@ const TaskDetailView = ({ task }: { task: Task | null }) => {
         borderRadius={10}
         bgcolor={'rgba(0, 255, 255, 0.25)'}
       >
-        <Box display={'flex'} flexDirection={"column"}>
+        <Box display={'flex'} flexDirection={'column'}>
           <Typography
             variant="h6"
             color={'black'}

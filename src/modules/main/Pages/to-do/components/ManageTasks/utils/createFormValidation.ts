@@ -34,23 +34,16 @@ const createFormValidation = () =>
       .test(
         'is-valid-reminder',
         'Reminder must be set before the due date',
-         function (value){
-          // console.log('hello');
+        function (value) {
           const taskDueDate = (this as unknown as Yup.TestContext)?.parent
             .taskDueDate;
-          // console.log('taskDueDate', taskDueDate);
-          console.log('taskDueDate value', value);
-          if (!value || !taskDueDate || value === "none") {
+          if (!value || !taskDueDate || value === 'none') {
             return true; // because there is no validation needed
           }
           const reminderTime = dayjs(taskDueDate).subtract(
             parseInt(value),
             'minute',
           );
-          // console.log(
-          //   'taskDueDate reminderTime',
-          //   dayjs(reminderTime).isAfter(dayjs()),
-          // );
           return dayjs(reminderTime).isAfter(dayjs());
         },
       ),

@@ -33,7 +33,6 @@ const SelectReminder = ({
     }, 0);
   };
   const [open, setOpen] = useState(false);
-  const [textHelper, setTextHelper] = useState<string>('');
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -49,18 +48,6 @@ const SelectReminder = ({
   if (meta && meta.touched && meta.error) {
     configOptions.error = true;
   }
-  //   useEffect(() =>
-
-  // {    if (meta && meta.touched && meta.error) {
-
-  //       setTextHelper(meta.error)
-  //     }}
-
-  //   , [meta])
-  // useEffect(() => {
-  //   console.log('slecet', meta);
-  // }, [meta]);
-
   return (
     <Box
       sx={{
@@ -72,24 +59,21 @@ const SelectReminder = ({
       }}
     >
       <FormControl size="medium" fullWidth {...configOptions}>
-        <InputLabel  id="reminder-select-label" 
-        sx={{
-          transform: 'translate(0px, -17px) scale(0.75)',
-          // transform: 'translate(-20px, -14px) scale(0.75) rotate(1turn)',
-          color: 'inherit',
-        
-        }}
-        
-        >Reminder</InputLabel>
+        <InputLabel
+          id="reminder-select-label"
+          sx={{
+            transform: 'translate(0px, -17px) scale(0.75)',
+            color: 'inherit',
+          }}
+        >
+          Reminder
+        </InputLabel>
         <Select
           labelId="priority-reminder-label"
           id="reminder-id"
           onChange={handleChange}
           {...props}
-          // onBlur={setFieldTouched("taskReminder", true)}
           onClose={() => setFieldTouched('taskReminder', true)}
-          // onClose={()=>console.log("onCLose")}
-          
         >
           <MenuItem value={Reminder.default}>none</MenuItem>
           <MenuItem value={Reminder.before_time_1}>

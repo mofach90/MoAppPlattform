@@ -22,9 +22,9 @@ function TextfieldWrapper(props: Readonly<TextfieldWrapperProps>) {
     event.preventDefault();
   };
   useEffect(() => {
-    console.log("TextField",{meta})
-    console.log("TextField",{field})
-    }, [meta, field])
+    console.log('TextField', { meta });
+    console.log('TextField', { field });
+  }, [meta, field]);
 
   const configOption: TextFieldProps = {
     ...field,
@@ -52,8 +52,7 @@ function TextfieldWrapper(props: Readonly<TextfieldWrapperProps>) {
     };
   }
 
-  return <TextField  {...configOption}  
-/>;
+  return <TextField {...configOption} />;
 }
 
 export default TextfieldWrapper;

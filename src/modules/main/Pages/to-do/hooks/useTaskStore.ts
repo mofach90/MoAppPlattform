@@ -18,7 +18,7 @@ const useTaskStore = create<TaskStore>((set) => ({
       title: 'Go for Shopping',
       description: 'Buy groceries and essentials',
       isChecked: false,
-      priority: "high"
+      priority: 'high',
     },
   ],
   selectedTask: null,
@@ -52,12 +52,11 @@ const useTaskStore = create<TaskStore>((set) => ({
     try {
       const response: ApiResponseUpdateTask = await updateTaskInFirestore(task);
       if (response.taskUpdated) {
-        set((state: TaskStore) => (
-          {
-            tasks: state.tasks.map((t) => {
+        set((state: TaskStore) => ({
+          tasks: state.tasks.map((t) => {
             if (t.id === task.id) {
               if (t.isChecked === task.isChecked) {
-                state.openSnackbarTaskUpdated= true;
+                state.openSnackbarTaskUpdated = true;
               }
               t.title = task.title;
               t.description = task.description;
@@ -65,7 +64,7 @@ const useTaskStore = create<TaskStore>((set) => ({
               t.dueDate = task.dueDate;
               t.createdAt = task.createdAt;
               t.updatedAt = task.updatedAt;
-              t.priority = task.priority
+              t.priority = task.priority;
 
               return t;
             } else {

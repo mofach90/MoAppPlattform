@@ -64,7 +64,7 @@ const tooltipHelperText = `
   After selecting a reminder interval, you can also choose how you'd like to be notified—either by email or SMS.
 `;
 // before time value must in min , for example 2 hr need to be 120 min
-export enum Reminder { 
+export enum Reminder {
   default = 'none',
   before_time_1 = '15 min',
   before_time_2 = '30 min',

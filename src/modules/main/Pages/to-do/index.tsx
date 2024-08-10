@@ -19,7 +19,6 @@ const TodoApp = () => {
 
   return (
     <PlattformPage page={pages.todo} imgPath="public/assets/to-do-app.png">
-      {/* <PushNotification/> // first need of it - todo */}
       <Box margin={'15px'} borderRadius={3} display={'flex'} width={'100%'}>
         <TodoSidebar
           variant="on-progress-tasks"

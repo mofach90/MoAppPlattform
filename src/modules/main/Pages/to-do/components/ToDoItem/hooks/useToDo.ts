@@ -5,14 +5,12 @@ const useToDo = () => {
   const selectTask = useTaskStore((state) => state.selectTask);
   const updateTask = useTaskStore((state) => state.updateTask);
 
-
   const handleTaskSelected: (task: Task) => void = (task: Task) => {
     selectTask(task);
   };
   const handleIsChecked: (task: Task) => Promise<void> = async (task: Task) => {
-
     const updatedTask = { ...task, isChecked: !task.isChecked };
-   await updateTask(updatedTask);
+    await updateTask(updatedTask);
   };
   const checkTaskActive = (selectedTask: Task | null, task: Task) => {
     return isSelectedTask(selectedTask) && selectedTask.id === task.id;

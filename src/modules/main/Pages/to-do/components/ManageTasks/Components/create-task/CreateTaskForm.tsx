@@ -51,7 +51,7 @@ function CreateTaskForm() {
           initialValues={{ ...INITIAL_CREATE_FORM_STATE }}
           onSubmit={handleCreateTask}
         >
-          {({ submitForm, isValid, setFieldValue, values, setTouched }) => (
+          {({ submitForm, isValid, setFieldValue, values }) => (
             <Form style={{ width: '60%' }}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
