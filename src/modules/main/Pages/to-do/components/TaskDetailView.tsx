@@ -123,6 +123,9 @@ const TaskDetailView = ({ task }: { task: Task | null }) => {
             <Box display={'flex'} flexDirection={'column'} marginTop={3}>
               <Box marginBottom={2}>
                 {task.dueDate && renderDueDate(task.dueDate)}
+                {task.reminder && task.reminder !== 'none' ? (
+                  <TaskReminder taskReminder={task.reminder} />
+                ) : null}
               </Box>
               <Box>
                 {task.createdAt &&
@@ -144,3 +147,11 @@ const TaskDetailView = ({ task }: { task: Task | null }) => {
 };
 
 export default TaskDetailView;
+
+const TaskReminder = ({ taskReminder }: { taskReminder: string }) => {
+  return (
+    <Typography mt={1} textAlign={'center'} color={'red'}>
+      Reminde me {taskReminder} before Due Date
+    </Typography>
+  );
+};

@@ -6,7 +6,7 @@ import { debounce } from 'lodash';
 import { useField, useFormikContext } from 'formik';
 import useSlotProps from '../../main/Pages/to-do/components/ManageTasks/hooks/slotProps';
 
-function DateTimeWrapper({ name }: { name: string }) {
+function DateTimeWrapper({ name, initialValue }: { name: string, initialValue?: dayjs.Dayjs | null }) {
   const [field, meta] = useField(name);
   const { slotProps } = useSlotProps();
   const { setFieldValue, handleBlur, setFieldTouched, validateField } =
@@ -42,7 +42,8 @@ function DateTimeWrapper({ name }: { name: string }) {
         deboucedisTitleNotEmpty();
       }}
       sx={{ width: '100%' }}
-      value={field.value !== null ? dayjs(field.value) : null}
+      // value={field.value !== null ? dayjs(field.value) : null}
+      defaultValue={initialValue? dayjs(initialValue): null}
     />
   );
 }

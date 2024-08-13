@@ -74,6 +74,7 @@ const SelectReminder = ({
           onChange={handleChange}
           {...props}
           onClose={() => setFieldTouched('taskReminder', true)}
+          defaultValue={props?.defaultValue ? props?.defaultValue : ''}
         >
           <MenuItem value={Reminder.default}>none</MenuItem>
           <MenuItem value={Reminder.before_time_1}>

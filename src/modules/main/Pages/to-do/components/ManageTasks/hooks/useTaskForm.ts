@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { FormikHelpers } from 'formik';
+import { useEffect } from 'react';
 import useTaskStore from '../../../hooks/useTaskStore';
 import { CreateTaskFormValues, PriorityType, Task } from '../../../types';
 import createFormValidation from '../utils/createFormValidation';
@@ -22,7 +23,7 @@ const INITIAL_CREATE_FORM_STATE = {
   taskDescription: '',
   taskDueDate: null,
   taskPriority: 'medium' as PriorityType,
-  taskReminder: null,
+  taskReminder: undefined,
 };
 const INITIAL_REMOVE_FORM_STATE = {
   taskTitle: '',
@@ -32,10 +33,15 @@ export const useTaskForm = () => {
   const { createTask, deleteTask, tasks, updateTask } = useTaskStore();
   const selectedTask = useTaskStore((state) => state.selectedTask);
 
+  useEffect(() => {
+    console.log('selectedTask yahoo', selectedTask);
+  }, [selectedTask]);
+
   const title = selectedTask?.title ? selectedTask.title : '';
   const priority = selectedTask?.priority ? selectedTask.priority : 'medium';
   const description = selectedTask?.description ? selectedTask.description : '';
   const dueDate = selectedTask?.dueDate ? dayjs(selectedTask.dueDate) : null;
+  const reminder = selectedTask?.reminder;
 
   const handleCreateTask = (
     values: CreateTaskFormValues,
@@ -48,7 +54,11 @@ export const useTaskForm = () => {
       isChecked: false,
       dueDate: values.taskDueDate
         ? dayjs(values.taskDueDate).toISOString()
-        : undefined,
+        : null,
+      reminder:
+        values.taskReminder && values.taskDueDate
+          ? values.taskReminder
+          : undefined,
       priority: values.taskPriority,
     };
     console.log('task to crteate', Task);
@@ -69,7 +79,13 @@ export const useTaskForm = () => {
       createdAt: selectedTask?.createdAt,
       updatedAt: dayjs(new Date()).toISOString(),
       priority: values.taskPriority,
+      reminder:
+        values.taskReminder && values.taskDueDate
+          ? values.taskReminder
+          : undefined,
     };
+    console.log('task updated', Task);
+    console.log('task updated values', values);
     updateTask(Task);
     resetForm();
   };
@@ -92,6 +108,7 @@ export const useTaskForm = () => {
       taskDescription: description,
       dueDate: dueDate,
       taskPriority: priority,
+      taskReminder: reminder,
     },
     handleCreateTask,
     handleDeleteTask,

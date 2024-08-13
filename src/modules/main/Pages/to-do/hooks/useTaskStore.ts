@@ -65,6 +65,7 @@ const useTaskStore = create<TaskStore>((set) => ({
               t.createdAt = task.createdAt;
               t.updatedAt = task.updatedAt;
               t.priority = task.priority;
+              t.reminder = task.reminder;
 
               return t;
             } else {

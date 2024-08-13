@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs";
+
 export interface colorLibrary {
   grey: {
     100: string;
@@ -76,10 +78,11 @@ export interface Task {
   title: string;
   description: string;
   isChecked?: boolean;
-  dueDate?: string;
+  dueDate?: string | null;
   createdAt?: string;
   updatedAt?: string;
   priority: PriorityType | null;
+  reminder?: string;
 }
 export type PriorityType = 'medium' | 'high' | 'low';
 
@@ -117,7 +120,7 @@ export interface CreateTaskFormValues {
   taskDescription: string;
   taskDueDate?: string | null;
   taskPriority: PriorityType | null;
-  taskReminder: Reminder | null;
+  taskReminder: string | undefined;
 }
 
 export function isSelectedTask(
@@ -147,4 +150,12 @@ export interface TodoSidebarProps {
   title: string;
   innerColor: string;
   readonly tasks: Task[];
+}
+
+export interface Initial_Update_State_Type {
+  taskTitle: string;
+  taskDescription: string;
+  dueDate: Dayjs | null;
+  taskPriority: PriorityType;
+  taskReminder: string | undefined;
 }

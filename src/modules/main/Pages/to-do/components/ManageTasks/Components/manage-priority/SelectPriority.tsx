@@ -30,7 +30,14 @@ const SelectPriority = ({
       <InputLabel
         id="priority-select-label"
         sx={{
-          transform: 'translate(0, -17px) scale(0.75)',
+          "&.Mui-focused":{
+
+            transform: 'translate(0, -17px) scale(0.75)',
+          },
+          "&.MuiInputLabel-shrink":{
+
+            transform: 'translate(0, -17px) scale(0.75)',
+          }
         }}
       >
         Priority

@@ -1,19 +1,19 @@
-import { Grid, Paper, Typography, useTheme } from '@mui/material';
-import { DateTimePicker } from '@mui/x-date-pickers';
+import { Box, Grid, Paper, Typography, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { useEffect } from 'react';
 import ButtonWrapper from '../../../../../../../global/components/ButtonWrapper';
+import DateTimeWrapper from '../../../../../../../global/components/DateTimeWrapper';
 import TextfieldWrapper from '../../../../../../../global/components/TextfieldWrapper';
 import { tokens } from '../../../../../../../global/theme/theme';
 import useTaskStore from '../../../../hooks/useTaskStore';
-import useSlotProps from '../../hooks/slotProps';
 import { useTaskForm } from '../../hooks/useTaskForm';
+import { shouldShowReminder } from '../../utils/checkIfDueDate';
 import SelectPriority from '../manage-priority/SelectPriority';
+import SelectReminder from '../manage-reminder/SelectReminder';
 
 function UpdateTaskForm() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const { slotProps } = useSlotProps();
 
   const setUpdateTaskDialog = useTaskStore(
     (state) => state.setUpdateTaskDialog,
@@ -52,7 +52,7 @@ function UpdateTaskForm() {
           initialValues={{ ...INITIAL_UPDATE_FORM_STATE }}
           onSubmit={handleUpdateTask}
         >
-          {({ submitForm, isValid, setFieldValue }) => (
+          {({ submitForm, isValid, setFieldValue, values }) => (
             <Form style={{ width: '60%' }}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -75,24 +75,34 @@ function UpdateTaskForm() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <SelectPriority
-                    setFieldValue={setFieldValue}
-                    props={{
-                      defaultValue: INITIAL_UPDATE_FORM_STATE.taskPriority
-                        ? INITIAL_UPDATE_FORM_STATE.taskPriority
-                        : '',
-                    }}
-                  />
+                  <Box display={'flex'} justifyContent={'space-between'}>
+                    <SelectPriority
+                      setFieldValue={setFieldValue}
+                      taskHasDueTime={shouldShowReminder(
+                        values,
+                        INITIAL_UPDATE_FORM_STATE,
+                      )}
+                      props={{
+                        defaultValue: INITIAL_UPDATE_FORM_STATE.taskPriority
+                          ? INITIAL_UPDATE_FORM_STATE.taskPriority
+                          : '',
+                      }}
+                    />
+
+                    {shouldShowReminder(values, INITIAL_UPDATE_FORM_STATE) ? (
+                      <SelectReminder
+                        setFieldValue={setFieldValue}
+                        props={{
+                          defaultValue: INITIAL_UPDATE_FORM_STATE.taskReminder,
+                        }}
+                      />
+                    ) : null}
+                  </Box>
                 </Grid>
                 <Grid item xs={12}>
-                  <DateTimePicker
-                    label="Task due Date"
-                    slotProps={slotProps}
-                    onChange={(newValue) => {
-                      setFieldValue('taskDueDate', newValue);
-                    }}
-                    sx={{ width: '100%' }}
-                    defaultValue={INITIAL_UPDATE_FORM_STATE.dueDate}
+                  <DateTimeWrapper
+                    name="taskDueDate"
+                    initialValue={INITIAL_UPDATE_FORM_STATE.dueDate}
                   />
                 </Grid>
                 <Grid item xs={12}>

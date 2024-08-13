@@ -26,7 +26,9 @@ const createFormValidation = () =>
       .test(
         'is-future-date',
         'Due Date must be in the future',
-        (value) => value === null || dayjs(value).isAfter(dayjs()),
+        (value) => {
+          console.log(" value === null || dayjs(value).isAfter(dayjs()",  value  )
+          return !value  || dayjs(value).isAfter(dayjs()) },
       ),
 
     taskReminder: Yup.string()
@@ -40,10 +42,7 @@ const createFormValidation = () =>
           if (!value || !taskDueDate || value === 'none') {
             return true; // because there is no validation needed
           }
-          const reminderTime = dayjs(taskDueDate).subtract(
-            parseInt(value),
-            'minute',
-          );
+          const reminderTime = dayjs(taskDueDate).subtract(parseInt(value),'minute');
           return dayjs(reminderTime).isAfter(dayjs());
         },
       ),
