@@ -5,7 +5,7 @@ import utc from 'dayjs/plugin/utc';
 import { FormikHelpers } from 'formik';
 import { useEffect } from 'react';
 import useTaskStore from '../../../hooks/useTaskStore';
-import { CreateTaskFormValues, PriorityType, Task } from '../../../types';
+import { CreateTaskFormValues, Initial_Update_State_Type, PriorityType, Task } from '../../../types';
 import createFormValidation from '../utils/createFormValidation';
 import deleteFormDublicate from '../utils/deleteFormDublicate';
 
@@ -67,15 +67,15 @@ export const useTaskForm = () => {
     resetForm();
   };
   const handleUpdateTask = (
-    values: CreateTaskFormValues,
-    { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
+    values: Initial_Update_State_Type,
+    { resetForm }: Pick<FormikHelpers<Initial_Update_State_Type>, 'resetForm'>,
   ) => {
     const Task: Task = {
       id: selectedTask?.id,
       title: values.taskTitle,
       description: values.taskDescription,
       isChecked: selectedTask?.isChecked,
-      dueDate: values.taskDueDate ? values.taskDueDate : selectedTask?.dueDate,
+      dueDate: values.taskDueDate ? values.taskDueDate.toISOString() : null,
       createdAt: selectedTask?.createdAt,
       updatedAt: dayjs(new Date()).toISOString(),
       priority: values.taskPriority,
@@ -106,7 +106,7 @@ export const useTaskForm = () => {
     INITIAL_UPDATE_FORM_STATE: {
       taskTitle: title,
       taskDescription: description,
-      dueDate: dueDate,
+      taskDueDate: dueDate,
       taskPriority: priority,
       taskReminder: reminder,
     },

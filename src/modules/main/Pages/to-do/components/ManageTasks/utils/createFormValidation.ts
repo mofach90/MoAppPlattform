@@ -23,13 +23,10 @@ const createFormValidation = () =>
       .max(500, 'Description must be 500 characters or less'),
     taskDueDate: Yup.date()
       .nullable()
-      .test(
-        'is-future-date',
-        'Due Date must be in the future',
-        (value) => {
-          console.log(" value === null || dayjs(value).isAfter(dayjs()",  value  )
-          return !value  || dayjs(value).isAfter(dayjs()) },
-      ),
+      .test('is-future-date', 'Due Date must be in the future', (value) => {
+        console.log(' value === null || dayjs(value).isAfter(dayjs()', value);
+        return !value || dayjs(value).isAfter(dayjs());
+      }),
 
     taskReminder: Yup.string()
       .nullable()
@@ -42,8 +39,27 @@ const createFormValidation = () =>
           if (!value || !taskDueDate || value === 'none') {
             return true; // because there is no validation needed
           }
-          const reminderTime = dayjs(taskDueDate).subtract(parseInt(value),'minute');
-          return dayjs(reminderTime).isAfter(dayjs());
+          const reminderTime = dayjs(taskDueDate).subtract(
+            parseInt(value),
+            'minute',
+          );
+          const reminderInFuture = dayjs(reminderTime).isAfter(dayjs());
+          return reminderInFuture;
+        },
+      )
+      .test(
+        'is-valid-reminder',
+        'When Using Reminder Due Date must not exceed 29 days',
+        function (value) {
+          const taskDueDate = (this as unknown as Yup.TestContext)?.parent
+            .taskDueDate;
+          if (!value || !taskDueDate || value === 'none') {
+            return true; // because there is no validation needed
+          }
+          const notAfter29Days = dayjs(taskDueDate)
+            .subtract(30, 'days')
+            .isBefore(dayjs());
+          return notAfter29Days;
         },
       ),
   });

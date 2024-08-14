@@ -14,6 +14,7 @@ const updateTaskInFirestore = async (task: Task) => {
         isChecked: task.isChecked,
         dueDate: task.dueDate,
         priority: task.priority,
+        reminder: task.reminder
       }),
     });
 

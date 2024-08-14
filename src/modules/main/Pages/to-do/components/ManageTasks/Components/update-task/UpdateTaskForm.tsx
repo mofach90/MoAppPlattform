@@ -26,7 +26,7 @@ function UpdateTaskForm() {
     buttonConfig,
   } = useTaskForm();
   useEffect(() => {
-    console.log(INITIAL_UPDATE_FORM_STATE.dueDate);
+    console.log(INITIAL_UPDATE_FORM_STATE.taskDueDate);
   }, [INITIAL_UPDATE_FORM_STATE]);
 
   return (
@@ -52,7 +52,7 @@ function UpdateTaskForm() {
           initialValues={{ ...INITIAL_UPDATE_FORM_STATE }}
           onSubmit={handleUpdateTask}
         >
-          {({ submitForm, isValid, setFieldValue, values }) => (
+          {({ submitForm, isValid, setFieldValue, values, validateForm }) => (
             <Form style={{ width: '60%' }}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -102,7 +102,7 @@ function UpdateTaskForm() {
                 <Grid item xs={12}>
                   <DateTimeWrapper
                     name="taskDueDate"
-                    initialValue={INITIAL_UPDATE_FORM_STATE.dueDate}
+                    initialValue={INITIAL_UPDATE_FORM_STATE.taskDueDate}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -116,6 +116,8 @@ function UpdateTaskForm() {
                         },
                       },
                       onClick: () => {
+                        validateForm();
+
                         if (isValid) {
                           submitForm();
                           setUpdateTaskDialog();

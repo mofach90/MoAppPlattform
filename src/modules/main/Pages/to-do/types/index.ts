@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 export interface colorLibrary {
   grey: {
@@ -64,7 +64,9 @@ const tooltipHelperText = `
   Make sure the reminder interval is shorter than the time left until the due time. 
   For example, if the task is due in 30 minutes, a 15-minute reminder is valid, but a 1-hour reminder is not.
   After selecting a reminder interval, you can also choose how you'd like to be notified—either by email or SMS.
-`;
+  The Reminder Feature works only for Tasks no longer then 29 days from the creation day.
+
+  `;
 // before time value must in min , for example 2 hr need to be 120 min
 export enum Reminder {
   default = 'none',
@@ -118,7 +120,7 @@ export interface ManageTasksState {
 export interface CreateTaskFormValues {
   taskTitle: string;
   taskDescription: string;
-  taskDueDate?: string | null;
+  taskDueDate?: dayjs.Dayjs | null;
   taskPriority: PriorityType | null;
   taskReminder: string | undefined;
 }
@@ -155,7 +157,7 @@ export interface TodoSidebarProps {
 export interface Initial_Update_State_Type {
   taskTitle: string;
   taskDescription: string;
-  dueDate: Dayjs | null;
+  taskDueDate: dayjs.Dayjs | null;
   taskPriority: PriorityType;
   taskReminder: string | undefined;
 }
