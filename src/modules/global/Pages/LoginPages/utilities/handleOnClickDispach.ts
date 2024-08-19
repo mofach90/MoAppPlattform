@@ -1,4 +1,5 @@
 import { auth } from '../../../../../config/firebaseConfig';
+import { useAuth } from '../../../../../contexts/authProvider';
 import { valueType } from '../firebase-login/components/email-and-password-method/LoginFirebaseEmailPass';
 import { firebaseSignInAnonymously } from './firebaseSignInAnoumously';
 import { firebaseSignInWithEmailAndPassword } from './firebaseSignInWithEmailAndPassword';
@@ -10,6 +11,7 @@ export const handleOnClickDispach: (
   values?: valueType,
 ) => Promise<void> = async (method, values) => {
   console.log('Hello from Dispatch ', method);
+
   if (method === 'google') {
     await handleOnClick(() => firebaseSignInWithSocialAccount(auth, 'google'));
   } else if (method === 'facebook') {
