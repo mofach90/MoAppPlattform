@@ -6,6 +6,7 @@ import TaskDetailView from './components/TaskDetailView';
 import TodoSidebar from './components/TodoSidebar';
 import useTaskStore from './hooks/useTaskStore';
 import { TaskStore } from './types';
+import TopicsSidebar from './components/TopicsSidebar';
 
 const TodoApp = () => {
   const theme = useTheme();
@@ -20,12 +21,17 @@ const TodoApp = () => {
   return (
     <PlattformPage page={pages.todo} imgPath="public/assets/to-do-app.png">
       <Box margin={'15px'} borderRadius={3} display={'flex'} width={'100%'}>
-        <TodoSidebar
+        <TopicsSidebar
+          title="Task Topics"
+          topics={["Other", "Education", "Home/Family", "Personal", "Work"]}
+
+        />
+        {/* <TodoSidebar
           variant="on-progress-tasks"
           title="TO DO"
           innerColor={colors.blueAccent[900]}
           tasks={onprogressTasks}
-        />
+        /> */}
         <TodoSidebar
           variant="finished-tasks"
           title="DONE"

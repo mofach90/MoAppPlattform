@@ -5,7 +5,13 @@ import utc from 'dayjs/plugin/utc';
 import { FormikHelpers } from 'formik';
 import { useEffect } from 'react';
 import useTaskStore from '../../../hooks/useTaskStore';
-import { CreateTaskFormValues, Initial_Update_State_Type, PriorityType, Task } from '../../../types';
+import {
+  CreateTaskFormValues,
+  Initial_Update_State_Type,
+  PriorityType,
+  Task,
+  TopicType,
+} from '../../../types';
 import createFormValidation from '../utils/createFormValidation';
 import deleteFormDublicate from '../utils/deleteFormDublicate';
 
@@ -24,6 +30,7 @@ const INITIAL_CREATE_FORM_STATE = {
   taskDueDate: null,
   taskPriority: 'medium' as PriorityType,
   taskReminder: undefined,
+  taskTopic: "Other" as TopicType,
 };
 const INITIAL_REMOVE_FORM_STATE = {
   taskTitle: '',
@@ -60,6 +67,7 @@ export const useTaskForm = () => {
           ? values.taskReminder
           : undefined,
       priority: values.taskPriority,
+      topic: values.taskTopic,
     };
     console.log('task to crteate', Task);
 

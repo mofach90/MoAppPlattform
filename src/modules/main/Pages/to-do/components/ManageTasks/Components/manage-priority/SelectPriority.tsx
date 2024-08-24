@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormikErrors } from 'formik';
 import { CreateTaskFormValues } from '../../../../types';
+import { Typography } from '@mui/material';
 
 const SelectPriority = ({
   setFieldValue,
@@ -48,9 +49,9 @@ const SelectPriority = ({
         onChange={handleChange}
         {...props}
       >
-        <MenuItem value={'high'}>High</MenuItem>
-        <MenuItem value={'medium'}>Medium</MenuItem>
-        <MenuItem value={'low'}>Low</MenuItem>
+        <MenuItem value={'high'}><Typography  ml={2}>High</Typography></MenuItem>
+        <MenuItem value={'medium'}><Typography  ml={2}>Medium</Typography></MenuItem>
+        <MenuItem value={'low'}><Typography  ml={2}>Low</Typography></MenuItem>
       </Select>
     </FormControl>
   );

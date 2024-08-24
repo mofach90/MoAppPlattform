@@ -11,6 +11,7 @@ import useManageTasksStore from '../../hooks/useManageTasks';
 import { useTaskForm } from '../../hooks/useTaskForm';
 import SelectPriority from '../manage-priority/SelectPriority';
 import SelectReminder from '../manage-reminder/SelectReminder';
+import SelectTopic from '../manage-topics/SelectTopic';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -83,6 +84,11 @@ function CreateTaskForm() {
                       <SelectReminder setFieldValue={setFieldValue} />
                     ) : null}
                   </Box>
+                </Grid>
+                <Grid item xs={12}>
+                    <SelectTopic
+                      setFieldValue={setFieldValue}
+                    />
                 </Grid>
                 <Grid item xs={12}>
                   <DateTimeWrapper name="taskDueDate" />

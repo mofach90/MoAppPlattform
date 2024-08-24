@@ -5,6 +5,7 @@ import {
   ApiResponseUpdateTask,
   Task,
   TaskStore,
+  TopicType,
 } from '../types';
 import createTaskInFirestore from '../utilities/createTaskInFirestore';
 import deleteTaskInFirestore from '../utilities/deleteTaskInFirestore';
@@ -22,6 +23,7 @@ const useTaskStore = create<TaskStore>((set) => ({
     },
   ],
   selectedTask: null,
+  selectedTopic: null,
   deleteTaskDialog: false,
   UpdateTaskDialog: false,
   openSnackbarTaskCreated: false,
@@ -37,6 +39,7 @@ const useTaskStore = create<TaskStore>((set) => ({
       UpdateTaskDialog: !state.UpdateTaskDialog,
     })),
   selectTask: (task: Task) => set({ selectedTask: task }),
+  selectTopic: (topic: TopicType) => set({ selectedTopic: topic }),
   createTask: async (task: Task) => {
     try {
       const response: ApiResponseCreateTask = await createTaskInFirestore(task);

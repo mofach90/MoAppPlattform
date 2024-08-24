@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from 'dayjs';
 
 export interface colorLibrary {
   grey: {
@@ -85,12 +85,23 @@ export interface Task {
   updatedAt?: string;
   priority: PriorityType | null;
   reminder?: string;
+  topic?: TopicType;
 }
 export type PriorityType = 'medium' | 'high' | 'low';
+export type TopicType =
+  | 'Travel'
+  | 'Personal'
+  | 'Work'
+  | 'Home/Family'
+  | 'Education'
+  | 'Shopping'
+  | 'Other'
+  | null;
 
 export interface TaskStore {
   tasks: Task[];
   selectedTask: Task | null;
+  selectedTopic: TopicType ;
   deleteTaskDialog: boolean;
   UpdateTaskDialog: boolean;
   openSnackbarTaskCreated: boolean;
@@ -99,6 +110,7 @@ export interface TaskStore {
   setDeleteTaskDialog: () => void;
   setUpdateTaskDialog: () => void;
   selectTask: (task: Task) => void;
+  selectTopic: (toopic: TopicType) => void;
   createTask: (task: Task) => void;
   updateTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;
@@ -123,6 +135,7 @@ export interface CreateTaskFormValues {
   taskDueDate?: dayjs.Dayjs | null;
   taskPriority: PriorityType | null;
   taskReminder: string | undefined;
+  taskTopic: TopicType
 }
 
 export function isSelectedTask(
@@ -152,6 +165,11 @@ export interface TodoSidebarProps {
   title: string;
   innerColor: string;
   readonly tasks: Task[];
+}
+export interface TopicsSidebarProps {
+  title: string;
+  topics: TopicType[]
+
 }
 
 export interface Initial_Update_State_Type {
