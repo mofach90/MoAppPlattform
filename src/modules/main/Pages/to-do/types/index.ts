@@ -92,7 +92,7 @@ export type TopicType =
   | 'Travel'
   | 'Personal'
   | 'Work'
-  | 'Home/Family'
+  | 'Home_Family'
   | 'Education'
   | 'Shopping'
   | 'Other'
@@ -110,7 +110,7 @@ export interface TaskStore {
   setDeleteTaskDialog: () => void;
   setUpdateTaskDialog: () => void;
   selectTask: (task: Task) => void;
-  selectTopic: (toopic: TopicType) => void;
+  selectTopic: (topic: TopicType) => void;
   createTask: (task: Task) => void;
   updateTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;

@@ -7,7 +7,7 @@ import CheckBox from './components/Checkbox';
 import DeleteIcon from './components/DeleteIcon';
 import TaskPriority from './components/TaskPriority';
 import TaskTitle from './components/TaskTitle';
-import useToDo from './hooks/useToDo';
+import useToDo from '../../hooks/useToDo';
 
 const TodoItem = ({ task }: { readonly task: Task }) => {
   const selectedTask = useTaskStore((state) => state.selectedTask);

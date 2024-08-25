@@ -5,8 +5,9 @@ import ManageTasks from './components/ManageTasks/ManageTasks';
 import TaskDetailView from './components/TaskDetailView';
 import TodoSidebar from './components/TodoSidebar';
 import useTaskStore from './hooks/useTaskStore';
-import { TaskStore } from './types';
+import { TaskStore, TopicType } from './types';
 import TopicsSidebar from './components/TopicsSidebar';
+import { useEffect } from 'react';
 
 const TodoApp = () => {
   const theme = useTheme();
@@ -14,16 +15,32 @@ const TodoApp = () => {
   const selectedTask: TaskStore['selectedTask'] = useTaskStore(
     (state) => state.selectedTask,
   );
+  const selectedTopic: TopicType = useTaskStore(
+    (state) => state.selectedTopic,
+  );
   const tasks = useTaskStore((state) => state.tasks);
   const onprogressTasks = tasks.filter((task) => !task.isChecked);
   const completedTasks = tasks.filter((task) => task.isChecked);
-
+  const topics :TopicType[] = []
+  tasks.forEach((task)=> {
+    console.log("task.topic: ", task.topic)
+    console.log("topics.includes(task.topic): ", (task.topic && !topics.includes(task.topic)))
+    if (task.topic && !topics.includes(task.topic)) {
+      topics.push(task.topic) 
+    }
+  })
+  const topicTasks = tasks.filter((task)=>task.topic === selectedTopic)
+  useEffect(() => {
+console.log("topics : ", topics)
+console.log("topicTasks : ", topicTasks)
+  }, [topics, topicTasks])
+  
   return (
     <PlattformPage page={pages.todo} imgPath="public/assets/to-do-app.png">
       <Box margin={'15px'} borderRadius={3} display={'flex'} width={'100%'}>
         <TopicsSidebar
           title="Task Topics"
-          topics={["Other", "Education", "Home/Family", "Personal", "Work"]}
+          topics={topics}
 
         />
         {/* <TodoSidebar
@@ -36,7 +53,7 @@ const TodoApp = () => {
           variant="finished-tasks"
           title="DONE"
           innerColor={colors.greenAccent[900]}
-          tasks={completedTasks}
+          tasks={topicTasks}
         />
         {selectedTask ? <TaskDetailView task={selectedTask} /> : null}
         <ManageTasks />

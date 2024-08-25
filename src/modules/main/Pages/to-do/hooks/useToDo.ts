@@ -1,5 +1,5 @@
-import useTaskStore from '../../../hooks/useTaskStore';
-import { Task, TopicType, isSelectedTask } from '../../../types';
+import { Task, TopicType, isSelectedTask } from '../types';
+import useTaskStore from './useTaskStore';
 
 const useToDo = () => {
   const selectTask = useTaskStore((state) => state.selectTask);
@@ -9,11 +9,11 @@ const useToDo = () => {
   const handleTaskSelected: (task: Task) => void = (task: Task) => {
     selectTask(task);
   };
-  const handleTopicSelected: (topic: TopicType) => void = (topic: TopicType) => {
-    console.log("enter handle topic and topic is : ", topic)
+  const handleTopicSelected: (topic: TopicType) => void = (
+    topic: TopicType,
+  ) => {
+    console.log('enter handle topic and topic is : ', topic);
     selectTopic(topic);
-
-
   };
   const handleIsChecked: (task: Task) => Promise<void> = async (task: Task) => {
     const updatedTask = { ...task, isChecked: !task.isChecked };
@@ -25,7 +25,13 @@ const useToDo = () => {
   const checkTopicActive = (selectedTopic: TopicType, topic: TopicType) => {
     return !!selectedTopic && selectedTopic === topic;
   };
-  return { handleTaskSelected, handleIsChecked, checkTaskActive, handleTopicSelected, checkTopicActive };
+  return {
+    handleTaskSelected,
+    handleIsChecked,
+    checkTaskActive,
+    handleTopicSelected,
+    checkTopicActive,
+  };
 };
 
 export default useToDo;

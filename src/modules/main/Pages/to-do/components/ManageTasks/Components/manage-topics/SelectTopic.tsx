@@ -100,7 +100,7 @@ const SelectTopic = ({
             <SchoolIcon sx={{ mr: 2 }} />
           </Box>
         </MenuItem>
-        <MenuItem value={'Home/Family'}>
+        <MenuItem value={'Home and Family'}>
           <Box
             sx={{
               justifyContent: 'space-between',

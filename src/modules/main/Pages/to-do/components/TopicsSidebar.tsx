@@ -1,19 +1,19 @@
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-
 import { Box, IconButton, Theme, Typography, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { Menu, MenuItem, ProSidebar } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { v4 as uuidv4 } from 'uuid';
 import { tokens } from '../../../../global/theme/theme';
+import useTaskStore from '../hooks/useTaskStore';
 import { TopicsSidebarProps } from '../types';
-import TodoItem from './ToDoItem/TodoItem';
 import TopicItem from './TopicItem/TopicItem';
 
 const TopicsSidebar = ({ title, topics }: TopicsSidebarProps) => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const selectedTopic = useTaskStore((state) => state.selectedTopic);
 
   return (
     <Box
@@ -35,7 +35,7 @@ const TopicsSidebar = ({ title, topics }: TopicsSidebarProps) => {
           color: '#868dfb !important',
         },
         '& .pro-menu-item.active': {
-          color: 'red !important',
+          color: '#868dfb !important',
         },
       }}
     >
@@ -75,7 +75,11 @@ const TopicsSidebar = ({ title, topics }: TopicsSidebarProps) => {
             marginLeft={isCollapsed ? '7px' : undefined}
           >
             {topics.map((topic) => (
-              <TopicItem key={uuidv4()} topic={topic} />
+              <TopicItem
+                key={uuidv4()}
+                topic={topic}
+                selectedTopic={selectedTopic}
+              />
             ))}
           </Box>
         </Menu>
