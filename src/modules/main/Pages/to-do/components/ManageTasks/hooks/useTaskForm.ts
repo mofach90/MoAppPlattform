@@ -8,7 +8,6 @@ import useTaskStore from '../../../hooks/useTaskStore';
 import {
   CreateTaskFormValues,
   Initial_Update_State_Type,
-  PriorityType,
   Task,
   TopicType,
 } from '../../../types';
@@ -28,9 +27,10 @@ const INITIAL_CREATE_FORM_STATE = {
   taskTitle: '',
   taskDescription: '',
   taskDueDate: null,
-  taskPriority: 'medium' as PriorityType,
+  taskPriority: '',
+  // taskPriority: 'medium' as PriorityType,
   taskReminder: undefined,
-  taskTopic: "Other" as TopicType,
+  taskTopic: 'Others' as TopicType,
 };
 const INITIAL_REMOVE_FORM_STATE = {
   taskTitle: '',
@@ -52,7 +52,10 @@ export const useTaskForm = () => {
 
   const handleCreateTask = (
     values: CreateTaskFormValues,
-    { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
+    {
+      resetForm,
+      setFieldValue,
+    }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm' | 'setFieldValue'>,
   ) => {
     console.log('values to crteate', values);
     const Task: Task = {
@@ -60,19 +63,32 @@ export const useTaskForm = () => {
       description: values.taskDescription,
       isChecked: false,
       dueDate: values.taskDueDate
-        ? dayjs(values.taskDueDate).toISOString()
-        : null,
+      ? dayjs(values.taskDueDate).toISOString()
+      : null,
       reminder:
-        values.taskReminder && values.taskDueDate
-          ? values.taskReminder
-          : undefined,
-      priority: values.taskPriority,
+      values.taskReminder && values.taskDueDate
+      ? values.taskReminder
+      : undefined,
+      priority: values.taskPriority ? values.taskPriority : 'medium',
       topic: values.taskTopic,
     };
     console.log('task to crteate', Task);
-
+    
     createTask(Task);
     resetForm();
+    setTimeout(() => {
+      
+      console.log('values after to crteate', values);
+    }, 2000);
+    
+    // resetForm({
+    //   values: {
+    //     ...INITIAL_CREATE_FORM_STATE,
+    //     taskTitle: "test",
+    //     taskPriority: "low",
+    //     taskTopic: null,
+    //   },
+    // });
   };
   const handleUpdateTask = (
     values: Initial_Update_State_Type,

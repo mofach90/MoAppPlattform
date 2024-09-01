@@ -9,6 +9,7 @@ import {
 } from '../types';
 import createTaskInFirestore from '../utilities/createTaskInFirestore';
 import deleteTaskInFirestore from '../utilities/deleteTaskInFirestore';
+import deleteTopicInFirestore from '../utilities/deleteTopicInFirestore';
 import getTasksFromFirestore from '../utilities/getTasksFromFirestore';
 import updateTaskInFirestore from '../utilities/updateTaskInFirestore';
 
@@ -25,14 +26,23 @@ const useTaskStore = create<TaskStore>((set) => ({
   selectedTask: null,
   selectedTopic: null,
   deleteTaskDialog: false,
+  deleteTopicDialog: false,
   UpdateTaskDialog: false,
   openSnackbarTaskCreated: false,
   openSnackbarTaskUpdated: false,
   openSnackbarTaskDeleted: false,
+  openSnackbarTopicDeleted: false,
 
   setDeleteTaskDialog: () =>
     set((state) => ({
       deleteTaskDialog: !state.deleteTaskDialog,
+      deleteTopicDialog: false,
+    })),
+
+  setDeleteTopicDialog: () =>
+    set((state) => ({
+      deleteTopicDialog: !state.deleteTopicDialog,
+      deleteTaskDialog: false,
     })),
   setUpdateTaskDialog: () =>
     set((state) => ({
@@ -103,6 +113,21 @@ const useTaskStore = create<TaskStore>((set) => ({
           tasks: state.tasks.filter((task) => task.id !== taskId),
           selectedTask: null,
           openSnackbarTaskDeleted: true,
+        }));
+      } else {
+        console.log('Error: ', response.message);
+      }
+    } catch (error) {}
+  },
+  deleteTopic: async (topic: TopicType) => {
+    try {
+      // const response = await deleteTopicInFirestore(topic);
+      const response = {message:"only for test",topicDeleted:true};
+      if (response.topicDeleted) {
+        set((state: TaskStore) => ({
+          tasks: state.tasks.filter((task) => task.topic !== topic),
+          selectedTopic: null,
+          openSnackbarTopicDeleted: true,
         }));
       } else {
         console.log('Error: ', response.message);

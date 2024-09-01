@@ -8,9 +8,14 @@ const DeleteButton = () => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette?.mode ?? 'dark');
   const deleteTask = useTaskStore((state) => state.deleteTask);
+  const deleteTopic = useTaskStore((state) => state.deleteTopic);
   const selectedTask = useTaskStore((state) => state.selectedTask);
+  const selectedTopic = useTaskStore((state) => state.selectedTopic);
   const setDeleteTaskDialog = useTaskStore(
     (state) => state.setDeleteTaskDialog,
+  );
+  const setDeleteTopicDialog = useTaskStore(
+    (state) => state.setDeleteTopicDialog,
   );
   return (
     <ButtonWrapper
@@ -29,8 +34,14 @@ const DeleteButton = () => {
           borderRadius: 5,
         },
         onClick: () => {
-          deleteTask(selectedTask?.id ? selectedTask.id : '');
-          setDeleteTaskDialog();
+          if (selectedTask) {
+            deleteTask(selectedTask?.id ? selectedTask.id : '');
+            setDeleteTaskDialog();
+          } else {
+            deleteTopic(selectedTopic);
+            setDeleteTopicDialog();
+          }
+
         },
       }}
     >

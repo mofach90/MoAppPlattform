@@ -12,8 +12,8 @@ const iconMapping: { [key in Exclude<TopicType, null>]: ReactElement } = {
   Travel: <FlightIcon />,
   Personal: <SensorOccupiedIcon />,
   Education: <SchoolIcon />,
-  'Home/Family': <HouseIcon />,
-  Other: <MoreHorizIcon />,
+  'Home_Family': <HouseIcon />,
+  Others: <MoreHorizIcon />,
   Shopping: <ShoppingCartIcon />,
   Work: <EngineeringIcon />,
 };

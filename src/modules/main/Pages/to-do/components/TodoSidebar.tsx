@@ -1,7 +1,7 @@
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
 import { Box, IconButton, Theme, Typography, useTheme } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, MenuItem, ProSidebar } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { v4 as uuidv4 } from 'uuid';
@@ -13,6 +13,12 @@ const TodoSidebar = ({ title, innerColor, tasks }: TodoSidebarProps) => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  useEffect(() => {
+    console.log(
+      'tasks.filter((task) => task.isChecked)',
+      tasks.filter((task) => task.isChecked),
+    );
+  }, [tasks]);
 
   return (
     <Box
@@ -73,9 +79,19 @@ const TodoSidebar = ({ title, innerColor, tasks }: TodoSidebarProps) => {
             padding={isCollapsed ? undefined : '5px 0px 5px 20px'}
             marginLeft={isCollapsed ? '7px' : undefined}
           >
-            {tasks.map((task) => (
-              <TodoItem key={uuidv4()} task={task} />
-            ))}
+            {tasks
+              .filter((task) => !task.isChecked)
+              .map((task) => (
+                <TodoItem key={uuidv4()} task={task} />
+              ))}
+            {tasks.filter((task) => task.isChecked).length > 0 && tasks.filter((task) => !task.isChecked).length > 0
+              ? '----------------------------------------------------'
+              : null}
+            {tasks
+              .filter((task) => task.isChecked)
+              .map((task) => (
+                <TodoItem key={uuidv4()} task={task} />
+              ))}
           </Box>
         </Menu>
       </ProSidebar>

@@ -31,7 +31,7 @@ const TopicItem = ({
             <Typography>{topic}</Typography>
           </Box>
         </Box>
-        <DeleteIcon />
+        <DeleteIcon variant='topic' />
       </Box>
     </MenuItem>
   );

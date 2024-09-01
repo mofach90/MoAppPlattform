@@ -4,10 +4,10 @@ import { MenuItem } from 'react-pro-sidebar';
 import useTaskStore from '../../hooks/useTaskStore';
 import { Task } from '../../types';
 import CheckBox from './components/Checkbox';
-import DeleteIcon from './components/DeleteIcon';
 import TaskPriority from './components/TaskPriority';
 import TaskTitle from './components/TaskTitle';
 import useToDo from '../../hooks/useToDo';
+import DeleteIcon from '../TopicItem/components/DeleteIcon';
 
 const TodoItem = ({ task }: { readonly task: Task }) => {
   const selectedTask = useTaskStore((state) => state.selectedTask);

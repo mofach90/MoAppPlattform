@@ -5,17 +5,23 @@ import useTaskStore from '../../../hooks/useTaskStore';
 
 const DeleteIcon = ({
   fontSize,
+  variant
 }: {
   fontSize?: 'small' | 'large' | 'medium';
+  variant?: 'topic' | 'task'
 }) => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const setDeleteTaskDialog = useTaskStore(
     (state) => state.setDeleteTaskDialog,
   );
+  const setDeleteTopicDialog = useTaskStore(
+    (state) => state.setDeleteTopicDialog,
+  );
+
 
   return (
-    <Box onClick={() => setDeleteTaskDialog()}>
+    <Box onClick={() => variant ? setDeleteTopicDialog() : setDeleteTaskDialog()}>
       <DeleteForeverIcon
         fontSize={fontSize ? fontSize : 'medium'}
         sx={{

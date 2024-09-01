@@ -7,8 +7,12 @@ import useTaskStore from '../../../hooks/useTaskStore';
 const CancelButton = () => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette?.mode ?? 'dark');
+  const deleteTaskDialog = useTaskStore((state) => state.deleteTaskDialog);
   const setDeleteTaskDialog = useTaskStore(
     (state) => state.setDeleteTaskDialog,
+  );
+  const setDeleteTopicDialog = useTaskStore(
+    (state) => state.setDeleteTopicDialog,
   );
   return (
     <ButtonWrapper
@@ -27,7 +31,7 @@ const CancelButton = () => {
           fontSize: '14px',
           borderRadius: 5,
         },
-        onClick: () => setDeleteTaskDialog(),
+        onClick: () => deleteTaskDialog? setDeleteTaskDialog(): setDeleteTopicDialog(),
       }}
     >
       Cancel

@@ -1,4 +1,4 @@
-import DeleteConfirmDialog from '../ToDoItem/components/DeleteConfirmDialog';
+import DeleteConfirmDialog from '../TopicItem/components/DeleteConfirmDialog';
 import CreateTaskDialog from './Components/create-task/CreateTaskDialog';
 import OperationStatusNotification from './Components/manage-notification/OperationStatusNotification';
 import ManageTaskButton from './Components/ManageTaskButton';

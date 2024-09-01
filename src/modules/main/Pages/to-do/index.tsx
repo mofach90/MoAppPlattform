@@ -39,7 +39,7 @@ console.log("topicTasks : ", topicTasks)
     <PlattformPage page={pages.todo} imgPath="public/assets/to-do-app.png">
       <Box margin={'15px'} borderRadius={3} display={'flex'} width={'100%'}>
         <TopicsSidebar
-          title="Task Topics"
+          title="Topics"
           topics={topics}
 
         />
@@ -50,8 +50,8 @@ console.log("topicTasks : ", topicTasks)
           tasks={onprogressTasks}
         /> */}
         <TodoSidebar
-          variant="finished-tasks"
-          title="DONE"
+          // variant="finished-tasks"
+          title="Tasks"
           innerColor={colors.greenAccent[900]}
           tasks={topicTasks}
         />

@@ -1,26 +1,31 @@
+import { Typography } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormikErrors } from 'formik';
 import { CreateTaskFormValues } from '../../../../types';
-import { Typography } from '@mui/material';
 
 const SelectPriority = ({
   setFieldValue,
-  props,
   taskHasDueTime,
+  defaultValue,
+  values,
 }: {
   setFieldValue: (
     field: string,
     value: any,
     shouldValidate?: boolean,
   ) => Promise<void | FormikErrors<CreateTaskFormValues>>;
-  props?: any;
   taskHasDueTime: boolean;
+  defaultValue?: string | undefined;
+  values: CreateTaskFormValues;
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
-    setFieldValue('taskPriority', event.target.value);
+    setFieldValue(
+      'taskPriority',
+      event.target.value ? event.target.value : defaultValue,
+    );
   };
 
   return (
@@ -31,14 +36,12 @@ const SelectPriority = ({
       <InputLabel
         id="priority-select-label"
         sx={{
-          "&.Mui-focused":{
-
+          '&.Mui-focused': {
             transform: 'translate(0, -17px) scale(0.75)',
           },
-          "&.MuiInputLabel-shrink":{
-
+          '&.MuiInputLabel-shrink': {
             transform: 'translate(0, -17px) scale(0.75)',
-          }
+          },
         }}
       >
         Priority
@@ -47,11 +50,20 @@ const SelectPriority = ({
         labelId="priority-select-label"
         id="priority-select"
         onChange={handleChange}
-        {...props}
+        defaultValue={defaultValue}
+        // onReset={()=>setFieldValue("taskPriority", "",false)}
+        // value= {values.taskPriority?values.taskPriority: undefined}
+        // defaultValue={defaultValue?defaultValue:undefined}
       >
-        <MenuItem value={'high'}><Typography  ml={2}>High</Typography></MenuItem>
-        <MenuItem value={'medium'}><Typography  ml={2}>Medium</Typography></MenuItem>
-        <MenuItem value={'low'}><Typography  ml={2}>Low</Typography></MenuItem>
+        <MenuItem value={'high'}>
+          <Typography ml={2}>High</Typography>
+        </MenuItem>
+        <MenuItem value={'medium'}>
+          <Typography ml={2}>Medium</Typography>
+        </MenuItem>
+        <MenuItem value={'low'}>
+          <Typography ml={2}>Low</Typography>
+        </MenuItem>
       </Select>
     </FormControl>
   );

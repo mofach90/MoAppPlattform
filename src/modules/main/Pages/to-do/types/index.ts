@@ -95,7 +95,7 @@ export type TopicType =
   | 'Home_Family'
   | 'Education'
   | 'Shopping'
-  | 'Other'
+  | 'Others'
   | null;
 
 export interface TaskStore {
@@ -103,17 +103,20 @@ export interface TaskStore {
   selectedTask: Task | null;
   selectedTopic: TopicType ;
   deleteTaskDialog: boolean;
+  deleteTopicDialog: boolean;
   UpdateTaskDialog: boolean;
   openSnackbarTaskCreated: boolean;
   openSnackbarTaskUpdated: boolean;
   openSnackbarTaskDeleted: boolean;
   setDeleteTaskDialog: () => void;
+  setDeleteTopicDialog: () => void;
   setUpdateTaskDialog: () => void;
   selectTask: (task: Task) => void;
   selectTopic: (topic: TopicType) => void;
   createTask: (task: Task) => void;
   updateTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;
+  deleteTopic: (topic:TopicType) => void;
   addTasksFromFirestore: () => void;
   handleCloseNotification: (
     _event: React.SyntheticEvent | Event,
@@ -133,7 +136,7 @@ export interface CreateTaskFormValues {
   taskTitle: string;
   taskDescription: string;
   taskDueDate?: dayjs.Dayjs | null;
-  taskPriority: PriorityType | null;
+  taskPriority: PriorityType | undefined;
   taskReminder: string | undefined;
   taskTopic: TopicType
 }
@@ -156,6 +159,10 @@ export interface ApiResponseDeleteTask {
   taskDeleted: boolean;
 }
 
+export interface ApiResponseDeleteTopic {
+  message: string;
+  topicDeleted: boolean;
+}
 export interface ApiResponseGetTask {
   tasks: Task[];
 }

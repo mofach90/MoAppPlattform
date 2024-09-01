@@ -5,8 +5,8 @@ import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { Task } from '../types';
 import TaskCard from './TaskCard';
-import DeleteIcon from './ToDoItem/components/DeleteIcon';
 import UpdateButton from './ToDoItem/components/UpdateButton';
+import DeleteIcon from './TopicItem/components/DeleteIcon';
 
 const TaskDetailView = ({ task }: { task: Task | null }) => {
   useEffect(() => {
