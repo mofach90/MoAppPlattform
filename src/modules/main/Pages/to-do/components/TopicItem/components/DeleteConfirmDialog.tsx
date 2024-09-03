@@ -24,10 +24,7 @@ const DeleteConfirmDialog = () => {
       deleteTaskDialog ? setDeleteTaskDialog() : setDeleteTopicDialog();
     }
   };
-  useEffect(() => {
-    console.log('deleteTopicDialog', deleteTopicDialog);
-    console.log('deleteTaskDialog', deleteTaskDialog);
-  }, [deleteTopicDialog, deleteTaskDialog]);
+
 
   return (
     <Dialog

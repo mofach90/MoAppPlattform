@@ -9,9 +9,9 @@ import {
 } from '../types';
 import createTaskInFirestore from '../utilities/createTaskInFirestore';
 import deleteTaskInFirestore from '../utilities/deleteTaskInFirestore';
-import deleteTopicInFirestore from '../utilities/deleteTopicInFirestore';
 import getTasksFromFirestore from '../utilities/getTasksFromFirestore';
 import updateTaskInFirestore from '../utilities/updateTaskInFirestore';
+import deleteTopicInFirestore from '../utilities/deleteTopicInFirestore';
 
 const useTaskStore = create<TaskStore>((set) => ({
   tasks: [
@@ -79,6 +79,7 @@ const useTaskStore = create<TaskStore>((set) => ({
               t.updatedAt = task.updatedAt;
               t.priority = task.priority;
               t.reminder = task.reminder;
+              t.topic = task.topic
 
               return t;
             } else {
@@ -121,8 +122,8 @@ const useTaskStore = create<TaskStore>((set) => ({
   },
   deleteTopic: async (topic: TopicType) => {
     try {
-      // const response = await deleteTopicInFirestore(topic);
-      const response = {message:"only for test",topicDeleted:true};
+      const response = await deleteTopicInFirestore(topic);
+      // const response = { message: 'only for test', topicDeleted: true };
       if (response.topicDeleted) {
         set((state: TaskStore) => ({
           tasks: state.tasks.filter((task) => task.topic !== topic),

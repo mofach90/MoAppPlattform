@@ -23,8 +23,6 @@ const TodoApp = () => {
   const completedTasks = tasks.filter((task) => task.isChecked);
   const topics :TopicType[] = []
   tasks.forEach((task)=> {
-    console.log("task.topic: ", task.topic)
-    console.log("topics.includes(task.topic): ", (task.topic && !topics.includes(task.topic)))
     if (task.topic && !topics.includes(task.topic)) {
       topics.push(task.topic) 
     }

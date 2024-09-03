@@ -8,6 +8,7 @@ import useTaskStore from '../../../hooks/useTaskStore';
 import {
   CreateTaskFormValues,
   Initial_Update_State_Type,
+  PriorityType,
   Task,
   TopicType,
 } from '../../../types';
@@ -27,7 +28,7 @@ const INITIAL_CREATE_FORM_STATE = {
   taskTitle: '',
   taskDescription: '',
   taskDueDate: null,
-  taskPriority: '',
+  taskPriority: undefined,
   // taskPriority: 'medium' as PriorityType,
   taskReminder: undefined,
   taskTopic: 'Others' as TopicType,
@@ -49,6 +50,7 @@ export const useTaskForm = () => {
   const description = selectedTask?.description ? selectedTask.description : '';
   const dueDate = selectedTask?.dueDate ? dayjs(selectedTask.dueDate) : null;
   const reminder = selectedTask?.reminder;
+  const topic = selectedTask?.topic ?? null;
 
   const handleCreateTask = (
     values: CreateTaskFormValues,
@@ -107,6 +109,7 @@ export const useTaskForm = () => {
         values.taskReminder && values.taskDueDate
           ? values.taskReminder
           : undefined,
+      topic: values.taskTopic
     };
     console.log('task updated', Task);
     console.log('task updated values', values);
@@ -133,6 +136,8 @@ export const useTaskForm = () => {
       taskDueDate: dueDate,
       taskPriority: priority,
       taskReminder: reminder,
+      taskTopic: topic as TopicType,
+
     },
     handleCreateTask,
     handleDeleteTask,

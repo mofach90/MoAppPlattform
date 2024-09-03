@@ -10,7 +10,7 @@ const SelectPriority = ({
   setFieldValue,
   taskHasDueTime,
   defaultValue,
-  values,
+  ...rest
 }: {
   setFieldValue: (
     field: string,
@@ -19,7 +19,6 @@ const SelectPriority = ({
   ) => Promise<void | FormikErrors<CreateTaskFormValues>>;
   taskHasDueTime: boolean;
   defaultValue?: string | undefined;
-  values: CreateTaskFormValues;
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
     setFieldValue(
@@ -50,7 +49,7 @@ const SelectPriority = ({
         labelId="priority-select-label"
         id="priority-select"
         onChange={handleChange}
-        defaultValue={defaultValue}
+        {...rest}
         // onReset={()=>setFieldValue("taskPriority", "",false)}
         // value= {values.taskPriority?values.taskPriority: undefined}
         // defaultValue={defaultValue?defaultValue:undefined}

@@ -80,7 +80,6 @@ function CreateTaskForm() {
                       setFieldValue={setFieldValue}
                       taskHasDueTime={!!values.taskDueDate}
                       defaultValue={INITIAL_CREATE_FORM_STATE.taskPriority}
-                      values={values}
                     />
                     {values.taskDueDate ? (
                       <SelectReminder setFieldValue={setFieldValue} />

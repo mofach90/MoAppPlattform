@@ -15,14 +15,14 @@ import { CreateTaskFormValues } from '../../../../types';
 
 const SelectTopic = ({
   setFieldValue,
-  props,
+  ...rest
 }: {
   setFieldValue: (
     field: string,
     value: any,
     shouldValidate?: boolean,
   ) => Promise<void | FormikErrors<CreateTaskFormValues>>;
-  props?: any;
+  [key: string]: any; // Allow any additional props
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
     setFieldValue('taskTopic', event.target.value);
@@ -47,7 +47,7 @@ const SelectTopic = ({
         labelId="topic-select-label"
         id="topic-select"
         onChange={handleChange}
-        {...props}
+        {...rest}
       >
         <MenuItem value={'Travel'}>
           <Box

@@ -185,4 +185,6 @@ export interface Initial_Update_State_Type {
   taskDueDate: dayjs.Dayjs | null;
   taskPriority: PriorityType;
   taskReminder: string | undefined;
+  taskTopic: TopicType
+
 }

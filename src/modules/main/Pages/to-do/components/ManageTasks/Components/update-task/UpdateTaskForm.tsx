@@ -10,6 +10,7 @@ import { useTaskForm } from '../../hooks/useTaskForm';
 import { shouldShowReminder } from '../../utils/checkIfDueDate';
 import SelectPriority from '../manage-priority/SelectPriority';
 import SelectReminder from '../manage-reminder/SelectReminder';
+import SelectTopic from '../manage-topics/SelectTopic';
 
 function UpdateTaskForm() {
   const theme = useTheme();
@@ -74,6 +75,7 @@ function UpdateTaskForm() {
                     type="text"
                   />
                 </Grid>
+
                 <Grid item xs={12}>
                   <Box display={'flex'} justifyContent={'space-between'}>
                     <SelectPriority
@@ -82,11 +84,6 @@ function UpdateTaskForm() {
                         values,
                         INITIAL_UPDATE_FORM_STATE,
                       )}
-                      props={{
-                        defaultValue: INITIAL_UPDATE_FORM_STATE.taskPriority
-                          ? INITIAL_UPDATE_FORM_STATE.taskPriority
-                          : '',
-                      }}
                     />
 
                     {shouldShowReminder(values, INITIAL_UPDATE_FORM_STATE) ? (
@@ -98,6 +95,12 @@ function UpdateTaskForm() {
                       />
                     ) : null}
                   </Box>
+                </Grid>
+                <Grid item xs={12}>
+                    <SelectTopic
+                      setFieldValue={setFieldValue}
+                      defaultValue={INITIAL_UPDATE_FORM_STATE.taskTopic}
+                    />
                 </Grid>
                 <Grid item xs={12}>
                   <DateTimeWrapper
