@@ -8,18 +8,31 @@ const SnackbarAlert = forwardRef<HTMLDivElement, AlertProps>(
   },
 );
 const OperationStatusNotification = () => {
-  const openSnackbarTaskCreated = useTaskStore(
-    (state) => state.openSnackbarTaskCreated,
-  );
-  const openSnackbarTaskUpdated = useTaskStore(
-    (state) => state.openSnackbarTaskUpdated,
-  );
-  const openSnackbarTaskDeleted = useTaskStore(
-    (state) => state.openSnackbarTaskDeleted,
-  );
-  const handleCloseNotification = useTaskStore(
-    (state) => state.handleCloseNotification,
-  );
+  const {
+    openSnackbarTaskCreated,
+    openSnackbarTopicDeleted,
+    topicDeletedErrorMessage,
+    openSnackbarTopicDeletedError,
+    openSnackbarTaskUpdated,
+    openSnackbarTaskDeleted,
+    openSnackbarTaskDeletedError,
+    taskDeletedErrorMessage,
+    handleCloseNotification,
+    openSnackbarTaskUpdatedError,
+    taskUpdateErrorMessage
+  } = useTaskStore((state) => ({
+    openSnackbarTaskCreated: state.openSnackbarTaskCreated,
+    openSnackbarTopicDeleted: state.openSnackbarTopicDeleted,
+    topicDeletedErrorMessage: state.topicDeletedErrorMessage,
+    openSnackbarTopicDeletedError: state.openSnackbarTopicDeletedError,
+    openSnackbarTaskUpdated: state.openSnackbarTaskUpdated,
+    openSnackbarTaskDeleted: state.openSnackbarTaskDeleted,
+    openSnackbarTaskDeletedError: state.openSnackbarTaskDeletedError,
+    taskDeletedErrorMessage: state.taskDeletedErrorMessage,
+    handleCloseNotification: state.handleCloseNotification,
+    openSnackbarTaskUpdatedError: state.openSnackbarTaskUpdatedError,
+    taskUpdateErrorMessage: state.taskUpdatedErrorMessage,
+  }));
   return (
     <>
       <Snackbar
@@ -50,6 +63,46 @@ const OperationStatusNotification = () => {
       >
         <SnackbarAlert variant="filled" severity="success">
           Task Successfully Deleted
+        </SnackbarAlert>
+      </Snackbar>
+      <Snackbar
+        autoHideDuration={2000}
+        open={openSnackbarTopicDeleted}
+        onClose={handleCloseNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        <SnackbarAlert variant="filled" severity="success">
+          Topic Successfully Deleted
+        </SnackbarAlert>
+      </Snackbar>
+      <Snackbar
+        autoHideDuration={2000}
+        open={openSnackbarTaskDeletedError}
+        onClose={handleCloseNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        <SnackbarAlert variant="filled" severity="error">
+          {taskDeletedErrorMessage}
+        </SnackbarAlert>
+      </Snackbar>
+      <Snackbar
+        autoHideDuration={2000}
+        open={openSnackbarTopicDeletedError}
+        onClose={handleCloseNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        <SnackbarAlert variant="filled" severity="error">
+          {topicDeletedErrorMessage}
+        </SnackbarAlert>
+      </Snackbar>
+      <Snackbar
+        autoHideDuration={2000}
+        open={openSnackbarTaskUpdatedError}
+        onClose={handleCloseNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        <SnackbarAlert variant="filled" severity="error">
+          {taskUpdateErrorMessage}
         </SnackbarAlert>
       </Snackbar>
     </>

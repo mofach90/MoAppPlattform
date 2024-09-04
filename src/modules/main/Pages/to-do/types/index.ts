@@ -101,13 +101,23 @@ export type TopicType =
 export interface TaskStore {
   tasks: Task[];
   selectedTask: Task | null;
-  selectedTopic: TopicType ;
+  selectedTopic: TopicType;
   deleteTaskDialog: boolean;
   deleteTopicDialog: boolean;
   UpdateTaskDialog: boolean;
   openSnackbarTaskCreated: boolean;
   openSnackbarTaskUpdated: boolean;
   openSnackbarTaskDeleted: boolean;
+  openSnackbarTopicDeleted: boolean;
+  openSnackbarTaskDeletedError: boolean;
+  openSnackbarTaskUpdatedError: boolean,
+  openSnackbarTaskCreatedError: boolean,
+  openSnackbarTopicDeletedError: boolean,
+  taskDeletedErrorMessage: string,
+  topicDeletedErrorMessage: string,
+  taskCreatedErrorMessage: string,
+  taskUpdatedErrorMessage: string,
+
   setDeleteTaskDialog: () => void;
   setDeleteTopicDialog: () => void;
   setUpdateTaskDialog: () => void;
@@ -116,7 +126,7 @@ export interface TaskStore {
   createTask: (task: Task) => void;
   updateTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;
-  deleteTopic: (topic:TopicType) => void;
+  deleteTopic: (topic: TopicType) => void;
   addTasksFromFirestore: () => void;
   handleCloseNotification: (
     _event: React.SyntheticEvent | Event,
@@ -138,7 +148,7 @@ export interface CreateTaskFormValues {
   taskDueDate?: dayjs.Dayjs | null;
   taskPriority: PriorityType | undefined;
   taskReminder: string | undefined;
-  taskTopic: TopicType
+  taskTopic: TopicType;
 }
 
 export function isSelectedTask(
@@ -149,6 +159,7 @@ export function isSelectedTask(
 export interface ApiResponseCreateTask {
   taskCreated: boolean;
   newCreatedTask: Task;
+  message?: string;
 }
 export interface ApiResponseUpdateTask {
   message?: string;
@@ -175,8 +186,7 @@ export interface TodoSidebarProps {
 }
 export interface TopicsSidebarProps {
   title: string;
-  topics: TopicType[]
-
+  topics: TopicType[];
 }
 
 export interface Initial_Update_State_Type {
@@ -185,6 +195,5 @@ export interface Initial_Update_State_Type {
   taskDueDate: dayjs.Dayjs | null;
   taskPriority: PriorityType;
   taskReminder: string | undefined;
-  taskTopic: TopicType
-
+  taskTopic: TopicType;
 }

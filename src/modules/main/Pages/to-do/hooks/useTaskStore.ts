@@ -9,9 +9,9 @@ import {
 } from '../types';
 import createTaskInFirestore from '../utilities/createTaskInFirestore';
 import deleteTaskInFirestore from '../utilities/deleteTaskInFirestore';
+import deleteTopicInFirestore from '../utilities/deleteTopicInFirestore';
 import getTasksFromFirestore from '../utilities/getTasksFromFirestore';
 import updateTaskInFirestore from '../utilities/updateTaskInFirestore';
-import deleteTopicInFirestore from '../utilities/deleteTopicInFirestore';
 
 const useTaskStore = create<TaskStore>((set) => ({
   tasks: [
@@ -32,6 +32,14 @@ const useTaskStore = create<TaskStore>((set) => ({
   openSnackbarTaskUpdated: false,
   openSnackbarTaskDeleted: false,
   openSnackbarTopicDeleted: false,
+  openSnackbarTaskDeletedError: false,
+  openSnackbarTaskUpdatedError: false,
+  openSnackbarTaskCreatedError: false,
+  openSnackbarTopicDeletedError: false,
+  taskDeletedErrorMessage: "",
+  topicDeletedErrorMessage: "",
+  taskCreatedErrorMessage: "",
+  taskUpdatedErrorMessage: "",
 
   setDeleteTaskDialog: () =>
     set((state) => ({
@@ -53,10 +61,19 @@ const useTaskStore = create<TaskStore>((set) => ({
   createTask: async (task: Task) => {
     try {
       const response: ApiResponseCreateTask = await createTaskInFirestore(task);
-      set((state: TaskStore) => ({
-        tasks: [...state.tasks, response.newCreatedTask],
-        openSnackbarTaskCreated: true,
-      }));
+      if (response.taskCreated) {
+        
+        set((state: TaskStore) => ({
+          tasks: [...state.tasks, response.newCreatedTask],
+          openSnackbarTaskCreated: true,
+        }));
+      } else {
+        set(() => ({
+          openSnackbarTaskCreatedError: true,
+          taskCreatedErrorMessage: response.message,
+        }));
+        
+      }
     } catch (error) {
       console.error('Error happen creating a nwe Task in Firestore: ', error);
     }
@@ -64,6 +81,8 @@ const useTaskStore = create<TaskStore>((set) => ({
   updateTask: async (task: Task) => {
     try {
       const response: ApiResponseUpdateTask = await updateTaskInFirestore(task);
+      // const response = { message: 'only for test', taskUpdated: true };
+      // const response = {message: "this is only a test error", taskUpdated:false};
       if (response.taskUpdated) {
         set((state: TaskStore) => ({
           tasks: state.tasks.map((t) => {
@@ -79,7 +98,7 @@ const useTaskStore = create<TaskStore>((set) => ({
               t.updatedAt = task.updatedAt;
               t.priority = task.priority;
               t.reminder = task.reminder;
-              t.topic = task.topic
+              t.topic = task.topic;
 
               return t;
             } else {
@@ -89,6 +108,10 @@ const useTaskStore = create<TaskStore>((set) => ({
         }));
       } else {
         console.log('Error while Updating the Task: ', response.message);
+        set(() => ({
+          openSnackbarTaskUpdatedError: true,
+          taskUpdatedErrorMessage: response.message,
+        }));
       }
       console.log('the response: ', response);
     } catch (error) {
@@ -109,6 +132,7 @@ const useTaskStore = create<TaskStore>((set) => ({
   deleteTask: async (taskId: string) => {
     try {
       const response = await deleteTaskInFirestore(taskId);
+      // const response = {message: "this is only a test error", taskDeleted:false};
       if (response.taskDeleted) {
         set((state: TaskStore) => ({
           tasks: state.tasks.filter((task) => task.id !== taskId),
@@ -117,6 +141,10 @@ const useTaskStore = create<TaskStore>((set) => ({
         }));
       } else {
         console.log('Error: ', response.message);
+        set(() => ({
+          openSnackbarTaskDeletedError: true,
+          taskDeletedErrorMessage: response.message,
+        }));
       }
     } catch (error) {}
   },
@@ -124,6 +152,8 @@ const useTaskStore = create<TaskStore>((set) => ({
     try {
       const response = await deleteTopicInFirestore(topic);
       // const response = { message: 'only for test', topicDeleted: true };
+      // const response = {message: "this is only a test error", topicDeleted:false};
+
       if (response.topicDeleted) {
         set((state: TaskStore) => ({
           tasks: state.tasks.filter((task) => task.topic !== topic),
@@ -132,6 +162,10 @@ const useTaskStore = create<TaskStore>((set) => ({
         }));
       } else {
         console.log('Error: ', response.message);
+        set(() => ({
+          openSnackbarTopicDeletedError: true,
+          topicDeletedErrorMessage: response.message,
+        }));
       }
     } catch (error) {}
   },
@@ -147,6 +181,12 @@ const useTaskStore = create<TaskStore>((set) => ({
       openSnackbarTaskCreated: false,
       openSnackbarTaskUpdated: false,
       openSnackbarTaskDeleted: false,
+      openSnackbarTopicDeleted: false,
+      openSnackbarTaskDeletedError: false,
+      openSnackbarTaskUpdatedError: false,
+      openSnackbarTaskCreatedError: false,
+      openSnackbarTopicDeletedError: false,
+
     });
   },
 }));
