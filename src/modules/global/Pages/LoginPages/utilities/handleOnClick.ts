@@ -6,6 +6,7 @@ export const handleOnClick = async (
   try {
     const userCredential = await signInMethod();
     if (userCredential.user) {
+      localStorage.setItem('userCredential', JSON.stringify(userCredential.user.providerData));
       const idToken = await userCredential.user.getIdToken();
       const response: Response = await fetch(
         '/api/v1/auth/login-firebase-email-password-or-anonymously',

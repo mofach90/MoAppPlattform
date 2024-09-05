@@ -5,13 +5,14 @@ import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import { Box, IconButton, Theme, Typography, useTheme } from '@mui/material';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Menu, MenuItem, ProSidebar } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { tokens } from '../../../global/theme/theme';
 import Item from './components/items';
 import useHandleSpecForApp from './hooks/useHandleSpecForApp';
 import useSideBarStore from './hooks/useSideBarStore';
+import useUserDataStore from '../../Pages/to-do/hooks/useUserDataStore';
 
 const Sidebar = () => {
   const theme: Theme = useTheme();
@@ -27,7 +28,13 @@ const Sidebar = () => {
     },
     [isSelected, handleSpecforApp],
   );
-
+  const getUserData = useUserDataStore((state)=>state.getUserData)
+  const userData = useUserDataStore((state)=>state.userData[0])
+  useEffect(() => {
+    getUserData()
+    console.log("userData:", userData)
+  }, [userData])
+  
   return (
     <Box
       sx={{
@@ -83,7 +90,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`public/assets/maradona.png`}
+                  src={userData[0]?.photoURL ?? undefined}
                   style={{
                     cursor: 'pointer',
                     borderRadius: '50%',

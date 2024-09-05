@@ -110,13 +110,13 @@ export interface TaskStore {
   openSnackbarTaskDeleted: boolean;
   openSnackbarTopicDeleted: boolean;
   openSnackbarTaskDeletedError: boolean;
-  openSnackbarTaskUpdatedError: boolean,
-  openSnackbarTaskCreatedError: boolean,
-  openSnackbarTopicDeletedError: boolean,
-  taskDeletedErrorMessage: string,
-  topicDeletedErrorMessage: string,
-  taskCreatedErrorMessage: string,
-  taskUpdatedErrorMessage: string,
+  openSnackbarTaskUpdatedError: boolean;
+  openSnackbarTaskCreatedError: boolean;
+  openSnackbarTopicDeletedError: boolean;
+  taskDeletedErrorMessage: string;
+  topicDeletedErrorMessage: string;
+  taskCreatedErrorMessage: string;
+  taskUpdatedErrorMessage: string;
 
   setDeleteTaskDialog: () => void;
   setDeleteTopicDialog: () => void;
@@ -196,4 +196,18 @@ export interface Initial_Update_State_Type {
   taskPriority: PriorityType;
   taskReminder: string | undefined;
   taskTopic: TopicType;
+}
+
+export interface UserDataStore {
+  userData: UserData[];
+  addUserData: (newUserData: UserData) => void;
+  getUserData: () => void;
+}
+export interface UserData {
+  displayName: string | null;
+  email: string | null;
+  phoneNumber: string | null;
+  photoURL: string | null;
+  providerId: string;
+  uid: string;
 }
