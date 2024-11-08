@@ -29,11 +29,11 @@ const Sidebar = () => {
     [isSelected, handleSpecforApp],
   );
   const getUserData = useUserDataStore((state)=>state.getUserData)
-  const userData = useUserDataStore((state)=>state.userData[0])
+  const userData = useUserDataStore((state)=>state.userData)
   useEffect(() => {
     getUserData()
-    console.log("userData:", userData)
-  }, [userData])
+  }, [getUserData])
+
   
   return (
     <Box
@@ -75,7 +75,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  Mo Plattform
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -90,7 +90,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={userData[0]?.photoURL ?? undefined}
+                  src={userData[0]?.photoURL ?? "public/assets/maradona.png"}
                   style={{
                     cursor: 'pointer',
                     borderRadius: '50%',
@@ -105,10 +105,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: '20px 10px 10px 10px' }}
                 >
-                  MO ADMIN
+                  {userData[0]?.displayName?userData[0]?.displayName:"MO ADMIN"}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                  VIP Fancy Admin
                 </Typography>
               </Box>
             </Box>

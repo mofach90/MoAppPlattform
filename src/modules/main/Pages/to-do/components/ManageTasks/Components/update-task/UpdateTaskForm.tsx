@@ -84,6 +84,8 @@ function UpdateTaskForm() {
                         values,
                         INITIAL_UPDATE_FORM_STATE,
                       )}
+                      defaultValue={INITIAL_UPDATE_FORM_STATE.taskPriority}
+
                     />
 
                     {shouldShowReminder(values, INITIAL_UPDATE_FORM_STATE) ? (

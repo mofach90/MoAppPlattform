@@ -3,6 +3,9 @@ import { isResponseJson } from './isResponseJson';
 
 const createTaskInFirestore = async (task: Task) => {
   try {
+    const user = await JSON.parse(localStorage?.getItem('userCredential') ?? '')
+    console.log("createTaskInFirestore email", user[0].email)
+    console.log("task to create", task)
     const request = await fetch('/api/v1/todo-app/tasks/create-task', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -14,7 +17,8 @@ const createTaskInFirestore = async (task: Task) => {
         dueDate: task.dueDate,
         priority: task.priority ? task.priority: "medium",
         reminder: task.reminder,
-        topic: task.topic
+        topic: task.topic,
+        userEmail:user[0]?.email
       }),
     });
 

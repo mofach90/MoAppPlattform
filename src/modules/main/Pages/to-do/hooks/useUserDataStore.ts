@@ -15,9 +15,9 @@ const useUserDataStore = create<UserDataStore>((set) => ({
     if (storedUserCredential) {
       const newUserData = JSON.parse(storedUserCredential);
       set((state: UserDataStore) => ({
-        userData: [...state.userData, newUserData],
+        userData: [...state.userData, ...newUserData],
       }));
-      console.log('userData enter userData', newUserData);
+      console.log('userData enter userData', newUserData[0]);
     }
   },
 }));
