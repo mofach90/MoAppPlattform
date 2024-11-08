@@ -30,6 +30,7 @@ export function AuthProvider({
   } = useAuthProvider();
 
   useEffect(() => {
+    console.log("authenticationForm BEFORE localStorage set:", authenticationForm)
     localStorage.setItem(
       'authenticationForm',
       JSON.stringify(authenticationForm),

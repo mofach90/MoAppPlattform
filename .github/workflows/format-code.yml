@@ -5,10 +5,13 @@ on:
     branches:
       - dev
       - main
+      - app/to-do/mo
+      - basic-feature/task-creation/mo
   pull_request:
     branches:
+      - dev
       - main
-
+      - app/to-do/mo
 jobs:
   format:
     runs-on: ubuntu-latest

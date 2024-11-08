@@ -6,7 +6,7 @@ import {
   TextFieldProps,
 } from '@mui/material';
 import { useField } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type TextfieldWrapperProps = { name: string } & TextFieldProps;
 
@@ -21,6 +21,10 @@ function TextfieldWrapper(props: Readonly<TextfieldWrapperProps>) {
   ) => {
     event.preventDefault();
   };
+  useEffect(() => {
+    console.log('TextField', { meta });
+    console.log('TextField', { field });
+  }, [meta, field]);
 
   const configOption: TextFieldProps = {
     ...field,
@@ -28,7 +32,6 @@ function TextfieldWrapper(props: Readonly<TextfieldWrapperProps>) {
     fullWidth: true,
     variant: 'outlined',
   };
-
   if (meta && meta.touched && meta.error) {
     configOption.error = true;
     configOption.helperText = meta.error;

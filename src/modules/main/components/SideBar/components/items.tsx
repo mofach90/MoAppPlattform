@@ -1,0 +1,34 @@
+import { Box, Typography, useTheme } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { tokens } from '../../../../global/theme/theme';
+import { ItemTypes } from '../../../types/mainTypes';
+import { MenuItem } from 'react-pro-sidebar';
+import { useEffect } from 'react';
+
+const Item = ({ title, to, icon, selected, handleItemClick }: ItemTypes) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  useEffect(() => {
+console.log("selected === title useeffect", (selected === title))
+  }, [])
+  
+
+  return (
+    <Box>
+      <MenuItem
+        active={selected === title}
+        onClick={() => {handleItemClick(title)
+          setTimeout(() => {
+            console.log("selected === title", selected === title)
+          }, 0);
+        }}
+        icon={icon}
+      >
+        <Typography variant="h6">{title}</Typography>
+        <Link to={to} />
+      </MenuItem>
+    </Box>
+  );
+};
+
+export default Item;

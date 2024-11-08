@@ -1,3 +1,5 @@
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Theme } from './modules/global/theme/theme';
 
@@ -15,21 +17,23 @@ function App() {
         <Theme>
           <AuthProvider>
             <VersionProvider>
-              <Routes>
-                {routes.map(({ path, element, protectedRoute }) => (
-                  <Route
-                    key={path}
-                    path={path}
-                    element={
-                      protectedRoute ? (
-                        <ProtectRoute>{element}</ProtectRoute>
-                      ) : (
-                        element
-                      )
-                    }
-                  />
-                ))}
-              </Routes>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <Routes>
+                  {routes.map(({ path, element, protectedRoute }) => (
+                    <Route
+                      key={path}
+                      path={path}
+                      element={
+                        protectedRoute ? (
+                          <ProtectRoute>{element}</ProtectRoute>
+                        ) : (
+                          element
+                        )
+                      }
+                    />
+                  ))}
+                </Routes>
+              </LocalizationProvider>
             </VersionProvider>
           </AuthProvider>
         </Theme>
