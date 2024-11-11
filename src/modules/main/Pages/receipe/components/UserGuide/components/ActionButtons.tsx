@@ -1,8 +1,18 @@
 import { Button, DialogActions } from '@mui/material';
 import { ArrowForward, Check } from '@mui/icons-material';
-import launchConfetti from './launchConfetti'; // Create this helper in `animations.js`
+import useUserGuideStore from '../../../store/UserGuideStore';
+import { launchConfetti } from '../../../utilities/animations';
+import { steps } from './UserGuideContent';
 
-const ActionButtons = ({ currentStep, handleCancel, handleNextStep }) => (
+const ActionButtons =() => {
+
+  const handleCancel = useUserGuideStore((state) => state.handleCancel);
+  const handleNextStep = useUserGuideStore((state) => state.handleNextStep);
+  const currentStep = useUserGuideStore((state) => state.currentStep);
+
+  
+return (
+
   <DialogActions sx={{ justifyContent: 'center', padding: 2 }}>
     <Button variant="outlined" onClick={handleCancel} sx={{ color: 'lightgray', mr: 15 }}>
       Cancel
@@ -45,6 +55,7 @@ const ActionButtons = ({ currentStep, handleCancel, handleNextStep }) => (
       </Button>
     )}
   </DialogActions>
-);
+)
+};
 
 export default ActionButtons;

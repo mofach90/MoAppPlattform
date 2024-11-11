@@ -1,10 +1,11 @@
 import { Dialog } from '@mui/material';
 import { animated } from 'react-spring';
-import useUserGuideStore from '../../../store/UserGuideStore';
-import {
-  usePulseAnimation,
-  useSlideInAnimation,
-} from '../../../utilities/animations';
+import useUserGuideStore from '../../store/UserGuideStore';
+import { usePulseAnimation } from '../../utilities/animations';
+import ActionButtons from './components/ActionButtons';
+import ProgressIndicator from './components/ProgressIndicator';
+import UserGuideContent from './components/UserGuideContent';
+import UserGuideHeader from './components/UserGuideHeader';
 
 const dialogPaperStyles = {
   width: { xs: '90%', md: '70%' },
@@ -20,11 +21,9 @@ const dialogPaperStyles = {
 };
 
 const UserGuide = () => {
-  const showUserGuide = useUserGuideStore((state) => state.showUserGuide);
-  const currentStep = useUserGuideStore((state) => state.currentStep);
   const handleCancel = useUserGuideStore((state) => state.handleCancel);
-  const handleNextStep = useUserGuideStore((state) => state.handleNextStep);
-  const slideIn = useSlideInAnimation(showUserGuide);
+  const showUserGuide = useUserGuideStore((state) => state.showUserGuide);
+
   const pulse = usePulseAnimation();
 
   return (
@@ -47,13 +46,9 @@ const UserGuide = () => {
         }}
       />
       <UserGuideHeader />
-      <UserGuideContent currentStep={currentStep} slideIn={slideIn} />
-      <ProgressIndicator currentStep={currentStep} />
-      <ActionButtons
-        currentStep={currentStep}
-        handleCancel={handleCancel}
-        handleNextStep={handleNextStep}
-      />
+      <UserGuideContent />
+      <ProgressIndicator />
+      <ActionButtons />
     </Dialog>
   );
 };
