@@ -1,9 +1,13 @@
 import { Box, Tooltip } from '@mui/material';
 import useUserGuideStore from '../../../store/UserGuideStore';
 import { steps } from './UserGuideContent';
+import { useEffect } from 'react';
 
 const ProgressIndicator = () => {
   const currentStep = useUserGuideStore((state) => state.currentStep);
+  useEffect(() => {
+    console.log('currentStep', currentStep);
+  }, [currentStep]);
 
   return (
     <Box display="flex" justifyContent="center" mt={5} mb={4}>

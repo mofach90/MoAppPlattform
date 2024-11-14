@@ -6,14 +6,14 @@ const useUserGuideStore = create<UserGuideStoreType>((set) => ({
   currentStep: 0,
   totalSteps: 3,
 
-  handleCancel: () => set({ showUserGuide: false }),
+  handleCancel: () => set({ showUserGuide: false, currentStep: 0 }),
 
   handleNextStep: () =>
     set((state) => {
       if (state.currentStep < state.totalSteps - 1) {
         return { currentStep: state.currentStep + 1 };
       } else {
-        return { showUserGuide: false };
+        return { showUserGuide: false , currentStep: 0 };
       }
     }),
 }));

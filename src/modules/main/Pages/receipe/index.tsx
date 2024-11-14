@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import PlattformPage, { pages } from '../plattformPage';
-import MainLandingPage from './components/MainLandingPage/MainLandingPage';
-import UserGuide from './components/UserGuide/UserGuide';
+import MainLandingPage from './pages/MainLandingPage/MainLandingPage';
+import UserGuide from './pages/UserGuide/UserGuide';
 import { handleUserGuideVisibility } from './utilities/handleUserGuideVisibility';
 
 const ReceipeApp = () => {
