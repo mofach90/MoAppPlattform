@@ -10,7 +10,7 @@ const buttonConfig: ButtonProps = {
 };
 
 const INITIAL_CREATE_FORM_STATE = {
-  ingredient: '',
+  ingredients: [{ name: 'ingredient1', value: '' }],
 };
 
 export const useIngredientsForm = () => {

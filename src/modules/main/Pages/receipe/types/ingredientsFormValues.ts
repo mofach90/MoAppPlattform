@@ -1,5 +1,4 @@
 export interface IngredientsFormValues {
-    ingredient: string;
-
+    ingredients: { name: string; value: string; }[]
   }
   
