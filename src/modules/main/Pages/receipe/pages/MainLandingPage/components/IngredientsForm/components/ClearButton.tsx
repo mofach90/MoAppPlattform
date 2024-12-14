@@ -1,10 +1,16 @@
+import { useFormikContext } from 'formik';
 import ButtonWrapper from '../../../../../../../../global/components/ButtonWrapper';
-import { useIngredientStore } from '../../../../../store/UserIngredientsStore ';
 import { useIngredientsForm } from '../useIngredientsForm';
 
 function ClearButton() {
+  const { setFieldValue } = useFormikContext<{
+    ingredients: { name: string; value: string }[];
+  }>();
   const { buttonConfig } = useIngredientsForm();
-  const {  clearAllIngredientFields } = useIngredientStore();
+
+  const handleClearAll = () => {
+    setFieldValue('ingredients', [{ name: 'ingredient1', value: '' }]); // Reset to initial value
+  };
 
   return (
     <ButtonWrapper
@@ -17,7 +23,7 @@ function ClearButton() {
           },
           marginTop: 2,
         },
-        onClick: clearAllIngredientFields,
+        onClick: handleClearAll,
       }}
     >
       Clear All

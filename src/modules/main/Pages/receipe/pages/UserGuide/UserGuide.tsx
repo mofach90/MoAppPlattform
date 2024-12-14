@@ -1,7 +1,5 @@
 import { Dialog } from '@mui/material';
-import { animated } from 'react-spring';
 import useUserGuideStore from '../../store/UserGuideStore';
-import { usePulseAnimation } from '../../utilities/animations';
 import ActionButtons from './components/ActionButtons';
 import ProgressIndicator from './components/ProgressIndicator';
 import UserGuideContent from './components/UserGuideContent';
@@ -24,8 +22,6 @@ const UserGuide = () => {
   const handleCancel = useUserGuideStore((state) => state.handleCancel);
   const showUserGuide = useUserGuideStore((state) => state.showUserGuide);
 
-  const pulse = usePulseAnimation();
-
   return (
     <Dialog
       open={showUserGuide}
@@ -34,17 +30,6 @@ const UserGuide = () => {
       maxWidth="xl"
       PaperProps={{ elevation: 24, sx: dialogPaperStyles }}
     >
-      <animated.div
-        style={{
-          ...pulse,
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: -1,
-        }}
-      />
       <UserGuideHeader />
       <UserGuideContent />
       <ProgressIndicator />

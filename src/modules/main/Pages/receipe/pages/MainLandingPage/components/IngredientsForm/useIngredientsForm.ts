@@ -2,6 +2,7 @@ import { ButtonProps } from '@mui/material/Button';
 
 import { IngredientsFormValues } from '../../../../types/ingredientsFormValues';
 import createIngFormValidation from './createIngFormValidation';
+import { useLoadingStore } from '../../../../store/loadingStore';
 
 const buttonConfig: ButtonProps = {
   variant: 'outlined',
@@ -12,56 +13,47 @@ const buttonConfig: ButtonProps = {
 const INITIAL_CREATE_FORM_STATE = {
   ingredients: [{ name: 'ingredient1', value: '' }],
 };
-
 export const useIngredientsForm = () => {
-  // const title = selectedTask?.title ? selectedTask.title : '';
+  const { setLoading, setResponse, setError } = useLoadingStore();
 
-  const handleSubmit = (
-    values: IngredientsFormValues,
-    // {
-    //   resetForm,
-    //   setFieldValue,
-    // }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm' | 'setFieldValue'>,
-  ) => {
-    console.log('values to crteate', values);
-    // const Task: any = {
-    //   title: values.taskTitle,
-    //   description: values.taskDescription,
-    //   isChecked: false,
-    //   dueDate: values.taskDueDate
-    //   ? dayjs(values.taskDueDate).toISOString()
-    //   : null,
-    //   reminder:
-    //   values.taskReminder && values.taskDueDate
-    //   ? values.taskReminder
-    //   : undefined,
-    //   priority: values.taskPriority ? values.taskPriority : 'medium',
-    //   topic: values.taskTopic,
-    // };
-    // console.log('task to crteate', Task);
+  const handleSubmit = async (values: IngredientsFormValues) => {
+    console.log('values to create', values);
 
-    // createTask(Task);
-    // resetForm();
-    // setTimeout(() => {
+    const ingredientsText = values.ingredients
+      .map((ingredient) => ingredient.value)
+      .join(', ');
 
-    //   console.log('values after to crteate', values);
-    // }, 2000);
+    try {
+      setLoading(true); // Start loading
 
-    // resetForm({
-    //   values: {
-    //     ...INITIAL_CREATE_FORM_STATE,
-    //     taskTitle: "test",
-    //     taskPriority: "low",
-    //     taskTopic: null,
-    //   },
-    // });
+      const response = await fetch('/api/v1/recipe-app/generate-recipe', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ingredients: ingredientsText, cuisine: values.cuisine, allergy: values.allergy }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('Recipe generated successfully:', data);
+      setResponse(data); // Set the response
+    } catch (error: Error | any) {
+      console.error('Error generating recipe:', error);
+      setError(error.message); // Set the error
+    } finally {
+      setLoading(false); // Stop loading
+    }
   };
 
   return {
     buttonConfig,
     CREATE_FORM_VALIDATION: createIngFormValidation(),
     INITIAL_CREATE_FORM_STATE,
-
     handleSubmit,
   };
 };

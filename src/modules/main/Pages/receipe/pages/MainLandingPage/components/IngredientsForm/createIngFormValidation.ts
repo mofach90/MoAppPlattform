@@ -9,12 +9,25 @@ const createIngFormValidation = () =>
             .required('Required Field')
             .matches(
               /^[a-zA-Z0-9 ]+$/,
-              'Ingredient must include only letters and numbers'
+              'Ingredient must include only letters and numbers',
             )
             .max(55, 'Ingredient must be 55 characters or less'),
-        })
+        }),
       )
-      .min(1, 'At least one ingredient is required'), // Ensure at least one ingredient
+      .min(1, 'At least one ingredient is required'),
+    cuisine: Yup.string()
+      .matches(
+        /^[a-zA-Z0-9 ]+$/,
+        'Ingredient must include only letters and numbers',
+      )
+      .max(55, 'Ingredient must be 55 characters or less'),
+    allergy: Yup.string()
+      .matches(
+        /^[a-zA-Z0-9 ]+$/,
+        'Ingredient must include only letters and numbers',
+      )
+      .max(55, 'Ingredient must be 55 characters or less'),
+    // Ensure at least one ingredient
   });
 
 export default createIngFormValidation;
