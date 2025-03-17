@@ -15,7 +15,7 @@ export const handleOnClickDispach: (
     await handleOnClick(() => firebaseSignInWithSocialAccount(auth, 'google'));
   } else if (method === 'facebook') {
     await handleOnClick(() =>
-      firebaseSignInWithSocialAccount(auth, 'facebook'),
+      firebaseSignInWithSocialAccount(auth, 'facebook'), 
     );
   } else if (method === 'anonymous') {
     await handleOnClick(() => firebaseSignInAnonymously(auth));
