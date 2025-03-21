@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the Mo Application Platform, a versatile platform designed to streamline your digital experience by integrating various applications into a single, cohesive environment. Our platform serves as a gateway to a suite of applications, offering seamless navigation and a unified interface to enhance your productivity and digital engagement.
+Welcome to the Mo Application Platform, a versatile platform designed to streamline your digital experience by integrating various applications into a single, cohesive environment. Our platform serves as a gateway to a suite of applications, offering seamless navigation and a unified interface to enhance your productivity and digital engagement. 
 
 ### Features
 
