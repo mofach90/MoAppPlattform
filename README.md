@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the Mo Application Platform, a versatile platform designed to streamline your digital experience by integrating various applications into a single, cohesive environment. Our platform serves as a gateway to a suite of applications, offering seamless navigation and a unified interface to enhance your productivity and digital engagement.
+Welcome to the Mo Application Platform, a versatile platform designed to streamline your digital experience by integrating various applications into a single, cohesive environment. Our platform serves as a gateway to a suite of applications, offering seamless navigation and a unified interface to enhance your productivity and digital engagement. 
 
 ### Features
 
@@ -12,6 +12,53 @@ Welcome to the Mo Application Platform, a versatile platform designed to streaml
   - To-Do App: Organize your tasks and enhance your productivity.
   - Movie List: Curate and manage your personal movie collection.
 - **And more to come**: We are continuously expanding our suite of applications to cater to a wider range of needs and interests.
+
+for example:
+`interface my_interaface {...} // Noncompliant`
+should be renamed to
+`interface MyInterface {...}`
+
+### Name Convention
+
+- **Interfaces and Types**: Interfaces and Types Naming must follow this regular expression ^[A-Z][a-zA-Z0-9]\*$
+
+### Folder Structure
+
+```
+├── public
+│   ├── assets
+│   └── locales
+│       ├── ar
+│       ├── de
+│       └── en
+└── src
+    ├── config
+    ├── contexts
+    ├── data
+    ├── modules
+    │   ├── demo
+    │   │   ├── components
+    │   │   └── pages
+    │   │       └── dashboard
+    │   ├── global
+    │   │   ├── Pages
+    │   │   │   ├── AboutPage
+    │   │   │   ├── LandingPage
+    │   │   │   ├── LicencePage
+    │   │   │   ├── LoginPages
+    │   │   │   └── UserAgreement
+    │   │   ├── components
+    │   │   ├── theme
+    │   │   └── utilities
+    │   └── main
+    │       ├── Pages
+    │       │   ├── DashboardPage
+    │       │   ├── receipe
+    │       │   ├── to-do
+    │       │   └── weather
+    │       └── components
+    └── routes
+```
 
 ### Built With
 
@@ -27,9 +74,6 @@ Welcome to the Mo Application Platform, a versatile platform designed to streaml
 
 (Currently under development - instructions will be provided in future updates)
 
-
-
 ---
 
 For more information, questions, or to get involved, please contact me at [ayari.mohamed@web.de].
-
