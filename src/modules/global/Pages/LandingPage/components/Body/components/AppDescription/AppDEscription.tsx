@@ -1,10 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import setTextAlign from '../../../../../../utilities/settextAlignement.ts';
+import useTextAlignment from '../../../../../../utilities/useTextAlignment';
 
 const AppDescription = () => {
   const { t } = useTranslation();
-  const textAlign = setTextAlign();
+  const textAlign = useTextAlignment();
   return (
     <Box
       display={'flex'}

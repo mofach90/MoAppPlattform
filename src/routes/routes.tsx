@@ -1,12 +1,14 @@
+import { lazy } from 'react';
 import AboutPage from '../modules/global/Pages/AboutPage/AboutPage';
 import LandingPage from '../modules/global/Pages/LandingPage/LandingPage';
 import LicencePage from '../modules/global/Pages/LicencePage/LicencePage';
 import LoginSocialNetworksPage from '../modules/global/Pages/LoginPages/social-network-based-login/LoginSocialNetworks';
 import UseragreementPage from '../modules/global/Pages/UserAgreement/UseragreementPage';
-import HomeDashboard from '../modules/main/Pages/DashboardPage';
-import ReceipeApp from '../modules/main/Pages/receipe';
-import TodoApp from '../modules/main/Pages/to-do';
-import WeatherApp from '../modules/main/Pages/weather';
+
+const HomeDashboard = lazy(() => import('../modules/main/Pages/DashboardPage'));
+const TodoApp = lazy(() => import('../modules/main/Pages/to-do'));
+const WeatherApp = lazy(() => import('../modules/main/Pages/weather'));
+const ReceipeApp = lazy(() => import('../modules/main/Pages/receipe'));
 
 const routes = [
   { path: '/', element: <LandingPage /> },

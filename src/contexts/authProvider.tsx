@@ -1,16 +1,14 @@
-import React, { createContext, useContext, useMemo } from 'react';
-import { useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { AuthContextType } from '../data/authData';
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
-import { useAuthProvider } from '../modules/global/utilities/authProviderUtils';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
-    useAuthProvider();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const checkAuthentication = async () => {
     try {

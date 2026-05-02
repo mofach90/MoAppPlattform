@@ -1,40 +1,24 @@
-import FlightLandIcon from '@mui/icons-material/FlightLand';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import { Box, IconButton, Theme, Typography, useTheme } from '@mui/material';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, MenuItem, ProSidebar } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
+import { navItems } from '../../../../routes/navItems';
 import { tokens } from '../../../global/theme/theme';
-import Item from './components/items';
-import useHandleSpecForApp from './hooks/useHandleSpecForApp';
-import useSideBarStore from './hooks/useSideBarStore';
 import useUserDataStore from '../../Pages/to-do/hooks/useUserDataStore';
+import Item from './components/items';
 
 const Sidebar = () => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const isSelected = useSideBarStore((state) => state.selected);
-  const setSelected = useSideBarStore((state) => state.setSelect);
-  const handleSpecforApp = useHandleSpecForApp();
-  const handleItemClick = useCallback(
-    (title: string) => {
-      setSelected(title);
-      handleSpecforApp(title);
-    },
-    [isSelected, handleSpecforApp],
-  );
-  const getUserData = useUserDataStore((state)=>state.getUserData)
-  const userData = useUserDataStore((state)=>state.userData)
-  useEffect(() => {
-    getUserData()
-  }, [getUserData])
+  const getUserData = useUserDataStore((state) => state.getUserData);
+  const userData = useUserDataStore((state) => state.userData);
 
-  
+  useEffect(() => {
+    getUserData();
+  }, [getUserData]);
+
   return (
     <Box
       sx={{
@@ -90,7 +74,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={userData[0]?.photoURL ?? "public/assets/maradona.png"}
+                  src={userData[0]?.photoURL ?? 'public/assets/maradona.png'}
                   style={{
                     cursor: 'pointer',
                     borderRadius: '50%',
@@ -105,7 +89,7 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: '20px 10px 10px 10px' }}
                 >
-                  {userData[0]?.displayName?userData[0]?.displayName:"MO ADMIN"}
+                  {userData[0]?.displayName ? userData[0]?.displayName : 'MO ADMIN'}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
                   VIP Fancy Admin
@@ -114,49 +98,24 @@ const Sidebar = () => {
             </Box>
           )}
           <Box paddingLeft={isCollapsed ? undefined : '10%'}>
-            <Item
-              title="Dashboard"
-              to="/main-dashboard"
-              icon={<HomeOutlinedIcon />}
-              selected={isSelected}
-              handleItemClick={handleItemClick}
-            />
-            <Item
-              title="Landing Page"
-              to="/"
-              icon={<FlightLandIcon />}
-              selected={isSelected}
-              handleItemClick={handleItemClick}
-            />
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: '15px 0 5px 20px' }}
-            >
-              {' '}
-              My Apps
-            </Typography>
-            <Item
-              title="To do"
-              to="/to-do"
-              icon={<PlaylistAddCheckIcon />}
-              selected={isSelected}
-              handleItemClick={handleItemClick}
-            />
-            <Item
-              title="Weather"
-              to="/weather"
-              icon={<ThunderstormIcon />}
-              selected={isSelected}
-              handleItemClick={handleItemClick}
-            />
-            <Item
-              title="Receipe"
-              to="/receipe"
-              icon={<ReceiptLongIcon />}
-              selected={isSelected}
-              handleItemClick={handleItemClick}
-            />
+            {navItems.map((item, i) => {
+              const isNewSection =
+                item.section && navItems[i - 1]?.section !== item.section;
+              return (
+                <div key={item.path}>
+                  {isNewSection && (
+                    <Typography
+                      variant="h6"
+                      color={colors.grey[300]}
+                      sx={{ m: '15px 0 5px 20px' }}
+                    >
+                      {item.section}
+                    </Typography>
+                  )}
+                  <Item title={item.title} to={item.path} icon={item.icon} />
+                </div>
+              );
+            })}
           </Box>
         </Menu>
       </ProSidebar>

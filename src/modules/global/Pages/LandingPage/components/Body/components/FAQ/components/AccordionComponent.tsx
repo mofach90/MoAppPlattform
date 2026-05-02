@@ -6,11 +6,11 @@ import {
   Typography,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import setTextAlign from '../../../../../../../utilities/settextAlignement.ts';
+import useTextAlignment from '../../../../../../../utilities/useTextAlignment';
 
 const AccordionComponent = (props: any) => {
   const { t } = useTranslation();
-  const textAlign = setTextAlign();
+  const textAlign = useTextAlignment();
   return (
     <Accordion sx={{ opacity: 0.9, textAlign: `${textAlign}` }}>
       <AccordionSummary

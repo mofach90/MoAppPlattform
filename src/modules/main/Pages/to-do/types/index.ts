@@ -98,6 +98,12 @@ export type TopicType =
   | 'Others'
   | null;
 
+export interface TaskNotification {
+  open: boolean;
+  severity: 'success' | 'error';
+  message: string;
+}
+
 export interface TaskStore {
   tasks: Task[];
   selectedTask: Task | null;
@@ -105,18 +111,7 @@ export interface TaskStore {
   deleteTaskDialog: boolean;
   deleteTopicDialog: boolean;
   UpdateTaskDialog: boolean;
-  openSnackbarTaskCreated: boolean;
-  openSnackbarTaskUpdated: boolean;
-  openSnackbarTaskDeleted: boolean;
-  openSnackbarTopicDeleted: boolean;
-  openSnackbarTaskDeletedError: boolean;
-  openSnackbarTaskUpdatedError: boolean;
-  openSnackbarTaskCreatedError: boolean;
-  openSnackbarTopicDeletedError: boolean;
-  taskDeletedErrorMessage: string;
-  topicDeletedErrorMessage: string;
-  taskCreatedErrorMessage: string;
-  taskUpdatedErrorMessage: string;
+  notification: TaskNotification | null;
 
   setDeleteTaskDialog: () => void;
   setDeleteTopicDialog: () => void;

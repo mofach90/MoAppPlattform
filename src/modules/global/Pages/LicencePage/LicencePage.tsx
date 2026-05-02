@@ -1,11 +1,11 @@
 import { Box, Grid, Stack, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import BackToHomeButton from '../../components/BackToHomeButton';
-import setTextAlign from '../../utilities/settextAlignement.ts';
+import useTextAlignment from '../../utilities/useTextAlignment';
 
 function LicencePage() {
   const { t } = useTranslation();
-  const textAlign = setTextAlign();
+  const textAlign = useTextAlignment();
 
   return (
     <Box

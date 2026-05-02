@@ -79,28 +79,20 @@ function UpdateTaskForm() {
                 <Grid item xs={12}>
                   <Box display={'flex'} justifyContent={'space-between'}>
                     <SelectPriority
-                      setFieldValue={setFieldValue}
-                      taskHasDueTime={shouldShowReminder(
-                        values,
-                        INITIAL_UPDATE_FORM_STATE,
-                      )}
+                      value={values.taskPriority}
+                      onChange={(val) => setFieldValue('taskPriority', val)}
+                      taskHasDueTime={shouldShowReminder(values, INITIAL_UPDATE_FORM_STATE)}
                       defaultValue={INITIAL_UPDATE_FORM_STATE.taskPriority}
-
                     />
-
                     {shouldShowReminder(values, INITIAL_UPDATE_FORM_STATE) ? (
-                      <SelectReminder
-                        setFieldValue={setFieldValue}
-                        props={{
-                          defaultValue: INITIAL_UPDATE_FORM_STATE.taskReminder,
-                        }}
-                      />
+                      <SelectReminder defaultValue={INITIAL_UPDATE_FORM_STATE.taskReminder} />
                     ) : null}
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
                     <SelectTopic
-                      setFieldValue={setFieldValue}
+                      value={values.taskTopic}
+                      onChange={(val) => setFieldValue('taskTopic', val)}
                       defaultValue={INITIAL_UPDATE_FORM_STATE.taskTopic}
                     />
                 </Grid>

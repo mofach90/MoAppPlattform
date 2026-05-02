@@ -77,18 +77,18 @@ function CreateTaskForm() {
                 <Grid item xs={12}>
                   <Box display={'flex'} justifyContent={'space-between'}>
                     <SelectPriority
-                      setFieldValue={setFieldValue}
+                      value={values.taskPriority}
+                      onChange={(val) => setFieldValue('taskPriority', val)}
                       taskHasDueTime={!!values.taskDueDate}
                       defaultValue={INITIAL_CREATE_FORM_STATE.taskPriority}
                     />
-                    {values.taskDueDate ? (
-                      <SelectReminder setFieldValue={setFieldValue} />
-                    ) : null}
+                    {values.taskDueDate ? <SelectReminder /> : null}
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
                     <SelectTopic
-                      setFieldValue={setFieldValue}
+                      value={values.taskTopic}
+                      onChange={(val) => setFieldValue('taskTopic', val)}
                     />
                 </Grid>
                 <Grid item xs={12}>

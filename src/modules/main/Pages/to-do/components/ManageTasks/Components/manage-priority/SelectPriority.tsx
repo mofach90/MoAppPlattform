@@ -3,44 +3,30 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { FormikErrors } from 'formik';
-import { CreateTaskFormValues } from '../../../../types';
+import { PriorityType } from '../../../../types';
 
 const SelectPriority = ({
-  setFieldValue,
+  value,
+  onChange,
   taskHasDueTime,
-  ...rest
+  defaultValue,
 }: {
-  setFieldValue: (
-    field: string,
-    value: any,
-    shouldValidate?: boolean,
-  ) => Promise<void | FormikErrors<CreateTaskFormValues>>;
+  value: PriorityType | undefined;
+  onChange: (value: PriorityType | undefined) => void;
   taskHasDueTime: boolean;
-  [key: string]: any; // Allow any additional props
-
+  defaultValue?: PriorityType;
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
-    setFieldValue(
-      'taskPriority',
-      event.target.value ? event.target.value : undefined,
-    );
+    onChange(event.target.value ? (event.target.value as PriorityType) : undefined);
   };
 
   return (
-    <FormControl
-      sx={{ width: `${taskHasDueTime ? '39%' : '100%'}` }}
-      size="medium"
-    >
+    <FormControl sx={{ width: `${taskHasDueTime ? '39%' : '100%'}` }} size="medium">
       <InputLabel
         id="priority-select-label"
         sx={{
-          '&.Mui-focused': {
-            transform: 'translate(0, -17px) scale(0.75)',
-          },
-          '&.MuiInputLabel-shrink': {
-            transform: 'translate(0, -17px) scale(0.75)',
-          },
+          '&.Mui-focused': { transform: 'translate(0, -17px) scale(0.75)' },
+          '&.MuiInputLabel-shrink': { transform: 'translate(0, -17px) scale(0.75)' },
         }}
       >
         Priority
@@ -48,11 +34,9 @@ const SelectPriority = ({
       <Select
         labelId="priority-select-label"
         id="priority-select"
+        value={value ?? ''}
+        defaultValue={defaultValue ?? ''}
         onChange={handleChange}
-        {...rest}
-        // onReset={()=>setFieldValue("taskPriority", "",false)}
-        // value= {values.taskPriority?values.taskPriority: undefined}
-        // defaultValue={defaultValue?defaultValue:undefined}
       >
         <MenuItem value={'high'}>
           <Typography ml={2}>High</Typography>
