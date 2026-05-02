@@ -1,16 +1,12 @@
-import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Button, Grid, InputAdornment, Paper, Typography } from '@mui/material';
-import { useAuth } from '../../../../../contexts/authProvider';
 import { HomeButton } from '../../../components/goHomeButton';
 
 function LoginSocialNetworksPage() {
-  const { setAuthenticationForm } = useAuth();
-
-  const handleSocialNetworkAuthentication = (provider: string) => {
-    window.open(`/api/v1/auth/login-social-auth/${provider}`, '_self');
-    setAuthenticationForm('social based authentication');
+  const handleGoogleLogin = () => {
+    window.open('/api/v1/auth/login-social-auth/google', '_self');
   };
+
   return (
     <Grid container height="100vh">
       <Grid container alignItems={'center'} justifyContent={'end'} p={2}>
@@ -37,34 +33,19 @@ function LoginSocialNetworksPage() {
           >
             <Grid container spacing={3} justifyContent="center">
               <Grid item xs={12} textAlign={'center'}>
-                <Typography variant="h5">
-                  Choose Your Social Network Account to Login In
-                </Typography>
+                <Typography variant="h5">Sign in to your account</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Button
-                  onClick={() => handleSocialNetworkAuthentication('google')}
+                  onClick={handleGoogleLogin}
                   color="success"
                   fullWidth
                   variant="contained"
-                  sx={{ marginBottom: 2 }}
                 >
                   <InputAdornment position="start">
                     <GoogleIcon fontSize="large" sx={{ color: 'white' }} />
                   </InputAdornment>
-                  <Typography width={'90%'}>Log In With Google</Typography>
-                </Button>
-                <Button
-                  onClick={() => handleSocialNetworkAuthentication('facebook')}
-                  color="primary"
-                  fullWidth
-                  variant="contained"
-                  sx={{ marginBottom: 2 }}
-                >
-                  <InputAdornment position="start">
-                    <FacebookIcon fontSize="large" sx={{ color: 'white' }} />
-                  </InputAdornment>
-                  <Typography width={'90%'}>Log In With facebook</Typography>
+                  <Typography width={'90%'}>Continue with Google</Typography>
                 </Button>
               </Grid>
             </Grid>

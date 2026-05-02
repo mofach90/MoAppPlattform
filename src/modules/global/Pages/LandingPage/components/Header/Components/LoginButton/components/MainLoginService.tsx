@@ -21,8 +21,8 @@ export const MainLoginService = () => {
         PaperProps={{
           elevation: 24,
           sx: {
-            width: 800,
-            height: 300,
+            width: 500,
+            height: 200,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -30,20 +30,14 @@ export const MainLoginService = () => {
           },
         }}
       >
-        <DialogTitle>Choose your Authentication method</DialogTitle>
-
+        <DialogTitle>Login to your account</DialogTitle>
         <DialogActions sx={{ width: '100%' }}>
           <Button
             variant="contained"
-            onClick={() => {
-              handleOnClick(
-                '/login-with-firebase',
-                'Firebase based authentication using Email and Password or Anonymously',
-              );
-            }}
+            onClick={() => handleOnClick('/login-with-social-networks')}
             fullWidth={true}
           >
-            Login using Firebase
+            Continue with Google
           </Button>
         </DialogActions>
       </Dialog>

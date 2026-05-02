@@ -1,94 +1,28 @@
-import React, { createContext, useContext, useEffect, useMemo } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
+import { useEffect } from 'react';
 import { AuthContextType } from '../data/authData';
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
 import { useAuthProvider } from '../modules/global/utilities/authProviderUtils';
-import { MyRequest } from '../types/authTypes';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const {
-    isAuthenticatedBasic,
-    isAuthenticatedFirebase,
-    isAuthenticatedSessionId,
-    isAuthenticatedJwtLocalStorage,
-    isAuthenticatedJwtCookie,
-    isAuthenticatedSocialAuth,
-    getAuthCheckRoute,
-    loading,
-    authenticationForm,
-    setAuthenticationForm,
-    setIsAuthenticatedBasic,
-    setLoading,
-    setIsAuthenticatedSessionId,
-    setIsAuthenticatedJwtLocalStorage,
-    setIsAuthenticatedJwtCookie,
-    setIsAuthenticatedFirebase,
-    setIsAuthenticatedSocialAuth,
-  } = useAuthProvider();
-
-  useEffect(() => {
-    console.log("authenticationForm BEFORE localStorage set:", authenticationForm)
-    localStorage.setItem(
-      'authenticationForm',
-      JSON.stringify(authenticationForm),
-    );
-  }, [authenticationForm]);
+  const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
+    useAuthProvider();
 
   const checkAuthentication = async () => {
     try {
       setLoading(true);
-      const authCheckRoute: MyRequest = getAuthCheckRoute(authenticationForm);
-
-      console.log('authCheckRoute ', authCheckRoute);
-      // const MyResponse = await fetch(`/api/v1/auth${authCheckRoute.path}`, {
-      //   method: authCheckRoute.method,
-      //   credentials: authCheckRoute.credentials,
-      // });
-
-      const getAuthStateFromBackend = async (authCheckRoute: MyRequest) => {
-        const response = await fetch(`/api/v1/auth${authCheckRoute.path}`, {
-          method: authCheckRoute.method,
-          credentials: authCheckRoute.credentials,
-        });
-        console.log('response', response);
-        const contentType = response.headers.get('Content-Type');
-        console.log('contentType ', contentType);
-        if (contentType && contentType.includes('application/json')) {
-          const data = await response.json();
-          console.log('DATA', data);
-          return data;
-        } else return response;
-      };
-
-      const dataMyResponse: any = await getAuthStateFromBackend(authCheckRoute);
-      console.log('dataMyResponse', dataMyResponse);
-      if (dataMyResponse.isAuthenticatedBasic) {
-        setIsAuthenticatedBasic(true);
-      }
-      if (dataMyResponse.isAuthenticatedSessionId) {
-        setIsAuthenticatedSessionId(true);
-      }
-
-      if (dataMyResponse.isAuthenticatedJwtLocalStorage) {
-        setIsAuthenticatedJwtLocalStorage(true);
-      }
-      if (dataMyResponse.isAuthenticatedJwtCookie) {
-        setIsAuthenticatedJwtCookie(true);
-      }
-      if (dataMyResponse.isAuthenticatedFirebase) {
-        setIsAuthenticatedFirebase(true);
-      }
-      if (
-        dataMyResponse.ok &&
-        authenticationForm === 'social based authentication'
-      ) {
-        setIsAuthenticatedSocialAuth(true);
-      }
+      const response = await fetch('/api/v1/auth/check-google-auth', {
+        method: 'GET',
+        credentials: 'include',
+      });
+      setIsAuthenticated(response.ok);
     } catch (error) {
       console.error('Failure in checkAuthentication', error);
+      setIsAuthenticated(false);
     } finally {
       setLoading(false);
     }
@@ -98,45 +32,13 @@ export function AuthProvider({
     checkAuthentication();
   }, []);
 
-  useEffect(() => {
-    console.log(
-      'isAuthenticatedFirebase in use effect',
-      isAuthenticatedFirebase,
-    );
-  }, [isAuthenticatedFirebase]);
-
   const recheckAuthentication = async () => {
-    try {
-      setLoading(true);
-      await checkAuthentication();
-    } catch (error) {
-      console.error('error from recheckauth : ', error);
-    }
+    await checkAuthentication();
   };
+
   const contextValue = useMemo(
-    () => ({
-      isAuthenticatedJwtLocalStorage,
-      isAuthenticatedJwtCookie,
-      isAuthenticatedSessionId,
-      isAuthenticatedBasic,
-      isAuthenticatedSocialAuth,
-      loading,
-      recheckAuthentication,
-      authenticationForm,
-      setAuthenticationForm,
-      setIsAuthenticatedBasic,
-      isAuthenticatedFirebase,
-    }),
-    [
-      isAuthenticatedJwtLocalStorage,
-      isAuthenticatedJwtCookie,
-      isAuthenticatedSessionId,
-      isAuthenticatedBasic,
-      isAuthenticatedSocialAuth,
-      loading,
-      recheckAuthentication,
-      isAuthenticatedFirebase,
-    ],
+    () => ({ isAuthenticated, loading, recheckAuthentication }),
+    [isAuthenticated, loading],
   );
 
   return (

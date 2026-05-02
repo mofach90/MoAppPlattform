@@ -1,10 +1,8 @@
 // TaskCard.tsx
 import { Paper, Theme, useTheme } from '@mui/material';
-import { tokens } from '../../../../global/theme/theme';
 
 const TaskCard = ({ children }: { children: React.ReactNode }) => {
   const theme: Theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   return (
     <Paper
       sx={{

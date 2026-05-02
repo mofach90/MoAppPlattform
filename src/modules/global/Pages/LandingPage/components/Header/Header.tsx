@@ -3,7 +3,6 @@ import { Box, Stack } from '@mui/material';
 import { DashboardButton } from './Components/DashboardButton/DashboardButton';
 import LoginButton from './Components/LoginButton/LoginButton';
 import './utils/Header.css';
-import GoToVersionButton from './Components/GoToVersionButton/GoToVersionButton';
 
 const Header = () => {
   return (
@@ -33,7 +32,6 @@ const Header = () => {
         <Stack direction={'row'} gap={2} mr={2} alignItems="center">
           <DashboardButton />
           <LoginButton />
-          <GoToVersionButton />
         </Stack>
       </Stack>
     </Box>

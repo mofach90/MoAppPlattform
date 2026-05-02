@@ -5,7 +5,6 @@ import { Theme } from './modules/global/theme/theme';
 
 import data from './config/KlaroConfig.json';
 import { AuthProvider } from './contexts/authProvider';
-import { VersionProvider } from './contexts/versionprovider';
 import Klaro from './modules/global/components/Klaro';
 import ProtectRoute from './modules/global/components/ProtectRoute';
 import routes from './routes/routes';
@@ -16,25 +15,23 @@ function App() {
       <Klaro config={data}>
         <Theme>
           <AuthProvider>
-            <VersionProvider>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <Routes>
-                  {routes.map(({ path, element, protectedRoute }) => (
-                    <Route
-                      key={path}
-                      path={path}
-                      element={
-                        protectedRoute ? (
-                          <ProtectRoute>{element}</ProtectRoute>
-                        ) : (
-                          element
-                        )
-                      }
-                    />
-                  ))}
-                </Routes>
-              </LocalizationProvider>
-            </VersionProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <Routes>
+                {routes.map(({ path, element, protectedRoute }) => (
+                  <Route
+                    key={path}
+                    path={path}
+                    element={
+                      protectedRoute ? (
+                        <ProtectRoute>{element}</ProtectRoute>
+                      ) : (
+                        element
+                      )
+                    }
+                  />
+                ))}
+              </Routes>
+            </LocalizationProvider>
           </AuthProvider>
         </Theme>
       </Klaro>

@@ -1,5 +1,4 @@
 import { Dialog, useTheme } from '@mui/material';
-import { useEffect } from 'react';
 import { tokens } from '../../../../../../global/theme/theme';
 import { Theme } from '../../../../../types/mainTypes';
 import useTaskStore from '../../../hooks/useTaskStore';

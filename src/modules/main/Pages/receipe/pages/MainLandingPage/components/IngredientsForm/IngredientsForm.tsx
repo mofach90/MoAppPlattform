@@ -11,34 +11,22 @@ import {
   useTheme,
 } from '@mui/material';
 import { Form, Formik } from 'formik';
-import { useEffect } from 'react';
 import { tokens } from '../../../../../../../global/theme/theme';
-import { useLoadingStore } from '../../../../store/loadingStore';
 import IngredientsFormFields from './components/IngredientsFormFields';
 import { useIngredientsForm } from './useIngredientsForm';
 
 function IngredientsForm() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const { CREATE_FORM_VALIDATION, INITIAL_CREATE_FORM_STATE, handleSubmit } =
-    useIngredientsForm();
-
-  const isLoading = useLoadingStore((state) => state.isLoading);
-  const response = useLoadingStore((state) => state.response);
-  const error = useLoadingStore((state) => state.error);
-  const reset = useLoadingStore((state) => state.reset);
-  const responses: any[] = [
-    { step: 'step one' },
-    { step: 'step two' },
-    { step: 'step three' },
-  ];
-
-  const handleCloseDialog = () => {
-    reset(); // Reset all states when dialog is closed
-  };
-  useEffect(() => {
-    console.log('response', response);
-  }, []);
+  const {
+    CREATE_FORM_VALIDATION,
+    INITIAL_CREATE_FORM_STATE,
+    handleSubmit,
+    response,
+    isLoading,
+    error,
+    reset,
+  } = useIngredientsForm();
 
   return (
     <Grid container display="flex" justifyContent="center" height="25%" mt={20}>
@@ -50,16 +38,9 @@ function IngredientsForm() {
         >
           {({ submitForm, isValid }) => (
             <Form style={{ width: '60%' }}>
-              <IngredientsFormFields
-                isValid={isValid}
-                submitForm={submitForm}
-              />
+              <IngredientsFormFields isValid={isValid} submitForm={submitForm} />
 
-              {/* Dialog for loading, success, or error */}
-              <Dialog
-                open={isLoading || !!response || !!error}
-                onClose={handleCloseDialog}
-              >
+              <Dialog open={isLoading || !!response || !!error} onClose={reset}>
                 <DialogContent>
                   {isLoading && <CircularProgress />}
 
@@ -68,7 +49,7 @@ function IngredientsForm() {
                       <Typography
                         variant="h5"
                         component="h1"
-                        sx={{ fontFamily: 'Playfair Display' , fontWeight: 'bold'}}
+                        sx={{ fontFamily: 'Playfair Display', fontWeight: 'bold' }}
                         textAlign={'center'}
                       >
                         <CelebrationTwoToneIcon />
@@ -92,9 +73,7 @@ function IngredientsForm() {
                         Description:
                       </Typography>
                       <ol>
-                        <Typography>
-                          &nbsp;{response.recipe.description}
-                        </Typography>
+                        <Typography>&nbsp;{response.recipe.description}</Typography>
                       </ol>
                       <Typography
                         variant="h6"
@@ -110,17 +89,15 @@ function IngredientsForm() {
                             index: number,
                           ) => (
                             <li key={index}>
-                              {/* <Typography>{instruction.step}</Typography> */}
                               <Typography>{instruction.description}</Typography>
                             </li>
                           ),
                         )}
                       </ol>
-
                       <img
                         src={response.image}
                         alt={response.recipe.name}
-                        style={{ width: '100%', marginTop: '16px' , borderRadius: '10px' }}
+                        style={{ width: '100%', marginTop: '16px', borderRadius: '10px' }}
                       />
                     </>
                   )}
@@ -132,7 +109,7 @@ function IngredientsForm() {
                     </>
                   )}
                 </DialogContent>
-                <Button onClick={handleCloseDialog}>Close</Button>
+                <Button onClick={reset}>Close</Button>
               </Dialog>
             </Form>
           )}

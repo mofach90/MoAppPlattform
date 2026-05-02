@@ -1,13 +1,10 @@
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { tokens } from '../../../../global/theme/theme';
 import { ItemTypes } from '../../../types/mainTypes';
 
 const Item = ({ title, to, icon, selected, handleItemClick }: ItemTypes) => {
-  const theme = useTheme();
-  const  colors = tokens(theme.palette.mode);
   useEffect(() => {
     console.log('selected === title useeffect', selected === title);
   }, []);

@@ -19,7 +19,7 @@ const PushNotification = () => {
           //   }
         );
         console.log('FCM Token:', token);
-        const result = await fetch(`/api/v1/todo-app/tasks/get-token`, {
+        await fetch(`/api/v1/todo-app/tasks/get-token`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ token }),

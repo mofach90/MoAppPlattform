@@ -1,11 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { versionContext } from '../../../../../../../../contexts/versionprovider';
 import setTextAlign from '../../../../../../utilities/settextAlignement.ts';
 
 const AppDescription = () => {
-  const { version } = useContext(versionContext);
   const { t } = useTranslation();
   const textAlign = setTextAlign();
   return (
@@ -19,11 +16,7 @@ const AppDescription = () => {
       textAlign={textAlign}
     >
       <Typography variant="h3">
-        {t('welcome')} this is the{' '}
-        <span style={{ color: 'red' }}>
-          {version === 'main' ? 'Main' : 'Demo'}
-        </span>{' '}
-        Version
+        {t('welcome')}
       </Typography>
       <Typography mt={2} variant="body1" width={'70%'}>
         {t('description')}

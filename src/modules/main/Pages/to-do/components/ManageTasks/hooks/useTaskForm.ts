@@ -8,7 +8,6 @@ import useTaskStore from '../../../hooks/useTaskStore';
 import {
   CreateTaskFormValues,
   Initial_Update_State_Type,
-  PriorityType,
   Task,
   TopicType,
 } from '../../../types';
@@ -54,10 +53,7 @@ export const useTaskForm = () => {
 
   const handleCreateTask = (
     values: CreateTaskFormValues,
-    {
-      resetForm,
-      setFieldValue,
-    }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm' | 'setFieldValue'>,
+    { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
   ) => {
     console.log('values to crteate', values);
     const Task: Task = {

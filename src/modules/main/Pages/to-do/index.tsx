@@ -19,8 +19,6 @@ const TodoApp = () => {
     (state) => state.selectedTopic,
   );
   const tasks = useTaskStore((state) => state.tasks);
-  const onprogressTasks = tasks.filter((task) => !task.isChecked);
-  const completedTasks = tasks.filter((task) => task.isChecked);
   const topics :TopicType[] = []
   tasks.forEach((task)=> {
     if (task.topic && !topics.includes(task.topic)) {
