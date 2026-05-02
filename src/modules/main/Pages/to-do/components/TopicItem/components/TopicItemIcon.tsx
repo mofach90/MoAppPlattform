@@ -12,14 +12,14 @@ const iconMapping: { [key in Exclude<TopicType, null>]: ReactElement } = {
   Travel: <FlightIcon />,
   Personal: <SensorOccupiedIcon />,
   Education: <SchoolIcon />,
-  'Home_Family': <HouseIcon />,
+  Home_Family: <HouseIcon />,
   Others: <MoreHorizIcon />,
   Shopping: <ShoppingCartIcon />,
   Work: <EngineeringIcon />,
 };
 
-const TopicItemIcon = ({topic}: { topic: TopicType }) => {
-  return topic? iconMapping[topic] : null;
+const TopicItemIcon = ({ topic }: { topic: TopicType }) => {
+  return topic ? iconMapping[topic] : null;
 };
 
 export default TopicItemIcon;

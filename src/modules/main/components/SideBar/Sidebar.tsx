@@ -89,7 +89,9 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: '20px 10px 10px 10px' }}
                 >
-                  {userData[0]?.displayName ? userData[0]?.displayName : 'MO ADMIN'}
+                  {userData[0]?.displayName
+                    ? userData[0]?.displayName
+                    : 'MO ADMIN'}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
                   VIP Fancy Admin

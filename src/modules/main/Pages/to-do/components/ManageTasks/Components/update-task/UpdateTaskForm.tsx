@@ -81,20 +81,25 @@ function UpdateTaskForm() {
                     <SelectPriority
                       value={values.taskPriority}
                       onChange={(val) => setFieldValue('taskPriority', val)}
-                      taskHasDueTime={shouldShowReminder(values, INITIAL_UPDATE_FORM_STATE)}
+                      taskHasDueTime={shouldShowReminder(
+                        values,
+                        INITIAL_UPDATE_FORM_STATE,
+                      )}
                       defaultValue={INITIAL_UPDATE_FORM_STATE.taskPriority}
                     />
                     {shouldShowReminder(values, INITIAL_UPDATE_FORM_STATE) ? (
-                      <SelectReminder defaultValue={INITIAL_UPDATE_FORM_STATE.taskReminder} />
+                      <SelectReminder
+                        defaultValue={INITIAL_UPDATE_FORM_STATE.taskReminder}
+                      />
                     ) : null}
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <SelectTopic
-                      value={values.taskTopic}
-                      onChange={(val) => setFieldValue('taskTopic', val)}
-                      defaultValue={INITIAL_UPDATE_FORM_STATE.taskTopic}
-                    />
+                  <SelectTopic
+                    value={values.taskTopic}
+                    onChange={(val) => setFieldValue('taskTopic', val)}
+                    defaultValue={INITIAL_UPDATE_FORM_STATE.taskTopic}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <DateTimeWrapper

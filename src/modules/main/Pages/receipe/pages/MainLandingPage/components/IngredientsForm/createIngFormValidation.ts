@@ -1,5 +1,8 @@
 import * as Yup from 'yup';
-import { alphanumericField, requiredAlphanumericField } from '../../../../../../../../lib/validation/rules';
+import {
+  alphanumericField,
+  requiredAlphanumericField,
+} from '../../../../../../../../lib/validation/rules';
 
 const createIngFormValidation = () =>
   Yup.object().shape({

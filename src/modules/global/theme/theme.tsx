@@ -185,7 +185,6 @@ export const tokens = (mode: Mode): colorLibrary => ({
       }),
 });
 
-
 const themeSetting = (mode: Mode) => {
   const colors = tokens(mode);
   return {

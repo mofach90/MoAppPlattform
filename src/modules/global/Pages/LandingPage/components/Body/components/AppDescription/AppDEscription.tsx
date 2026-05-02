@@ -15,9 +15,7 @@ const AppDescription = () => {
       flexWrap={'wrap'}
       textAlign={textAlign}
     >
-      <Typography variant="h3">
-        {t('welcome')}
-      </Typography>
+      <Typography variant="h3">{t('welcome')}</Typography>
       <Typography mt={2} variant="body1" width={'70%'}>
         {t('description')}
       </Typography>

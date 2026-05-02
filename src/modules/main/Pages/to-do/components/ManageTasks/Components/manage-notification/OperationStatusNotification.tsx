@@ -10,7 +10,9 @@ const SnackbarAlert = forwardRef<HTMLDivElement, AlertProps>(
 
 const OperationStatusNotification = () => {
   const notification = useTaskStore((state) => state.notification);
-  const handleCloseNotification = useTaskStore((state) => state.handleCloseNotification);
+  const handleCloseNotification = useTaskStore(
+    (state) => state.handleCloseNotification,
+  );
 
   return (
     <Snackbar
@@ -19,7 +21,10 @@ const OperationStatusNotification = () => {
       onClose={handleCloseNotification}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
     >
-      <SnackbarAlert variant="filled" severity={notification?.severity ?? 'success'}>
+      <SnackbarAlert
+        variant="filled"
+        severity={notification?.severity ?? 'success'}
+      >
         {notification?.message}
       </SnackbarAlert>
     </Snackbar>

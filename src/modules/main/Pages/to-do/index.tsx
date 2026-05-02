@@ -12,8 +12,12 @@ import { TaskStore, TopicType } from './types';
 const TodoApp = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const addTasksFromFirestore = useTaskStore((state) => state.addTasksFromFirestore);
-  const selectedTask: TaskStore['selectedTask'] = useTaskStore((state) => state.selectedTask);
+  const addTasksFromFirestore = useTaskStore(
+    (state) => state.addTasksFromFirestore,
+  );
+  const selectedTask: TaskStore['selectedTask'] = useTaskStore(
+    (state) => state.selectedTask,
+  );
   const selectedTopic: TopicType = useTaskStore((state) => state.selectedTopic);
   const tasks = useTaskStore((state) => state.tasks);
 

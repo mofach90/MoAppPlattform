@@ -84,7 +84,8 @@ const TodoSidebar = ({ title, innerColor, tasks }: TodoSidebarProps) => {
               .map((task) => (
                 <TodoItem key={uuidv4()} task={task} />
               ))}
-            {tasks.filter((task) => task.isChecked).length > 0 && tasks.filter((task) => !task.isChecked).length > 0
+            {tasks.filter((task) => task.isChecked).length > 0 &&
+            tasks.filter((task) => !task.isChecked).length > 0
               ? '----------------------------------------------------'
               : null}
             {tasks

@@ -1,6 +1,6 @@
 import { DialogTitle } from '@mui/material';
 
- const UserGuideHeader = () => {
+const UserGuideHeader = () => {
   return (
     <DialogTitle
       id="intro-dialog-title"
@@ -17,4 +17,4 @@ import { DialogTitle } from '@mui/material';
     </DialogTitle>
   );
 };
- export default UserGuideHeader
+export default UserGuideHeader;

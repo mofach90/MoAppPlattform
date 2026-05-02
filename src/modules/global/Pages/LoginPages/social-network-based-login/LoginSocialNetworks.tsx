@@ -36,16 +36,24 @@ function LoginSocialNetworksPage() {
             variant="outlined"
           >
             {accessDenied ? (
-              <Grid container spacing={3} justifyContent="center" textAlign="center">
+              <Grid
+                container
+                spacing={3}
+                justifyContent="center"
+                textAlign="center"
+              >
                 <Grid item xs={12}>
-                  <LockOutlinedIcon sx={{ fontSize: 48, color: 'text.secondary', mb: 1 }} />
+                  <LockOutlinedIcon
+                    sx={{ fontSize: 48, color: 'text.secondary', mb: 1 }}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Typography variant="h5" gutterBottom>
                     Access Restricted
                   </Typography>
                   <Typography variant="body1" color="text.secondary">
-                    This site is still under testing. Not all users are allowed to login at this time.
+                    This site is still under testing. Not all users are allowed
+                    to login at this time.
                   </Typography>
                   <Typography variant="body2" color="text.secondary" mt={2}>
                     Please check back later.

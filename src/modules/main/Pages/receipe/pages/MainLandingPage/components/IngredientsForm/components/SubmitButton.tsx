@@ -5,7 +5,7 @@ function SubmitButton({
   isValid,
   submitForm,
 }: Readonly<{ isValid: boolean; submitForm: () => void }>) {
-  const {buttonConfig} = useIngredientsForm();
+  const { buttonConfig } = useIngredientsForm();
   return (
     <ButtonWrapper
       buttonConfig={{

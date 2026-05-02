@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { AuthContextType } from '../data/authData';
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
 
@@ -24,7 +30,9 @@ export function AuthProvider({
       if (response.ok) {
         const stored = localStorage.getItem('userCredential');
         const userData = stored ? JSON.parse(stored) : null;
-        const email: string | null = Array.isArray(userData) ? (userData[0]?.email ?? null) : null;
+        const email: string | null = Array.isArray(userData)
+          ? (userData[0]?.email ?? null)
+          : null;
 
         if (ALLOWED_EMAIL && email === ALLOWED_EMAIL) {
           setIsAuthenticated(true);
@@ -33,7 +41,9 @@ export function AuthProvider({
           // Authenticated with Google but not in the allowed list — end the session
           setIsAuthenticated(false);
           setAccessDenied(true);
-          await fetch('/api/v1/auth/social-auth/logout', { credentials: 'include' });
+          await fetch('/api/v1/auth/social-auth/logout', {
+            credentials: 'include',
+          });
           localStorage.removeItem('userCredential');
         }
       } else {

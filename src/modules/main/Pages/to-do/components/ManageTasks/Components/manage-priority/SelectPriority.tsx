@@ -17,16 +17,23 @@ const SelectPriority = ({
   defaultValue?: PriorityType;
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
-    onChange(event.target.value ? (event.target.value as PriorityType) : undefined);
+    onChange(
+      event.target.value ? (event.target.value as PriorityType) : undefined,
+    );
   };
 
   return (
-    <FormControl sx={{ width: `${taskHasDueTime ? '39%' : '100%'}` }} size="medium">
+    <FormControl
+      sx={{ width: `${taskHasDueTime ? '39%' : '100%'}` }}
+      size="medium"
+    >
       <InputLabel
         id="priority-select-label"
         sx={{
           '&.Mui-focused': { transform: 'translate(0, -17px) scale(0.75)' },
-          '&.MuiInputLabel-shrink': { transform: 'translate(0, -17px) scale(0.75)' },
+          '&.MuiInputLabel-shrink': {
+            transform: 'translate(0, -17px) scale(0.75)',
+          },
         }}
       >
         Priority

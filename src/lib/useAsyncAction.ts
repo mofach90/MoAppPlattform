@@ -21,7 +21,11 @@ export function useAsyncAction<TArgs extends unknown[], T>(
       const data = await fn(...args);
       setState({ data, loading: false, error: null });
     } catch (error: any) {
-      setState({ data: null, loading: false, error: error.message ?? 'Unknown error' });
+      setState({
+        data: null,
+        loading: false,
+        error: error.message ?? 'Unknown error',
+      });
     }
   };
 

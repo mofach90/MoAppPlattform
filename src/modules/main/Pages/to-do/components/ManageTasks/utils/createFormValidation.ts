@@ -1,6 +1,9 @@
 import dayjs from 'dayjs';
 import * as Yup from 'yup';
-import { alphanumericField, requiredAlphanumericField } from '../../../../../../../lib/validation/rules';
+import {
+  alphanumericField,
+  requiredAlphanumericField,
+} from '../../../../../../../lib/validation/rules';
 import { deboucedisTitleNotEmpty } from './CheckForTitleNotEmpty';
 
 const createFormValidation = () =>
@@ -25,16 +28,20 @@ const createFormValidation = () =>
         'is-valid-reminder',
         'Reminder must be set before the due date',
         function (value) {
-          const taskDueDate = (this as unknown as Yup.TestContext)?.parent.taskDueDate;
+          const taskDueDate = (this as unknown as Yup.TestContext)?.parent
+            .taskDueDate;
           if (!value || !taskDueDate || value === 'none') return true;
-          return dayjs(dayjs(taskDueDate).subtract(parseInt(value), 'minute')).isAfter(dayjs());
+          return dayjs(
+            dayjs(taskDueDate).subtract(parseInt(value), 'minute'),
+          ).isAfter(dayjs());
         },
       )
       .test(
         'is-valid-reminder',
         'When Using Reminder Due Date must not exceed 29 days',
         function (value) {
-          const taskDueDate = (this as unknown as Yup.TestContext)?.parent.taskDueDate;
+          const taskDueDate = (this as unknown as Yup.TestContext)?.parent
+            .taskDueDate;
           if (!value || !taskDueDate || value === 'none') return true;
           return dayjs(taskDueDate).subtract(30, 'days').isBefore(dayjs());
         },

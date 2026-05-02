@@ -13,7 +13,7 @@ const useUserGuideStore = create<UserGuideStoreType>((set) => ({
       if (state.currentStep < state.totalSteps - 1) {
         return { currentStep: state.currentStep + 1 };
       } else {
-        return { showUserGuide: false , currentStep: 0 };
+        return { showUserGuide: false, currentStep: 0 };
       }
     }),
 }));

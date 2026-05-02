@@ -86,10 +86,10 @@ function CreateTaskForm() {
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <SelectTopic
-                      value={values.taskTopic}
-                      onChange={(val) => setFieldValue('taskTopic', val)}
-                    />
+                  <SelectTopic
+                    value={values.taskTopic}
+                    onChange={(val) => setFieldValue('taskTopic', val)}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <DateTimeWrapper name="taskDueDate" />

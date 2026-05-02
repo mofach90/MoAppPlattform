@@ -61,24 +61,23 @@ export const useTaskForm = () => {
       description: values.taskDescription,
       isChecked: false,
       dueDate: values.taskDueDate
-      ? dayjs(values.taskDueDate).toISOString()
-      : null,
+        ? dayjs(values.taskDueDate).toISOString()
+        : null,
       reminder:
-      values.taskReminder && values.taskDueDate
-      ? values.taskReminder
-      : undefined,
+        values.taskReminder && values.taskDueDate
+          ? values.taskReminder
+          : undefined,
       priority: values.taskPriority ? values.taskPriority : 'medium',
       topic: values.taskTopic,
     };
     console.log('task to crteate', Task);
-    
+
     createTask(Task);
     resetForm();
     setTimeout(() => {
-      
       console.log('values after to crteate', values);
     }, 2000);
-    
+
     // resetForm({
     //   values: {
     //     ...INITIAL_CREATE_FORM_STATE,
@@ -105,7 +104,7 @@ export const useTaskForm = () => {
         values.taskReminder && values.taskDueDate
           ? values.taskReminder
           : undefined,
-      topic: values.taskTopic
+      topic: values.taskTopic,
     };
     console.log('task updated', Task);
     console.log('task updated values', values);
@@ -133,7 +132,6 @@ export const useTaskForm = () => {
       taskPriority: priority,
       taskReminder: reminder,
       taskTopic: topic as TopicType,
-
     },
     handleCreateTask,
     handleDeleteTask,

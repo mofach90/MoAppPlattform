@@ -63,7 +63,12 @@ const useTaskStore = create<TaskStore>((set) => ({
           notification: notify('success', 'Task successfully created'),
         }));
       } else {
-        set({ notification: notify('error', response.message ?? 'Failed to create task') });
+        set({
+          notification: notify(
+            'error',
+            response.message ?? 'Failed to create task',
+          ),
+        });
       }
     } catch (error) {
       console.error('Error creating task:', error);
@@ -75,9 +80,13 @@ const useTaskStore = create<TaskStore>((set) => ({
       const response: ApiResponseUpdateTask = await updateTaskInFirestore(task);
       if (response.taskUpdated) {
         set((state: TaskStore) => {
-          const wasChecked = state.tasks.find((t) => t.id === task.id)?.isChecked;
+          const wasChecked = state.tasks.find(
+            (t) => t.id === task.id,
+          )?.isChecked;
           return {
-            tasks: state.tasks.map((t) => (t.id === task.id ? { ...t, ...task } : t)),
+            tasks: state.tasks.map((t) =>
+              t.id === task.id ? { ...t, ...task } : t,
+            ),
             notification:
               wasChecked === task.isChecked
                 ? notify('success', 'Task successfully updated')
@@ -85,7 +94,12 @@ const useTaskStore = create<TaskStore>((set) => ({
           };
         });
       } else {
-        set({ notification: notify('error', response.message ?? 'Failed to update task') });
+        set({
+          notification: notify(
+            'error',
+            response.message ?? 'Failed to update task',
+          ),
+        });
       }
     } catch (error) {
       console.error('Error updating task:', error);

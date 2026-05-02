@@ -24,7 +24,6 @@ const DeleteConfirmDialog = () => {
     }
   };
 
-
   return (
     <Dialog
       open={deleteTaskDialog || deleteTopicDialog}

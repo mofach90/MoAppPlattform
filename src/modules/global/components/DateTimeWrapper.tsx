@@ -12,7 +12,12 @@ function useSlotProps() {
   return {
     slotProps: {
       actionBar: {
-        actions: ['clear', 'today', 'accept', 'cancel'] as PickersActionBarAction[],
+        actions: [
+          'clear',
+          'today',
+          'accept',
+          'cancel',
+        ] as PickersActionBarAction[],
         sx: {
           '& .MuiButton-text': {
             color: 'white',
@@ -26,10 +31,17 @@ function useSlotProps() {
   };
 }
 
-function DateTimeWrapper({ name, initialValue }: { name: string; initialValue?: dayjs.Dayjs | null }) {
+function DateTimeWrapper({
+  name,
+  initialValue,
+}: {
+  name: string;
+  initialValue?: dayjs.Dayjs | null;
+}) {
   const [field, meta] = useField(name);
   const { slotProps } = useSlotProps();
-  const { setFieldValue, handleBlur, setFieldTouched, validateField } = useFormikContext();
+  const { setFieldValue, handleBlur, setFieldTouched, validateField } =
+    useFormikContext();
 
   const configOption = {
     ...field,
@@ -37,7 +49,9 @@ function DateTimeWrapper({ name, initialValue }: { name: string; initialValue?: 
       ...slotProps,
       textField: { onBlur: handleBlur } as TextFieldProps,
     },
-    onClose: () => { setFieldTouched(name, true); },
+    onClose: () => {
+      setFieldTouched(name, true);
+    },
   };
 
   if (meta && meta.touched && meta.error) {
@@ -45,7 +59,9 @@ function DateTimeWrapper({ name, initialValue }: { name: string; initialValue?: 
     configOption.slotProps.textField.helperText = meta.error;
   }
 
-  const deboucedisTitleNotEmpty = debounce(() => { validateField('taskDueDate'); }, 50);
+  const deboucedisTitleNotEmpty = debounce(() => {
+    validateField('taskDueDate');
+  }, 50);
 
   return (
     <DateTimePicker

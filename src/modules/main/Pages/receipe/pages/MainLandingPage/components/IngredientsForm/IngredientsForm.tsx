@@ -38,7 +38,10 @@ function IngredientsForm() {
         >
           {({ submitForm, isValid }) => (
             <Form style={{ width: '60%' }}>
-              <IngredientsFormFields isValid={isValid} submitForm={submitForm} />
+              <IngredientsFormFields
+                isValid={isValid}
+                submitForm={submitForm}
+              />
 
               <Dialog open={isLoading || !!response || !!error} onClose={reset}>
                 <DialogContent>
@@ -49,7 +52,10 @@ function IngredientsForm() {
                       <Typography
                         variant="h5"
                         component="h1"
-                        sx={{ fontFamily: 'Playfair Display', fontWeight: 'bold' }}
+                        sx={{
+                          fontFamily: 'Playfair Display',
+                          fontWeight: 'bold',
+                        }}
                         textAlign={'center'}
                       >
                         <CelebrationTwoToneIcon />
@@ -73,7 +79,9 @@ function IngredientsForm() {
                         Description:
                       </Typography>
                       <ol>
-                        <Typography>&nbsp;{response.recipe.description}</Typography>
+                        <Typography>
+                          &nbsp;{response.recipe.description}
+                        </Typography>
                       </ol>
                       <Typography
                         variant="h6"
@@ -97,7 +105,11 @@ function IngredientsForm() {
                       <img
                         src={response.image}
                         alt={response.recipe.name}
-                        style={{ width: '100%', marginTop: '16px', borderRadius: '10px' }}
+                        style={{
+                          width: '100%',
+                          marginTop: '16px',
+                          borderRadius: '10px',
+                        }}
                       />
                     </>
                   )}

@@ -10,11 +10,12 @@ const ComfirmDelete = () => {
   const colors = tokens(theme.palette?.mode ?? 'dark');
   const deleteTopicDialog = useTaskStore((state) => state.deleteTopicDialog);
   const deleteTaskDialog = useTaskStore((state) => state.deleteTaskDialog);
-  
+
   return (
     <Box>
       <Typography variant="h5" color={colors.primary[900]}>
-        Are You Sure To Delete The {deleteTopicDialog?"Topic":null} {deleteTaskDialog?"Task":null}
+        Are You Sure To Delete The {deleteTopicDialog ? 'Topic' : null}{' '}
+        {deleteTaskDialog ? 'Task' : null}
       </Typography>
       <Box marginTop={4} display={'flex'} justifyContent={'space-between'}>
         <DeleteButton />

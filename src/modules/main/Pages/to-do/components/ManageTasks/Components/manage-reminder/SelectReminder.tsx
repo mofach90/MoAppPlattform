@@ -45,7 +45,10 @@ const SelectReminder = ({ defaultValue }: { defaultValue?: string }) => {
       <FormControl size="medium" fullWidth {...configOptions}>
         <InputLabel
           id="reminder-select-label"
-          sx={{ transform: 'translate(0px, -17px) scale(0.75)', color: 'inherit' }}
+          sx={{
+            transform: 'translate(0px, -17px) scale(0.75)',
+            color: 'inherit',
+          }}
         >
           Reminder
         </InputLabel>
@@ -57,9 +60,15 @@ const SelectReminder = ({ defaultValue }: { defaultValue?: string }) => {
           defaultValue={defaultValue ?? ''}
         >
           <MenuItem value={Reminder.default}>none</MenuItem>
-          <MenuItem value={Reminder.before_time_1}>{Reminder.before_time_1}</MenuItem>
-          <MenuItem value={Reminder.before_time_2}>{Reminder.before_time_2}</MenuItem>
-          <MenuItem value={Reminder.before_time_3}>{Reminder.before_time_3}</MenuItem>
+          <MenuItem value={Reminder.before_time_1}>
+            {Reminder.before_time_1}
+          </MenuItem>
+          <MenuItem value={Reminder.before_time_2}>
+            {Reminder.before_time_2}
+          </MenuItem>
+          <MenuItem value={Reminder.before_time_3}>
+            {Reminder.before_time_3}
+          </MenuItem>
         </Select>
         {configOptions.error ? (
           <FormHelperText sx={{ width: '100%' }}>{meta.error}</FormHelperText>
@@ -71,7 +80,11 @@ const SelectReminder = ({ defaultValue }: { defaultValue?: string }) => {
         onClose={() => setOpen(false)}
         open={open}
         title={
-          <Typography variant="body2" style={{ whiteSpace: 'pre-line' }} fontSize={15}>
+          <Typography
+            variant="body2"
+            style={{ whiteSpace: 'pre-line' }}
+            fontSize={15}
+          >
             {Reminder.tooltip_helper_text}
           </Typography>
         }

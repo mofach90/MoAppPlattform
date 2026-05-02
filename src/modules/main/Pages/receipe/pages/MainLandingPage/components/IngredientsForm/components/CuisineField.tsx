@@ -4,7 +4,9 @@ import TextfieldWrapper from '../../../../../../../../global/components/Textfiel
 function CuisineField() {
   return (
     <Grid item xs={12}>
-      <Typography fontWeight="bold" mb={2}>Do you prefer any cuisine</Typography>
+      <Typography fontWeight="bold" mb={2}>
+        Do you prefer any cuisine
+      </Typography>
       <TextfieldWrapper
         name={'cuisine'}
         label={`(Eg. French, Italian, Arabic .......)`}
