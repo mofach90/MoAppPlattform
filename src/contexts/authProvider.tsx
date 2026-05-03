@@ -55,7 +55,12 @@ export function AuthProvider({
           }
         }
 
-        if (ALLOWED_EMAIL && email !== ALLOWED_EMAIL) {
+        // Only deny when we can positively confirm the email is wrong.
+        // If the backend doesn't include email in its response (email === null),
+        // trust the session — the backend is the real auth gatekeeper.
+        const emailMismatch =
+          email !== null && ALLOWED_EMAIL && email !== ALLOWED_EMAIL;
+        if (emailMismatch) {
           setIsAuthenticated(false);
           setAccessDenied(true);
           await fetch('/api/v1/auth/social-auth/logout', {
