@@ -28,23 +28,43 @@ export function AuthProvider({
       });
 
       if (response.ok) {
-        const stored = localStorage.getItem('userCredential');
-        const userData = stored ? JSON.parse(stored) : null;
-        const email: string | null = Array.isArray(userData)
-          ? (userData[0]?.email ?? null)
-          : null;
+        let email: string | null = null;
 
-        if (ALLOWED_EMAIL && email === ALLOWED_EMAIL) {
-          setIsAuthenticated(true);
-          setAccessDenied(false);
-        } else {
-          // Authenticated with Google but not in the allowed list — end the session
+        const contentType = response.headers.get('content-type');
+        if (contentType?.includes('application/json')) {
+          const data = await response.json();
+          // Handle common backend response shapes
+          const user = data?.user ?? data?.userData ?? data;
+          email = user?.email ?? null;
+
+          // Populate localStorage so downstream code (task creation, sidebar profile) has user data
+          if (email) {
+            localStorage.setItem(
+              'userCredential',
+              JSON.stringify([
+                {
+                  email,
+                  displayName: user?.displayName ?? null,
+                  photoURL: user?.photoURL ?? null,
+                  phoneNumber: user?.phoneNumber ?? null,
+                  providerId: user?.providerId ?? 'google.com',
+                  uid: user?.uid ?? '',
+                },
+              ]),
+            );
+          }
+        }
+
+        if (ALLOWED_EMAIL && email !== ALLOWED_EMAIL) {
           setIsAuthenticated(false);
           setAccessDenied(true);
           await fetch('/api/v1/auth/social-auth/logout', {
             credentials: 'include',
           });
           localStorage.removeItem('userCredential');
+        } else {
+          setIsAuthenticated(true);
+          setAccessDenied(false);
         }
       } else {
         setIsAuthenticated(false);
