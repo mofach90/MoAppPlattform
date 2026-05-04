@@ -10,7 +10,8 @@ const DeleteConfirmDialog = () => {
   const activeDialog = useDialogStore((s) => s.activeDialog);
   const close = useDialogStore((s) => s.close);
 
-  const isOpen = activeDialog === 'deleteTask' || activeDialog === 'deleteTopic';
+  const isOpen =
+    activeDialog === 'deleteTask' || activeDialog === 'deleteTopic';
 
   return (
     <Dialog

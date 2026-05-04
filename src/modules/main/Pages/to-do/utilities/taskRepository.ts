@@ -67,6 +67,8 @@ export const taskRepository = {
   },
 
   getAll(): Promise<ApiResponseGetTask> {
-    return apiClient.get<ApiResponseGetTask>('/api/v1/todo-app/tasks/get-tasks');
+    return apiClient.get<ApiResponseGetTask>(
+      '/api/v1/todo-app/tasks/get-tasks',
+    );
   },
 };

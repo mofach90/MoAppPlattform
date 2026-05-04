@@ -9,8 +9,7 @@ import UpdateButton from './ToDoItem/components/UpdateButton';
 import DeleteIcon from './TopicItem/components/DeleteIcon';
 
 const TaskDetailView = ({ task }: { task: Task | null }) => {
-  useEffect(() => {
-  }, [task]);
+  useEffect(() => {}, [task]);
 
   const renderDueDate = (dueDate: string) => {
     const now = dayjs();

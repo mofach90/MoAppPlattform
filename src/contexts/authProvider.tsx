@@ -49,7 +49,10 @@ export function AuthProvider({
             };
             setCurrentUser(userRecord);
             // Populate localStorage so task creation utilities can read the email
-            localStorage.setItem('userCredential', JSON.stringify([userRecord]));
+            localStorage.setItem(
+              'userCredential',
+              JSON.stringify([userRecord]),
+            );
           }
         }
 

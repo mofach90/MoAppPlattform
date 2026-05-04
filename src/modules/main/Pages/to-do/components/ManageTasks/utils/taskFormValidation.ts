@@ -19,12 +19,11 @@ const debouncedTitleUnique = debounce(isTitleUnique, 200);
 
 export const createTaskSchema = () =>
   Yup.object().shape({
-    taskTitle: requiredAlphanumericField('Title', 55)
-      .test(
-        'is-not-empty-after-trim',
-        'Title cannot be empty or just spaces',
-        (value) => debouncedTitleNotEmpty(value) ?? false,
-      ),
+    taskTitle: requiredAlphanumericField('Title', 55).test(
+      'is-not-empty-after-trim',
+      'Title cannot be empty or just spaces',
+      (value) => debouncedTitleNotEmpty(value) ?? false,
+    ),
     taskDescription: alphanumericField('Description', 500).min(
       8,
       'Description is too short, should be 8 characters minimum',
@@ -68,8 +67,10 @@ export const deleteTaskSchema = (tasks: Task[]) =>
         'Title cannot be empty or just spaces',
         (value) => value !== undefined && value.trim().length > 0,
       )
-      .test('task-exists', 'This Task does not exist', (value) =>
-        !(debouncedTitleUnique(tasks, value) ?? true),
+      .test(
+        'task-exists',
+        'This Task does not exist',
+        (value) => !(debouncedTitleUnique(tasks, value) ?? true),
       ),
   });
 
