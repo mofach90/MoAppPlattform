@@ -24,9 +24,12 @@ const useTaskStore = create<TaskStore>((set) => ({
   selectTask: (task: Task) => set({ selectedTask: task }),
   selectTopic: (topic: TopicType) => set({ selectedTopic: topic }),
 
-  createTask: async (task: Task) => {
+  createTask: async (task: Task, userEmail: string) => {
     try {
-      const response: ApiResponseCreateTask = await taskRepository.create(task);
+      const response: ApiResponseCreateTask = await taskRepository.create(
+        task,
+        userEmail,
+      );
       if (response.taskCreated) {
         set((state: TaskStore) => ({
           tasks: [...state.tasks, response.newCreatedTask],

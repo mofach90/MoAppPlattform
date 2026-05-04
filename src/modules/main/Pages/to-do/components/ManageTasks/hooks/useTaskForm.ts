@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { FormikHelpers } from 'formik';
+import useCurrentUser from '../../../../../../global/hooks/useCurrentUser';
 import useTaskStore from '../../../hooks/useTaskStore';
 import {
   CreateTaskFormValues,
@@ -37,6 +38,7 @@ const INITIAL_REMOVE_FORM_STATE = {
 export const useTaskForm = () => {
   const { createTask, deleteTask, tasks, updateTask } = useTaskStore();
   const selectedTask = useTaskStore((state) => state.selectedTask);
+  const currentUser = useCurrentUser();
 
   const title = selectedTask?.title ? selectedTask.title : '';
   const priority = selectedTask?.priority ? selectedTask.priority : 'medium';
@@ -63,7 +65,8 @@ export const useTaskForm = () => {
       priority: values.taskPriority ? values.taskPriority : 'medium',
       topic: values.taskTopic,
     };
-    createTask(Task);
+    if (!currentUser?.email) return;
+    createTask(Task, currentUser.email);
     resetForm();
   };
   const handleUpdateTask = (

@@ -39,23 +39,17 @@ export function AuthProvider({
           email = user?.email ?? null;
 
           if (email) {
-            const userRecord: CurrentUser = {
+            setCurrentUser({
               email,
               displayName: user?.displayName ?? null,
               photoURL: user?.photoURL ?? null,
               phoneNumber: user?.phoneNumber ?? null,
               providerId: user?.providerId ?? 'google.com',
               uid: user?.uid ?? '',
-            };
-            setCurrentUser(userRecord);
-            // Populate localStorage so task creation utilities can read the email
-            localStorage.setItem('userCredential', JSON.stringify([userRecord]));
+            });
           }
         }
 
-        // Only deny when we can positively confirm the email is wrong.
-        // If the backend doesn't include email in its response (email === null),
-        // trust the session — the backend is the real auth gatekeeper.
         const emailMismatch =
           email !== null && ALLOWED_EMAIL && email !== ALLOWED_EMAIL;
         if (emailMismatch) {
@@ -65,7 +59,6 @@ export function AuthProvider({
           await fetch('/api/v1/auth/social-auth/logout', {
             credentials: 'include',
           });
-          localStorage.removeItem('userCredential');
         } else {
           setIsAuthenticated(true);
           setAccessDenied(false);
