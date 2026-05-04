@@ -1,18 +1,18 @@
 import DeleteConfirmDialog from '../TopicItem/components/DeleteConfirmDialog';
-import CreateTaskDialog from './Components/create-task/CreateTaskDialog';
+import CreateTask from './Components/create-task/CreateTask';
 import OperationStatusNotification from './Components/manage-notification/OperationStatusNotification';
 import ManageTaskButton from './Components/ManageTaskButton';
-import RemoveTaskDialog from './Components/remove-task/RemoveTaskDialog';
-import UpdateTaskDialog from './Components/update-task/UpdateTaskDialog';
+import RemoveTask from './Components/remove-task/RemoveTask';
+import UpdateTask from './Components/update-task/UpdateTask';
 
 const ManageTasks = () => {
   return (
     <>
       <ManageTaskButton />
-      <CreateTaskDialog />
-      <RemoveTaskDialog />
+      <CreateTask />
+      <RemoveTask />
       <OperationStatusNotification />
-      <UpdateTaskDialog />
+      <UpdateTask />
       <DeleteConfirmDialog />
     </>
   );

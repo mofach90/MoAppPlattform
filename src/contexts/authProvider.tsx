@@ -5,12 +5,33 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { apiClient, HttpError } from '../lib/apiClient';
 import { AuthContextType, CurrentUser } from '../data/authData';
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
 
 const ALLOWED_EMAIL = import.meta.env.VITE_ALLOWED_EMAIL as string | undefined;
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+interface AuthCheckUser {
+  email?: string;
+  displayName?: string | null;
+  photoURL?: string | null;
+  phoneNumber?: string | null;
+  providerId?: string;
+  uid?: string;
+}
+
+interface AuthCheckResponse {
+  user?: AuthCheckUser;
+  userData?: AuthCheckUser;
+  email?: string;
+  displayName?: string | null;
+  photoURL?: string | null;
+  phoneNumber?: string | null;
+  providerId?: string;
+  uid?: string;
+}
 
 export function AuthProvider({
   children,
@@ -21,71 +42,50 @@ export function AuthProvider({
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
 
   const checkAuthentication = async () => {
+    setLoading(true);
+    let data: AuthCheckResponse | undefined;
     try {
-      setLoading(true);
-      const response = await fetch('/api/v1/auth/check-google-auth', {
-        method: 'GET',
-        credentials: 'include',
-      });
-
-      if (response.ok) {
-        let email: string | null = null;
-
-        const contentType = response.headers.get('content-type');
-        if (contentType?.includes('application/json')) {
-          const data = await response.json();
-          // Handle common backend response shapes
-          const user = data?.user ?? data?.userData ?? data;
-          email = user?.email ?? null;
-
-          if (email) {
-            const userRecord: CurrentUser = {
-              email,
-              displayName: user?.displayName ?? null,
-              photoURL: user?.photoURL ?? null,
-              phoneNumber: user?.phoneNumber ?? null,
-              providerId: user?.providerId ?? 'google.com',
-              uid: user?.uid ?? '',
-            };
-            setCurrentUser(userRecord);
-            // Populate localStorage so task creation utilities can read the email
-            localStorage.setItem(
-              'userCredential',
-              JSON.stringify([userRecord]),
-            );
-          }
-        }
-
-        // Only deny when we can positively confirm the email is wrong.
-        // If the backend doesn't include email in its response (email === null),
-        // trust the session — the backend is the real auth gatekeeper.
-        const emailMismatch =
-          email !== null && ALLOWED_EMAIL && email !== ALLOWED_EMAIL;
-        if (emailMismatch) {
-          setIsAuthenticated(false);
-          setAccessDenied(true);
-          setCurrentUser(null);
-          await fetch('/api/v1/auth/social-auth/logout', {
-            credentials: 'include',
-          });
-          localStorage.removeItem('userCredential');
-        } else {
-          setIsAuthenticated(true);
-          setAccessDenied(false);
-        }
-      } else {
-        setIsAuthenticated(false);
-        setAccessDenied(false);
-        setCurrentUser(null);
-      }
+      data = await apiClient.get<AuthCheckResponse>(
+        '/api/v1/auth/check-google-auth',
+      );
     } catch (error) {
-      console.error('Failure in checkAuthentication', error);
+      if (!(error instanceof HttpError)) {
+        console.error('Failure in checkAuthentication', error);
+      }
       setIsAuthenticated(false);
       setAccessDenied(false);
       setCurrentUser(null);
-    } finally {
       setLoading(false);
+      return;
     }
+
+    const user: AuthCheckUser | undefined =
+      data?.user ?? data?.userData ?? data;
+    const email = user?.email ?? null;
+
+    if (email) {
+      setCurrentUser({
+        email,
+        displayName: user?.displayName ?? null,
+        photoURL: user?.photoURL ?? null,
+        phoneNumber: user?.phoneNumber ?? null,
+        providerId: user?.providerId ?? 'google.com',
+        uid: user?.uid ?? '',
+      });
+    }
+
+    const emailMismatch =
+      email !== null && ALLOWED_EMAIL && email !== ALLOWED_EMAIL;
+    if (emailMismatch) {
+      setIsAuthenticated(false);
+      setAccessDenied(true);
+      setCurrentUser(null);
+      await apiClient.get('/api/v1/auth/social-auth/logout').catch(() => {});
+    } else {
+      setIsAuthenticated(true);
+      setAccessDenied(false);
+    }
+    setLoading(false);
   };
 
   useEffect(() => {

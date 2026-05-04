@@ -112,7 +112,7 @@ export interface TaskStore {
 
   selectTask: (task: Task) => void;
   selectTopic: (topic: TopicType) => void;
-  createTask: (task: Task) => void;
+  createTask: (task: Task, userEmail: string) => void;
   updateTask: (task: Task) => void;
   deleteTask: (task: Task['title']) => void;
   deleteTopic: (topic: TopicType) => void;

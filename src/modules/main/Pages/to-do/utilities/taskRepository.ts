@@ -9,18 +9,8 @@ import {
   TopicType,
 } from '../types';
 
-const userEmail = (): string | null => {
-  try {
-    const stored = localStorage.getItem('userCredential');
-    const parsed = stored ? (JSON.parse(stored) as { email?: string }[]) : [];
-    return parsed[0]?.email ?? null;
-  } catch {
-    return null;
-  }
-};
-
 export const taskRepository = {
-  create(task: Task): Promise<ApiResponseCreateTask> {
+  create(task: Task, userEmail: string): Promise<ApiResponseCreateTask> {
     return apiClient.post<ApiResponseCreateTask>(
       '/api/v1/todo-app/tasks/create-task',
       {
@@ -31,7 +21,7 @@ export const taskRepository = {
         priority: task.priority ?? 'medium',
         reminder: task.reminder,
         topic: task.topic,
-        userEmail: userEmail(),
+        userEmail,
       },
     );
   },

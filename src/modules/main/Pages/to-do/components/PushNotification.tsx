@@ -1,6 +1,7 @@
 import { getToken, onMessage } from 'firebase/messaging';
 import { useEffect } from 'react';
 import { messaging } from '../../../../../config/firebaseConfig';
+import { apiClient } from '../../../../../lib/apiClient';
 
 const PushNotification = () => {
   useEffect(() => {
@@ -11,22 +12,11 @@ const PushNotification = () => {
     try {
       const permission = await Notification.requestPermission();
       if (permission === 'granted') {
-        const token = await getToken(
-          messaging,
-          //     {
-          //     vapidKey:
-          //       'BMyrgk4-oc7Z53E99SZb0MdWaIquk2x7CClDfYamWfUwgeSVrwkkGI2w4E-aroPwEHQMEhhg0vnlBpvUWnVD_ac',
-          //   }
-        );
-        console.log('FCM Token:', token);
-        await fetch(`/api/v1/todo-app/tasks/get-token`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token }),
-          credentials: 'include',
+        const token = await getToken(messaging);
+        await apiClient.post<unknown>('/api/v1/todo-app/tasks/get-token', {
+          token,
         });
       }
-      // You can now send the token to your server to send notifications to this device
     } catch (error) {
       console.error('Error getting permission for notifications:', error);
     }

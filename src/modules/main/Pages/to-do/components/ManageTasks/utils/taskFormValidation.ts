@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import { debounce } from 'lodash';
 import * as Yup from 'yup';
 import {
   alphanumericField,
@@ -14,15 +13,12 @@ const isTitleUnique = (tasks: Task[], title: string | undefined) =>
   title !== undefined &&
   tasks.filter((t) => t.title === title.trim()).length === 0;
 
-const debouncedTitleNotEmpty = debounce(isTitleNotEmpty, 200);
-const debouncedTitleUnique = debounce(isTitleUnique, 200);
-
 export const createTaskSchema = () =>
   Yup.object().shape({
     taskTitle: requiredAlphanumericField('Title', 55).test(
       'is-not-empty-after-trim',
       'Title cannot be empty or just spaces',
-      (value) => debouncedTitleNotEmpty(value) ?? false,
+      isTitleNotEmpty,
     ),
     taskDescription: alphanumericField('Description', 500).min(
       8,
@@ -70,7 +66,7 @@ export const deleteTaskSchema = (tasks: Task[]) =>
       .test(
         'task-exists',
         'This Task does not exist',
-        (value) => !(debouncedTitleUnique(tasks, value) ?? true),
+        (value) => !isTitleUnique(tasks, value),
       ),
   });
 
