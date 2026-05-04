@@ -15,7 +15,9 @@ const DeleteIcon = ({
   const open = useDialogStore((s) => s.open);
 
   return (
-    <Box onClick={() => open(variant === 'topic' ? 'deleteTopic' : 'deleteTask')}>
+    <Box
+      onClick={() => open(variant === 'topic' ? 'deleteTopic' : 'deleteTask')}
+    >
       <DeleteForeverIcon
         fontSize={fontSize ?? 'medium'}
         sx={{

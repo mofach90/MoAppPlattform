@@ -15,12 +15,11 @@ const isTitleUnique = (tasks: Task[], title: string | undefined) =>
 
 export const createTaskSchema = () =>
   Yup.object().shape({
-    taskTitle: requiredAlphanumericField('Title', 55)
-      .test(
-        'is-not-empty-after-trim',
-        'Title cannot be empty or just spaces',
-        isTitleNotEmpty,
-      ),
+    taskTitle: requiredAlphanumericField('Title', 55).test(
+      'is-not-empty-after-trim',
+      'Title cannot be empty or just spaces',
+      isTitleNotEmpty,
+    ),
     taskDescription: alphanumericField('Description', 500).min(
       8,
       'Description is too short, should be 8 characters minimum',
