@@ -1,10 +1,9 @@
 import { Grid, Paper, Typography, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
-import { useEffect } from 'react';
 import ButtonWrapper from '../../../../../../../global/components/ButtonWrapper';
 import TextfieldWrapper from '../../../../../../../global/components/TextfieldWrapper';
 import { tokens } from '../../../../../../../global/theme/theme';
-import useManageTasksStore from '../../hooks/useManageTasks';
+import useDialogStore from '../../../../hooks/useDialogStore';
 import { useTaskForm } from '../../hooks/useTaskForm';
 
 function RemoveTaskForm() {
@@ -16,12 +15,7 @@ function RemoveTaskForm() {
     handleDeleteTask,
     buttonConfig,
   } = useTaskForm();
-  const handleOnClickRemove = useManageTasksStore(
-    (state) => state.handleOnClickRemove,
-  );
-  useEffect(() => {
-    console.log(' DELETE_FORM_VALIDATION: ');
-  }, [DELETE_FORM_VALIDATION]);
+  const close = useDialogStore((s) => s.close);
 
   return (
     <Grid
@@ -74,9 +68,7 @@ function RemoveTaskForm() {
                       onClick: () => {
                         if (isValid) {
                           submitForm();
-                          handleOnClickRemove();
-                        } else {
-                          console.log('Your Input is not valid');
+                          close();
                         }
                       },
                     }}
@@ -96,8 +88,6 @@ function RemoveTaskForm() {
                       onClick: () => {
                         if (isValid) {
                           submitForm();
-                        } else {
-                          console.log('Your Input is not valid');
                         }
                       },
                     }}

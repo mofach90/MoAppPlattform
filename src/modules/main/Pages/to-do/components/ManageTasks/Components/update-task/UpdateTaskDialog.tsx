@@ -1,16 +1,14 @@
 import { Dialog } from '@mui/material';
-import useTaskStore from '../../../../hooks/useTaskStore';
+import useDialogStore from '../../../../hooks/useDialogStore';
 import UpdateTaskForm from './UpdateTaskForm';
 
 const UpdateTaskDialog = () => {
-  const UpdateTaskDialog = useTaskStore((state) => state.UpdateTaskDialog);
-  const setUpdateTaskDialog = useTaskStore(
-    (state) => state.setUpdateTaskDialog,
-  );
+  const activeDialog = useDialogStore((s) => s.activeDialog);
+  const close = useDialogStore((s) => s.close);
   return (
     <Dialog
-      open={UpdateTaskDialog}
-      onClose={setUpdateTaskDialog}
+      open={activeDialog === 'updateTask'}
+      onClose={close}
       PaperProps={{
         elevation: 24,
         sx: {

@@ -1,13 +1,12 @@
 import { Box, Grid, Paper, Typography, useTheme } from '@mui/material';
 import { Form, Formik } from 'formik';
-import { useEffect } from 'react';
 import ButtonWrapper from '../../../../../../../global/components/ButtonWrapper';
 import DateTimeWrapper from '../../../../../../../global/components/DateTimeWrapper';
 import TextfieldWrapper from '../../../../../../../global/components/TextfieldWrapper';
 import { tokens } from '../../../../../../../global/theme/theme';
-import useTaskStore from '../../../../hooks/useTaskStore';
+import useDialogStore from '../../../../hooks/useDialogStore';
 import { useTaskForm } from '../../hooks/useTaskForm';
-import { shouldShowReminder } from '../../utils/checkIfDueDate';
+import { shouldShowReminder } from '../../utils/taskFormValidation';
 import SelectPriority from '../manage-priority/SelectPriority';
 import SelectReminder from '../manage-reminder/SelectReminder';
 import SelectTopic from '../manage-topics/SelectTopic';
@@ -16,9 +15,7 @@ function UpdateTaskForm() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const setUpdateTaskDialog = useTaskStore(
-    (state) => state.setUpdateTaskDialog,
-  );
+  const close = useDialogStore((s) => s.close);
 
   const {
     CREATE_FORM_VALIDATION,
@@ -26,9 +23,6 @@ function UpdateTaskForm() {
     handleUpdateTask,
     buttonConfig,
   } = useTaskForm();
-  useEffect(() => {
-    console.log(INITIAL_UPDATE_FORM_STATE.taskDueDate);
-  }, [INITIAL_UPDATE_FORM_STATE]);
 
   return (
     <Grid
@@ -122,9 +116,7 @@ function UpdateTaskForm() {
 
                         if (isValid) {
                           submitForm();
-                          setUpdateTaskDialog();
-                        } else {
-                          console.log('Your Input is not Valid');
+                          close();
                         }
                       },
                     }}

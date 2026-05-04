@@ -1,33 +1,23 @@
 import { Dialog, useTheme } from '@mui/material';
 import { tokens } from '../../../../../../global/theme/theme';
 import { Theme } from '../../../../../types/mainTypes';
-import useTaskStore from '../../../hooks/useTaskStore';
+import useDialogStore from '../../../hooks/useDialogStore';
 import ComfirmDelete from './ComfirmDelete';
 
 const DeleteConfirmDialog = () => {
-  const deleteTaskDialog = useTaskStore((state) => state.deleteTaskDialog);
-  const setDeleteTaskDialog = useTaskStore(
-    (state) => state.setDeleteTaskDialog,
-  );
-  const deleteTopicDialog = useTaskStore((state) => state.deleteTopicDialog);
-  const setDeleteTopicDialog = useTaskStore(
-    (state) => state.setDeleteTopicDialog,
-  );
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette?.mode ?? 'dark');
-  const handleClose = (
-    _event: React.SyntheticEvent | Event,
-    reason?: string,
-  ) => {
-    if (reason === 'backdropClick' || reason === 'escapeKeyDown') {
-      deleteTaskDialog ? setDeleteTaskDialog() : setDeleteTopicDialog();
-    }
-  };
+  const activeDialog = useDialogStore((s) => s.activeDialog);
+  const close = useDialogStore((s) => s.close);
+
+  const isOpen = activeDialog === 'deleteTask' || activeDialog === 'deleteTopic';
 
   return (
     <Dialog
-      open={deleteTaskDialog || deleteTopicDialog}
-      onClose={handleClose}
+      open={isOpen}
+      onClose={(_e, reason) => {
+        if (reason === 'backdropClick' || reason === 'escapeKeyDown') close();
+      }}
       PaperProps={{
         elevation: 24,
         sx: {

@@ -1,23 +1,18 @@
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { Box, IconButton, Theme, Typography, useTheme } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Menu, MenuItem, ProSidebar } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { navItems } from '../../../../routes/navItems';
+import useCurrentUser from '../../../global/hooks/useCurrentUser';
 import { tokens } from '../../../global/theme/theme';
-import useUserDataStore from '../../Pages/to-do/hooks/useUserDataStore';
 import Item from './components/items';
 
 const Sidebar = () => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const getUserData = useUserDataStore((state) => state.getUserData);
-  const userData = useUserDataStore((state) => state.userData);
-
-  useEffect(() => {
-    getUserData();
-  }, [getUserData]);
+  const currentUser = useCurrentUser();
 
   return (
     <Box
@@ -74,7 +69,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={userData[0]?.photoURL ?? 'public/assets/maradona.png'}
+                  src={currentUser?.photoURL ?? 'public/assets/maradona.png'}
                   style={{
                     cursor: 'pointer',
                     borderRadius: '50%',
@@ -89,9 +84,7 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: '20px 10px 10px 10px' }}
                 >
-                  {userData[0]?.displayName
-                    ? userData[0]?.displayName
-                    : 'MO ADMIN'}
+                  {currentUser?.displayName ?? 'MO ADMIN'}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
                   VIP Fancy Admin

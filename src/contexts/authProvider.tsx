@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { AuthContextType } from '../data/authData';
+import { AuthContextType, CurrentUser } from '../data/authData';
 import CircularProgressWithLabel from '../modules/global/components/LoadingUtility';
 
 const ALLOWED_EMAIL = import.meta.env.VITE_ALLOWED_EMAIL as string | undefined;
@@ -18,6 +18,7 @@ export function AuthProvider({
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [accessDenied, setAccessDenied] = useState<boolean>(false);
+  const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
 
   const checkAuthentication = async () => {
     try {
@@ -37,21 +38,18 @@ export function AuthProvider({
           const user = data?.user ?? data?.userData ?? data;
           email = user?.email ?? null;
 
-          // Populate localStorage so downstream code (task creation, sidebar profile) has user data
           if (email) {
-            localStorage.setItem(
-              'userCredential',
-              JSON.stringify([
-                {
-                  email,
-                  displayName: user?.displayName ?? null,
-                  photoURL: user?.photoURL ?? null,
-                  phoneNumber: user?.phoneNumber ?? null,
-                  providerId: user?.providerId ?? 'google.com',
-                  uid: user?.uid ?? '',
-                },
-              ]),
-            );
+            const userRecord: CurrentUser = {
+              email,
+              displayName: user?.displayName ?? null,
+              photoURL: user?.photoURL ?? null,
+              phoneNumber: user?.phoneNumber ?? null,
+              providerId: user?.providerId ?? 'google.com',
+              uid: user?.uid ?? '',
+            };
+            setCurrentUser(userRecord);
+            // Populate localStorage so task creation utilities can read the email
+            localStorage.setItem('userCredential', JSON.stringify([userRecord]));
           }
         }
 
@@ -63,6 +61,7 @@ export function AuthProvider({
         if (emailMismatch) {
           setIsAuthenticated(false);
           setAccessDenied(true);
+          setCurrentUser(null);
           await fetch('/api/v1/auth/social-auth/logout', {
             credentials: 'include',
           });
@@ -74,11 +73,13 @@ export function AuthProvider({
       } else {
         setIsAuthenticated(false);
         setAccessDenied(false);
+        setCurrentUser(null);
       }
     } catch (error) {
       console.error('Failure in checkAuthentication', error);
       setIsAuthenticated(false);
       setAccessDenied(false);
+      setCurrentUser(null);
     } finally {
       setLoading(false);
     }
@@ -93,8 +94,14 @@ export function AuthProvider({
   };
 
   const contextValue = useMemo(
-    () => ({ isAuthenticated, loading, recheckAuthentication, accessDenied }),
-    [isAuthenticated, loading, accessDenied],
+    () => ({
+      isAuthenticated,
+      loading,
+      recheckAuthentication,
+      accessDenied,
+      currentUser,
+    }),
+    [isAuthenticated, loading, accessDenied, currentUser],
   );
 
   return (

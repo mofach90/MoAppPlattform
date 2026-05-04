@@ -10,7 +10,6 @@ import DeleteIcon from './TopicItem/components/DeleteIcon';
 
 const TaskDetailView = ({ task }: { task: Task | null }) => {
   useEffect(() => {
-    console.log('Tasks from TaskDetailView comp', task);
   }, [task]);
 
   const renderDueDate = (dueDate: string) => {
@@ -51,8 +50,6 @@ const TaskDetailView = ({ task }: { task: Task | null }) => {
   const renderCreatedDate = (createdDate: string, updatedDate: string) => {
     const taskcreatedDate = dayjs(createdDate);
     const taskupdatedDate = dayjs(updatedDate);
-
-    console.log('createddate', taskcreatedDate);
     console.log(
       'createddate formnated',
       dayjs(taskcreatedDate).format('YYYY-MM-DD HH:mm:ss'),

@@ -1,13 +1,14 @@
 import { Dialog } from '@mui/material';
-import useManageTasksStore from '../../hooks/useManageTasks';
+import useDialogStore from '../../../../hooks/useDialogStore';
 import RemoveTaskForm from './RemoveTaskForm';
 
 const RemoveTaskDialog = () => {
-  const { openRemoveTask, handleClose } = useManageTasksStore();
+  const activeDialog = useDialogStore((s) => s.activeDialog);
+  const close = useDialogStore((s) => s.close);
   return (
     <Dialog
-      open={openRemoveTask}
-      onClose={handleClose}
+      open={activeDialog === 'removeTask'}
+      onClose={close}
       PaperProps={{
         elevation: 24,
         sx: {

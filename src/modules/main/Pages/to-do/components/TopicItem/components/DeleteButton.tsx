@@ -2,6 +2,7 @@ import { useTheme } from '@mui/material';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import { tokens } from '../../../../../../global/theme/theme';
 import { Theme } from '../../../../../types/mainTypes';
+import useDialogStore from '../../../hooks/useDialogStore';
 import useTaskStore from '../../../hooks/useTaskStore';
 
 const DeleteButton = () => {
@@ -11,12 +12,7 @@ const DeleteButton = () => {
   const deleteTopic = useTaskStore((state) => state.deleteTopic);
   const selectedTask = useTaskStore((state) => state.selectedTask);
   const selectedTopic = useTaskStore((state) => state.selectedTopic);
-  const setDeleteTaskDialog = useTaskStore(
-    (state) => state.setDeleteTaskDialog,
-  );
-  const setDeleteTopicDialog = useTaskStore(
-    (state) => state.setDeleteTopicDialog,
-  );
+  const close = useDialogStore((s) => s.close);
   return (
     <ButtonWrapper
       buttonConfig={{
@@ -24,7 +20,6 @@ const DeleteButton = () => {
           backgroundColor: colors.redAccent[600],
           color: 'black',
           border: '2px solid black',
-
           ':hover': {
             backgroundColor: colors.redAccent[500],
           },
@@ -35,12 +30,11 @@ const DeleteButton = () => {
         },
         onClick: () => {
           if (selectedTask) {
-            deleteTask(selectedTask?.id ? selectedTask.id : '');
-            setDeleteTaskDialog();
+            deleteTask(selectedTask.id ?? '');
           } else {
             deleteTopic(selectedTopic);
-            setDeleteTopicDialog();
           }
+          close();
         },
       }}
     >

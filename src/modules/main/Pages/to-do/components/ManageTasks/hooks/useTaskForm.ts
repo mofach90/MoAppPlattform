@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { FormikHelpers } from 'formik';
-import { useEffect } from 'react';
 import useTaskStore from '../../../hooks/useTaskStore';
 import {
   CreateTaskFormValues,
@@ -11,8 +10,7 @@ import {
   Task,
   TopicType,
 } from '../../../types';
-import createFormValidation from '../utils/createFormValidation';
-import deleteFormDublicate from '../utils/deleteFormDublicate';
+import { createTaskSchema, deleteTaskSchema } from '../utils/taskFormValidation';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -40,10 +38,6 @@ export const useTaskForm = () => {
   const { createTask, deleteTask, tasks, updateTask } = useTaskStore();
   const selectedTask = useTaskStore((state) => state.selectedTask);
 
-  useEffect(() => {
-    console.log('selectedTask yahoo', selectedTask);
-  }, [selectedTask]);
-
   const title = selectedTask?.title ? selectedTask.title : '';
   const priority = selectedTask?.priority ? selectedTask.priority : 'medium';
   const description = selectedTask?.description ? selectedTask.description : '';
@@ -55,7 +49,6 @@ export const useTaskForm = () => {
     values: CreateTaskFormValues,
     { resetForm }: Pick<FormikHelpers<CreateTaskFormValues>, 'resetForm'>,
   ) => {
-    console.log('values to crteate', values);
     const Task: Task = {
       title: values.taskTitle,
       description: values.taskDescription,
@@ -70,22 +63,8 @@ export const useTaskForm = () => {
       priority: values.taskPriority ? values.taskPriority : 'medium',
       topic: values.taskTopic,
     };
-    console.log('task to crteate', Task);
-
     createTask(Task);
     resetForm();
-    setTimeout(() => {
-      console.log('values after to crteate', values);
-    }, 2000);
-
-    // resetForm({
-    //   values: {
-    //     ...INITIAL_CREATE_FORM_STATE,
-    //     taskTitle: "test",
-    //     taskPriority: "low",
-    //     taskTopic: null,
-    //   },
-    // });
   };
   const handleUpdateTask = (
     values: Initial_Update_State_Type,
@@ -106,8 +85,6 @@ export const useTaskForm = () => {
           : undefined,
       topic: values.taskTopic,
     };
-    console.log('task updated', Task);
-    console.log('task updated values', values);
     updateTask(Task);
     resetForm();
   };
@@ -121,8 +98,8 @@ export const useTaskForm = () => {
 
   return {
     buttonConfig,
-    CREATE_FORM_VALIDATION: createFormValidation(),
-    DELETE_FORM_VALIDATION: deleteFormDublicate(tasks),
+    CREATE_FORM_VALIDATION: createTaskSchema(),
+    DELETE_FORM_VALIDATION: deleteTaskSchema(tasks),
     INITIAL_CREATE_FORM_STATE,
     INITIAL_REMOVE_FORM_STATE,
     INITIAL_UPDATE_FORM_STATE: {

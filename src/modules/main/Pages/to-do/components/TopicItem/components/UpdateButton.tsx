@@ -1,14 +1,12 @@
 import { Theme, Typography, useTheme } from '@mui/material';
 import ButtonWrapper from '../../../../../../global/components/ButtonWrapper';
 import { tokens } from '../../../../../../global/theme/theme';
-import useTaskStore from '../../../hooks/useTaskStore';
+import useDialogStore from '../../../hooks/useDialogStore';
 
 const UpdateButton = () => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const setUpdateTaskDialog = useTaskStore(
-    (state) => state.setUpdateTaskDialog,
-  );
+  const open = useDialogStore((s) => s.open);
 
   return (
     <ButtonWrapper
@@ -22,7 +20,7 @@ const UpdateButton = () => {
             backgroundColor: colors.greenAccent[400],
           },
         },
-        onClick: () => setUpdateTaskDialog(),
+        onClick: () => open('updateTask'),
       }}
     >
       <Typography

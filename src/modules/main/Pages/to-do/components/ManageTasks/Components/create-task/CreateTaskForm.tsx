@@ -7,7 +7,7 @@ import ButtonWrapper from '../../../../../../../global/components/ButtonWrapper'
 import DateTimeWrapper from '../../../../../../../global/components/DateTimeWrapper';
 import TextfieldWrapper from '../../../../../../../global/components/TextfieldWrapper';
 import { tokens } from '../../../../../../../global/theme/theme';
-import useManageTasksStore from '../../hooks/useManageTasks';
+import useDialogStore from '../../../../hooks/useDialogStore';
 import { useTaskForm } from '../../hooks/useTaskForm';
 import SelectPriority from '../manage-priority/SelectPriority';
 import SelectReminder from '../manage-reminder/SelectReminder';
@@ -19,9 +19,7 @@ dayjs.extend(timezone);
 function CreateTaskForm() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const handleOnclickCreate = useManageTasksStore(
-    (state) => state.handleOnClickCreate,
-  );
+  const close = useDialogStore((s) => s.close);
 
   const {
     CREATE_FORM_VALIDATION,
@@ -108,9 +106,7 @@ function CreateTaskForm() {
                       onClick: () => {
                         if (isValid) {
                           submitForm();
-                          handleOnclickCreate();
-                        } else {
-                          console.log('Your Input is not Valid');
+                          close();
                         }
                       },
                     }}
@@ -125,15 +121,12 @@ function CreateTaskForm() {
                         '&:hover': {
                           backgroundColor: '#4b70d8',
                         },
-
                         marginTop: 2,
                       },
                       onClick: () => {
                         validateForm();
                         if (isValid) {
                           submitForm();
-                        } else {
-                          console.log('Your Input is not Valid');
                         }
                       },
                     }}

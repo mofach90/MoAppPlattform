@@ -108,14 +108,8 @@ export interface TaskStore {
   tasks: Task[];
   selectedTask: Task | null;
   selectedTopic: TopicType;
-  deleteTaskDialog: boolean;
-  deleteTopicDialog: boolean;
-  UpdateTaskDialog: boolean;
   notification: TaskNotification | null;
 
-  setDeleteTaskDialog: () => void;
-  setDeleteTopicDialog: () => void;
-  setUpdateTaskDialog: () => void;
   selectTask: (task: Task) => void;
   selectTopic: (topic: TopicType) => void;
   createTask: (task: Task) => void;
@@ -127,14 +121,6 @@ export interface TaskStore {
     _event: React.SyntheticEvent | Event,
     reason?: string,
   ) => void;
-}
-
-export interface ManageTasksState {
-  openCreateTask: boolean;
-  openRemoveTask: boolean;
-  handleClose: (_event: React.SyntheticEvent | Event, reason?: string) => void;
-  handleOnClickCreate: () => void;
-  handleOnClickRemove: () => void;
 }
 
 export interface CreateTaskFormValues {
@@ -193,16 +179,3 @@ export interface Initial_Update_State_Type {
   taskTopic: TopicType;
 }
 
-export interface UserDataStore {
-  userData: UserData[];
-  addUserData: (newUserData: UserData) => void;
-  getUserData: () => void;
-}
-export interface UserData {
-  displayName: string | null;
-  email: string | null;
-  phoneNumber: string | null;
-  photoURL: string | null;
-  providerId: string;
-  uid: string;
-}

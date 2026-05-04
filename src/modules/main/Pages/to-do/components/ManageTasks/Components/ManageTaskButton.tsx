@@ -7,12 +7,13 @@ import {
   Theme,
   useTheme,
 } from '@mui/material';
+import useDialogStore from '../../../hooks/useDialogStore';
 import { tokens } from '../../../../../../global/theme/theme';
-import useManageTasksStore from '../hooks/useManageTasks';
+
 const ManageTaskButton = () => {
   const theme: Theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const { handleOnClickCreate, handleOnClickRemove } = useManageTasksStore();
+  const open = useDialogStore((s) => s.open);
 
   return (
     <SpeedDial
@@ -42,7 +43,7 @@ const ManageTaskButton = () => {
             backgroundColor: colors.greenAccent[500],
           },
         }}
-        onClick={handleOnClickCreate}
+        onClick={() => open('createTask')}
       />
 
       <SpeedDialAction
@@ -54,7 +55,7 @@ const ManageTaskButton = () => {
             backgroundColor: colors.redAccent[500],
           },
         }}
-        onClick={handleOnClickRemove}
+        onClick={() => open('removeTask')}
       />
     </SpeedDial>
   );
