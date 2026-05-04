@@ -10,6 +10,10 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   if (!response.ok) {
     throw new HttpError(response.status);
   }
+  const contentType = response.headers.get('content-type');
+  if (!contentType?.includes('application/json')) {
+    return undefined as T;
+  }
   return response.json() as Promise<T>;
 }
 
